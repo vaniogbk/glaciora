@@ -99,4 +99,4 @@ Voir [docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md) : variables Railway/Vercel, migr
 
 ## À compléter manuellement
 
-Voir la section correspondante de [docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md#8-checklist-de-mise-en-production) et le rapport d'import.
+Voir la section correspondante de [docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md#9-checklist-de-mise-en-production) et le rapport d'import.

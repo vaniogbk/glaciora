@@ -1,12 +1,14 @@
 # Déploiement GLACIORA
 
+État au 26/10/2026 : dépôt public `vaniogbk/glaciora` ; Railway projet `glaciora` (service `api` → `https://api-production-70d8.up.railway.app`, PostgreSQL) ; Vercel projet `glaciora` (racine `apps/web`, déploiement automatique à chaque push sur `main`).
+
 Architecture : **Vercel** (site Next.js, `glaciora.vercel.app`) → proxy `/api/*` → **Railway** (API Express + PostgreSQL).
 Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune configuration CORS.
 
 ## 1. Backend sur Railway
 
 1. Créer un projet Railway, ajouter **PostgreSQL** puis un service **depuis le dépôt GitHub** (racine du dépôt).
-2. `railway.json` (racine) configure : build `npm ci` + build `shared` + `api`, **pre-deploy `npm run db:deploy`** (migrations), démarrage `npm run start -w @glaciora/api`, healthcheck `/api/health`.
+2. `railway.json` (racine, builder Railpack) configure : **pre-deploy `npm run db:deploy`** (migrations), démarrage `npm start` (→ API), healthcheck `/api/health`. Variable de service `RAILPACK_BUILD_CMD="npm run build -w @glaciora/shared && npm run build -w @glaciora/api"` pour ne pas construire le site sur Railway.
 3. Variables du service API (onglet *Variables*) — voir `.env.example` :
    - `DATABASE_URL=${{Postgres.DATABASE_URL}}`
    - `NODE_ENV=production`, `APP_ENV=production` (ou `staging` pour la préproduction), `TRUST_PROXY=2`, `COOKIE_SECURE=true`
@@ -75,7 +77,16 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 2. **Base** : Railway Postgres → *Backups* (sauvegardes quotidiennes) ; avant une migration risquée : `pg_dump "$DATABASE_URL" > backup-AAAAMMJJ.sql`. Restauration : `psql "$DATABASE_URL" < backup.sql` sur une base vierge puis basculer `DATABASE_URL`.
 3. Une migration additive n'a pas besoin d'être annulée pour revenir au code précédent.
 
-## 8. Checklist de mise en production
+## 8. CI GitHub Actions
+
+Le fichier `.github/workflows/ci.yml` exige un jeton GitHub avec la permission `workflow` pour être poussé :
+
+```bash
+gh auth refresh -h github.com -s workflow
+git push
+```
+
+## 9. Checklist de mise en production
 
 - [ ] `APP_ENV=production`, `COOKIE_SECURE=true`, `TRUST_PROXY=2`, secrets JWT uniques
 - [ ] Compte bancaire principal (`BANK_*`) **réel** et vérifié ; comptes par pays vérifiés dans l'admin
