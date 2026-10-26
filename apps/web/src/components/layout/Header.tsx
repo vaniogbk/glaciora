@@ -41,7 +41,7 @@ export function Header() {
       <div className="container flex h-16 items-center gap-4 lg:h-20">
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-md lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md xl:hidden"
           aria-expanded={open}
           aria-controls="menu-mobile"
           aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
@@ -54,7 +54,7 @@ export function Header() {
         <Link href="/" className="shrink-0" aria-label="GLACIORA, retour à l'accueil">
           <Image src="/brand/logo-horizontal-sombre.svg" alt="GLACIORA" width={170} height={30} priority className="h-7 w-auto lg:h-8" />
         </Link>
-        <nav aria-label="Navigation principale" className="ml-6 hidden lg:block">
+        <nav aria-label="Navigation principale" className="ml-6 hidden xl:block">
           <ul className="flex items-center gap-6 text-sm font-semibold">
             {NAV.map((item) => (
               <li key={item.href}>
@@ -104,7 +104,7 @@ export function Header() {
           </Link>
         </div>
       </div>
-      <div id="menu-mobile" hidden={!open} className="border-t border-white/10 lg:hidden">
+      <div id="menu-mobile" hidden={!open} className="border-t border-white/10 xl:hidden">
         <form onSubmit={onSearch} role="search" className="container pt-4 md:hidden">
           <label htmlFor="recherche-mobile" className="sr-only">
             Rechercher un produit
