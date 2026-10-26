@@ -7,9 +7,10 @@ coverage/
 .env
 .env.*
 !.env.example
-storage/
-uploads/
-import-reports/
+/storage/
+apps/api/storage/
+apps/api/import-reports/
+/import-reports/
 playwright-report/
 test-results/
 .vercel

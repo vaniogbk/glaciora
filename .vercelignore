@@ -7,7 +7,7 @@ Identité graphique
 **/node_modules
 **/.next
 **/dist
-**/storage
-**/import-reports
+apps/api/storage
+apps/api/import-reports
 playwright-report
 test-results
