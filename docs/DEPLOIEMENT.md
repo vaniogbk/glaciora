@@ -8,7 +8,7 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 ## 1. Backend sur Railway
 
 1. Créer un projet Railway, ajouter **PostgreSQL** puis un service **depuis le dépôt GitHub** (racine du dépôt).
-2. `railway.json` (racine, builder Railpack) configure : **pre-deploy `npm run db:deploy`** (migrations), démarrage `npm start` (→ API), healthcheck `/api/health`. Variable de service `RAILPACK_BUILD_CMD="npm run build -w @glaciora/shared && npm run build -w @glaciora/api"` pour ne pas construire le site sur Railway.
+2. `railway.json` (racine, builder Railpack) configure : démarrage `npm start` qui applique d'abord les migrations (`prisma migrate deploy`) puis lance l'API, healthcheck `/api/health`. Variable de service `RAILPACK_BUILD_CMD="npm run build -w @glaciora/shared && npm run build -w @glaciora/api"` pour ne pas construire le site sur Railway.
 3. Variables du service API (onglet *Variables*) — voir `.env.example` :
    - `DATABASE_URL=${{Postgres.DATABASE_URL}}`
    - `NODE_ENV=production`, `APP_ENV=production` (ou `staging` pour la préproduction), `TRUST_PROXY=2`, `COOKIE_SECURE=true`
@@ -22,7 +22,11 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
    DATABASE_URL="<url publique Railway>" ADMIN_EMAIL="vous@exemple.fr" ADMIN_PASSWORD="<mot de passe fort>" npm run db:seed
    ```
    (le mot de passe ne transite que dans votre terminal ; ne le mettez pas dans les variables Railway).
-6. Importer le catalogue depuis le poste qui contient `GLACIORA_CATALOGUE` :
+6. Catalogue en production (la base Railway n'est pas exposée publiquement) : exporter l'instantané en local (`npm run catalogue:snapshot -w @glaciora/api`), committer `apps/api/data/catalogue-snapshot.json`, déployer, puis dans le conteneur :
+   ```bash
+   railway ssh --service api -- "cd /app/apps/api && npx tsx scripts/import-catalogue-snapshot.ts && npx tsx scripts/set-min-stock.ts 30 && npx tsx scripts/apply-shipping-rates.ts"
+   ```
+   Alternative si la base est joignable depuis votre poste — importer depuis le dossier `GLACIORA_CATALOGUE` :
    ```bash
    DATABASE_URL="<url publique Railway>" npm run import:catalogue
    ```
@@ -67,7 +71,7 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 
 ## 6. Migrations en production
 
-- Automatiques à chaque déploiement Railway (`preDeployCommand: npm run db:deploy`) : si une migration échoue, le déploiement est annulé et l'ancienne version continue de tourner.
+- Automatiques à chaque démarrage de l'API sur Railway (`npm start` → `prisma migrate deploy`) : si une migration échoue, le nouveau conteneur ne démarre pas, le healthcheck échoue et l'ancienne version continue de tourner.
 - Manuelles : `DATABASE_URL="<url>" npm run db:deploy`.
 - Règle : migrations **additives** (nouvelles colonnes nullables, nouvelles tables) ; suppression de colonnes en deux temps (code qui ne l'utilise plus, puis migration).
 

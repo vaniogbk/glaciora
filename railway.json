@@ -5,8 +5,7 @@
     "buildCommand": "npm run build -w @glaciora/shared && npm run build -w @glaciora/api"
   },
   "deploy": {
-    "preDeployCommand": "npm run db:deploy",
-    "startCommand": "npm run start -w @glaciora/api",
+    "startCommand": "npm start",
     "healthcheckPath": "/api/health",
     "healthcheckTimeout": 60,
     "restartPolicyType": "ON_FAILURE",

@@ -9,7 +9,8 @@ healthRouter.get(
   asyncHandler(async (_req, res) => {
     let database: 'ok' | 'down' = 'ok';
     try {
-      await prisma.$queryRaw`SELECT 1`;
+      // Vérifie la connexion ET la présence du schéma (table des migrations Prisma).
+      await prisma.$queryRaw`SELECT 1 FROM "_prisma_migrations" LIMIT 1`;
     } catch {
       database = 'down';
     }
