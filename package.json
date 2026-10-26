@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "description": "GLACIORA — boutique en ligne ski, hockey et sports de neige",
-  "workspaces": ["packages/*", "apps/*"],
-  "engines": { "node": ">=20.11" },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
   "scripts": {
     "postinstall": "npm run build -w @glaciora/shared && npm run db:generate",
     "dev": "npm run build -w @glaciora/shared && concurrently -n api,web -c blue,cyan \"npm run dev -w @glaciora/api\" \"npm run dev -w @glaciora/web\"",
     "build": "npm run build -w @glaciora/shared && npm run build -w @glaciora/api && npm run build -w @glaciora/web",
+    "start": "npm run start -w @glaciora/api",
     "lint": "npm run lint --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",

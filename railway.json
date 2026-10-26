@@ -1,8 +1,8 @@
 {
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
-    "builder": "NIXPACKS",
-    "buildCommand": "npm ci && npm run build -w @glaciora/shared && npm run build -w @glaciora/api"
+    "builder": "RAILPACK",
+    "buildCommand": "npm run build -w @glaciora/shared && npm run build -w @glaciora/api"
   },
   "deploy": {
     "preDeployCommand": "npm run db:deploy",

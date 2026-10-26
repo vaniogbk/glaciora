@@ -1,0 +1,13 @@
+# Ne jamais envoyer à Vercel : sources client, secrets locaux, artefacts
+GLACIORA_CATALOGUE
+Identité graphique
+**/.env
+**/.env.*
+!.env.example
+**/node_modules
+**/.next
+**/dist
+**/storage
+**/import-reports
+playwright-report
+test-results
