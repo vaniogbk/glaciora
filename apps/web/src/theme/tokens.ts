@@ -20,7 +20,7 @@ export const colors = {
 } as const;
 
 export const fonts = {
-  sans: ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
+  sans: ['Montserrat', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
 } as const;
 
 export const radii = {

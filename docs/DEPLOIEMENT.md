@@ -1,8 +1,8 @@
 # Déploiement GLACIORA
 
-État au 26/10/2026 : dépôt public `vaniogbk/glaciora` ; Railway projet `glaciora` (service `api` → `https://api-production-70d8.up.railway.app`, PostgreSQL) ; Vercel projet `glaciora` (racine `apps/web`, déploiement automatique à chaque push sur `main`).
+État au 26/10/2026 : dépôt public `vaniogbk/glaciora` ; Railway projet `glaciora` (service `api` → `https://api-production-70d8.up.railway.app`, PostgreSQL) ; Vercel projet `glaciora` (racine `apps/web`, déploiement automatique à chaque push sur `main`), adresse **`https://glaciora-chi.vercel.app`** : `glaciora.vercel.app` appartient déjà à un autre compte Vercel. Si l'adresse change (domaine personnalisé), mettre à jour `WEB_ORIGIN` et `PUBLIC_SITE_URL` (Railway) et `NEXT_PUBLIC_SITE_URL` (Vercel), sinon l'API refuse les ajouts au panier et les commandes (contrôle d'origine).
 
-Architecture : **Vercel** (site Next.js, `glaciora.vercel.app`) → proxy `/api/*` → **Railway** (API Express + PostgreSQL).
+Architecture : **Vercel** (site Next.js, `glaciora-chi.vercel.app`) → proxy `/api/*` → **Railway** (API Express + PostgreSQL).
 Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune configuration CORS.
 
 ## 1. Backend sur Railway
@@ -12,7 +12,7 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 3. Variables du service API (onglet *Variables*) — voir `.env.example` :
    - `DATABASE_URL=${{Postgres.DATABASE_URL}}`
    - `NODE_ENV=production`, `APP_ENV=production` (ou `staging` pour la préproduction), `TRUST_PROXY=2`, `COOKIE_SECURE=true`
-   - `WEB_ORIGIN=https://glaciora.vercel.app`, `PUBLIC_SITE_URL=https://glaciora.vercel.app`
+   - `WEB_ORIGIN=https://glaciora-chi.vercel.app`, `PUBLIC_SITE_URL=https://glaciora-chi.vercel.app`
    - `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` (aléatoires, différents, ≥ 32 caractères)
    - `BANK_ACCOUNT_HOLDER`, `BANK_IBAN`, `BANK_BIC`, `BANK_NAME` (compte principal)
    - E-mail (§4) et stockage (§5)
@@ -34,16 +34,16 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 
 ## 2. Frontend sur Vercel
 
-1. *Add New Project* → dépôt GitHub → **Root Directory : `apps/web`** → nom du projet **`glaciora`** (donne `glaciora.vercel.app` si le nom est libre).
+1. *Add New Project* → dépôt GitHub → **Root Directory : `apps/web`** → nom du projet **`glaciora`** (Vercel attribue `glaciora-chi.vercel.app`, `glaciora.vercel.app` étant pris).
 2. `apps/web/vercel.json` gère l'installation (racine du monorepo) et le build.
-3. Variables : `API_URL=https://<api>.up.railway.app`, `NEXT_PUBLIC_SITE_URL=https://glaciora.vercel.app` (Production) ; mêmes clés avec les URL de préproduction pour *Preview*.
+3. Variables : `API_URL=https://<api>.up.railway.app`, `NEXT_PUBLIC_SITE_URL=https://glaciora-chi.vercel.app` (Production) ; mêmes clés avec les URL de préproduction pour *Preview*.
 4. Le proxy `/api/*` est défini dans `next.config.mjs` (évalué au build : redéployer après tout changement d'`API_URL`).
 
 ### Environnements
 
 | | Développement | Préproduction | Production |
 |---|---|---|---|
-| Web | `localhost:3000` | Vercel *Preview* | `glaciora.vercel.app` |
+| Web | `localhost:3000` | Vercel *Preview* | `glaciora-chi.vercel.app` |
 | API | `localhost:4000` | service Railway `staging` (`APP_ENV=staging`) | service Railway `production` |
 | Base | Docker `:5466` | Postgres Railway dédié | Postgres Railway dédié |
 | E-mail | `console` | Brevo (adresse de test) | Brevo |
@@ -101,5 +101,5 @@ git push
 - [ ] **Tarifs de livraison réels** saisis (supprimer les tarifs `[DÉMO]`) ; pays activés
 - [ ] Conditions de vente complétées (rétractation, garanties, retours)
 - [ ] `npm run lint && npm run typecheck && npm run test && npm run build` verts ; E2E vert sur la préproduction
-- [ ] `https://glaciora.vercel.app/robots.txt` et `/sitemap.xml` répondent ; Search Console déclarée
+- [ ] `https://glaciora-chi.vercel.app/robots.txt` et `/sitemap.xml` répondent ; Search Console déclarée
 - [ ] Sauvegardes Postgres Railway activées ; cron `proofs:purge` planifié

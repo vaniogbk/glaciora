@@ -4,7 +4,7 @@
 
 Boutique e-commerce complète : catalogue ski / hockey / accessoires, panier, checkout par **virement bancaire SEPA avec QR code et dépôt du justificatif**, comptes clients, backoffice admin. Paiement par carte affiché comme indisponible (aucune simulation).
 
-- Front : Next.js 14 (App Router), TypeScript strict, Tailwind (tokens issus du pack logo), Vercel → `glaciora.vercel.app`
+- Front : Next.js 14 (App Router), TypeScript strict, Tailwind (tokens issus du pack logo), Vercel → `glaciora-chi.vercel.app`
 - API : Node.js / Express / TypeScript, Prisma + PostgreSQL, Railway
 - E-mails : Brevo (file d'envoi + retries) · Stockage des justificatifs : Cloudflare R2 privé
 - Tests : Jest (shared, API sur base réelle, composants web) + Playwright (parcours d'achat en 16 étapes)
