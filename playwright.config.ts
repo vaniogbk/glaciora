@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 /**
  * Tests de bout en bout sur une base dédiée (glaciora_test) : catalogue réel importé,
- * stock et tarifs de livraison de TEST, IBAN d'exemple. Lancer d'abord « npm run build ».
+ * stock et tarifs de livraison de TEST, IBAN d’exemple. Lancer d’abord « npm run build ». La base est préparée par « npm run e2e:prepare » (apps/api) avant le démarrage de l’API.
  */
 const TEST_DB = process.env.E2E_DATABASE_URL ?? 'postgresql://glaciora:glaciora_dev@localhost:5466/glaciora_test';
 
@@ -35,7 +35,6 @@ export default defineConfig({
   workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
-  globalSetup: './e2e/global-setup.ts',
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'retain-on-failure',
@@ -45,15 +44,17 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: [
     {
-      command: 'npx tsx src/server.ts',
+      // Base de test préparée AVANT le démarrage de l'API (migrations, seed, catalogue, stock [TEST]).
+      command: 'npm run e2e:prepare && npx tsx src/server.ts',
       cwd: './apps/api',
       url: 'http://localhost:4000/api/health',
       env: E2E_ENV,
       reuseExistingServer: false,
-      timeout: 120_000,
+      timeout: 300_000,
     },
     {
-      command: 'npx next start -p 3000',
+      // Cache de données Next vidé : la base de test est recréée à chaque exécution (nouveaux identifiants).
+      command: `node -e "require('fs').rmSync('.next/cache/fetch-cache',{recursive:true,force:true})" && npx next start -p 3000`,
       cwd: './apps/web',
       url: 'http://localhost:3000',
       env: { API_URL: 'http://localhost:4000', NEXT_PUBLIC_SITE_URL: 'http://localhost:3000' },

@@ -48,8 +48,8 @@ test('parcours complet : accueil → catalogue → fiche → panier → virement
   // 9. Formulaire de livraison
   await page.getByLabel('E-mail').fill('client.e2e@glaciora.test');
   await page.getByLabel('Prénom').fill('Léa');
-  await page.getByLabel('Nom', { exact: true }).fill('Martin');
-  await page.getByLabel('Adresse', { exact: true }).fill('12 route des Alpes');
+  await page.getByLabel(/^Nom/).fill('Martin');
+  await page.getByLabel(/^Adresse/).fill('12 route des Alpes');
   await page.getByLabel('Code postal').fill('74400');
   await page.getByLabel('Ville').fill('Chamonix');
   await page.getByLabel('Téléphone').fill('+33 6 12 34 56 78');
