@@ -1,4 +1,4 @@
-import { DEFAULT_ENABLED_COUNTRIES, EUROPEAN_COUNTRIES } from '@glaciora/shared';
+import { DEFAULT_ENABLED_COUNTRIES, EUROPEAN_COUNTRIES, passwordSchema } from '@glaciora/shared';
 import { prisma } from '../src/lib/prisma';
 import { ensureCategories } from '../src/modules/catalogue-import/import.service';
 import { hashPassword } from '../src/modules/auth/password';
@@ -50,7 +50,8 @@ async function main() {
   const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (adminEmail && adminPassword) {
-    if (adminPassword.length < 12) throw new Error('ADMIN_PASSWORD : 12 caractères minimum');
+    const check = passwordSchema.safeParse(adminPassword);
+    if (!check.success) throw new Error(`ADMIN_PASSWORD refusé : ${check.error.issues[0]?.message}`);
     const existing = await prisma.user.findUnique({ where: { email: adminEmail } });
     if (!existing) {
       await prisma.user.create({

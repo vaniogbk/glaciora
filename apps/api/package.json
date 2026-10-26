@@ -17,7 +17,11 @@
     "import:catalogue": "tsx scripts/import-catalogue.ts",
     "emails:process": "tsx scripts/process-emails.ts",
     "proofs:purge": "tsx scripts/purge-proofs.ts",
-    "e2e:prepare": "prisma migrate reset --force --skip-seed --skip-generate && tsx prisma/seed.ts && tsx scripts/seed-e2e.ts"
+    "e2e:prepare": "prisma migrate reset --force --skip-seed --skip-generate && tsx prisma/seed.ts && tsx scripts/seed-e2e.ts",
+    "shipping:apply": "tsx scripts/apply-shipping-rates.ts",
+    "stock:min": "tsx scripts/set-min-stock.ts",
+    "catalogue:snapshot": "tsx scripts/export-catalogue-snapshot.ts",
+    "catalogue:install": "tsx scripts/import-catalogue-snapshot.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

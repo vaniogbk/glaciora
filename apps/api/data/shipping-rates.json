@@ -1,0 +1,60 @@
+{
+  "_note": "Tarifs de livraison relevés le 27/10/2026. France et Union européenne : prix pratiqués par Snowleader (revendeur ski français) pour les colis ski. Hors UE : grille publique Colissimo 2026 de La Poste (colis 5 kg). Modifiables ensuite dans Admin > Livraison.",
+  "checkedAt": "2026-10-27",
+  "zones": [
+    {
+      "name": "France",
+      "countries": ["FR", "MC"],
+      "rates": [
+        {
+          "name": "Colissimo à domicile",
+          "priceCents": 999,
+          "freeAboveCents": 30000,
+          "source": "https://www.snowleader.com/en/delivery-returns-vat-snowleader"
+        }
+      ]
+    },
+    {
+      "name": "Union européenne",
+      "countries": ["DE", "AT", "BE", "BG", "CY", "HR", "DK", "ES", "EE", "FI", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "CZ", "RO", "SK", "SI", "SE"],
+      "rates": [
+        {
+          "name": "Colissimo international",
+          "priceCents": 2500,
+          "freeAboveCents": null,
+          "source": "https://www.snowleader.com/en/delivery-returns-vat-snowleader"
+        },
+        {
+          "name": "DHL Express",
+          "priceCents": 5000,
+          "freeAboveCents": null,
+          "source": "https://www.snowleader.com/en/delivery-returns-vat-snowleader"
+        }
+      ]
+    },
+    {
+      "name": "Europe hors UE",
+      "countries": ["CH", "GB", "LI"],
+      "rates": [
+        {
+          "name": "Colissimo international (zone A)",
+          "priceCents": 2859,
+          "freeAboveCents": null,
+          "source": "https://www.laposte.fr/colissimo-en-ligne/tarifs"
+        }
+      ]
+    },
+    {
+      "name": "Norvège et Islande",
+      "countries": ["NO", "IS"],
+      "rates": [
+        {
+          "name": "Colissimo international (zone B)",
+          "priceCents": 3989,
+          "freeAboveCents": null,
+          "source": "https://www.laposte.fr/colissimo-en-ligne/tarifs"
+        }
+      ]
+    }
+  ]
+}

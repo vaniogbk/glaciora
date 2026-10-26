@@ -1,0 +1,3552 @@
+{
+  "exportedAt": "2026-10-26T23:17:02.143Z",
+  "products": [
+    {
+      "reference": "GLA-001",
+      "slug": "volkl-shine-72-vmotion-10-gw",
+      "name": "Shine 72 + vMotion 10 GW",
+      "brand": "Völkl",
+      "model": "Völkl Shine 72 (saison 2026/2027, ski femme)",
+      "shortDescription": "Ski de piste femme (patin 72 mm) livré avec fixations Marker vMotion 10 GW, pour progresser en douceur sur piste damée.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": 27990,
+      "compareAtPriceCents": 39990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "72 mm",
+        "Rayon": "12,7 m (158 cm)",
+        "Niveau": "Débutant à intermédiaire",
+        "Saison": "2026/2027",
+        "Fixations": "vMotion 10 GW (DIN 3-10)"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://volkl.com/en-us/p/shine-72-skis-2026",
+      "priceSourceUrl": "https://www.snowleader.com/shine-72-vmot-10-w-2026-VOLK00744.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "d1a9af96cffab2599ab036edb278776998e4e9fe78df8785cd1822c0f28937a0",
+      "variants": [
+        {
+          "sku": "GLA-001-137-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "137 cm",
+          "sizeSortOrder": 1370,
+          "color": null,
+          "priceCents": 27990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-001-144-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "144 cm",
+          "sizeSortOrder": 1440,
+          "color": null,
+          "priceCents": 27990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-001-151-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "151 cm",
+          "sizeSortOrder": 1510,
+          "color": null,
+          "priceCents": 27990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-001-158-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "158 cm",
+          "sizeSortOrder": 1580,
+          "color": null,
+          "priceCents": 27990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-001-165-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "165 cm",
+          "sizeSortOrder": 1650,
+          "color": null,
+          "priceCents": 27990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/volkl-shine-72-vmotion-10-gw-59874e4293.webp",
+          "alt": "Völkl Shine 72 + vMotion 10 GW — visuel d'illustration",
+          "position": 0,
+          "width": 1200,
+          "height": 1200,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_72.png"
+        },
+        {
+          "url": "/media/products/volkl-shine-72-vmotion-10-gw-2-822b896a2f.webp",
+          "alt": "Völkl Shine 72 + vMotion 10 GW — autre coloris (visuel d'illustration)",
+          "position": 1,
+          "width": 1200,
+          "height": 1200,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_72_variante_coloris.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-002",
+      "slug": "volkl-shine-76-vmotion-10-gw",
+      "name": "Shine 76 + vMotion 10 GW",
+      "brand": "Völkl",
+      "model": "Völkl Shine 76 + Marker vMotion 10 GW (2026/2027)",
+      "shortDescription": "Ski all-mountain femme léger à noyau bois (patin 76 mm), monté avec fixations Marker vMotion 10 GW.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 32490,
+      "compareAtPriceCents": 49990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "76 mm",
+        "Niveau": "Intermédiaire",
+        "Saison": "2026/2027",
+        "Fixations": "vMotion 10 GW"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.skiessentials.com/products/2027-volkl-shine-76-skis-w-v-motion-10-bindings-v2611055",
+      "priceSourceUrl": "https://www.snowleader.com/shine-76-vmot-10-w-2026-VOLK00745.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "57d5d12ae294b97dcc340d44c932bf0892561b735c25908a108b74cb0ba51af7",
+      "variants": [
+        {
+          "sku": "GLA-002-147-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "147 cm",
+          "sizeSortOrder": 1470,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-002-154-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "154 cm",
+          "sizeSortOrder": 1540,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-002-161-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "161 cm",
+          "sizeSortOrder": 1610,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-002-168-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "168 cm",
+          "sizeSortOrder": 1680,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/volkl-shine-76-vmotion-10-gw-2452478c53.webp",
+          "alt": "Völkl Shine 76 + vMotion 10 GW — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_76.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-003",
+      "slug": "volkl-shine-78",
+      "name": "Shine 78",
+      "brand": "Völkl",
+      "model": "Völkl Shine 78 (2026)",
+      "shortDescription": "Ski de piste femme (patin 78 mm) pour skieuses intermédiaires à expertes sur neige damée.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "78 mm",
+        "Rayon": "12,2 m (149 cm) / 13,5 m (156 cm)",
+        "Côtes": "127-78-105 mm",
+        "Saison": "2026"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://volkl.com/en-us/p/shine-78-skis-2026",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "78b6f22a1d2707ae29886827ebfd559f89c5219e0e03a20ab9917e71f7e0c5f7",
+      "variants": [
+        {
+          "sku": "GLA-003-149-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "149 cm",
+          "sizeSortOrder": 1490,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-003-156-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "156 cm",
+          "sizeSortOrder": 1560,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-003-163-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "163 cm",
+          "sizeSortOrder": 1630,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/volkl-shine-78-812366cdd5.webp",
+          "alt": "Völkl Shine 78 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_78.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-004",
+      "slug": "zag-slap-92",
+      "name": "Slap 92",
+      "brand": "Zag",
+      "model": "Zag Slap 92 (coloris Purple)",
+      "shortDescription": "Ski all-mountain polyvalent (patin 92 mm), joueur sur piste et à l'aise en neige transformée.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 36560,
+      "compareAtPriceCents": 59900,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "92 mm",
+        "Poids": "3,32 kg la paire (173 cm)",
+        "Rayon": "18,3 m (173 cm)",
+        "Côtes": "126-92-112 mm (173 cm)"
+      },
+      "colors": [
+        "Purple"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/ski-alpin/zag-slap.html",
+      "priceSourceUrl": "https://www.muule.fr/en/products/zag-slap-92-all-mountain-skis-1",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "0796d354019ecd984faaa8132e60f508dd4c9687eac37758ed3ceec6126204ce",
+      "variants": [
+        {
+          "sku": "GLA-004-173-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "173 cm",
+          "sizeSortOrder": 1730,
+          "color": "Purple",
+          "priceCents": 36560,
+          "compareAtPriceCents": 59900,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-004-178-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "178 cm",
+          "sizeSortOrder": 1780,
+          "color": "Purple",
+          "priceCents": 36560,
+          "compareAtPriceCents": 59900,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-004-185-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "185 cm",
+          "sizeSortOrder": 1850,
+          "color": "Purple",
+          "priceCents": 36560,
+          "compareAtPriceCents": 59900,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/zag-slap-92-77cb6d11b3.webp",
+          "alt": "Zag Slap 92 coloris Purple — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_92.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-005",
+      "slug": "zag-slap-98",
+      "name": "Slap 98",
+      "brand": "Zag",
+      "model": "Zag Slap 98",
+      "shortDescription": "Ski all-mountain freeride (patin 98 mm) au caractère joueur, de la piste à la poudreuse.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 45490,
+      "compareAtPriceCents": 64990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "98 mm",
+        "Usage": "All-mountain / freeride"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://en.zagskis.com/slap-98-all-mountain-versatile-skis.html",
+      "priceSourceUrl": "https://www.snowleader.com/slap-98-2025-ZAG_00113.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "0e1e6bef472fdc56a4683fcb56c0b443d1530a0a7eecfe62850109b537d1fd51",
+      "variants": [
+        {
+          "sku": "GLA-005-173-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "173 cm",
+          "sizeSortOrder": 1730,
+          "color": null,
+          "priceCents": 45490,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-005-180-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "180 cm",
+          "sizeSortOrder": 1800,
+          "color": null,
+          "priceCents": 45490,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-005-187-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "187 cm",
+          "sizeSortOrder": 1870,
+          "color": null,
+          "priceCents": 45490,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/zag-slap-98-fd2475afa2.webp",
+          "alt": "Zag Slap 98 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_98.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-006",
+      "slug": "zag-slap-104",
+      "name": "Slap 104",
+      "brand": "Zag",
+      "model": "Zag Slap 104 (25-26)",
+      "shortDescription": "Ski freeride (patin 104 mm) pensé pour la neige fraîche et le hors-piste.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 41190,
+      "compareAtPriceCents": 74990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "104 mm",
+        "Poids": "1,78 à 1,99 kg par ski selon la longueur",
+        "Usage": "Freeride"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.snowleader.com/en/slap-104-2024-ZAG_00108.html",
+      "priceSourceUrl": "https://www.snowleader.com/slap-104-2025-ZAG_00108.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "c11da1173a2719e9cf05849940b000ffc4250344eb535fd198642215577c37fe",
+      "variants": [
+        {
+          "sku": "GLA-006-170-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "170 cm",
+          "sizeSortOrder": 1700,
+          "color": null,
+          "priceCents": 41190,
+          "compareAtPriceCents": 74990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-006-176-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "176 cm",
+          "sizeSortOrder": 1760,
+          "color": null,
+          "priceCents": 41190,
+          "compareAtPriceCents": 74990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-006-182-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "182 cm",
+          "sizeSortOrder": 1820,
+          "color": null,
+          "priceCents": 41190,
+          "compareAtPriceCents": 74990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-006-188-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "188 cm",
+          "sizeSortOrder": 1880,
+          "color": null,
+          "priceCents": 41190,
+          "compareAtPriceCents": 74990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/zag-slap-104-b1f8d9481b.webp",
+          "alt": "Zag Slap 104 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_104.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-007",
+      "slug": "zag-ubac-95",
+      "name": "Ubac 95",
+      "brand": "Zag",
+      "model": "Zag Ubac 95 (coloris Glacier Forest Green / Pine)",
+      "shortDescription": "Ski de randonnée léger (patin 95 mm) pour la montée comme pour la descente.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 74900,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "95 mm",
+        "Usage": "Ski de randonnée"
+      },
+      "colors": [
+        "Glacier Forest Green"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.zagskis.com/en/collections/skis-ubac-rand",
+      "priceSourceUrl": "https://skitourguru.com/en/equipment/detail/20773-zag-ubac-95",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "c9cd2617272a82afd7994454898999a7e8fcc08d197c0752132181f5903c2236",
+      "variants": [
+        {
+          "sku": "GLA-007-170-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "170 cm",
+          "sizeSortOrder": 1700,
+          "color": "Glacier Forest Green",
+          "priceCents": 74900,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-007-174-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "174 cm",
+          "sizeSortOrder": 1740,
+          "color": "Glacier Forest Green",
+          "priceCents": 74900,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-007-178-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "178 cm",
+          "sizeSortOrder": 1780,
+          "color": "Glacier Forest Green",
+          "priceCents": 74900,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-007-184-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "184 cm",
+          "sizeSortOrder": 1840,
+          "color": "Glacier Forest Green",
+          "priceCents": 74900,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/zag-ubac-95-4ac8a1a2b1.webp",
+          "alt": "Zag Ubac 95 coloris Glacier Forest Green — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_95.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-008",
+      "slug": "zag-ubac-102",
+      "name": "Ubac 102",
+      "brand": "Zag",
+      "model": "Zag Ubac 102",
+      "shortDescription": "Ski de freerando (patin 102 mm), léger et porteur en neige profonde.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 46690,
+      "compareAtPriceCents": 84990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "102 mm",
+        "Poids": "2,9 kg la paire (176 cm)",
+        "Rayon": "20,5 m (176 cm)",
+        "Côtes": "135-102-118,5 mm"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.zagskis.com/en/collections/skis-ubac-rand",
+      "priceSourceUrl": "https://www.snowleader.com/ubac-102-2025-ZAG_00134.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "87a8303188077e6b55194fb2ca9cb3a07661872ed5b7196179b34c87f8509189",
+      "variants": [
+        {
+          "sku": "GLA-008-164-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "164 cm",
+          "sizeSortOrder": 1640,
+          "color": null,
+          "priceCents": 46690,
+          "compareAtPriceCents": 84990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-008-170-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "170 cm",
+          "sizeSortOrder": 1700,
+          "color": null,
+          "priceCents": 46690,
+          "compareAtPriceCents": 84990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-008-176-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "176 cm",
+          "sizeSortOrder": 1760,
+          "color": null,
+          "priceCents": 46690,
+          "compareAtPriceCents": 84990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-008-184-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "184 cm",
+          "sizeSortOrder": 1840,
+          "color": null,
+          "priceCents": 46690,
+          "compareAtPriceCents": 84990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-008-188-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "188 cm",
+          "sizeSortOrder": 1880,
+          "color": null,
+          "priceCents": 46690,
+          "compareAtPriceCents": 84990,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/zag-ubac-102-e994b752d7.webp",
+          "alt": "Zag Ubac 102 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_102.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-009",
+      "slug": "zag-ubac-108",
+      "name": "Ubac 108",
+      "brand": "Zag",
+      "model": "Zag Ubac 108 (saison 25-26)",
+      "shortDescription": "Ski de freerando large (patin 108 mm) pour la poudreuse.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": 62990,
+      "compareAtPriceCents": 89990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "108 mm",
+        "Poids": "1,7 kg par ski (180 cm)",
+        "Rayon": "20 m (180 cm)",
+        "Côtes": "141,5-108-127 mm (180 cm)"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.snowleader.com/ubac-108-2026-ZAG_00154.html",
+      "priceSourceUrl": "https://www.snowleader.com/ubac-108-2026-ZAG_00154.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "73e7232b1c40a8ac6030f7b1ce4f86adb9aa08e7a4cb3a2fce18966a357aa724",
+      "variants": [
+        {
+          "sku": "GLA-009-173-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "173 cm",
+          "sizeSortOrder": 1730,
+          "color": null,
+          "priceCents": 62990,
+          "compareAtPriceCents": 89990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-009-180-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "180 cm",
+          "sizeSortOrder": 1800,
+          "color": null,
+          "priceCents": 62990,
+          "compareAtPriceCents": 89990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-009-188-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "188 cm",
+          "sizeSortOrder": 1880,
+          "color": null,
+          "priceCents": 62990,
+          "compareAtPriceCents": 89990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/zag-ubac-108-9dc40c0f70.webp",
+          "alt": "Zag Ubac 108 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_108.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-010",
+      "slug": "volkl-v-werks-100",
+      "name": "V.Werks 100",
+      "brand": "Völkl",
+      "model": "Völkl V.Werks 100 (édition limitée 2024)",
+      "shortDescription": "Ski all-mountain haut de gamme (patin 100 mm), construction carbone légère.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": 124990,
+      "compareAtPriceCents": 192295,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Patin": "100 mm",
+        "Construction": "Carbone"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://volkl.com/p/v-werks-100-2024",
+      "priceSourceUrl": "https://www.sport-conrad.com/marken/voelkl/",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "1a91133517c16e41b75ebe74d1fc5123187a7bcedd770a6410dea67510a0a233",
+      "variants": [
+        {
+          "sku": "GLA-010-170-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "170 cm",
+          "sizeSortOrder": 1700,
+          "color": null,
+          "priceCents": 124990,
+          "compareAtPriceCents": 192295,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-010-177-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "177 cm",
+          "sizeSortOrder": 1770,
+          "color": null,
+          "priceCents": 124990,
+          "compareAtPriceCents": 192295,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-010-184-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "184 cm",
+          "sizeSortOrder": 1840,
+          "color": null,
+          "priceCents": 124990,
+          "compareAtPriceCents": 192295,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/volkl-v-werks-100-f55ada3c69.webp",
+          "alt": "Völkl V.Werks 100 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_v_werks_100.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-011",
+      "slug": "volkl-shine-jr-vmotion-4-5",
+      "name": "Shine Jr + vMotion 4.5",
+      "brand": "Völkl",
+      "model": "Völkl Shine Jr + vMotion 4.5 / 7.0 Jr Lady",
+      "shortDescription": "Ski junior fille livré avec fixations vMotion 4.5 compatibles GripWalk Junior.",
+      "description": null,
+      "categorySlug": "skis-junior",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 13300,
+      "compareAtPriceCents": 19000,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Fixations": "vMotion 4.5 Jr",
+        "Compatibilité": "GripWalk Jr"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.evo.com/products/269745-volkl-shine-jr-skis-vmotion-7-0-jr-lady-bindings-kids-2026",
+      "priceSourceUrl": "https://www.speck-sports.com/en/children-alpine-ski-packs/176732-shine-jr-45-vmot-jr-lady-ski-pack.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "1e0f0e12877bf72296d86d06950b2d576fce3bafee60ae5d0bb371e29ea98ac1",
+      "variants": [
+        {
+          "sku": "GLA-011-100-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "100 cm",
+          "sizeSortOrder": 1000,
+          "color": null,
+          "priceCents": 13300,
+          "compareAtPriceCents": 19000,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-011-110-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "110 cm",
+          "sizeSortOrder": 1100,
+          "color": null,
+          "priceCents": 13300,
+          "compareAtPriceCents": 19000,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-011-120-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "120 cm",
+          "sizeSortOrder": 1200,
+          "color": null,
+          "priceCents": 13300,
+          "compareAtPriceCents": 19000,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/volkl-shine-jr-vmotion-4-5-33c5dfb3db.webp",
+          "alt": "Völkl Shine Jr + vMotion 4.5 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/02_Skis_Junior/volkl_shine_jr.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-012",
+      "slug": "zag-slap-junior",
+      "name": "Slap Junior",
+      "brand": "Zag",
+      "model": "Zag Slap Junior (2026)",
+      "shortDescription": "Ski all-mountain junior pour jeunes skieurs de niveau intermédiaire.",
+      "description": null,
+      "categorySlug": "skis-junior",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 25990,
+      "compareAtPriceCents": 39990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Rayon": "15 m (157 cm)",
+        "Niveau": "Intermédiaire",
+        "Saison": "2026"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.snowleader.com/en/slap-junior-2026-ZAG_00152.html",
+      "priceSourceUrl": "https://www.snowleader.com/slap-junior-2026-ZAG_00152.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "ee0cf39ec4503b918dfa350e70cda17fce652e3f033048c19d0f37fbed8dd851",
+      "variants": [
+        {
+          "sku": "GLA-012-137-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "137 cm",
+          "sizeSortOrder": 1370,
+          "color": null,
+          "priceCents": 25990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-012-147-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "147 cm",
+          "sizeSortOrder": 1470,
+          "color": null,
+          "priceCents": 25990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-012-157-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "157 cm",
+          "sizeSortOrder": 1570,
+          "color": null,
+          "priceCents": 25990,
+          "compareAtPriceCents": 39990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/zag-slap-junior-3d6f44a160.webp",
+          "alt": "Zag Slap Junior — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/02_Skis_Junior/zag_slap_junior.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-013",
+      "slug": "salomon-s-pro-alpha-130",
+      "name": "S/Pro Alpha 130",
+      "brand": "Salomon",
+      "model": "Salomon S/Pro Alpha 130 (coloris Race Blue / White)",
+      "shortDescription": "Chaussure de ski performance à chaussant étroit (98 mm), flex 130.",
+      "description": null,
+      "categorySlug": "chaussures-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": 41990,
+      "compareAtPriceCents": 59990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Flex": "130",
+        "Poids": "1850 g (26.5)",
+        "Largeur": "98 mm"
+      },
+      "colors": [
+        "Race Blue / White"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.snowleader.com/s-pro-alpha-130-race-blue-white-race-blue-SALO09214.html",
+      "priceSourceUrl": "https://www.snowleader.com/en/s-pro-alpha-130-race-blue-white-race-blue-SALO09214.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "6ee4b434afe8b9410cb12272a437fde1f0d8c49f98bb05d028e6d4af8951e3f9",
+      "variants": [
+        {
+          "sku": "GLA-013-25-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "25.5",
+          "sizeSortOrder": 2550,
+          "color": "Race Blue / White",
+          "priceCents": 41990,
+          "compareAtPriceCents": 59990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-013-26-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "26.5",
+          "sizeSortOrder": 2650,
+          "color": "Race Blue / White",
+          "priceCents": 41990,
+          "compareAtPriceCents": 59990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-013-27-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "27.5",
+          "sizeSortOrder": 2750,
+          "color": "Race Blue / White",
+          "priceCents": 41990,
+          "compareAtPriceCents": 59990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-013-28-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "28.5",
+          "sizeSortOrder": 2850,
+          "color": "Race Blue / White",
+          "priceCents": 41990,
+          "compareAtPriceCents": 59990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-013-29-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "29.5",
+          "sizeSortOrder": 2950,
+          "color": "Race Blue / White",
+          "priceCents": 41990,
+          "compareAtPriceCents": 59990,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-013-30-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "30.5",
+          "sizeSortOrder": 3050,
+          "color": "Race Blue / White",
+          "priceCents": 41990,
+          "compareAtPriceCents": 59990,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/salomon-s-pro-alpha-130-b375a9e838.webp",
+          "alt": "Salomon S/Pro Alpha 130 coloris Race Blue / White — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/03_Chaussures_Ski/salomon_chaussure_ski_performance.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-014",
+      "slug": "salomon-s-pro-supra-boa-100-gw",
+      "name": "S/Pro Supra BOA 100 GW",
+      "brand": "Salomon",
+      "model": "Salomon S/Pro Supra BOA 100",
+      "shortDescription": "Chaussure de ski confort avec serrage BOA, flex 100, semelles GripWalk.",
+      "description": null,
+      "categorySlug": "chaussures-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 32490,
+      "compareAtPriceCents": 49990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Flex": "100",
+        "Serrage": "BOA",
+        "Semelles": "GripWalk"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://shop.algonquinoutfitters.com/product/2026-s-pro-supra-boa-100-ski-boots/",
+      "priceSourceUrl": "https://www.snowleader.com/s-pro-supra-boa-100-gw-SALO09816.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "552bf5f3a33f49b635550b4dbea0c308ffcb698f581c64903252c642b43d2145",
+      "variants": [
+        {
+          "sku": "GLA-014-25-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "25.5",
+          "sizeSortOrder": 2550,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-014-26-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "26.5",
+          "sizeSortOrder": 2650,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-014-27-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "27.5",
+          "sizeSortOrder": 2750,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-014-28-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "28.5",
+          "sizeSortOrder": 2850,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-014-29-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "29.5",
+          "sizeSortOrder": 2950,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-014-30-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "30.5",
+          "sizeSortOrder": 3050,
+          "color": null,
+          "priceCents": 32490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/salomon-s-pro-supra-boa-100-gw-3b27b61cd7.webp",
+          "alt": "Salomon S/Pro Supra BOA 100 GW — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/03_Chaussures_Ski/salomon_chaussure_ski_confort.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-015",
+      "slug": "nordica-speedmachine-3-130-s-boa-gw",
+      "name": "Speedmachine 3 130 S BOA GW",
+      "brand": "Nordica",
+      "model": "Nordica Speedmachine 3 130 S BOA",
+      "shortDescription": "Chaussure de ski performance avec serrage BOA, flex 130, semelles GripWalk.",
+      "description": null,
+      "categorySlug": "chaussures-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 45500,
+      "compareAtPriceCents": 64990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Flex": "130",
+        "Serrage": "BOA",
+        "Semelles": "GripWalk"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.evo.com/products/266506-nordica-speedmachine-3-130-s-boa-cuff-ski-boots-2026",
+      "priceSourceUrl": "https://www.decathlon.de/alle-sportarten-a-z/wintersport/skischuhe/f-brand_nordica?from=40",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "786bd83e91cb4b3375a665b5f60c9c6d92112880c9280af89187d82da1dc07c8",
+      "variants": [
+        {
+          "sku": "GLA-015-25-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "25.5",
+          "sizeSortOrder": 2550,
+          "color": null,
+          "priceCents": 45500,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-015-26-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "26.5",
+          "sizeSortOrder": 2650,
+          "color": null,
+          "priceCents": 45500,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-015-27-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "27.5",
+          "sizeSortOrder": 2750,
+          "color": null,
+          "priceCents": 45500,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-015-28-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "28.5",
+          "sizeSortOrder": 2850,
+          "color": null,
+          "priceCents": 45500,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-015-29-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "29.5",
+          "sizeSortOrder": 2950,
+          "color": null,
+          "priceCents": 45500,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-015-30-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "30.5",
+          "sizeSortOrder": 3050,
+          "color": null,
+          "priceCents": 45500,
+          "compareAtPriceCents": 64990,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/nordica-speedmachine-3-130-s-boa-gw-daa099722e.webp",
+          "alt": "Nordica Speedmachine 3 130 S BOA GW — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/03_Chaussures_Ski/nordica_chaussure_ski_performance.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-016",
+      "slug": "nordica-hf-100",
+      "name": "HF 100",
+      "brand": "Nordica",
+      "model": "Nordica HF 100 (chaussage arrière « hands-free »)",
+      "shortDescription": "Chaussure de ski confort à chaussage arrière (hands-free), flex 100.",
+      "description": null,
+      "categorySlug": "chaussures-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 34490,
+      "compareAtPriceCents": 45990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Flex": "100",
+        "Chaussage": "Arrière (hands-free)"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.evo.com/alpine-ski-boots/nordica-hf-100",
+      "priceSourceUrl": "https://www.glisshop.com/chaussures-ski-alpin/nordica/hf-10055942638",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "8a5ef21cd8b9ab9049327b21cd1527125de183bb66784400be2a216addb6c2cc",
+      "variants": [
+        {
+          "sku": "GLA-016-25-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "25.5",
+          "sizeSortOrder": 2550,
+          "color": null,
+          "priceCents": 34490,
+          "compareAtPriceCents": 45990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-016-26-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "26.5",
+          "sizeSortOrder": 2650,
+          "color": null,
+          "priceCents": 34490,
+          "compareAtPriceCents": 45990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-016-27-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "27.5",
+          "sizeSortOrder": 2750,
+          "color": null,
+          "priceCents": 34490,
+          "compareAtPriceCents": 45990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-016-28-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "28.5",
+          "sizeSortOrder": 2850,
+          "color": null,
+          "priceCents": 34490,
+          "compareAtPriceCents": 45990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-016-29-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "29.5",
+          "sizeSortOrder": 2950,
+          "color": null,
+          "priceCents": 34490,
+          "compareAtPriceCents": 45990,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/nordica-hf-100-e5a3f3b193.webp",
+          "alt": "Nordica HF 100 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/03_Chaussures_Ski/nordica_chaussure_ski_confort.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-017",
+      "slug": "lange-shadow-130-mv-gw",
+      "name": "Shadow 130 MV GW",
+      "brand": "Lange",
+      "model": "Lange Shadow 130 MV GW",
+      "shortDescription": "Chaussure de ski performance à volume moyen (100 mm), flex 130, chausson Core Custom.",
+      "description": null,
+      "categorySlug": "chaussures-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 43390,
+      "compareAtPriceCents": 63990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Flex": "130",
+        "Largeur": "100 mm (MV)",
+        "Semelles": "GripWalk"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.skiessentials.com/products/2026-lange-shadow-130-mv-gw-ski-boots-lbo2030",
+      "priceSourceUrl": "https://www.snowleader.com/shadow-130-mv-gw-LANG00216.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "478979eb8052a2ec3a30bf6d4d85acd2d58b3df267e6ad16cfc52c6139f99a4c",
+      "variants": [
+        {
+          "sku": "GLA-017-25-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "25.5",
+          "sizeSortOrder": 2550,
+          "color": null,
+          "priceCents": 43390,
+          "compareAtPriceCents": 63990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-017-26-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "26.5",
+          "sizeSortOrder": 2650,
+          "color": null,
+          "priceCents": 43390,
+          "compareAtPriceCents": 63990,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-017-27-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "27.5",
+          "sizeSortOrder": 2750,
+          "color": null,
+          "priceCents": 43390,
+          "compareAtPriceCents": 63990,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-017-28-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "28.5",
+          "sizeSortOrder": 2850,
+          "color": null,
+          "priceCents": 43390,
+          "compareAtPriceCents": 63990,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-017-29-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "29.5",
+          "sizeSortOrder": 2950,
+          "color": null,
+          "priceCents": 43390,
+          "compareAtPriceCents": 63990,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-017-30-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "30.5",
+          "sizeSortOrder": 3050,
+          "color": null,
+          "priceCents": 43390,
+          "compareAtPriceCents": 63990,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/lange-shadow-130-mv-gw-e1a2baa5fd.webp",
+          "alt": "Lange Shadow 130 MV GW — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/03_Chaussures_Ski/lange_chaussure_ski_performance.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-018",
+      "slug": "lange-lx-90-hv",
+      "name": "LX 90 HV",
+      "brand": "Lange",
+      "model": "Lange LX 90 HV (coloris noir / bleu)",
+      "shortDescription": "Chaussure de ski confort à volume large (HV), flex 90.",
+      "description": null,
+      "categorySlug": "chaussures-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 24299,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Flex": "90",
+        "Volume": "Large (HV)"
+      },
+      "colors": [
+        "Noir / Bleu"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.evo.com/products/255400-lange-lx-90-hv-ski-boots-2025",
+      "priceSourceUrl": "https://www.123comparer.fr/Chaussures-de-ski-homme/gc5dyp3s8y3u1qbzgr4dc.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "ce91df9991311a10f2070bd10da4dd566aa9da006c2440baeaf3714aa6e81d98",
+      "variants": [
+        {
+          "sku": "GLA-018-25-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "25.5",
+          "sizeSortOrder": 2550,
+          "color": "Noir / Bleu",
+          "priceCents": 24299,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-018-26-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "26.5",
+          "sizeSortOrder": 2650,
+          "color": "Noir / Bleu",
+          "priceCents": 24299,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-018-27-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "27.5",
+          "sizeSortOrder": 2750,
+          "color": "Noir / Bleu",
+          "priceCents": 24299,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-018-28-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "28.5",
+          "sizeSortOrder": 2850,
+          "color": "Noir / Bleu",
+          "priceCents": 24299,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-018-29-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "29.5",
+          "sizeSortOrder": 2950,
+          "color": "Noir / Bleu",
+          "priceCents": 24299,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-018-30-5",
+          "sizeSystem": "BOOT_MONDO",
+          "sizeLabel": "30.5",
+          "sizeSortOrder": 3050,
+          "color": "Noir / Bleu",
+          "priceCents": 24299,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/lange-lx-90-hv-b361a9ab95.webp",
+          "alt": "Lange LX 90 HV coloris Noir / Bleu — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/03_Chaussures_Ski/lange_chaussure_ski_confort.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-019",
+      "slug": "poc-obex-mips",
+      "name": "Obex MIPS",
+      "brand": "POC",
+      "model": "POC Obex MIPS (Uranium Black Matt)",
+      "shortDescription": "Casque de ski avec système MIPS, coque polycarbonate et réglage à 360°.",
+      "description": null,
+      "categorySlug": "casques-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 15990,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Coque": "Polycarbonate + ABS",
+        "Réglage": "360°",
+        "Protection": "MIPS"
+      },
+      "colors": [
+        "Uranium Black Matt"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.snowleader.com/en/obex-mips-uranium-black-matt-POC_00673.html",
+      "priceSourceUrl": "https://www.snowleader.com/obex-mips-uranium-black-matt-POC_00673.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "2f429e91af2dc745899d6214fd3dc41a7a5aeabb0f4e817f5b3b8a32127275a3",
+      "variants": [
+        {
+          "sku": "GLA-019-XS-S-51-54-CM",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "XS-S (51-54 cm)",
+          "sizeSortOrder": 0,
+          "color": "Uranium Black Matt",
+          "priceCents": 15990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-019-M-L-55-58-CM",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "M-L (55-58 cm)",
+          "sizeSortOrder": 20,
+          "color": "Uranium Black Matt",
+          "priceCents": 15990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-019-XL-XXL-59-62-CM",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "XL-XXL (59-62 cm)",
+          "sizeSortOrder": 40,
+          "color": "Uranium Black Matt",
+          "priceCents": 15990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/poc-obex-mips-e773b7214d.webp",
+          "alt": "POC Obex MIPS coloris Uranium Black Matt — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/04_Casques/poc_casque_ski.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-020",
+      "slug": "giro-grid-spherical",
+      "name": "Grid Spherical",
+      "brand": "Giro",
+      "model": "Giro Grid Spherical (Matte Black)",
+      "shortDescription": "Casque de ski avec technologie Spherical MIPS contre les chocs en rotation.",
+      "description": null,
+      "categorySlug": "casques-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 22495,
+      "compareAtPriceCents": 24995,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Poids": "400 g (M)",
+        "Protection": "Spherical MIPS"
+      },
+      "colors": [
+        "Matte Black"
+      ],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://www.snowleader.com/en/grid-spherical-mat-black-GIRO00569.html",
+      "priceSourceUrl": "https://www.alpinstore.com/fr/619566-giro-ski-gr-grid-sph-mt-stn-.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "5893961fc8830fc605bfea8dd9e90d48b70a3eedd98dda8cbe47868f2957b110",
+      "variants": [
+        {
+          "sku": "GLA-020-S-52-55",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "S (52-55",
+          "sizeSortOrder": 10,
+          "color": "Matte Black",
+          "priceCents": 22495,
+          "compareAtPriceCents": 24995,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-020-M-55",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "M (55",
+          "sizeSortOrder": 20,
+          "color": "Matte Black",
+          "priceCents": 22495,
+          "compareAtPriceCents": 24995,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-020-5-59-CM",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "5-59 cm)",
+          "sizeSortOrder": -10,
+          "color": "Matte Black",
+          "priceCents": 22495,
+          "compareAtPriceCents": 24995,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-020-L-59-62",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "L (59-62",
+          "sizeSortOrder": 30,
+          "color": "Matte Black",
+          "priceCents": 22495,
+          "compareAtPriceCents": 24995,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-020-5-CM",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "5 cm)",
+          "sizeSortOrder": -10,
+          "color": "Matte Black",
+          "priceCents": 22495,
+          "compareAtPriceCents": 24995,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/giro-grid-spherical-7fa800660d.webp",
+          "alt": "Giro Grid Spherical coloris Matte Black — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/04_Casques/giro_casque_ski.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-021",
+      "slug": "oakley-flight-deck-m-prizm-snow-torch",
+      "name": "Flight Deck M Prizm Snow Torch",
+      "brand": "Oakley",
+      "model": "Oakley Flight Deck M — Matte Black / Prizm Snow Torch Iridium",
+      "shortDescription": "Masque de ski à écran sphérique sans monture, verre Prizm Snow Torch Iridium.",
+      "description": null,
+      "categorySlug": "masques-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 14243,
+      "compareAtPriceCents": 18990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Taille": "M",
+        "Écran": "Prizm Snow Torch Iridium"
+      },
+      "colors": [
+        "Matte Black"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.speck-sports.com/en/men-ski-goggles/33802-mask-oakley-flight-deck-m-matte-black-prizm-snow-torch-iridium-888392142566.html",
+      "priceSourceUrl": "https://varuste.net/fr/p74919/oakley-flight-deck-m-matte-black-w-prizm-snow-torch-iridium",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "00c295074738e9b6048951f30372f7cb30c4aaf40125cf345d4f00be097d1198",
+      "variants": [
+        {
+          "sku": "GLA-021-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Matte Black",
+          "priceCents": 14243,
+          "compareAtPriceCents": 18990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/oakley-flight-deck-m-prizm-snow-torch-77f0ab6eb0.webp",
+          "alt": "Oakley Flight Deck M Prizm Snow Torch coloris Matte Black — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/05_Masques/oakley_masque_ski.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-022",
+      "slug": "julbo-quickshift-reactiv-1-3-high-contrast",
+      "name": "Quickshift Reactiv 1-3 High Contrast",
+      "brand": "Julbo",
+      "model": "Julbo Quickshift — Black/Grey, écran Reactiv 1-3 High Contrast Blue Flash",
+      "shortDescription": "Masque de ski à écran photochromique Reactiv 1-3 High Contrast et ventilation Quickshift.",
+      "description": null,
+      "categorySlug": "masques-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 12590,
+      "compareAtPriceCents": 20990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Écran": "Reactiv 1-3 High Contrast (photochromique)"
+      },
+      "colors": [
+        "Noir / Gris"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.julbo.com/en_gb/p/quickshift-reactiv",
+      "priceSourceUrl": "https://www.snowleader.com/quickshift-noir-gris-reactiv-1-3-high-contrast-flash-bleu-JULB01225.html",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "2f8316575ee8443d365373761b9c3cacb5b946841b78c188c90036ab0fa78ca1",
+      "variants": [
+        {
+          "sku": "GLA-022-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Noir / Gris",
+          "priceCents": 12590,
+          "compareAtPriceCents": 20990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/julbo-quickshift-reactiv-1-3-high-contrast-01bc1c5c4f.webp",
+          "alt": "Julbo Quickshift Reactiv 1-3 High Contrast coloris Noir / Gris — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/05_Masques/julbo_masque_ski.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-023",
+      "slug": "ortovox-diract-voice",
+      "name": "Diract Voice",
+      "brand": "Ortovox",
+      "model": "Ortovox Diract Voice",
+      "shortDescription": "Détecteur de victimes d'avalanche (DVA) à guidage vocal et batterie rechargeable.",
+      "description": null,
+      "categorySlug": "securite-avalanche",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 28435,
+      "compareAtPriceCents": 31990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Guidage": "Vocal",
+        "Batterie": "Rechargeable"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.mec.ca/en/product/6014-437/ortovox-diract-voice-transceiver",
+      "priceSourceUrl": "https://www.hardloop.fr/produit/33943-ortovox-diract-voice-dva",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "4aebc93b6f606f510c6372d472c398238032ed9b690ff38be745d1489e377224",
+      "variants": [
+        {
+          "sku": "GLA-023-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": null,
+          "priceCents": 28435,
+          "compareAtPriceCents": 31990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ortovox-diract-voice-8679d3fa6a.webp",
+          "alt": "Ortovox Diract Voice — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/06_Securite_Avalanche/ortovox_dva.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-024",
+      "slug": "mammut-barryvox-s2",
+      "name": "Barryvox S2",
+      "brand": "Mammut",
+      "model": "Mammut Barryvox S2",
+      "shortDescription": "Détecteur de victimes d'avalanche 3 antennes, successeur du Barryvox S.",
+      "description": null,
+      "categorySlug": "securite-avalanche",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 42490,
+      "compareAtPriceCents": 49990,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Antennes": "3"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.rei.com/product/240694",
+      "priceSourceUrl": "https://www.glisshop.com/accessoires/securite-montagne/detecteur-victimes-avalanches/3-antennes/",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "4b3e620aa7cff049ffb305f81d45c6b1d9ed7ba1697d272d86c2496e35d3d77d",
+      "variants": [
+        {
+          "sku": "GLA-024-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Noir",
+          "priceCents": 42490,
+          "compareAtPriceCents": 49990,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/mammut-barryvox-s2-717a3883e0.webp",
+          "alt": "Mammut Barryvox S2 coloris Noir — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/06_Securite_Avalanche/mammut_dva.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-025",
+      "slug": "black-solano-heated-gloves",
+      "name": "Solano Heated Gloves",
+      "brand": "Black Diamond",
+      "model": "Black Diamond Solano Heated Gloves (Black)",
+      "shortDescription": "Gants de ski chauffants en cuir de chèvre avec membrane Gore-Tex et 3 niveaux de chauffe.",
+      "description": null,
+      "categorySlug": "gants",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Chauffe": "3 niveaux",
+        "Membrane": "Gore-Tex"
+      },
+      "colors": [
+        "Black"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://blackdiamondequipment.com/en_US/product/solano-heated-gloves",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "4234901c2ff9392b9adbd82e52c19238ecc1e701d02e57716e7b28112b2147bc",
+      "variants": [
+        {
+          "sku": "GLA-025-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Black",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-025-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Black",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-025-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Black",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-025-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Black",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-025-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Black",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/black-solano-heated-gloves-9063b38aff.webp",
+          "alt": "Black Diamond Solano Heated Gloves coloris Black — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/07_Gants_Chauffants/black_diamond_gants_chauffants.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-026",
+      "slug": "kebada-t2",
+      "name": "T2",
+      "brand": "Kebada",
+      "model": "KEBADA T2 — gants isolés (non chauffants selon les annonces)",
+      "shortDescription": "Gants de ski isolés à paume enduite (non chauffants selon les annonces du fabricant).",
+      "description": null,
+      "categorySlug": "gants",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Chauffants": "Non"
+      },
+      "colors": [
+        "Bleu"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.walmart.com/ip/1-Pairs-KEBADA-T2-Cold-Weather-Waterproof-Work-Gloves-Insulated-Thermal-Gloves-for-Men-Women-Heavy-Duty-Grip-X-Large-Blue/13935654910",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "fae4b98425f48b3f447acd3846f3bf3eff4d3884b06e01c7e0b5bdfd15beaaef",
+      "variants": [
+        {
+          "sku": "GLA-026-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Bleu",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-026-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Bleu",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-026-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Bleu",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-026-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Bleu",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/kebada-t2-6b87ff74d2.webp",
+          "alt": "Kebada T2 coloris Bleu — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/07_Gants_Chauffants/kebada_t2_gants.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-027",
+      "slug": "warrior-alpha-pro",
+      "name": "Alpha Pro",
+      "brand": "Warrior",
+      "model": "Warrior Alpha Pro (2025)",
+      "shortDescription": "Patins de hockey senior haut de gamme.",
+      "description": null,
+      "categorySlug": "patins-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.geargeek.com/equipment/warrior-alpha-pro-skates",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "4d5d9f1cfacefdf4ef2bca40d56fc5af342f2504ff3e7354a1f0188132d589b7",
+      "variants": [
+        {
+          "sku": "GLA-027-7",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7",
+          "sizeSortOrder": 700,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-7-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7.5",
+          "sizeSortOrder": 750,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-8",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8",
+          "sizeSortOrder": 800,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-8-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8.5",
+          "sizeSortOrder": 850,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-9",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9",
+          "sizeSortOrder": 900,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-9-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9.5",
+          "sizeSortOrder": 950,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-10",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10",
+          "sizeSortOrder": 1000,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-10-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10.5",
+          "sizeSortOrder": 1050,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-027-11",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "11",
+          "sizeSortOrder": 1100,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 8,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/warrior-alpha-pro-02cd6e1bee.webp",
+          "alt": "Warrior Alpha Pro — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/01_Patins/warrior_alpha_pro_patins.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-028",
+      "slug": "bauer-vapor-hyperlite2",
+      "name": "Vapor HyperLite2",
+      "brand": "Bauer",
+      "model": "Bauer Vapor HyperLite2 (haut de gamme de la ligne Vapor)",
+      "shortDescription": "Patins de hockey senior haut de gamme de la ligne Vapor.",
+      "description": null,
+      "categorySlug": "patins-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.thehockeyshop.com/products/bauer-vapor-hyperlite2-senior-hockey-skates",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "aee5d73f8ec6aedb47318f146942ac923c487836f022480401f3bfd5f2b28206",
+      "variants": [
+        {
+          "sku": "GLA-028-7",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7",
+          "sizeSortOrder": 700,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-7-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7.5",
+          "sizeSortOrder": 750,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-8",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8",
+          "sizeSortOrder": 800,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-8-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8.5",
+          "sizeSortOrder": 850,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-9",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9",
+          "sizeSortOrder": 900,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-9-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9.5",
+          "sizeSortOrder": 950,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-10",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10",
+          "sizeSortOrder": 1000,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-10-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10.5",
+          "sizeSortOrder": 1050,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-028-11",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "11",
+          "sizeSortOrder": 1100,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 8,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-vapor-hyperlite2-79f3043406.webp",
+          "alt": "Bauer Vapor HyperLite2 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/01_Patins/bauer_vapor_hyperlite2_patins.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-029",
+      "slug": "ccm-tacks-xf-pro",
+      "name": "Tacks XF Pro",
+      "brand": "CCM",
+      "model": "CCM Tacks XF Pro (botte composite + fibre de carbone, thermoformable)",
+      "shortDescription": "Patins de hockey senior : botte composite et fibre de carbone thermoformable.",
+      "description": null,
+      "categorySlug": "patins-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 136090,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Botte": "Composite + carbone",
+        "Chaussant": "Regular",
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://www.hockeymonkey.com/ccm-hockey-skates-tacks-xf-pro-int.html",
+      "priceSourceUrl": "https://www.decathlon.pt/brands/ccm?from=280",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "0c328a80b041cb2e4a7d7f0513a983c3ea58fde2975afc5616d2c33459c25dd4",
+      "variants": [
+        {
+          "sku": "GLA-029-7",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7",
+          "sizeSortOrder": 700,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-7-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7.5",
+          "sizeSortOrder": 750,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-8",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8",
+          "sizeSortOrder": 800,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-8-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8.5",
+          "sizeSortOrder": 850,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-9",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9",
+          "sizeSortOrder": 900,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-9-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9.5",
+          "sizeSortOrder": 950,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-10",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10",
+          "sizeSortOrder": 1000,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-10-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10.5",
+          "sizeSortOrder": 1050,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-029-11",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "11",
+          "sizeSortOrder": 1100,
+          "color": null,
+          "priceCents": 136090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-tacks-xf-pro-56fea3cdca.webp",
+          "alt": "CCM Tacks XF Pro — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/01_Patins/ccm_tacks_xf_pro_patins.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-030",
+      "slug": "bauer-twitch-grip",
+      "name": "Twitch Grip",
+      "brand": "Bauer",
+      "model": "Bauer Twitch (Grip) — Senior",
+      "shortDescription": "Crosse de hockey senior en composite avec finition Grip.",
+      "description": null,
+      "categorySlug": "crosses-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 50995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Finition": "Grip",
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://eu.bauer.com/products/bauer-twitch-grip-stick-senior",
+      "priceSourceUrl": "https://www.decathlon.de/alle-sportarten-a-z/eishockey-inlinehockey/eishockeyschlager?from=120",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "b9ab6d22dfa274b2405190d3499ea7837b3c73b4643ec25759e6c7acccce8f42",
+      "variants": [
+        {
+          "sku": "GLA-030-GAUCHE-FLEX-77",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Gauche – Flex 77",
+          "sizeSortOrder": 770,
+          "color": null,
+          "priceCents": 50995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-030-DROITE-FLEX-77",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Droite – Flex 77",
+          "sizeSortOrder": 1770,
+          "color": null,
+          "priceCents": 50995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-030-GAUCHE-FLEX-87",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Gauche – Flex 87",
+          "sizeSortOrder": 870,
+          "color": null,
+          "priceCents": 50995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-030-DROITE-FLEX-87",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Droite – Flex 87",
+          "sizeSortOrder": 1870,
+          "color": null,
+          "priceCents": 50995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-twitch-grip-82e29990c0.webp",
+          "alt": "Bauer Twitch Grip — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/02_Batons/bauer_twitch_baton.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-031",
+      "slug": "bauer-nexus-2n-pro-xl",
+      "name": "Nexus 2N Pro XL",
+      "brand": "Bauer",
+      "model": "Bauer Nexus 2N Pro XL (2018)",
+      "shortDescription": "Crosse de hockey senior (modèle 2018).",
+      "description": null,
+      "categorySlug": "crosses-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Année": "2018",
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.hockeystickman.ca/blogs/news/why-nhl-players-are-still-using-the-nexus-2n-pro-xl-and-what-it-means-for-you",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "46f4046eb4f0b91d081dc989d3487decadfc15f27e9f58c84807e07552b34db2",
+      "variants": [
+        {
+          "sku": "GLA-031-GAUCHE-FLEX-77",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Gauche – Flex 77",
+          "sizeSortOrder": 770,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-031-DROITE-FLEX-77",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Droite – Flex 77",
+          "sizeSortOrder": 1770,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-nexus-2n-pro-xl-63712c4bd7.webp",
+          "alt": "Bauer Nexus 2N Pro XL — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/02_Batons/bauer_nexus_2n_pro_xl_baton.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-032",
+      "slug": "easton-synergy-vintage",
+      "name": "Synergy (vintage)",
+      "brand": "Easton",
+      "model": "Easton Synergy (2001, bâton composite monobloc)",
+      "shortDescription": "Crosse composite monobloc historique (2001), pièce de collection.",
+      "description": null,
+      "categorySlug": "crosses-hockey",
+      "sport": "HOCKEY",
+      "condition": "USED",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Année": "2001"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.geargeek.com/blog/the-rise-and-fall-of-easton-hockey-a-look-back-by-guest-blogger-james-duerr",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "b8d56ae35cbe8fde57e5c17583e36717f242112895441b24385a73b476148ccb",
+      "variants": [
+        {
+          "sku": "GLA-032-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/easton-synergy-vintage-ca7548b628.webp",
+          "alt": "Easton Synergy (vintage) — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/02_Batons/easton_synergy_baton_vintage.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-033",
+      "slug": "bauer-4500",
+      "name": "4500",
+      "brand": "Bauer",
+      "model": "Bauer 4500",
+      "shortDescription": "Casque de hockey.",
+      "description": null,
+      "categorySlug": "casques-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": null,
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.purehockey.com/product/bauer-4500-hockey-helmet/itm/4699-2/",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "02f4ad93e05f49c65e1d2b8e2c5794738875d3654a8d82d22ef1374e0649eb47",
+      "variants": [
+        {
+          "sku": "GLA-033-S",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "S",
+          "sizeSortOrder": 10,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-033-M",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "M",
+          "sizeSortOrder": 20,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-033-L",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "L",
+          "sizeSortOrder": 30,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-4500-3206273777.webp",
+          "alt": "Bauer 4500 — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/03_Casques/bauer_4500_casque_hockey.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-034",
+      "slug": "jofa-690-vintage",
+      "name": "690 (vintage)",
+      "brand": "Jofa",
+      "model": "Jofa 690 (casque vintage suédois, blanc)",
+      "shortDescription": "Casque de hockey suédois vintage, pièce de collection.",
+      "description": null,
+      "categorySlug": "casques-hockey",
+      "sport": "HOCKEY",
+      "condition": "USED",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": null,
+      "colors": [
+        "Blanc"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://en.wikipedia.org/wiki/Jofa",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "fb61160459bdbd3b15cc26f671ca2488ee05b024885a18e0df6610677b10bde4",
+      "variants": [
+        {
+          "sku": "GLA-034-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Blanc",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/jofa-690-vintage-81a9c04794.webp",
+          "alt": "Jofa (ou Itech) 690 (vintage) coloris Blanc — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/03_Casques/jofa_casque_hockey_vintage.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-037",
+      "slug": "franklin-palet-officiel-lot-de-3",
+      "name": "Palet officiel (lot de 3)",
+      "brand": "Franklin Sports",
+      "model": "Franklin Sports Ice Hockey Puck — Black (réf. 42130Z, lot de 3)",
+      "shortDescription": "Palets de hockey sur glace en caoutchouc, 6 oz, diamètre 3 pouces.",
+      "description": null,
+      "categorySlug": "entrainement-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Poids": "6 oz",
+        "Diamètre": "3 pouces",
+        "Épaisseur": "1 pouce"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://franklinsports.com/ice-hockey-puck-black",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "7e21752d736d96e90a940bb5572356195f13a4aded48c5bf4c02e084c73c49de",
+      "variants": [
+        {
+          "sku": "GLA-037-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Noir",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/franklin-palet-officiel-lot-de-3-200f6059a6.webp",
+          "alt": "Franklin Sports Palet officiel (lot de 3) coloris Noir — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/franklin_sports_palet.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-038",
+      "slug": "vevor-dalles-dryland-lot-de-15",
+      "name": "Dalles Dryland (lot de 15)",
+      "brand": "VEVOR",
+      "model": "VEVOR Dryland Tiles — lot de 15 dalles 315 × 315 × 16 mm",
+      "shortDescription": "Lot de 15 dalles emboîtables 315 × 315 mm pour s'entraîner au tir hors glace.",
+      "description": null,
+      "categorySlug": "entrainement-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 8299,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Quantité": "15 dalles",
+        "Dimensions": "315 × 315 × 16 mm"
+      },
+      "colors": [
+        "Gris"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.bestbuy.ca/en-ca/product/vevor-12-x-12-in-15-pcs-dryland-tiles-for-hockey-floor-mat-interlocking-versatile-training-surface-dance-floor-tiles-hockey-training-equipment-board-for-shooting/19371239",
+      "priceSourceUrl": "https://www.manomano.de/p/vevor-dryland-fliesen-fur-hockey-bodenmatten-315-x-315-mm-15-stuck-ineinandergreifende-vielseitige-trainingsoberflache-tanzbodenfliesen-hockey-trainingsausrustungsbrett-zum-schieen-aschgrau-88727012",
+      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "4a83120070dd3a142b8b1a7b56714251ff0c4a2a565cd66578df5c89eb328568",
+      "variants": [
+        {
+          "sku": "GLA-038-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Gris",
+          "priceCents": 8299,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/vevor-dalles-dryland-lot-de-15-34b2ac64a8.webp",
+          "alt": "VEVOR Dalles Dryland (lot de 15) coloris Gris — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/vevor_dalles_dryland.png"
+        }
+      ]
+    },
+    {
+      "reference": "GLA-039",
+      "slug": "franklin-mini-set-de-hockey-enfant-nhl",
+      "name": "Mini set de hockey enfant NHL",
+      "brand": "Franklin Sports",
+      "model": "Franklin Sports NHL Kids Mini Hockey Set « Graffiti » (réf. 42075)",
+      "shortDescription": "Kit de mini-hockey : une cage, deux mini crosses et deux balles en mousse.",
+      "description": null,
+      "categorySlug": "entrainement-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Contenu": "1 cage, 2 crosses, 2 balles"
+      },
+      "colors": [
+        "Graffiti"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://franklinsports.com/nhl-mini-hockey-goal-ball-stick-set",
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "3c753f235c067d1dd9bd992425a788e8b7d932b1612673e0f82c3ffedb3b53f4",
+      "variants": [
+        {
+          "sku": "GLA-039-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Graffiti",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/franklin-mini-set-de-hockey-enfant-nhl-63c8226d27.webp",
+          "alt": "Franklin Sports Mini set de hockey enfant NHL coloris Graffiti — visuel d'illustration",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/franklin_sports_mini_hockey_set.png"
+        }
+      ]
+    },
+    {
+      "reference": "HL-001",
+      "slug": "ccm-casque-de-hockey",
+      "name": "Casque de hockey",
+      "brand": "CCM",
+      "model": "Modèle non identifiable sur l'image",
+      "shortDescription": "Casque de hockey avec visière (modèle à identifier).",
+      "description": null,
+      "categorySlug": "casques-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": null,
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": null,
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "7444d3209f1665a55221dfbfa19ff0d7e651a4389b64da32cb6c472c02861145",
+      "variants": [
+        {
+          "sku": "HL-001-S",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "S",
+          "sizeSortOrder": 10,
+          "color": "Noir",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "HL-001-M",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "M",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "HL-001-L",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "L",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-casque-de-hockey-bf07cde4a9.webp",
+          "alt": "CCM Casque de hockey coloris Noir — visuel d'illustration",
+          "position": 0,
+          "width": 1200,
+          "height": 1200,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/03_Casques/ccm_casque_hockey.png"
+        }
+      ]
+    },
+    {
+      "reference": "HL-002",
+      "slug": "bauer-vapor-x5",
+      "name": "Vapor X5",
+      "brand": "Bauer",
+      "model": "Bauer Vapor X5 — modèle intermédiaire, pas haut de gamme",
+      "shortDescription": "Patins de hockey senior intermédiaires de la ligne Vapor.",
+      "description": null,
+      "categorySlug": "patins-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "DRAFT",
+      "currency": "EUR",
+      "priceFromCents": null,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": null,
+      "priceSourceUrl": null,
+      "priceCheckedAt": null,
+      "imagesAreIllustrations": true,
+      "importChecksum": "3c105b6fa5dd4fc928475208769c0802367f53a970e9ac52788552460c6fcf3e",
+      "variants": [
+        {
+          "sku": "HL-002-7",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7",
+          "sizeSortOrder": 700,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-7-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7.5",
+          "sizeSortOrder": 750,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-8",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8",
+          "sizeSortOrder": 800,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-8-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8.5",
+          "sizeSortOrder": 850,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-9",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9",
+          "sizeSortOrder": 900,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-9-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9.5",
+          "sizeSortOrder": 950,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-10",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10",
+          "sizeSortOrder": 1000,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-10-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10.5",
+          "sizeSortOrder": 1050,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "HL-002-11",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "11",
+          "sizeSortOrder": 1100,
+          "color": null,
+          "priceCents": 0,
+          "compareAtPriceCents": null,
+          "isActive": false,
+          "position": 8,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-vapor-x5-b3ba5e4a06.webp",
+          "alt": "Bauer Vapor X5 — visuel d'illustration",
+          "position": 0,
+          "width": 1200,
+          "height": 1200,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/01_Patins/bauer_vapor_x5_patins_image_recue.png"
+        }
+      ]
+    }
+  ]
+}
