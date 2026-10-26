@@ -1,0 +1,29 @@
+{
+  "name": "glaciora",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GLACIORA — boutique en ligne ski, hockey et sports de neige",
+  "workspaces": ["packages/*", "apps/*"],
+  "engines": { "node": ">=20.11" },
+  "scripts": {
+    "postinstall": "npm run build -w @glaciora/shared && npm run db:generate",
+    "dev": "npm run build -w @glaciora/shared && concurrently -n api,web -c blue,cyan \"npm run dev -w @glaciora/api\" \"npm run dev -w @glaciora/web\"",
+    "build": "npm run build -w @glaciora/shared && npm run build -w @glaciora/api && npm run build -w @glaciora/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:e2e": "playwright test",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:generate": "npm run db:generate -w @glaciora/api",
+    "db:migrate": "npm run db:migrate -w @glaciora/api",
+    "db:deploy": "npm run db:deploy -w @glaciora/api",
+    "db:seed": "npm run db:seed -w @glaciora/api",
+    "import:catalogue": "npm run import:catalogue -w @glaciora/api"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.48.2",
+    "concurrently": "9.1.0",
+    "typescript": "5.6.3"
+  }
+}

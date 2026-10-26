@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-deep;
+  }
+  h1, h2, h3 {
+    @apply font-extrabold tracking-tight text-marine;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-deep text-white hover:bg-marine;
+  }
+  .btn-accent {
+    @apply btn bg-glacier text-marine hover:bg-frost;
+  }
+  .btn-outline {
+    @apply btn border border-marine text-marine hover:bg-marine hover:text-white;
+  }
+  .btn-ghost-light {
+    @apply btn border border-white/70 text-white hover:bg-white hover:text-marine;
+  }
+  .field-label {
+    @apply mb-1 block text-sm font-semibold text-marine;
+  }
+  .field-input {
+    @apply block min-h-[44px] w-full rounded-md border border-line bg-white px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-deep focus:outline-none focus:ring-2 focus:ring-deep/30 aria-[invalid=true]:border-danger;
+  }
+  .field-error {
+    @apply mt-1 text-sm font-medium text-danger;
+  }
+  .card {
+    @apply rounded-lg bg-white shadow-card;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-brand text-deep;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

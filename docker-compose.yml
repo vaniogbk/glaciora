@@ -1,0 +1,17 @@
+# Base PostgreSQL de développement uniquement (identifiants locaux, non secrets).
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: glaciora-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: glaciora
+      POSTGRES_PASSWORD: glaciora_dev
+      POSTGRES_DB: glaciora
+    ports:
+      - "5466:5432"
+    volumes:
+      - glaciora-db:/var/lib/postgresql/data
+      - ./docker/init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql:ro
+volumes:
+  glaciora-db:
