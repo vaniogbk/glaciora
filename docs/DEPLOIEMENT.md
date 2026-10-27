@@ -83,11 +83,12 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 
 ## 8. CI GitHub Actions
 
-Le fichier `.github/workflows/ci.yml` exige un jeton GitHub avec la permission `workflow` pour être poussé :
+`.github/workflows/ci.yml` lance lint, typecheck, tests (PostgreSQL de service) et build à chaque push sur `main` et sur chaque pull request.
+
+Pousser une modification de ce fichier exige un jeton GitHub avec la permission `workflow`. Le jeton de `gh` ne l'a pas ; Git Credential Manager l'obtient par connexion navigateur, sans code à saisir :
 
 ```bash
-gh auth refresh -h github.com -s workflow
-git push
+git -c credential.namespace=glaciora-ci -c credential.gitHubAuthModes=browser push origin main
 ```
 
 ## 9. Checklist de mise en production
