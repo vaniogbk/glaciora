@@ -53,11 +53,13 @@ describe('e-mails transactionnels', () => {
   });
 
   it('Brevo : succès uniquement sur réponse 2xx avec messageId', async () => {
-    const ok = brevoProvider('cle-test', 'boutique@glaciora.test', 'GLACIORA', jest.fn().mockResolvedValue(new Response(JSON.stringify({ messageId: '<abc@brevo>' }), { status: 201 })));
+    const okFetch = jest.fn().mockResolvedValue(new Response(JSON.stringify({ messageId: '<abc@brevo>' }), { status: 201 }));
+    const ok = brevoProvider('cle-test', 'boutique@glaciora.test', 'GLACIORA', okFetch);
     const ko = brevoProvider('cle-test', 'boutique@glaciora.test', 'GLACIORA', jest.fn().mockResolvedValue(new Response('quota', { status: 429 })));
     const noId = brevoProvider('cle-test', 'boutique@glaciora.test', 'GLACIORA', jest.fn().mockResolvedValue(new Response('{}', { status: 201 })));
     const mail = adminTransferProof(payload);
     expect(await ok.send('glacioara@outlook.fr', mail)).toEqual({ accepted: true, providerMessageId: '<abc@brevo>' });
+    expect(JSON.parse(okFetch.mock.calls[0][1].body).replyTo).toEqual({ email: 'boutique@glaciora.test', name: 'GLACIORA' });
     expect((await ko.send('glacioara@outlook.fr', mail)).accepted).toBe(false);
     expect((await noId.send('glacioara@outlook.fr', mail)).accepted).toBe(false);
   });
