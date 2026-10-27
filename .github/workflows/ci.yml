@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: glaciora
+          POSTGRES_PASSWORD: glaciora_dev
+          POSTGRES_DB: glaciora_test
+        ports: ['5466:5432']
+        options: >-
+          --health-cmd "pg_isready -U glaciora" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://glaciora:glaciora_dev@localhost:5466/glaciora_test
+      DATABASE_URL_TEST: postgresql://glaciora:glaciora_dev@localhost:5466/glaciora_test
+      JWT_ACCESS_SECRET: ci-access-secret-0123456789-abcdefghijklmnop
+      JWT_REFRESH_SECRET: ci-refresh-secret-0123456789-abcdefghijklmno
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test
+      - run: npm run build
