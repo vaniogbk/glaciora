@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parse as parseCsv } from 'csv-parse/sync';
 import sharp from 'sharp';
@@ -356,18 +356,26 @@ ${rows}
 
 /** Visuels d'ambiance de l'accueil (dossier 05_ACCUEIL), reconnus par mots-clés dans le nom de fichier. */
 const HOME_IMAGE_RULES: { key: string; pattern: RegExp; alt: string }[] = [
-  { key: 'hockeyBanner', pattern: /banni.*hockey|hockey.*banni|joueur|freinage/i, alt: 'Joueur de hockey qui freine sur la glace d’une patinoire aux lumières bleues' },
-  { key: 'skiBanner', pattern: /banni.*ski|ski.*banni|skieur|poudreuse/i, alt: 'Skieur dans la poudreuse' },
+  // Ordre important : les blocs « collection » avant les bannières principales.
   { key: 'collectionHockey', pattern: /collection.*hockey|hockey.*collection|patin|palet|crosse/i, alt: 'Patin, crosse et palet posés sur la glace' },
-  { key: 'collectionSki', pattern: /collection.*ski|ski.*collection|panorama|alpin/i, alt: 'Panorama alpin enneigé' },
-  { key: 'essentials', pattern: /essential|for[eê]t/i, alt: 'Forêt enneigée sous un ciel clair' },
+  { key: 'collectionSki', pattern: /collection.*ski|ski.*collection|panorama|alpin/i, alt: 'Panorama alpin enneigé et sapins' },
+  { key: 'essentials', pattern: /essential|for[eê]t/i, alt: 'Lisière de forêt enneigée sous un ciel clair' },
+  { key: 'hockeyBanner', pattern: /hero.*hockey|banni.*hockey|joueur|freinage/i, alt: 'Joueur de hockey qui freine sur la glace dans une patinoire sombre' },
+  { key: 'skiBanner', pattern: /hero.*ski|banni.*ski|skieur|poudreuse/i, alt: 'Skieur en veste bleue dans la poudreuse, sommets alpins' },
 ];
 
 export async function importHomeImages(catalogueDir: string, webDir: string) {
   const dir = path.join(catalogueDir, '05_ACCUEIL');
   if (!existsSync(dir)) return { found: false, mapped: {} as Record<string, string>, ignored: [] as string[] };
-  const { readdir } = await import('node:fs/promises');
-  const files = (await readdir(dir)).filter((f) => /\.(png|jpe?g|webp)$/i.test(f)).sort();
+  // Une seule source par visuel : JPG/PNG de préférence (meilleure qualité), sinon WebP.
+  const all = (await readdir(dir)).filter((f) => /\.(png|jpe?g|webp)$/i.test(f)).sort();
+  const byBase = new Map<string, string>();
+  for (const f of all) {
+    const base = f.replace(/\.[^.]+$/, '');
+    const current = byBase.get(base);
+    if (!current || (/\.webp$/i.test(current) && !/\.webp$/i.test(f))) byBase.set(base, f);
+  }
+  const files = [...byBase.values()];
   const manifest: Record<string, { src: string; alt: string; width: number; height: number } | null | string> = {
     _note: 'Généré par « npm run import:catalogue » à partir de GLACIORA_CATALOGUE/05_ACCUEIL. Valeur null = visuel graphique de repli.',
     skiBanner: null,
@@ -382,8 +390,8 @@ export async function importHomeImages(catalogueDir: string, webDir: string) {
   await mkdir(outDir, { recursive: true });
   for (const file of files) {
     const normalized = file.normalize('NFKD').replace(/\p{M}+/gu, '');
-    const rule = HOME_IMAGE_RULES.find((r) => !mapped[r.key] && r.pattern.test(normalized));
-    if (!rule) {
+    const rule = HOME_IMAGE_RULES.find((r) => r.pattern.test(normalized));
+    if (!rule || mapped[rule.key]) {
       ignored.push(file);
       continue;
     }
@@ -395,6 +403,9 @@ export async function importHomeImages(catalogueDir: string, webDir: string) {
     manifest[rule.key] = { src: `${env.PRODUCT_MEDIA_BASE_URL}/home/${name}`, alt: rule.alt, width: info.width, height: info.height };
     mapped[rule.key] = file;
   }
+  // Les anciens visuels générés qui ne sont plus utilisés sont supprimés.
+  const keep = new Set(Object.values(manifest).flatMap((v) => (v && typeof v === 'object' ? [path.basename(v.src)] : [])));
+  for (const f of await readdir(outDir)) if (!keep.has(f)) await rm(path.join(outDir, f), { force: true });
   await writeFile(path.join(webDir, 'src', 'data', 'home-images.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
   return { found: true, mapped, ignored };
 }

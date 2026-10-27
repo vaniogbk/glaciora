@@ -118,10 +118,10 @@ export default async function HomePage() {
 
       <Section id="bloc-ski" eyebrow="Ski" title="Glisser plus loin" href="/categorie/skis" linkLabel="Tous les skis" products={home.ski} />
       <section className="relative isolate overflow-hidden bg-marine text-white" aria-labelledby="banniere-hockey">
-        <HomeVisual name="hockeyBanner" position="center" />
-        <div className="absolute inset-0 bg-gradient-to-l from-marine via-marine/75 to-transparent" aria-hidden="true" />
-        <div className="container relative flex justify-end py-20 sm:py-24">
-          <div className="max-w-md text-right">
+        <HomeVisual name="hockeyBanner" position="75% center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-marine via-marine/75 to-transparent" aria-hidden="true" />
+        <div className="container relative py-20 sm:py-24">
+          <div className="max-w-md">
             <p className="text-xs font-semibold uppercase tracking-brand text-glacier">Hockey sur glace</p>
             <h2 id="banniere-hockey" className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
               Vitesse, contrôle, précision.

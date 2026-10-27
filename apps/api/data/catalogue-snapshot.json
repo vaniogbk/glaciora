@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-10-26T23:17:02.143Z",
+  "exportedAt": "2026-10-27T00:45:33.790Z",
   "products": [
     {
       "reference": "GLA-001",
       "slug": "volkl-shine-72-vmotion-10-gw",
-      "name": "Shine 72 + vMotion 10 GW",
+      "name": "Shine 72 + vMotion 10 Lady",
       "brand": "Völkl",
       "model": "Völkl Shine 72 (saison 2026/2027, ski femme)",
       "shortDescription": "Ski de piste femme (patin 72 mm) livré avec fixations Marker vMotion 10 GW, pour progresser en douceur sur piste damée.",
@@ -12,10 +12,10 @@
       "categorySlug": "skis-all-mountain-freeride",
       "sport": "SKI",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": 27990,
-      "compareAtPriceCents": 39990,
+      "priceFromCents": 28381,
+      "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
       "specs": {
@@ -29,10 +29,10 @@
       "isFeatured": false,
       "isNew": true,
       "sourceUrl": "https://volkl.com/en-us/p/shine-72-skis-2026",
-      "priceSourceUrl": "https://www.snowleader.com/shine-72-vmot-10-w-2026-VOLK00744.html",
-      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0FBRQZL2X",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "d1a9af96cffab2599ab036edb278776998e4e9fe78df8785cd1822c0f28937a0",
+      "importChecksum": "3cb5934653218a29c0577570fcf7c59e7b2060979ef82b8f3cfc430c72246be7",
       "variants": [
         {
           "sku": "GLA-001-137-CM",
@@ -40,8 +40,8 @@
           "sizeLabel": "137 cm",
           "sizeSortOrder": 1370,
           "color": null,
-          "priceCents": 27990,
-          "compareAtPriceCents": 39990,
+          "priceCents": 28381,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 0,
           "stock": 30
@@ -52,8 +52,8 @@
           "sizeLabel": "144 cm",
           "sizeSortOrder": 1440,
           "color": null,
-          "priceCents": 27990,
-          "compareAtPriceCents": 39990,
+          "priceCents": 28381,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 1,
           "stock": 30
@@ -64,8 +64,8 @@
           "sizeLabel": "151 cm",
           "sizeSortOrder": 1510,
           "color": null,
-          "priceCents": 27990,
-          "compareAtPriceCents": 39990,
+          "priceCents": 28381,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 2,
           "stock": 30
@@ -76,8 +76,8 @@
           "sizeLabel": "158 cm",
           "sizeSortOrder": 1580,
           "color": null,
-          "priceCents": 27990,
-          "compareAtPriceCents": 39990,
+          "priceCents": 28381,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 3,
           "stock": 30
@@ -88,8 +88,8 @@
           "sizeLabel": "165 cm",
           "sizeSortOrder": 1650,
           "color": null,
-          "priceCents": 27990,
-          "compareAtPriceCents": 39990,
+          "priceCents": 28381,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 4,
           "stock": 30
@@ -146,7 +146,7 @@
       "priceSourceUrl": "https://www.snowleader.com/shine-76-vmot-10-w-2026-VOLK00745.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "57d5d12ae294b97dcc340d44c932bf0892561b735c25908a108b74cb0ba51af7",
+      "importChecksum": "f16077e81ac4214ccc19b3f3af1762b17cc0df86af247dd787312a7cafcf7b67",
       "variants": [
         {
           "sku": "GLA-002-147-CM",
@@ -212,7 +212,7 @@
     {
       "reference": "GLA-003",
       "slug": "volkl-shine-78",
-      "name": "Shine 78",
+      "name": "Shine 78 + Lowride 11 TCX",
       "brand": "Völkl",
       "model": "Völkl Shine 78 (2026)",
       "shortDescription": "Ski de piste femme (patin 78 mm) pour skieuses intermédiaires à expertes sur neige damée.",
@@ -220,9 +220,9 @@
       "categorySlug": "skis-all-mountain-freeride",
       "sport": "SKI",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 66994,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -236,10 +236,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://volkl.com/en-us/p/shine-78-skis-2026",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0HHG656RL",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "78b6f22a1d2707ae29886827ebfd559f89c5219e0e03a20ab9917e71f7e0c5f7",
+      "importChecksum": "0568c77544f810e0a2f1e08bd35cde887b9e217bca545b28b57c739f6e0c5866",
       "variants": [
         {
           "sku": "GLA-003-149-CM",
@@ -247,9 +247,9 @@
           "sizeLabel": "149 cm",
           "sizeSortOrder": 1490,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 66994,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -259,9 +259,9 @@
           "sizeLabel": "156 cm",
           "sizeSortOrder": 1560,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 66994,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -271,9 +271,9 @@
           "sizeLabel": "163 cm",
           "sizeSortOrder": 1630,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 66994,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         }
@@ -322,7 +322,7 @@
       "priceSourceUrl": "https://www.muule.fr/en/products/zag-slap-92-all-mountain-skis-1",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "0796d354019ecd984faaa8132e60f508dd4c9687eac37758ed3ceec6126204ce",
+      "importChecksum": "4168a815587fca06da7e7a5260af54b34d9d24821d6b77faf1d8722d5d8460ba",
       "variants": [
         {
           "sku": "GLA-004-173-CM",
@@ -401,7 +401,7 @@
       "priceSourceUrl": "https://www.snowleader.com/slap-98-2025-ZAG_00113.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "0e1e6bef472fdc56a4683fcb56c0b443d1530a0a7eecfe62850109b537d1fd51",
+      "importChecksum": "e7999d250f232fc6dbd9e177b980b1b28d9b818f08364531a9341e4f37b5b207",
       "variants": [
         {
           "sku": "GLA-005-173-CM",
@@ -481,7 +481,7 @@
       "priceSourceUrl": "https://www.snowleader.com/slap-104-2025-ZAG_00108.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "c11da1173a2719e9cf05849940b000ffc4250344eb535fd198642215577c37fe",
+      "importChecksum": "eca7339f1e7bd6655c65fef73b329e84041eb60f120682f667e45e3322864b9b",
       "variants": [
         {
           "sku": "GLA-006-170-CM",
@@ -574,7 +574,7 @@
       "priceSourceUrl": "https://skitourguru.com/en/equipment/detail/20773-zag-ubac-95",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "c9cd2617272a82afd7994454898999a7e8fcc08d197c0752132181f5903c2236",
+      "importChecksum": "0b46a7006bb58244beef4f9893dbaf0f5bc9d0065a65cd23536193d3440825dd",
       "variants": [
         {
           "sku": "GLA-007-170-CM",
@@ -667,7 +667,7 @@
       "priceSourceUrl": "https://www.snowleader.com/ubac-102-2025-ZAG_00134.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "87a8303188077e6b55194fb2ca9cb3a07661872ed5b7196179b34c87f8509189",
+      "importChecksum": "1268f129973704c8968234b306d81c09e261b538df740d24327209de32a2c29d",
       "variants": [
         {
           "sku": "GLA-008-164-CM",
@@ -753,10 +753,10 @@
       "categorySlug": "skis-all-mountain-freeride",
       "sport": "SKI",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": 62990,
-      "compareAtPriceCents": 89990,
+      "priceFromCents": 47243,
+      "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
       "specs": {
@@ -770,9 +770,9 @@
       "isNew": false,
       "sourceUrl": "https://www.snowleader.com/ubac-108-2026-ZAG_00154.html",
       "priceSourceUrl": "https://www.snowleader.com/ubac-108-2026-ZAG_00154.html",
-      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "73e7232b1c40a8ac6030f7b1ce4f86adb9aa08e7a4cb3a2fce18966a357aa724",
+      "importChecksum": "44b06a8e659ab703d517d2f6dba9029aabd798bb586b3c70261db86dac43091c",
       "variants": [
         {
           "sku": "GLA-009-173-CM",
@@ -780,8 +780,8 @@
           "sizeLabel": "173 cm",
           "sizeSortOrder": 1730,
           "color": null,
-          "priceCents": 62990,
-          "compareAtPriceCents": 89990,
+          "priceCents": 47243,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 0,
           "stock": 30
@@ -792,8 +792,8 @@
           "sizeLabel": "180 cm",
           "sizeSortOrder": 1800,
           "color": null,
-          "priceCents": 62990,
-          "compareAtPriceCents": 89990,
+          "priceCents": 47243,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 1,
           "stock": 30
@@ -804,8 +804,8 @@
           "sizeLabel": "188 cm",
           "sizeSortOrder": 1880,
           "color": null,
-          "priceCents": 62990,
-          "compareAtPriceCents": 89990,
+          "priceCents": 47243,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 2,
           "stock": 30
@@ -834,10 +834,10 @@
       "categorySlug": "skis-all-mountain-freeride",
       "sport": "SKI",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": 124990,
-      "compareAtPriceCents": 192295,
+      "priceFromCents": 93743,
+      "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
       "specs": {
@@ -849,9 +849,9 @@
       "isNew": false,
       "sourceUrl": "https://volkl.com/p/v-werks-100-2024",
       "priceSourceUrl": "https://www.sport-conrad.com/marken/voelkl/",
-      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "1a91133517c16e41b75ebe74d1fc5123187a7bcedd770a6410dea67510a0a233",
+      "importChecksum": "5cfa25f506d80b97ff7b811daa73e96b288250ea35d03cc904375ba40d3ba40e",
       "variants": [
         {
           "sku": "GLA-010-170-CM",
@@ -859,8 +859,8 @@
           "sizeLabel": "170 cm",
           "sizeSortOrder": 1700,
           "color": null,
-          "priceCents": 124990,
-          "compareAtPriceCents": 192295,
+          "priceCents": 93743,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 0,
           "stock": 30
@@ -871,8 +871,8 @@
           "sizeLabel": "177 cm",
           "sizeSortOrder": 1770,
           "color": null,
-          "priceCents": 124990,
-          "compareAtPriceCents": 192295,
+          "priceCents": 93743,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 1,
           "stock": 30
@@ -883,8 +883,8 @@
           "sizeLabel": "184 cm",
           "sizeSortOrder": 1840,
           "color": null,
-          "priceCents": 124990,
-          "compareAtPriceCents": 192295,
+          "priceCents": 93743,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 2,
           "stock": 30
@@ -930,7 +930,7 @@
       "priceSourceUrl": "https://www.speck-sports.com/en/children-alpine-ski-packs/176732-shine-jr-45-vmot-jr-lady-ski-pack.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "1e0f0e12877bf72296d86d06950b2d576fce3bafee60ae5d0bb371e29ea98ac1",
+      "importChecksum": "888b18a3b45e428b1b325eea8439698b31a91dcf4bdbf94ad9be29027e896e51",
       "variants": [
         {
           "sku": "GLA-011-100-CM",
@@ -1010,7 +1010,7 @@
       "priceSourceUrl": "https://www.snowleader.com/slap-junior-2026-ZAG_00152.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "ee0cf39ec4503b918dfa350e70cda17fce652e3f033048c19d0f37fbed8dd851",
+      "importChecksum": "1a9c431f03c23dca3432f66250e1695f36b4cfd47986c67c8142158640b1b530",
       "variants": [
         {
           "sku": "GLA-012-137-CM",
@@ -1072,10 +1072,10 @@
       "categorySlug": "chaussures-de-ski",
       "sport": "SKI",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": 41990,
-      "compareAtPriceCents": 59990,
+      "priceFromCents": 31493,
+      "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
       "specs": {
@@ -1090,9 +1090,9 @@
       "isNew": false,
       "sourceUrl": "https://www.snowleader.com/s-pro-alpha-130-race-blue-white-race-blue-SALO09214.html",
       "priceSourceUrl": "https://www.snowleader.com/en/s-pro-alpha-130-race-blue-white-race-blue-SALO09214.html",
-      "priceCheckedAt": "2026-10-26T00:00:00.000Z",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "6ee4b434afe8b9410cb12272a437fde1f0d8c49f98bb05d028e6d4af8951e3f9",
+      "importChecksum": "4de87e223c318b4764884ceaa2e0a210b4a9b5d49a0251877e4e23fa39eed54c",
       "variants": [
         {
           "sku": "GLA-013-25-5",
@@ -1100,8 +1100,8 @@
           "sizeLabel": "25.5",
           "sizeSortOrder": 2550,
           "color": "Race Blue / White",
-          "priceCents": 41990,
-          "compareAtPriceCents": 59990,
+          "priceCents": 31493,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 0,
           "stock": 30
@@ -1112,8 +1112,8 @@
           "sizeLabel": "26.5",
           "sizeSortOrder": 2650,
           "color": "Race Blue / White",
-          "priceCents": 41990,
-          "compareAtPriceCents": 59990,
+          "priceCents": 31493,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 1,
           "stock": 30
@@ -1124,8 +1124,8 @@
           "sizeLabel": "27.5",
           "sizeSortOrder": 2750,
           "color": "Race Blue / White",
-          "priceCents": 41990,
-          "compareAtPriceCents": 59990,
+          "priceCents": 31493,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 2,
           "stock": 30
@@ -1136,8 +1136,8 @@
           "sizeLabel": "28.5",
           "sizeSortOrder": 2850,
           "color": "Race Blue / White",
-          "priceCents": 41990,
-          "compareAtPriceCents": 59990,
+          "priceCents": 31493,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 3,
           "stock": 30
@@ -1148,8 +1148,8 @@
           "sizeLabel": "29.5",
           "sizeSortOrder": 2950,
           "color": "Race Blue / White",
-          "priceCents": 41990,
-          "compareAtPriceCents": 59990,
+          "priceCents": 31493,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 4,
           "stock": 30
@@ -1160,8 +1160,8 @@
           "sizeLabel": "30.5",
           "sizeSortOrder": 3050,
           "color": "Race Blue / White",
-          "priceCents": 41990,
-          "compareAtPriceCents": 59990,
+          "priceCents": 31493,
+          "compareAtPriceCents": null,
           "isActive": true,
           "position": 5,
           "stock": 30
@@ -1208,7 +1208,7 @@
       "priceSourceUrl": "https://www.snowleader.com/s-pro-supra-boa-100-gw-SALO09816.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "552bf5f3a33f49b635550b4dbea0c308ffcb698f581c64903252c642b43d2145",
+      "importChecksum": "b23fc5eae6c07b5ebdf775e9d6bbf0ea0b66d477f33afa014096cee729cb5569",
       "variants": [
         {
           "sku": "GLA-014-25-5",
@@ -1324,7 +1324,7 @@
       "priceSourceUrl": "https://www.decathlon.de/alle-sportarten-a-z/wintersport/skischuhe/f-brand_nordica?from=40",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "786bd83e91cb4b3375a665b5f60c9c6d92112880c9280af89187d82da1dc07c8",
+      "importChecksum": "73ac64cdb76794bcb55c51c052d0dddcdd3825e63ea1856bbc5aa92f6a295bb2",
       "variants": [
         {
           "sku": "GLA-015-25-5",
@@ -1439,7 +1439,7 @@
       "priceSourceUrl": "https://www.glisshop.com/chaussures-ski-alpin/nordica/hf-10055942638",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "8a5ef21cd8b9ab9049327b21cd1527125de183bb66784400be2a216addb6c2cc",
+      "importChecksum": "e330d8714760d302773a7505db50765832398cc5f6a4dcf37b142f793318f089",
       "variants": [
         {
           "sku": "GLA-016-25-5",
@@ -1543,7 +1543,7 @@
       "priceSourceUrl": "https://www.snowleader.com/shadow-130-mv-gw-LANG00216.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "478979eb8052a2ec3a30bf6d4d85acd2d58b3df267e6ad16cfc52c6139f99a4c",
+      "importChecksum": "1734d94707e315583b408a62b7dd2e855084d5c7f297b34846a978322b0d899f",
       "variants": [
         {
           "sku": "GLA-017-25-5",
@@ -1660,7 +1660,7 @@
       "priceSourceUrl": "https://www.123comparer.fr/Chaussures-de-ski-homme/gc5dyp3s8y3u1qbzgr4dc.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "ce91df9991311a10f2070bd10da4dd566aa9da006c2440baeaf3714aa6e81d98",
+      "importChecksum": "241d837568f817a58f10a11e2bfa7ed7d97a546f5c0182184898fb62c5d2fc8b",
       "variants": [
         {
           "sku": "GLA-018-25-5",
@@ -1778,7 +1778,7 @@
       "priceSourceUrl": "https://www.snowleader.com/obex-mips-uranium-black-matt-POC_00673.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "2f429e91af2dc745899d6214fd3dc41a7a5aeabb0f4e817f5b3b8a32127275a3",
+      "importChecksum": "c847cf773f63a2617cddc0ecdaca87394f79877653996f2f47f72acc0b723717",
       "variants": [
         {
           "sku": "GLA-019-XS-S-51-54-CM",
@@ -1859,7 +1859,7 @@
       "priceSourceUrl": "https://www.alpinstore.com/fr/619566-giro-ski-gr-grid-sph-mt-stn-.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "5893961fc8830fc605bfea8dd9e90d48b70a3eedd98dda8cbe47868f2957b110",
+      "importChecksum": "5068a1850fd9b1a32d5ab21800c2f9d0e6e897995cbbeb65f4b6fe39412a7e8b",
       "variants": [
         {
           "sku": "GLA-020-S-52-55",
@@ -1964,7 +1964,7 @@
       "priceSourceUrl": "https://varuste.net/fr/p74919/oakley-flight-deck-m-matte-black-w-prizm-snow-torch-iridium",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "00c295074738e9b6048951f30372f7cb30c4aaf40125cf345d4f00be097d1198",
+      "importChecksum": "679fcc26c17f0310bb53eb9caf6cc30ae92c1d9eb9674788e15716e086e2de8e",
       "variants": [
         {
           "sku": "GLA-021-TAILLE-UNIQUE",
@@ -2020,7 +2020,7 @@
       "priceSourceUrl": "https://www.snowleader.com/quickshift-noir-gris-reactiv-1-3-high-contrast-flash-bleu-JULB01225.html",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "2f8316575ee8443d365373761b9c3cacb5b946841b78c188c90036ab0fa78ca1",
+      "importChecksum": "aec4f1b95b29f364ab6678c3629023946ef6fc29f03e0365802ce1d8f9ef64e1",
       "variants": [
         {
           "sku": "GLA-022-TAILLE-UNIQUE",
@@ -2075,7 +2075,7 @@
       "priceSourceUrl": "https://www.hardloop.fr/produit/33943-ortovox-diract-voice-dva",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "4aebc93b6f606f510c6372d472c398238032ed9b690ff38be745d1489e377224",
+      "importChecksum": "b7ac5d3e9ea9c989b2262f38398f5c37ce5589cba7d88de4a4ce918845d4c6fe",
       "variants": [
         {
           "sku": "GLA-023-TAILLE-UNIQUE",
@@ -2131,7 +2131,7 @@
       "priceSourceUrl": "https://www.glisshop.com/accessoires/securite-montagne/detecteur-victimes-avalanches/3-antennes/",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "4b3e620aa7cff049ffb305f81d45c6b1d9ed7ba1697d272d86c2496e35d3d77d",
+      "importChecksum": "fe0348bb907f4ad9ad3c94e91861e2383f4933c8a855cba2b622c124420e29b8",
       "variants": [
         {
           "sku": "GLA-024-TAILLE-UNIQUE",
@@ -2169,9 +2169,9 @@
       "categorySlug": "gants",
       "sport": "SKI",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 9380,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -2185,10 +2185,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://blackdiamondequipment.com/en_US/product/solano-heated-gloves",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.com/dp/B0BP1GLFSV",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "4234901c2ff9392b9adbd82e52c19238ecc1e701d02e57716e7b28112b2147bc",
+      "importChecksum": "ef01a1ac57ddca5228760fa747f9124cd19348be7fae99149165e11dd29ec1b0",
       "variants": [
         {
           "sku": "GLA-025-XS",
@@ -2196,9 +2196,9 @@
           "sizeLabel": "XS",
           "sizeSortOrder": 10,
           "color": "Black",
-          "priceCents": 0,
+          "priceCents": 9380,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -2208,9 +2208,9 @@
           "sizeLabel": "S",
           "sizeSortOrder": 20,
           "color": "Black",
-          "priceCents": 0,
+          "priceCents": 9380,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -2220,9 +2220,9 @@
           "sizeLabel": "M",
           "sizeSortOrder": 30,
           "color": "Black",
-          "priceCents": 0,
+          "priceCents": 9380,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         },
@@ -2232,9 +2232,9 @@
           "sizeLabel": "L",
           "sizeSortOrder": 40,
           "color": "Black",
-          "priceCents": 0,
+          "priceCents": 9380,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 3,
           "stock": 30
         },
@@ -2244,9 +2244,9 @@
           "sizeLabel": "XL",
           "sizeSortOrder": 50,
           "color": "Black",
-          "priceCents": 0,
+          "priceCents": 9380,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 4,
           "stock": 30
         }
@@ -2274,9 +2274,9 @@
       "categorySlug": "gants",
       "sport": "SKI",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 974,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -2289,10 +2289,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://www.walmart.com/ip/1-Pairs-KEBADA-T2-Cold-Weather-Waterproof-Work-Gloves-Insulated-Thermal-Gloves-for-Men-Women-Heavy-Duty-Grip-X-Large-Blue/13935654910",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0FD9YJG9B",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "fae4b98425f48b3f447acd3846f3bf3eff4d3884b06e01c7e0b5bdfd15beaaef",
+      "importChecksum": "c5cf88ac9175ddc756df74456a3ebb2f7b6237fdadaf20f26ba99626306c1fc0",
       "variants": [
         {
           "sku": "GLA-026-S",
@@ -2300,9 +2300,9 @@
           "sizeLabel": "S",
           "sizeSortOrder": 20,
           "color": "Bleu",
-          "priceCents": 0,
+          "priceCents": 974,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -2312,9 +2312,9 @@
           "sizeLabel": "M",
           "sizeSortOrder": 30,
           "color": "Bleu",
-          "priceCents": 0,
+          "priceCents": 974,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -2324,9 +2324,9 @@
           "sizeLabel": "L",
           "sizeSortOrder": 40,
           "color": "Bleu",
-          "priceCents": 0,
+          "priceCents": 974,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         },
@@ -2336,9 +2336,9 @@
           "sizeLabel": "XL",
           "sizeSortOrder": 50,
           "color": "Bleu",
-          "priceCents": 0,
+          "priceCents": 974,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 3,
           "stock": 30
         }
@@ -2366,9 +2366,9 @@
       "categorySlug": "patins-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 70122,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -2379,10 +2379,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://www.geargeek.com/equipment/warrior-alpha-pro-skates",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0H8SVGH39",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "4d5d9f1cfacefdf4ef2bca40d56fc5af342f2504ff3e7354a1f0188132d589b7",
+      "importChecksum": "4d7b34f18a86e5be15d91d3850057c2dd7e3390dbcd54085c5491cc128500cc6",
       "variants": [
         {
           "sku": "GLA-027-7",
@@ -2390,9 +2390,9 @@
           "sizeLabel": "7",
           "sizeSortOrder": 700,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -2402,9 +2402,9 @@
           "sizeLabel": "7.5",
           "sizeSortOrder": 750,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -2414,9 +2414,9 @@
           "sizeLabel": "8",
           "sizeSortOrder": 800,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         },
@@ -2426,9 +2426,9 @@
           "sizeLabel": "8.5",
           "sizeSortOrder": 850,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 3,
           "stock": 30
         },
@@ -2438,9 +2438,9 @@
           "sizeLabel": "9",
           "sizeSortOrder": 900,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 4,
           "stock": 30
         },
@@ -2450,9 +2450,9 @@
           "sizeLabel": "9.5",
           "sizeSortOrder": 950,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 5,
           "stock": 30
         },
@@ -2462,9 +2462,9 @@
           "sizeLabel": "10",
           "sizeSortOrder": 1000,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 6,
           "stock": 30
         },
@@ -2474,9 +2474,9 @@
           "sizeLabel": "10.5",
           "sizeSortOrder": 1050,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 7,
           "stock": 30
         },
@@ -2486,9 +2486,9 @@
           "sizeLabel": "11",
           "sizeSortOrder": 1100,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 70122,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 8,
           "stock": 30
         }
@@ -2516,9 +2516,9 @@
       "categorySlug": "patins-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 34499,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -2529,10 +2529,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://www.thehockeyshop.com/products/bauer-vapor-hyperlite2-senior-hockey-skates",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0C4G86PGX",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "aee5d73f8ec6aedb47318f146942ac923c487836f022480401f3bfd5f2b28206",
+      "importChecksum": "6653077bd9b0caae87de6cfd890875cb0e675cdc335ea36fc5d8c021a03a7218",
       "variants": [
         {
           "sku": "GLA-028-7",
@@ -2540,9 +2540,9 @@
           "sizeLabel": "7",
           "sizeSortOrder": 700,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -2552,9 +2552,9 @@
           "sizeLabel": "7.5",
           "sizeSortOrder": 750,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -2564,9 +2564,9 @@
           "sizeLabel": "8",
           "sizeSortOrder": 800,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         },
@@ -2576,9 +2576,9 @@
           "sizeLabel": "8.5",
           "sizeSortOrder": 850,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 3,
           "stock": 30
         },
@@ -2588,9 +2588,9 @@
           "sizeLabel": "9",
           "sizeSortOrder": 900,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 4,
           "stock": 30
         },
@@ -2600,9 +2600,9 @@
           "sizeLabel": "9.5",
           "sizeSortOrder": 950,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 5,
           "stock": 30
         },
@@ -2612,9 +2612,9 @@
           "sizeLabel": "10",
           "sizeSortOrder": 1000,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 6,
           "stock": 30
         },
@@ -2624,9 +2624,9 @@
           "sizeLabel": "10.5",
           "sizeSortOrder": 1050,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 7,
           "stock": 30
         },
@@ -2636,9 +2636,9 @@
           "sizeLabel": "11",
           "sizeSortOrder": 1100,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 34499,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 8,
           "stock": 30
         }
@@ -2684,7 +2684,7 @@
       "priceSourceUrl": "https://www.decathlon.pt/brands/ccm?from=280",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "0c328a80b041cb2e4a7d7f0513a983c3ea58fde2975afc5616d2c33459c25dd4",
+      "importChecksum": "8973fd95a5a4b1bf461d5eaf04633f1f85f6d03aa825257d12d06b02381c6d93",
       "variants": [
         {
           "sku": "GLA-029-7",
@@ -2835,7 +2835,7 @@
       "priceSourceUrl": "https://www.decathlon.de/alle-sportarten-a-z/eishockey-inlinehockey/eishockeyschlager?from=120",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "b9ab6d22dfa274b2405190d3499ea7837b3c73b4643ec25759e6c7acccce8f42",
+      "importChecksum": "ba86e5541d352543d9bee2e3e1352c9d8f283df7882447d2e3333329ed19e4dd",
       "variants": [
         {
           "sku": "GLA-030-GAUCHE-FLEX-77",
@@ -2909,9 +2909,9 @@
       "categorySlug": "crosses-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 13510,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -2923,10 +2923,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://www.hockeystickman.ca/blogs/news/why-nhl-players-are-still-using-the-nexus-2n-pro-xl-and-what-it-means-for-you",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0G3CTNW9V",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "46f4046eb4f0b91d081dc989d3487decadfc15f27e9f58c84807e07552b34db2",
+      "importChecksum": "433703ddfa2229b5f4a21c119360ce514d8808c36267004b8129decfcc32085b",
       "variants": [
         {
           "sku": "GLA-031-GAUCHE-FLEX-77",
@@ -2934,9 +2934,9 @@
           "sizeLabel": "Gauche – Flex 77",
           "sizeSortOrder": 770,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 13510,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -2946,9 +2946,9 @@
           "sizeLabel": "Droite – Flex 77",
           "sizeSortOrder": 1770,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 13510,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         }
@@ -2976,9 +2976,9 @@
       "categorySlug": "crosses-hockey",
       "sport": "HOCKEY",
       "condition": "USED",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 24512,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -2989,10 +2989,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://www.geargeek.com/blog/the-rise-and-fall-of-easton-hockey-a-look-back-by-guest-blogger-james-duerr",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B01IUSMMR2",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "b8d56ae35cbe8fde57e5c17583e36717f242112895441b24385a73b476148ccb",
+      "importChecksum": "f39e439d9a58d3711a5c88d8b9835d7d14574f4a570e997fa56655900c79ed9c",
       "variants": [
         {
           "sku": "GLA-032-TAILLE-UNIQUE",
@@ -3000,9 +3000,9 @@
           "sizeLabel": "Taille unique",
           "sizeSortOrder": 0,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 24512,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         }
@@ -3030,9 +3030,9 @@
       "categorySlug": "casques-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 5175,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -3041,10 +3041,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://www.purehockey.com/product/bauer-4500-hockey-helmet/itm/4699-2/",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0DG6RZ824",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "02f4ad93e05f49c65e1d2b8e2c5794738875d3654a8d82d22ef1374e0649eb47",
+      "importChecksum": "a78de29b2e1d46c81f2714a1a9a50d7c96923f48604b070486db2ada7512883b",
       "variants": [
         {
           "sku": "GLA-033-S",
@@ -3052,9 +3052,9 @@
           "sizeLabel": "S",
           "sizeSortOrder": 10,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 5175,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -3064,9 +3064,9 @@
           "sizeLabel": "M",
           "sizeSortOrder": 20,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 5175,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -3076,9 +3076,9 @@
           "sizeLabel": "L",
           "sizeSortOrder": 30,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 5175,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         }
@@ -3106,9 +3106,9 @@
       "categorySlug": "casques-hockey",
       "sport": "HOCKEY",
       "condition": "USED",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 7598,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -3119,10 +3119,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://en.wikipedia.org/wiki/Jofa",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B002NMWWJU",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "fb61160459bdbd3b15cc26f671ca2488ee05b024885a18e0df6610677b10bde4",
+      "importChecksum": "77714de773d64979e2a61554861bcd185a7ad9a9681eda261b82178989c6c756",
       "variants": [
         {
           "sku": "GLA-034-TAILLE-UNIQUE",
@@ -3130,9 +3130,9 @@
           "sizeLabel": "Taille unique",
           "sizeSortOrder": 0,
           "color": "Blanc",
-          "priceCents": 0,
+          "priceCents": 7598,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         }
@@ -3160,9 +3160,9 @@
       "categorySlug": "entrainement-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 525,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -3177,10 +3177,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://franklinsports.com/ice-hockey-puck-black",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B07Q87ZHD4",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "7e21752d736d96e90a940bb5572356195f13a4aded48c5bf4c02e084c73c49de",
+      "importChecksum": "2fe1b0843c29370cdbef090a730646c0eef4d8fbc9a3b8eef9f268ab3f5f2228",
       "variants": [
         {
           "sku": "GLA-037-TAILLE-UNIQUE",
@@ -3188,9 +3188,9 @@
           "sizeLabel": "Taille unique",
           "sizeSortOrder": 0,
           "color": "Noir",
-          "priceCents": 0,
+          "priceCents": 525,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         }
@@ -3237,7 +3237,7 @@
       "priceSourceUrl": "https://www.manomano.de/p/vevor-dryland-fliesen-fur-hockey-bodenmatten-315-x-315-mm-15-stuck-ineinandergreifende-vielseitige-trainingsoberflache-tanzbodenfliesen-hockey-trainingsausrustungsbrett-zum-schieen-aschgrau-88727012",
       "priceCheckedAt": "2026-10-26T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "4a83120070dd3a142b8b1a7b56714251ff0c4a2a565cd66578df5c89eb328568",
+      "importChecksum": "d1dd215066439e3fd471171703184369c534e8cc9dc5ddb0c6106ac0dfca21c3",
       "variants": [
         {
           "sku": "GLA-038-TAILLE-UNIQUE",
@@ -3275,9 +3275,9 @@
       "categorySlug": "entrainement-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 2345,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -3290,10 +3290,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": "https://franklinsports.com/nhl-mini-hockey-goal-ball-stick-set",
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.com/dp/B0DN9DBY2Y",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "3c753f235c067d1dd9bd992425a788e8b7d932b1612673e0f82c3ffedb3b53f4",
+      "importChecksum": "b6920c91fd1e327cfe2114058266c5a1ae3cdb080455e5e18966681259b03f85",
       "variants": [
         {
           "sku": "GLA-039-TAILLE-UNIQUE",
@@ -3301,9 +3301,9 @@
           "sizeLabel": "Taille unique",
           "sizeSortOrder": 0,
           "color": "Graffiti",
-          "priceCents": 0,
+          "priceCents": 2345,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         }
@@ -3331,9 +3331,9 @@
       "categorySlug": "casques-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 4028,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -3344,10 +3344,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": null,
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B09ZY4VQN7",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "7444d3209f1665a55221dfbfa19ff0d7e651a4389b64da32cb6c472c02861145",
+      "importChecksum": "391bbc5fe5520571821b5ce00669a1f49ee24c7084bd660776ff8e63ea861b81",
       "variants": [
         {
           "sku": "HL-001-S",
@@ -3355,9 +3355,9 @@
           "sizeLabel": "S",
           "sizeSortOrder": 10,
           "color": "Noir",
-          "priceCents": 0,
+          "priceCents": 4028,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -3367,9 +3367,9 @@
           "sizeLabel": "M",
           "sizeSortOrder": 20,
           "color": "Noir",
-          "priceCents": 0,
+          "priceCents": 4028,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -3379,9 +3379,9 @@
           "sizeLabel": "L",
           "sizeSortOrder": 30,
           "color": "Noir",
-          "priceCents": 0,
+          "priceCents": 4028,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         }
@@ -3409,9 +3409,9 @@
       "categorySlug": "patins-hockey",
       "sport": "HOCKEY",
       "condition": "NEW",
-      "status": "DRAFT",
+      "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": null,
+      "priceFromCents": 38705,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -3422,10 +3422,10 @@
       "isFeatured": false,
       "isNew": false,
       "sourceUrl": null,
-      "priceSourceUrl": null,
-      "priceCheckedAt": null,
+      "priceSourceUrl": "https://www.amazon.fr/dp/B0C4G7PSF2",
+      "priceCheckedAt": "2026-10-27T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "3c105b6fa5dd4fc928475208769c0802367f53a970e9ac52788552460c6fcf3e",
+      "importChecksum": "4407bb4d4224ebcde703346fddb464ced1673245c024827b1b22de26eaf4b740",
       "variants": [
         {
           "sku": "HL-002-7",
@@ -3433,9 +3433,9 @@
           "sizeLabel": "7",
           "sizeSortOrder": 700,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 0,
           "stock": 30
         },
@@ -3445,9 +3445,9 @@
           "sizeLabel": "7.5",
           "sizeSortOrder": 750,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 1,
           "stock": 30
         },
@@ -3457,9 +3457,9 @@
           "sizeLabel": "8",
           "sizeSortOrder": 800,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 2,
           "stock": 30
         },
@@ -3469,9 +3469,9 @@
           "sizeLabel": "8.5",
           "sizeSortOrder": 850,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 3,
           "stock": 30
         },
@@ -3481,9 +3481,9 @@
           "sizeLabel": "9",
           "sizeSortOrder": 900,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 4,
           "stock": 30
         },
@@ -3493,9 +3493,9 @@
           "sizeLabel": "9.5",
           "sizeSortOrder": 950,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 5,
           "stock": 30
         },
@@ -3505,9 +3505,9 @@
           "sizeLabel": "10",
           "sizeSortOrder": 1000,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 6,
           "stock": 30
         },
@@ -3517,9 +3517,9 @@
           "sizeLabel": "10.5",
           "sizeSortOrder": 1050,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 7,
           "stock": 30
         },
@@ -3529,9 +3529,9 @@
           "sizeLabel": "11",
           "sizeSortOrder": 1100,
           "color": null,
-          "priceCents": 0,
+          "priceCents": 38705,
           "compareAtPriceCents": null,
-          "isActive": false,
+          "isActive": true,
           "position": 8,
           "stock": 30
         }

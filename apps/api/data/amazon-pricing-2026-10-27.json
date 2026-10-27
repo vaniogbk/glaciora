@@ -1,0 +1,23 @@
+{
+  "_note": "Prix des 17 articles publiés le 27/10/2026 : prix de vente = prix de référence Amazon - 25 %. match = exact (même article sur Amazon), equivalent (article absent d'Amazon : équivalent le plus proche, même marque et même type quand c'est possible), market (absent d'Amazon : prix marché relevé le 26/10 chez un revendeur). Amazon.com affiche les prix en XOF (franc CFA, parité fixe 1 EUR = 655,957 XOF). Aucun prix barré : la remise n'est pas une réduction sur un ancien prix GLACIORA.",
+  "discount": 0.25,
+  "items": [
+    { "reference": "GLA-001", "name": "Shine 72 + vMotion 10 Lady", "referencePriceCents": 37841, "match": "exact", "source": "https://www.amazon.fr/dp/B0FBRQZL2X", "note": "Volkl Shine 72 + VMOT 10 Lady" },
+    { "reference": "GLA-003", "name": "Shine 78 + Lowride 11 TCX", "referencePriceCents": 89325, "match": "exact", "source": "https://www.amazon.fr/dp/B0HHG656RL", "note": "Pack Shine 78 + fixations Lowride 11 TCX" },
+    { "reference": "GLA-009", "name": "Ubac 108", "referencePriceCents": 62990, "match": "market", "source": "https://www.snowleader.com/ubac-108-2026-ZAG_00154.html", "note": "Absent d'Amazon (fr, de, com)" },
+    { "reference": "GLA-010", "name": "V.Werks 100", "referencePriceCents": 124990, "match": "market", "source": "https://www.sport-conrad.com/marken/voelkl/", "note": "Absent d'Amazon (fr, de, com)" },
+    { "reference": "GLA-013", "name": "S/Pro Alpha 130", "referencePriceCents": 41990, "match": "market", "source": "https://www.snowleader.com/en/s-pro-alpha-130-race-blue-white-race-blue-SALO09214.html", "note": "Absent d'Amazon.fr/.de ; fiche Amazon.com sans prix" },
+    { "reference": "GLA-025", "name": "Solano Heated Gloves", "referencePriceCents": 12506, "match": "equivalent", "source": "https://www.amazon.com/dp/B0BP1GLFSV", "note": "Solano indisponible sur Amazon ; équivalent : gants de ski chauffants rechargeables ORORO (XOF 82 034)" },
+    { "reference": "GLA-026", "name": "T2", "referencePriceCents": 1299, "match": "equivalent", "source": "https://www.amazon.fr/dp/B0FD9YJG9B", "note": "T2 sans prix sur Amazon ; équivalent : Kebada T1 (1 paire)" },
+    { "reference": "GLA-027", "name": "Alpha Pro", "referencePriceCents": 93496, "match": "exact", "source": "https://www.amazon.fr/dp/B0H8SVGH39", "note": "Warrior Alpha Pro Senior" },
+    { "reference": "GLA-028", "name": "Vapor HyperLite2", "referencePriceCents": 45998, "match": "exact", "source": "https://www.amazon.fr/dp/B0C4G86PGX", "note": "Bauer Vapor HYP2RLITE ; fiche Amazon limitée aux pointures 4 à 6" },
+    { "reference": "GLA-031", "name": "Nexus 2N Pro XL", "referencePriceCents": 18013, "match": "equivalent", "source": "https://www.amazon.fr/dp/B0G3CTNW9V", "note": "Modèle 2018 absent ; équivalent : Bauer Nexus E40 Grip Senior" },
+    { "reference": "GLA-032", "name": "Synergy (vintage)", "referencePriceCents": 32682, "match": "equivalent", "source": "https://www.amazon.fr/dp/B01IUSMMR2", "note": "Modèle 2001 absent ; équivalent : Easton Synergy GX Grip" },
+    { "reference": "GLA-033", "name": "4500", "referencePriceCents": 6900, "match": "equivalent", "source": "https://www.amazon.fr/dp/B0DG6RZ824", "note": "Bauer 4500 arrêté ; équivalent : Bauer Re-Akt 55 Senior" },
+    { "reference": "GLA-034", "name": "690 (vintage)", "referencePriceCents": 10131, "match": "equivalent", "source": "https://www.amazon.fr/dp/B002NMWWJU", "note": "Jofa absent ; équivalent : casque Bauer 5100 adulte" },
+    { "reference": "GLA-037", "name": "Palet officiel (lot de 3)", "referencePriceCents": 700, "match": "equivalent", "source": "https://www.amazon.fr/dp/B07Q87ZHD4", "note": "Palet Franklin 42130 absent ; équivalent : lot de 12 palets officiels 27,99 €, ramené à 3 palets" },
+    { "reference": "GLA-039", "name": "Mini set de hockey enfant NHL", "referencePriceCents": 3126, "match": "exact", "source": "https://www.amazon.com/dp/B0DN9DBY2Y", "note": "Franklin Sports NHL Kids Mini Hockey Goal + Sticks Set - Graffiti (XOF 20 504)" },
+    { "reference": "HL-001", "name": "Casque de hockey", "referencePriceCents": 5371, "match": "equivalent", "source": "https://www.amazon.fr/dp/B09ZY4VQN7", "note": "Modèle CCM non identifié ; équivalent : CCM Tacks 70 Senior" },
+    { "reference": "HL-002", "name": "Vapor X5", "referencePriceCents": 51607, "match": "equivalent", "source": "https://www.amazon.fr/dp/B0C4G7PSF2", "note": "Prix du Bauer Vapor X5 Pro Senior (version la plus proche)" }
+  ]
+}

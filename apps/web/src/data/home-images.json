@@ -1,8 +1,33 @@
 {
   "_note": "Généré par « npm run import:catalogue » à partir de GLACIORA_CATALOGUE/05_ACCUEIL. Valeur null = visuel graphique de repli.",
-  "skiBanner": null,
-  "hockeyBanner": null,
-  "collectionSki": null,
-  "collectionHockey": null,
-  "essentials": null
+  "skiBanner": {
+    "src": "/media/home/skibanner-cf177affee.webp",
+    "alt": "Skieur en veste bleue dans la poudreuse, sommets alpins",
+    "width": 1376,
+    "height": 768
+  },
+  "hockeyBanner": {
+    "src": "/media/home/hockeybanner-213d762501.webp",
+    "alt": "Joueur de hockey qui freine sur la glace dans une patinoire sombre",
+    "width": 1376,
+    "height": 768
+  },
+  "collectionSki": {
+    "src": "/media/home/collectionski-555fc355ba.webp",
+    "alt": "Panorama alpin enneigé et sapins",
+    "width": 1376,
+    "height": 768
+  },
+  "collectionHockey": {
+    "src": "/media/home/collectionhockey-3ee9ca2d4e.webp",
+    "alt": "Patin, crosse et palet posés sur la glace",
+    "width": 1376,
+    "height": 768
+  },
+  "essentials": {
+    "src": "/media/home/essentials-abbfbec51e.webp",
+    "alt": "Lisière de forêt enneigée sous un ciel clair",
+    "width": 1376,
+    "height": 768
+  }
 }
