@@ -29,8 +29,13 @@ export default function AdminBankPage() {
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
 
-  const assigned = new Map<string, string>();
-  for (const a of data?.accounts ?? []) if (a.isActive) for (const c of a.countryCodes) assigned.set(c, a.label);
+  // Autres comptes actifs par pays : un même pays peut être servi par plusieurs comptes.
+  const editingId = editing && editing !== 'new' ? editing.id : null;
+  const sharedWith = new Map<string, string[]>();
+  for (const a of data?.accounts ?? []) {
+    if (!a.isActive || a.id === editingId) continue;
+    for (const c of a.countryCodes) sharedWith.set(c, [...(sharedWith.get(c) ?? []), a.label]);
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -82,7 +87,7 @@ export default function AdminBankPage() {
     <div className="max-w-5xl">
       <h1 className="text-2xl">Coordonnées bancaires par pays</h1>
       <p className="mt-2 text-sm text-muted">
-        Au moment du paiement, le client voit le compte rattaché à son pays de livraison. Sans compte dédié, c’est le compte principal (variables d’environnement) qui s’affiche ; sans aucun compte, le virement est indisponible pour ce pays. Chaque modification est journalisée et signalée par e-mail à la boutique.
+        Au moment du paiement, le client voit le compte rattaché à son pays de livraison. Un pays peut être servi par plusieurs comptes : chaque nouvelle commande est alors attribuée au compte de ce pays qui a reçu une commande le moins récemment. Sans compte dédié, c’est le compte principal (variables d’environnement) qui s’affiche ; sans aucun compte, le virement est indisponible pour ce pays. Chaque modification est journalisée et signalée par e-mail à la boutique.
       </p>
       <p aria-live="polite" className="mt-3 text-sm font-semibold text-deep">{message}</p>
 
@@ -103,7 +108,7 @@ export default function AdminBankPage() {
           <ul className="mt-6 space-y-3">
             {data?.accounts.map((a) => (
               <li key={a.id} className="card flex flex-wrap items-start gap-4 p-5 text-sm">
-                <div className="min-w-[240px] flex-1">
+                <div className="min-w-0 flex-1 basis-60">
                   <p className="font-bold text-marine">
                     {a.label} {!a.isActive && <span className="ml-2 rounded-sm bg-line px-2 text-xs">Désactivé</span>}
                   </p>
@@ -160,13 +165,14 @@ export default function AdminBankPage() {
             <legend className="field-label">Pays de livraison servis par ce compte</legend>
             <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
               {EUROPEAN_COUNTRIES.map((c) => {
-                const owner = assigned.get(c.code);
-                const takenElsewhere = Boolean(owner) && !current?.countryCodes.includes(c.code);
+                const others = sharedWith.get(c.code);
                 return (
-                  <label key={c.code} className={takenElsewhere ? 'flex items-center gap-2 text-sm text-muted' : 'flex items-center gap-2 text-sm'}>
-                    <input type="checkbox" name="countryCodes" value={c.code} defaultChecked={current?.countryCodes.includes(c.code)} disabled={takenElsewhere} className="h-4 w-4 accent-deep" />
-                    {c.name}
-                    {takenElsewhere && <span className="text-xs">({owner})</span>}
+                  <label key={c.code} className="flex min-h-[44px] items-center gap-2 text-sm">
+                    <input type="checkbox" name="countryCodes" value={c.code} defaultChecked={current?.countryCodes.includes(c.code)} className="h-4 w-4 shrink-0 accent-deep" />
+                    <span>
+                      {c.name}
+                      {others && <span className="block text-xs text-muted">aussi : {others.join(', ')}</span>}
+                    </span>
                   </label>
                 );
               })}

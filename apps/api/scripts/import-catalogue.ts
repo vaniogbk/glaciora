@@ -3,11 +3,13 @@ import path from 'node:path';
 import { env } from '../src/config/env';
 import { prisma } from '../src/lib/prisma';
 import { importHomeImages, reportToMarkdown, runCatalogueImport } from '../src/modules/catalogue-import/import.service';
+import { SNAPSHOT_FILE, exportCatalogueSnapshot } from '../src/modules/catalogue-import/snapshot.service';
 
 /**
  * npm run import:catalogue [-- --dry-run] [-- --no-images]
  * Lit GLACIORA_CATALOGUE (CATALOGUE_DIR) sans jamais le modifier, crée ou met à jour les produits,
- * écrit les images optimisées dans apps/web/public/media/products et un rapport dans import-reports/.
+ * écrit les images optimisées dans apps/web/public/media/products et un rapport dans import-reports/,
+ * puis met à jour data/catalogue-snapshot.json (installé en production depuis l'admin après déploiement).
  */
 async function main() {
   const args = new Set(process.argv.slice(2));
@@ -24,6 +26,10 @@ async function main() {
     const home = await importHomeImages(catalogueDir, path.resolve('../web'));
     if (!home.found) console.warn('05_ACCUEIL absent : visuels graphiques de repli conservés sur l’accueil.');
     else console.warn(`Visuels d’accueil : ${JSON.stringify(home.mapped)}${home.ignored.length ? ` · non reconnus : ${home.ignored.join(', ')}` : ''}`);
+  }
+  if (!args.has('--dry-run')) {
+    const count = await exportCatalogueSnapshot();
+    console.warn(`Instantané pour la production : ${count} produits → ${SNAPSHOT_FILE} (à déployer, puis Admin > Import catalogue).`);
   }
   if (report.summary.errors > 0) process.exitCode = 1;
 }

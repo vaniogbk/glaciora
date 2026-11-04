@@ -19,20 +19,29 @@ export function newReference(now = new Date()): string {
   return generateOrderReference(now, randomBytes(5));
 }
 
-export function encodeReference(reference: string, amountCents: number, expiresAt: number): string {
-  const data = `${reference}.${amountCents}.${expiresAt}`;
+export interface SignedReference {
+  reference: string;
+  amountCents: number;
+  /** Compte bancaire affiché au client (absent sur les références émises avant son ajout). */
+  accountKey?: string;
+}
+
+export function encodeReference(reference: string, amountCents: number, expiresAt: number, accountKey: string): string {
+  const data = `${reference}.${amountCents}.${expiresAt}.${accountKey}`;
   return `${data}.${sign(data)}`;
 }
 
-export function decodeReference(value: string | undefined, now = Date.now()): { reference: string; amountCents: number } | null {
+export function decodeReference(value: string | undefined, now = Date.now()): SignedReference | null {
   if (!value || value.length > 200) return null;
   const parts = value.split('.');
-  if (parts.length !== 4) return null;
-  const [reference, amount, expires, signature] = parts as [string, string, string, string];
-  if (!safeEqual(signature, sign(`${reference}.${amount}.${expires}`))) return null;
+  if (parts.length !== 4 && parts.length !== 5) return null;
+  const signature = parts.pop()!;
+  if (!safeEqual(signature, sign(parts.join('.')))) return null;
+  const [reference, amount, expires, accountKey] = parts as [string, string, string, string | undefined];
   if (!/^GLA-\d{6}-[A-Z0-9]{5}$/.test(reference)) return null;
   if (Number(expires) < now) return null;
   const amountCents = Number(amount);
   if (!Number.isInteger(amountCents) || amountCents <= 0) return null;
-  return { reference, amountCents };
+  if (accountKey !== undefined && !/^[a-z0-9]{1,40}$/.test(accountKey)) return null;
+  return { reference, amountCents, accountKey };
 }

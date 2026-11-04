@@ -18,7 +18,7 @@ import { generateOpaqueToken, hashToken, safeEqual } from '../../lib/tokens';
 import { logActivity } from '../../lib/activity';
 import { findCurrentCart, loadCartItems, toCartView } from '../cart/cart.service';
 import { loadShippingZones } from '../shipping/shipping.repository';
-import { maskIban, resolveReceivingAccount } from '../payments/payment-methods';
+import { accountKeyOf, findShownAccount, maskIban, resolveReceivingAccount } from '../payments/payment-methods';
 import { getStorage } from '../storage/storage';
 import { kickEmailQueue, queueEmail } from '../email/email.service';
 import { REFERENCE_COOKIE, REFERENCE_TTL_MS, decodeReference, encodeReference, newReference } from './checkout-reference';
@@ -40,7 +40,8 @@ export async function quoteForCurrentCart(req: Request, countryCode: string) {
 
 /** Étape « virement » : montant définitif, référence réservée, coordonnées et QR code SEPA. */
 export async function preparePaymentDetails(req: Request, res: Response, countryCode: string, shippingRateId: string) {
-  const account = await resolveReceivingAccount(countryCode);
+  const previous = decodeReference(req.cookies?.[REFERENCE_COOKIE] as string | undefined);
+  const account = await resolveReceivingAccount(countryCode, previous?.accountKey);
   if (!account) throw new AppError(503, 'BANK_NOT_CONFIGURED', 'Le paiement par virement est momentanément indisponible pour ce pays');
   const bank = { accountHolder: account.accountHolder, iban: account.iban, bic: account.bic, bankName: account.bankName };
   const cart = await requireCart(req);
@@ -51,10 +52,9 @@ export async function preparePaymentDetails(req: Request, res: Response, country
   if (!quote) throw unprocessable('SHIPPING_UNAVAILABLE', 'Livraison indisponible pour ce pays');
 
   const amountCents = view.subtotalCents + quote.priceCents;
-  const previous = decodeReference(req.cookies?.[REFERENCE_COOKIE] as string | undefined);
   const reference = previous?.reference ?? newReference();
   const expiresAt = Date.now() + REFERENCE_TTL_MS;
-  res.cookie(REFERENCE_COOKIE, encodeReference(reference, amountCents, expiresAt), {
+  res.cookie(REFERENCE_COOKIE, encodeReference(reference, amountCents, expiresAt, accountKeyOf(account)), {
     httpOnly: true,
     secure: env.COOKIE_SECURE,
     sameSite: 'lax',
@@ -127,8 +127,9 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
       const quote = selectShippingQuote(zones, data.shippingAddress.countryCode, view.subtotalCents, data.shippingRateId);
       if (!quote) throw unprocessable('SHIPPING_UNAVAILABLE', 'Livraison indisponible pour ce pays');
       const totalCents = view.subtotalCents + quote.priceCents;
-      const account = await resolveReceivingAccount(data.shippingAddress.countryCode);
-      if (!account) throw new AppError(503, 'BANK_NOT_CONFIGURED', 'Le paiement par virement est momentanément indisponible pour ce pays');
+      // Le compte enregistré est celui affiché au client avec cette référence (répartition entre plusieurs comptes d'un pays).
+      const account = signed.accountKey ? await findShownAccount(signed.accountKey) : await resolveReceivingAccount(data.shippingAddress.countryCode);
+      if (!account) throw conflict('Les coordonnées bancaires ont changé : affichez-les à nouveau avant de valider', { code: 'BANK_ACCOUNT_CHANGED' });
       if (totalCents !== signed.amountCents) {
         throw conflict('Le montant de la commande a changé : vérifiez le nouveau montant avant de valider', { code: 'AMOUNT_CHANGED', totalCents });
       }

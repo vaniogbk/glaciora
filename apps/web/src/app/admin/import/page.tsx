@@ -17,7 +17,8 @@ interface Run {
 }
 
 export default function AdminImportPage() {
-  const { data, reload } = useAdminData<{ runs: Run[]; catalogueAvailable: boolean }>('/api/admin/import/runs');
+  const { data, reload } = useAdminData<{ runs: Run[]; catalogueAvailable: boolean; snapshot: { exportedAt: string; productCount: number } | null }>('/api/admin/import/runs');
+  const fromSnapshot = Boolean(data && !data.catalogueAvailable && data.snapshot);
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
@@ -26,8 +27,9 @@ export default function AdminImportPage() {
     setBusy(true);
     setMessage('');
     try {
-      await api('/api/admin/import', { method: 'POST' });
-      setMessage('Import terminé.');
+      const { report } = await api<{ report: { summary: { created: number; updated: number; unchanged?: number; skipped?: number; errors: number } } }>('/api/admin/import', { method: 'POST' });
+      const s = report.summary;
+      setMessage(`Import terminé : ${s.created} créé(s), ${s.updated} mis à jour, ${s.unchanged ?? s.skipped ?? 0} inchangé(s), ${s.errors} erreur(s).`);
       await reload();
     } catch (err) {
       setMessage(errorMessage(err));
@@ -42,13 +44,23 @@ export default function AdminImportPage() {
       <p className="mt-2 max-w-3xl text-sm text-muted">
         L’import lit le dossier GLACIORA_CATALOGUE (sans jamais le modifier) et le fichier de compléments (prix, tailles). Il est idempotent : un produit inchangé n’est pas réécrit, et le stock saisi dans l’admin n’est jamais écrasé.
       </p>
-      {data && !data.catalogueAvailable && (
+      {fromSnapshot && data?.snapshot && (
+        <div className="mt-4 max-w-3xl rounded-md bg-snow p-4 text-sm">
+          <p className="font-semibold text-marine">
+            Source sur ce serveur : instantané du catalogue du {new Date(data.snapshot.exportedAt).toLocaleString('fr-FR')} ({data.snapshot.productCount} produits).
+          </p>
+          <p className="mt-1 text-muted">
+            Pour y intégrer des changements du dossier GLACIORA_CATALOGUE : lancez « npm run import:catalogue » sur le poste qui contient le dossier (l’instantané est mis à jour), déployez, puis cliquez sur « Importer le catalogue ».
+          </p>
+        </div>
+      )}
+      {data && !data.catalogueAvailable && !data.snapshot && (
         <p className="mt-4 rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning">
-          Le dossier catalogue n’est pas présent sur ce serveur : lancez « npm run import:catalogue » depuis un poste qui le contient (voir README).
+          Ni dossier catalogue ni instantané sur ce serveur : lancez « npm run import:catalogue » depuis un poste qui contient le dossier, puis déployez.
         </p>
       )}
-      <button type="button" className="btn-primary mt-4" onClick={run} disabled={busy || !data?.catalogueAvailable}>
-        {busy ? 'Import en cours…' : 'Relancer l’import'}
+      <button type="button" className="btn-primary mt-4" onClick={run} disabled={busy || !(data?.catalogueAvailable || data?.snapshot)}>
+        {busy ? 'Import en cours…' : 'Importer le catalogue'}
       </button>
       <p aria-live="polite" className="mt-3 text-sm font-semibold text-deep">{message}</p>
       <div className="card mt-6 overflow-x-auto">

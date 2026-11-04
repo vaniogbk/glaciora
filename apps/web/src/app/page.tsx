@@ -172,14 +172,9 @@ export default async function HomePage() {
             </h2>
             <p className="mt-3 max-w-md text-white/85">Taille de ski, flex de chaussure, choix d’un patin : nous vous répondons par e-mail, téléphone ou WhatsApp.</p>
           </div>
-          <ul className="grid gap-3 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
+          <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
             <li>
-              <a href={`tel:${BRAND.phoneE164}`} className="btn-accent w-full">
-                Appeler
-              </a>
-            </li>
-            <li>
-              <a href={BRAND.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost-light w-full">
+              <a href={BRAND.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-accent w-full">
                 WhatsApp<span className="sr-only"> (nouvelle fenêtre)</span>
               </a>
             </li>

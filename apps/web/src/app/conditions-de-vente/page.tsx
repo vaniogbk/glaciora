@@ -34,7 +34,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl">Contact</h2>
           <p className="mt-2">
-            {BRAND.email} · {BRAND.phoneDisplay} · {BRAND.postalCode} {BRAND.addressLocality}, {BRAND.addressRegion}
+            {BRAND.email} · {BRAND.phoneDisplay} · {BRAND.streetAddress}, {BRAND.postalCode} {BRAND.addressLocality}
           </p>
         </section>
       </div>

@@ -10,6 +10,7 @@ import { logActivity } from '../../lib/activity';
 import { slugify } from '../../lib/slug';
 import { kickEmailQueue } from '../email/email.service';
 import { runCatalogueImport } from '../catalogue-import/import.service';
+import { installCatalogueSnapshot, snapshotInfo } from '../catalogue-import/snapshot.service';
 
 export const adminSettingsRouter = Router();
 
@@ -310,7 +311,7 @@ adminSettingsRouter.get(
   '/import/runs',
   asyncHandler(async (_req, res) => {
     const runs = await prisma.importRun.findMany({ orderBy: { startedAt: 'desc' }, take: 20 });
-    res.json({ runs, catalogueAvailable: existsSync(path.resolve(env.CATALOGUE_DIR)) });
+    res.json({ runs, catalogueAvailable: existsSync(path.resolve(env.CATALOGUE_DIR)), snapshot: await snapshotInfo() });
   }),
 );
 
@@ -319,7 +320,12 @@ adminSettingsRouter.post(
   asyncHandler(async (req, res) => {
     const dir = path.resolve(env.CATALOGUE_DIR);
     if (!existsSync(dir)) {
-      throw conflict("Dossier catalogue absent sur ce serveur : lancez « npm run import:catalogue » depuis un poste qui contient GLACIORA_CATALOGUE (voir README).");
+      // Serveur sans dossier catalogue (production) : installation de l'instantané livré avec le code.
+      if (!(await snapshotInfo())) throw conflict('Ni dossier catalogue ni instantané (data/catalogue-snapshot.json) sur ce serveur.');
+      const result = await installCatalogueSnapshot({ triggeredById: req.user!.id });
+      await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: 'catalogue.snapshot_installed', entityType: 'ImportRun', entityId: result.runId, metadata: { exportedAt: result.exportedAt, ...result.summary } });
+      res.json({ report: result });
+      return;
     }
     const report = await runCatalogueImport({ catalogueDir: dir, triggeredById: req.user!.id, copyImages: false });
     await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: 'catalogue.imported', entityType: 'ImportRun', entityId: report.runId, metadata: report.summary });

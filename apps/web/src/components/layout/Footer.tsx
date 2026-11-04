@@ -61,7 +61,7 @@ export function Footer() {
               </a>
             </li>
             <li>
-              {BRAND.postalCode} {BRAND.addressLocality}, {BRAND.addressRegion}
+              {BRAND.streetAddress}, {BRAND.postalCode} {BRAND.addressLocality}
             </li>
           </ul>
         </address>

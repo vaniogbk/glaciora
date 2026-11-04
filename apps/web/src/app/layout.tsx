@@ -39,7 +39,7 @@ const organization = {
   email: BRAND.email,
   telephone: BRAND.phoneE164,
   slogan: BRAND.tagline,
-  address: { '@type': 'PostalAddress', postalCode: BRAND.postalCode, addressLocality: BRAND.addressLocality, addressRegion: BRAND.addressRegion, addressCountry: BRAND.addressCountry },
+  address: { '@type': 'PostalAddress', streetAddress: BRAND.streetAddress, postalCode: BRAND.postalCode, addressLocality: BRAND.addressLocality, addressRegion: BRAND.addressRegion, addressCountry: BRAND.addressCountry },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

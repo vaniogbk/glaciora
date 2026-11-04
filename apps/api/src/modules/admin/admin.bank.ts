@@ -63,17 +63,10 @@ async function notifyChange(action: string, label: string, iban: string, countri
   kickEmailQueue();
 }
 
-async function assertCountries(codes: string[], excludeId?: string) {
+/** Un même pays peut être rattaché à plusieurs comptes : les commandes sont alors réparties entre eux (voir resolveReceivingAccount). */
+function assertCountries(codes: string[]) {
   const unknown = codes.filter((c) => !KNOWN_CODES.has(c));
   if (unknown.length) throw unprocessable('UNKNOWN_COUNTRY', `Pays inconnu(s) : ${unknown.join(', ')}`);
-  const clash = await prisma.bankAccount.findFirst({
-    where: { isActive: true, countryCodes: { hasSome: codes }, ...(excludeId ? { id: { not: excludeId } } : {}) },
-    select: { label: true, countryCodes: true },
-  });
-  if (clash) {
-    const shared = clash.countryCodes.filter((c) => codes.includes(c));
-    throw unprocessable('COUNTRY_ALREADY_ASSIGNED', `Pays déjà rattaché(s) au compte « ${clash.label} » : ${shared.join(', ')}`);
-  }
 }
 
 adminBankRouter.get(
@@ -91,7 +84,7 @@ adminBankRouter.post(
   '/',
   asyncHandler(async (req, res) => {
     const input = accountBody.parse(req.body);
-    if (input.isActive) await assertCountries(input.countryCodes);
+    assertCountries(input.countryCodes);
     const account = await prisma.bankAccount.create({ data: input });
     await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: 'bank_account.created', entityType: 'BankAccount', entityId: account.id, metadata: { label: account.label, iban: maskIban(account.iban), countries: account.countryCodes } });
     await notifyChange('Compte ajouté', account.label, account.iban, account.countryCodes, req.user!.id);
@@ -106,8 +99,7 @@ adminBankRouter.patch(
     const existing = await prisma.bankAccount.findUnique({ where: { id } });
     if (!existing) throw notFound('Compte introuvable');
     const input = accountBody.partial().parse(req.body);
-    const willBeActive = input.isActive ?? existing.isActive;
-    if (willBeActive) await assertCountries(input.countryCodes ?? existing.countryCodes, id);
+    if (input.countryCodes) assertCountries(input.countryCodes);
     const account = await prisma.bankAccount.update({ where: { id }, data: input });
     const ibanChanged = account.iban !== existing.iban;
     await logActivity({

@@ -56,18 +56,14 @@ export function maskIban(iban: string): string {
   return `${clean.slice(0, 4)} •••• ${clean.slice(-4)}`;
 }
 
-/**
- * Compte de réception pour un pays de livraison : compte admin dédié au pays s'il existe,
- * sinon compte par défaut des variables d'environnement, sinon aucun (virement indisponible).
- */
-export async function resolveReceivingAccount(countryCode: string): Promise<ReceivingAccount | null> {
-  const account = await prisma.bankAccount.findFirst({
-    where: { isActive: true, countryCodes: { has: countryCode.toUpperCase() } },
-    orderBy: { updatedAt: 'desc' },
-  });
-  if (account) {
-    return { bankAccountId: account.id, label: account.label, accountHolder: account.accountHolder, iban: formatIban(account.iban), bic: account.bic, bankName: account.bankName };
-  }
+/** Clé du compte affiché au client, signée avec la référence de virement : identifiant BankAccount ou compte par défaut. */
+export const ENV_ACCOUNT_KEY = 'env';
+export const accountKeyOf = (account: ReceivingAccount): string => account.bankAccountId ?? ENV_ACCOUNT_KEY;
+
+type BankAccountRow = { id: string; label: string; accountHolder: string; iban: string; bic: string | null; bankName: string | null };
+const fromRow = (a: BankAccountRow): ReceivingAccount => ({ bankAccountId: a.id, label: a.label, accountHolder: a.accountHolder, iban: formatIban(a.iban), bic: a.bic, bankName: a.bankName });
+
+function envAccount(): ReceivingAccount | null {
   if (!bankDetailsConfigured) return null;
   return {
     bankAccountId: null,
@@ -77,4 +73,34 @@ export async function resolveReceivingAccount(countryCode: string): Promise<Rece
     bic: env.BANK_BIC ?? null,
     bankName: env.BANK_NAME ?? null,
   };
+}
+
+/** Répartition entre plusieurs comptes d'un même pays : celui qui a reçu une commande le moins récemment (jamais utilisé d'abord). */
+async function leastRecentlyAssigned(accounts: BankAccountRow[]): Promise<BankAccountRow> {
+  const last = await prisma.payment.groupBy({ by: ['bankAccountId'], where: { bankAccountId: { in: accounts.map((a) => a.id) } }, _max: { createdAt: true } });
+  const lastAt = new Map(last.map((r) => [r.bankAccountId, r._max.createdAt?.getTime() ?? 0]));
+  return accounts.reduce((best, a) => ((lastAt.get(a.id) ?? 0) < (lastAt.get(best.id) ?? 0) ? a : best));
+}
+
+/**
+ * Compte de réception pour un pays de livraison : un compte admin actif rattaché au pays (réparti s'il y en a plusieurs),
+ * sinon compte par défaut des variables d'environnement, sinon aucun (virement indisponible).
+ * `preferredKey` : compte déjà affiché pour la même référence, conservé tant qu'il couvre encore le pays.
+ */
+export async function resolveReceivingAccount(countryCode: string, preferredKey?: string): Promise<ReceivingAccount | null> {
+  const accounts = await prisma.bankAccount.findMany({
+    where: { isActive: true, countryCodes: { has: countryCode.toUpperCase() } },
+    orderBy: { createdAt: 'asc' },
+  });
+  if (accounts.length === 0) return envAccount();
+  const preferred = accounts.find((a) => a.id === preferredKey);
+  if (preferred) return fromRow(preferred);
+  return fromRow(accounts.length === 1 ? accounts[0]! : await leastRecentlyAssigned(accounts));
+}
+
+/** Compte affiché au client lors de la préparation du virement, même désactivé depuis : c'est celui qu'il a payé. */
+export async function findShownAccount(key: string): Promise<ReceivingAccount | null> {
+  if (key === ENV_ACCOUNT_KEY) return envAccount();
+  const account = await prisma.bankAccount.findUnique({ where: { id: key } });
+  return account ? fromRow(account) : null;
 }

@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { getCategories, getProducts } from '@/lib/server-api';
 import { Filters } from './Filters';
+import { FiltersPanel } from './FiltersPanel';
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -38,22 +39,19 @@ export async function CatalogueView({ basePath, params, fixedCategory }: { baseP
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
-      <aside>
-        <details className="group rounded-lg bg-snow p-4 lg:p-5" open>
-          <summary className="cursor-pointer list-none text-sm font-bold uppercase tracking-brand text-marine lg:hidden">Filtres et tri</summary>
-          <div className="mt-4 lg:mt-0">
-            <Suspense>
-              <Filters facets={list.facets} categories={categories} fixedCategory={fixedCategory} />
-            </Suspense>
-          </div>
-        </details>
+    <div className="grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8">
+      <aside aria-label="Filtres et tri">
+        <Suspense>
+          <FiltersPanel total={list.total} fixedCategory={fixedCategory}>
+            <Filters facets={list.facets} categories={categories} fixedCategory={fixedCategory} />
+          </FiltersPanel>
+        </Suspense>
       </aside>
       <section aria-labelledby="resultats">
         <h2 id="resultats" className="sr-only">
           Résultats
         </h2>
-        <p className="mb-4 text-sm text-muted" aria-live="polite">
+        <p className="mb-4 hidden text-sm text-muted lg:block" aria-live="polite">
           {list.total} produit{list.total > 1 ? 's' : ''}
         </p>
         {list.items.length === 0 ? (
