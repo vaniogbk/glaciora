@@ -73,7 +73,7 @@ function ProductsList() {
         <label htmlFor="recherche-produit" className="sr-only">
           Rechercher
         </label>
-        <input id="recherche-produit" className="field-input w-64" placeholder="Nom, marque, référence" value={q} onChange={(e) => setQ(e.target.value)} />
+        <input id="recherche-produit" className="field-input w-full sm:w-64" placeholder="Nom, marque, référence" value={q} onChange={(e) => setQ(e.target.value)} />
         <button type="submit" className="btn-primary">
           Rechercher
         </button>
@@ -83,7 +83,7 @@ function ProductsList() {
       </p>
       {error && <p role="alert" className="text-danger">{error}</p>}
       <div className="card mt-3 overflow-x-auto">
-        <table className="w-full min-w-[820px] text-left text-sm">
+        <table className="table-stack lg:min-w-[720px]">
           <thead className="border-b border-line text-muted">
             <tr>
               <th scope="col" className="p-3">Produit</th>
@@ -110,11 +110,11 @@ function ProductsList() {
                     </div>
                   </div>
                 </td>
-                <td>{p.category}</td>
-                <td>{p.priceFromCents ? formatPrice(p.priceFromCents) : <span className="text-warning">À définir</span>}</td>
-                <td className={p.totalStock === 0 ? 'font-semibold text-danger' : ''}>{p.totalStock}</td>
-                <td>{STATUS_LABEL[p.status]}</td>
-                <td className="p-3 text-right">
+                <td data-label="Catégorie">{p.category}</td>
+                <td data-label="Prix">{p.priceFromCents ? formatPrice(p.priceFromCents) : <span className="text-warning">À définir</span>}</td>
+                <td data-label="Stock" className={p.totalStock === 0 ? 'font-semibold text-danger' : ''}>{p.totalStock}</td>
+                <td data-label="Statut">{STATUS_LABEL[p.status]}</td>
+                <td data-label="Actions" className="p-3 text-right">
                   <div className="flex justify-end gap-3">
                     <Link href={`/admin/produits/${p.id}`} className="font-semibold text-deep underline">
                       Modifier

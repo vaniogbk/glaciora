@@ -46,6 +46,44 @@
   .card {
     @apply rounded-lg bg-white shadow-card;
   }
+  /* Tableaux (admin) : lignes en fiches sous 1024 px. Chaque <td> porte data-label = intitulé de sa colonne ; sans data-label, la cellule occupe toute la ligne (titre de la fiche, actions). */
+  .table-stack {
+    @apply w-full text-left text-sm;
+  }
+  /* :where() garde la spécificité d'une classe : les utilitaires posés sur une cellule (pt-3, text-right…) restent prioritaires. */
+  .table-stack :where(th, td) {
+    @apply px-3 py-3;
+  }
+  @media (max-width: 1023px) {
+    .table-stack thead {
+      @apply sr-only;
+    }
+    .table-stack tbody,
+    .table-stack tfoot,
+    .table-stack tr,
+    .table-stack td {
+      @apply block;
+    }
+    .table-stack tr {
+      @apply px-4 py-3;
+    }
+    .table-stack td {
+      @apply flex items-baseline justify-between gap-4 px-0 py-1 text-right [overflow-wrap:anywhere];
+    }
+    .table-stack td::before {
+      content: attr(data-label);
+      @apply shrink-0 text-left text-xs font-semibold uppercase tracking-wide text-muted;
+    }
+    .table-stack td:not([data-label]) {
+      @apply block text-left;
+    }
+    .table-stack td:not([data-label])::before {
+      content: none;
+    }
+    .table-stack tfoot tr {
+      @apply flex justify-between gap-4 py-1;
+    }
+  }
   .eyebrow {
     @apply text-xs font-semibold uppercase tracking-brand text-deep;
   }

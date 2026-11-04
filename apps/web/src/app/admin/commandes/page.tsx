@@ -64,14 +64,14 @@ function OrdersList() {
         <label htmlFor="recherche-commande" className="sr-only">
           Rechercher
         </label>
-        <input id="recherche-commande" className="field-input w-64" placeholder="Référence, e-mail, nom" value={q} onChange={(e) => setQ(e.target.value)} />
+        <input id="recherche-commande" className="field-input w-full sm:w-64" placeholder="Référence, e-mail, nom" value={q} onChange={(e) => setQ(e.target.value)} />
         <button type="submit" className="btn-primary">
           Rechercher
         </button>
       </form>
       {error && <p role="alert" className="mt-4 text-danger">{error}</p>}
       <div className="card mt-6 overflow-x-auto">
-        <table className="w-full min-w-[760px] text-left text-sm">
+        <table className="table-stack lg:min-w-[720px]">
           <thead className="border-b border-line text-muted">
             <tr>
               <th scope="col" className="p-3">Référence</th>
@@ -92,13 +92,13 @@ function OrdersList() {
                     {o.reference}
                   </Link>
                 </td>
-                <td>{o.shipFirstName} {o.shipLastName}</td>
-                <td>{countryName(o.shipCountryCode)}</td>
-                <td>{ORDER_STATUS_LABELS[o.status]}</td>
-                <td>{PAYMENT_STATUS_LABELS[o.payments[0]?.status ?? ''] ?? '—'}</td>
-                <td>{o._count.proofs > 0 ? 'Oui' : 'Non'}</td>
-                <td>{new Date(o.createdAt).toLocaleDateString('fr-FR')}</td>
-                <td className="p-3 text-right font-semibold">{formatPrice(o.totalCents)}</td>
+                <td data-label="Client">{o.shipFirstName} {o.shipLastName}</td>
+                <td data-label="Pays">{countryName(o.shipCountryCode)}</td>
+                <td data-label="Statut">{ORDER_STATUS_LABELS[o.status]}</td>
+                <td data-label="Paiement">{PAYMENT_STATUS_LABELS[o.payments[0]?.status ?? ''] ?? '—'}</td>
+                <td data-label="Justificatif">{o._count.proofs > 0 ? 'Oui' : 'Non'}</td>
+                <td data-label="Date">{new Date(o.createdAt).toLocaleDateString('fr-FR')}</td>
+                <td data-label="Total" className="p-3 text-right font-semibold">{formatPrice(o.totalCents)}</td>
               </tr>
             ))}
             {data && data.orders.length === 0 && (
@@ -112,7 +112,7 @@ function OrdersList() {
         </table>
       </div>
       {data && data.totalPages > 1 && (
-        <div className="mt-4 flex gap-2">
+        <div className="mt-4 flex flex-wrap gap-2">
           {Array.from({ length: data.totalPages }, (_, i) => i + 1).map((p) => (
             <button key={p} type="button" className={p === data.page ? 'btn bg-marine text-white' : 'btn-outline'} onClick={() => setParam('page', String(p))}>
               {p}

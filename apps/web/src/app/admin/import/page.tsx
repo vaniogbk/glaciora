@@ -52,7 +52,7 @@ export default function AdminImportPage() {
       </button>
       <p aria-live="polite" className="mt-3 text-sm font-semibold text-deep">{message}</p>
       <div className="card mt-6 overflow-x-auto">
-        <table className="w-full min-w-[640px] text-left text-sm">
+        <table className="table-stack lg:min-w-[640px]">
           <thead className="border-b border-line text-muted">
             <tr>
               <th scope="col" className="p-3">Date</th>
@@ -67,10 +67,10 @@ export default function AdminImportPage() {
             {data?.runs.map((r) => (
               <tr key={r.id} className="align-top">
                 <td className="p-3">{new Date(r.startedAt).toLocaleString('fr-FR')}</td>
-                <td>{r.createdCount}</td>
-                <td>{r.updatedCount}</td>
-                <td>{r.skippedCount}</td>
-                <td className={r.errorCount ? 'font-semibold text-danger' : ''}>{r.errorCount}</td>
+                <td data-label="Créés">{r.createdCount}</td>
+                <td data-label="Mis à jour">{r.updatedCount}</td>
+                <td data-label="Ignorés / inchangés">{r.skippedCount}</td>
+                <td data-label="Erreurs" className={r.errorCount ? 'font-semibold text-danger' : ''}>{r.errorCount}</td>
                 <td className="p-3">
                   <button type="button" className="font-semibold text-deep underline" onClick={() => setOpen(open === r.id ? null : r.id)} aria-expanded={open === r.id}>
                     {open === r.id ? 'Masquer' : 'Détail'}

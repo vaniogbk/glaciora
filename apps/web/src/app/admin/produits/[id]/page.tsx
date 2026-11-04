@@ -316,22 +316,22 @@ export default function AdminProductPage({ params }: { params: { id: string } })
               </p>
             )}
             {product.variants.length > 0 && (
-              <form onSubmit={onApplyPriceToAll} className="mt-4 flex flex-wrap items-end gap-3 rounded-md bg-snow p-4">
+              <form onSubmit={onApplyPriceToAll} className="mt-4 grid grid-cols-2 items-end gap-3 rounded-md bg-snow p-4 sm:flex sm:flex-wrap">
                 <div>
                   <label htmlFor="prix-tous" className="field-label">Prix pour toutes les tailles (€)</label>
-                  <input id="prix-tous" name="price" inputMode="decimal" placeholder="ex. 449,90" className="field-input w-40" />
+                  <input id="prix-tous" name="price" inputMode="decimal" placeholder="ex. 449,90" className="field-input w-full sm:w-40" />
                 </div>
                 <div>
                   <label htmlFor="barre-tous" className="field-label">Prix barré (€, facultatif)</label>
-                  <input id="barre-tous" name="compareAt" inputMode="decimal" className="field-input w-40" />
+                  <input id="barre-tous" name="compareAt" inputMode="decimal" className="field-input w-full sm:w-40" />
                 </div>
-                <button type="submit" className="btn-primary" disabled={busy}>Appliquer à toutes les tailles</button>
+                <button type="submit" className="btn-primary col-span-2" disabled={busy}>Appliquer à toutes les tailles</button>
               </form>
             )}
             <div className="mt-4 space-y-3">
               {product.variants.map((v) => (
-                <form key={v.id} onSubmit={(e) => onSaveVariant(e, v)} className="grid items-end gap-3 rounded-md border border-line p-3 sm:grid-cols-[1fr_120px_120px_100px_auto_auto]">
-                  <div>
+                <form key={v.id} onSubmit={(e) => onSaveVariant(e, v)} className="grid grid-cols-2 items-end gap-x-3 gap-y-2 rounded-md border border-line p-3 xl:grid-cols-[minmax(0,1fr)_120px_120px_100px_auto_auto]">
+                  <div className="col-span-2 xl:col-span-1">
                     <p className="font-semibold text-marine">{v.size?.label ?? 'Taille unique'}</p>
                     <p className="text-xs text-muted">{v.sku}</p>
                   </div>
@@ -350,18 +350,18 @@ export default function AdminProductPage({ params }: { params: { id: string } })
                   <label className="flex min-h-[44px] items-center gap-2 text-sm">
                     <input type="checkbox" name="isActive" defaultChecked={v.isActive} className="h-4 w-4 accent-deep" /> En vente
                   </label>
-                  <button type="submit" className="btn-outline" disabled={busy}>Enregistrer</button>
+                  <button type="submit" className="btn-outline col-span-2 xl:col-span-1" disabled={busy}>Enregistrer</button>
                 </form>
               ))}
             </div>
-            <form onSubmit={onAddVariant} className="mt-5 flex flex-wrap items-end gap-3 border-t border-line pt-5">
+            <form onSubmit={onAddVariant} className="mt-5 grid grid-cols-2 items-end gap-3 border-t border-line pt-5 sm:flex sm:flex-wrap">
               <div>
                 <label htmlFor="nouvelle-taille" className="field-label">Nouvelle taille</label>
-                <input id="nouvelle-taille" name="sizeLabel" placeholder="ex. 172 cm, 27.5, M" className="field-input w-40" />
+                <input id="nouvelle-taille" name="sizeLabel" placeholder="ex. 172 cm, 27.5, M" className="field-input w-full sm:w-40" />
               </div>
               <div>
                 <label htmlFor="systeme" className="field-label">Type</label>
-                <select id="systeme" name="sizeSystem" className="field-input w-44">
+                <select id="systeme" name="sizeSystem" className="field-input w-full sm:w-44">
                   <option value="SKI_LENGTH">Longueur de ski</option>
                   <option value="BOOT_MONDO">Mondopoint</option>
                   <option value="SKATE">Pointure patin</option>
@@ -373,13 +373,13 @@ export default function AdminProductPage({ params }: { params: { id: string } })
               </div>
               <div>
                 <label htmlFor="nouveau-prix" className="field-label">Prix (€)</label>
-                <input id="nouveau-prix" name="price" inputMode="decimal" required className="field-input w-32" />
+                <input id="nouveau-prix" name="price" inputMode="decimal" required className="field-input w-full sm:w-32" />
               </div>
               <div>
                 <label htmlFor="nouveau-stock" className="field-label">Stock</label>
-                <input id="nouveau-stock" name="stock" type="number" min={0} defaultValue={0} className="field-input w-24" />
+                <input id="nouveau-stock" name="stock" type="number" min={0} defaultValue={0} className="field-input w-full sm:w-24" />
               </div>
-              <button type="submit" className="btn-outline" disabled={busy}>Ajouter la taille</button>
+              <button type="submit" className="btn-outline col-span-2" disabled={busy}>Ajouter la taille</button>
             </form>
           </section>
 
@@ -398,13 +398,13 @@ export default function AdminProductPage({ params }: { params: { id: string } })
               ))}
             </ul>
             <form onSubmit={onUploadImage} className="mt-5 flex flex-wrap items-end gap-3">
-              <div>
+              <div className="w-full sm:w-auto">
                 <label htmlFor="image" className="field-label">Fichier (JPG, PNG, WEBP)</label>
                 <input id="image" name="image" type="file" accept="image/jpeg,image/png,image/webp" required className="field-input" />
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <label htmlFor="alt" className="field-label">Texte alternatif *</label>
-                <input id="alt" name="alt" required minLength={3} className="field-input w-72" placeholder="Description de l’image" />
+                <input id="alt" name="alt" required minLength={3} className="field-input w-full sm:w-72" placeholder="Description de l’image" />
               </div>
               <button type="submit" className="btn-outline" disabled={busy}>Ajouter l’image</button>
             </form>

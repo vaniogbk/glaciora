@@ -50,7 +50,7 @@ export default function AdminLogsPage() {
         <p className="mt-1 text-sm text-muted">SENT = confirmé par Brevo · LOGGED = mode développement, non envoyé · FAILED = échec après toutes les tentatives.</p>
         <p aria-live="polite" className="mt-2 text-sm font-semibold text-deep">{message}</p>
         <div className="card mt-3 overflow-x-auto">
-          <table className="w-full min-w-[720px] text-left text-sm">
+          <table className="table-stack lg:min-w-[720px]">
             <thead className="border-b border-line text-muted">
               <tr>
                 <th scope="col" className="p-3">Date</th>
@@ -64,9 +64,9 @@ export default function AdminLogsPage() {
               {emails.data?.emails.map((m) => (
                 <tr key={m.id}>
                   <td className="p-3">{new Date(m.createdAt).toLocaleString('fr-FR')}</td>
-                  <td>{m.subject}</td>
-                  <td>{m.order ? <Link href={`/admin/commandes/${m.order.id}`} className="text-deep underline">{m.order.reference}</Link> : '—'}</td>
-                  <td className={m.status === 'FAILED' ? 'font-semibold text-danger' : ''}>
+                  <td data-label="Sujet">{m.subject}</td>
+                  <td data-label="Commande">{m.order ? <Link href={`/admin/commandes/${m.order.id}`} className="text-deep underline">{m.order.reference}</Link> : '—'}</td>
+                  <td data-label="Statut" className={m.status === 'FAILED' ? 'font-semibold text-danger' : ''}>
                     {m.status} ({m.attempts}){m.lastError ? ` — ${m.lastError}` : ''}
                   </td>
                   <td className="p-3 text-right">
@@ -83,7 +83,7 @@ export default function AdminLogsPage() {
       <section aria-labelledby="titre-journaux">
         <h2 id="titre-journaux" className="text-2xl">Journal d’activité</h2>
         <label htmlFor="type" className="field-label mt-4">Filtrer</label>
-        <select id="type" className="field-input w-56" value={entityType} onChange={(e) => setEntityType(e.target.value)}>
+        <select id="type" className="field-input w-full sm:w-56" value={entityType} onChange={(e) => setEntityType(e.target.value)}>
           <option value="">Tout</option>
           <option value="Order">Commandes</option>
           <option value="Product">Produits</option>
@@ -93,7 +93,7 @@ export default function AdminLogsPage() {
           <option value="ImportRun">Imports</option>
         </select>
         <div className="card mt-3 overflow-x-auto">
-          <table className="w-full min-w-[720px] text-left text-sm">
+          <table className="table-stack lg:min-w-[720px]">
             <thead className="border-b border-line text-muted">
               <tr>
                 <th scope="col" className="p-3">Date</th>
@@ -107,10 +107,10 @@ export default function AdminLogsPage() {
               {logs.data?.logs.map((l) => (
                 <tr key={l.id}>
                   <td className="p-3">{new Date(l.createdAt).toLocaleString('fr-FR')}</td>
-                  <td>{l.action}</td>
-                  <td>{l.entityType}{l.entityId ? ` · ${l.entityId.slice(0, 10)}` : ''}</td>
-                  <td>{l.actor ? `${l.actor.firstName ?? ''} ${l.actor.lastName ?? ''} (${l.actor.role})` : 'Système / client'}</td>
-                  <td className="p-3 font-mono text-xs">{l.metadata ? JSON.stringify(l.metadata).slice(0, 120) : ''}</td>
+                  <td data-label="Action">{l.action}</td>
+                  <td data-label="Objet">{l.entityType}{l.entityId ? ` · ${l.entityId.slice(0, 10)}` : ''}</td>
+                  <td data-label="Auteur">{l.actor ? `${l.actor.firstName ?? ''} ${l.actor.lastName ?? ''} (${l.actor.role})` : 'Système / client'}</td>
+                  <td className="p-3 font-mono text-xs [overflow-wrap:anywhere]">{l.metadata ? JSON.stringify(l.metadata).slice(0, 120) : ''}</td>
                 </tr>
               ))}
             </tbody>

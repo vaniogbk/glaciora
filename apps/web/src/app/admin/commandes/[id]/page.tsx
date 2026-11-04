@@ -199,7 +199,7 @@ export default function AdminOrderPage({ params }: { params: { id: string } }) {
         <h2 id="articles" className="text-lg">
           Articles
         </h2>
-        <table className="mt-3 w-full min-w-[560px] text-left text-sm">
+        <table className="table-stack mt-3 lg:min-w-[560px] max-lg:[&_tr]:px-0">
           <thead className="text-muted">
             <tr>
               <th scope="col">Produit</th>
@@ -213,10 +213,10 @@ export default function AdminOrderPage({ params }: { params: { id: string } }) {
             {order.items.map((i) => (
               <tr key={i.id}>
                 <td className="py-2">{i.productName} <span className="text-muted">({i.productReference})</span></td>
-                <td>{i.variantSku}</td>
-                <td>{i.sizeLabel ?? '—'}</td>
-                <td className="text-right">{i.quantity}</td>
-                <td className="text-right font-semibold">{formatPrice(i.lineTotalCents)}</td>
+                <td data-label="SKU">{i.variantSku}</td>
+                <td data-label="Taille">{i.sizeLabel ?? '—'}</td>
+                <td data-label="Qté" className="text-right">{i.quantity}</td>
+                <td data-label="Total" className="text-right font-semibold">{formatPrice(i.lineTotalCents)}</td>
               </tr>
             ))}
           </tbody>

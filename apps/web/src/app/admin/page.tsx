@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import clsx from 'clsx';
 import { ORDER_STATUS_LABELS, formatPrice, type OrderStatus } from '@glaciora/shared';
 import { useAdminData } from '@/components/admin/useAdminData';
 
@@ -29,19 +30,19 @@ export default function AdminDashboard() {
   return (
     <div>
       <h1 className="text-2xl">Tableau de bord</h1>
-      <ul className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3">
         {tiles.map((t) => (
           <li key={t.label}>
-            <Link href={t.href} className="card block p-5 hover:shadow-lift">
+            <Link href={t.href} className="card block h-full p-4 hover:shadow-lift sm:p-5">
               <p className="text-sm text-muted">{t.label}</p>
-              <p className={t.alert ? 'mt-1 text-3xl font-extrabold text-danger' : 'mt-1 text-3xl font-extrabold text-marine'}>{t.value}</p>
+              <p className={clsx('mt-1 text-2xl font-extrabold [overflow-wrap:anywhere] sm:text-3xl', t.alert ? 'text-danger' : 'text-marine')}>{t.value}</p>
             </Link>
           </li>
         ))}
       </ul>
       <h2 className="mt-10 text-lg">Dernières commandes</h2>
       <div className="card mt-4 overflow-x-auto">
-        <table className="w-full min-w-[560px] text-left text-sm">
+        <table className="table-stack lg:min-w-[560px]">
           <thead className="border-b border-line text-muted">
             <tr>
               <th scope="col" className="p-3">Référence</th>
@@ -59,10 +60,10 @@ export default function AdminDashboard() {
                     {o.reference}
                   </Link>
                 </td>
-                <td>{o.shipLastName}</td>
-                <td>{ORDER_STATUS_LABELS[o.status]}</td>
-                <td>{new Date(o.createdAt).toLocaleString('fr-FR')}</td>
-                <td className="p-3 text-right font-semibold">{formatPrice(o.totalCents)}</td>
+                <td data-label="Client">{o.shipLastName}</td>
+                <td data-label="Statut">{ORDER_STATUS_LABELS[o.status]}</td>
+                <td data-label="Date">{new Date(o.createdAt).toLocaleString('fr-FR')}</td>
+                <td data-label="Total" className="p-3 text-right font-semibold">{formatPrice(o.totalCents)}</td>
               </tr>
             ))}
             {data.recentOrders.length === 0 && (

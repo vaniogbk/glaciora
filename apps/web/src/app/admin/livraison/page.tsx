@@ -110,27 +110,57 @@ export default function AdminShippingPage() {
             <h3 className="mt-4 text-sm font-bold">Tarifs</h3>
             <div className="mt-2 space-y-2">
               {zone.rates.map((r) => (
-                <form key={r.id} onSubmit={(e) => onSaveRate(e, r.id)} className="grid items-end gap-2 rounded-md border border-line p-3 text-sm sm:grid-cols-[1fr_100px_120px_70px_70px_auto_auto_auto]">
-                  <input aria-label="Nom du tarif" name="name" defaultValue={r.name} className="field-input" />
-                  <input aria-label="Prix (€)" name="price" defaultValue={(r.priceCents / 100).toFixed(2)} inputMode="decimal" className="field-input" />
-                  <input aria-label="Gratuit dès (€)" name="freeAbove" defaultValue={r.freeAboveCents ? (r.freeAboveCents / 100).toFixed(2) : ''} placeholder="Gratuit dès" inputMode="decimal" className="field-input" />
-                  <input aria-label="Délai minimum (jours)" name="minDays" type="number" min={0} defaultValue={r.minDays ?? ''} className="field-input" />
-                  <input aria-label="Délai maximum (jours)" name="maxDays" type="number" min={0} defaultValue={r.maxDays ?? ''} className="field-input" />
-                  <label className="flex items-center gap-1"><input type="checkbox" name="isActive" defaultChecked={r.isActive} className="h-4 w-4 accent-deep" /> Actif</label>
+                <form key={r.id} onSubmit={(e) => onSaveRate(e, r.id)} className="grid grid-cols-2 items-end gap-x-3 gap-y-2 rounded-md border border-line p-3 text-sm xl:grid-cols-[minmax(0,1fr)_100px_120px_90px_90px_auto_auto_auto]">
+                  <label className="col-span-2 xl:col-span-1">
+                    <span className="field-label text-xs">Nom du tarif</span>
+                    <input name="name" defaultValue={r.name} className="field-input" />
+                  </label>
+                  <label>
+                    <span className="field-label text-xs">Prix (€)</span>
+                    <input name="price" defaultValue={(r.priceCents / 100).toFixed(2)} inputMode="decimal" className="field-input" />
+                  </label>
+                  <label>
+                    <span className="field-label text-xs">Gratuit dès (€)</span>
+                    <input name="freeAbove" defaultValue={r.freeAboveCents ? (r.freeAboveCents / 100).toFixed(2) : ''} inputMode="decimal" className="field-input" />
+                  </label>
+                  <label>
+                    <span className="field-label text-xs">Délai min. (jours)</span>
+                    <input name="minDays" type="number" min={0} defaultValue={r.minDays ?? ''} className="field-input" />
+                  </label>
+                  <label>
+                    <span className="field-label text-xs">Délai max. (jours)</span>
+                    <input name="maxDays" type="number" min={0} defaultValue={r.maxDays ?? ''} className="field-input" />
+                  </label>
+                  <label className="flex min-h-[44px] items-center gap-2 font-semibold text-marine"><input type="checkbox" name="isActive" defaultChecked={r.isActive} className="h-4 w-4 accent-deep" /> Actif</label>
                   <button type="submit" className="btn-outline">Enregistrer</button>
-                  <button type="button" className="font-semibold text-danger underline" onClick={() => act(() => api(`/api/admin/shipping/rates/${r.id}`, { method: 'DELETE' }), 'Tarif supprimé.')}>Supprimer</button>
+                  <button type="button" className="col-span-2 min-h-[44px] justify-self-start font-semibold text-danger underline xl:col-span-1" onClick={() => act(() => api(`/api/admin/shipping/rates/${r.id}`, { method: 'DELETE' }), 'Tarif supprimé.')}>Supprimer</button>
                 </form>
               ))}
               {zone.rates.length === 0 && <p className="text-sm text-warning">Aucun tarif : les pays de cette zone ne sont pas proposés au checkout.</p>}
             </div>
-            <form onSubmit={(e) => onAddRate(e, zone.id)} className="mt-3 flex flex-wrap items-end gap-2 text-sm">
-              <input aria-label="Nom du nouveau tarif" name="name" required placeholder="Ex. Colissimo suivi" className="field-input w-48" />
-              <input aria-label="Prix (€)" name="price" required placeholder="Prix €" inputMode="decimal" className="field-input w-24" />
-              <input aria-label="Gratuit dès (€)" name="freeAbove" placeholder="Gratuit dès €" inputMode="decimal" className="field-input w-32" />
-              <input aria-label="Délai minimum" name="minDays" type="number" min={0} placeholder="J min" className="field-input w-20" />
-              <input aria-label="Délai maximum" name="maxDays" type="number" min={0} placeholder="J max" className="field-input w-20" />
+            <form onSubmit={(e) => onAddRate(e, zone.id)} className="mt-3 grid grid-cols-2 items-end gap-x-3 gap-y-2 text-sm xl:grid-cols-[minmax(0,1fr)_100px_120px_90px_90px_auto]" aria-label={`Nouveau tarif pour ${zone.name}`}>
+              <label className="col-span-2 xl:col-span-1">
+                <span className="field-label text-xs">Nouveau tarif</span>
+                <input name="name" required placeholder="Ex. Colissimo suivi" className="field-input" />
+              </label>
+              <label>
+                <span className="field-label text-xs">Prix (€)</span>
+                <input name="price" required inputMode="decimal" className="field-input" />
+              </label>
+              <label>
+                <span className="field-label text-xs">Gratuit dès (€)</span>
+                <input name="freeAbove" inputMode="decimal" className="field-input" />
+              </label>
+              <label>
+                <span className="field-label text-xs">Délai min. (jours)</span>
+                <input name="minDays" type="number" min={0} className="field-input" />
+              </label>
+              <label>
+                <span className="field-label text-xs">Délai max. (jours)</span>
+                <input name="maxDays" type="number" min={0} className="field-input" />
+              </label>
               <input type="hidden" name="isActive" value="on" />
-              <button type="submit" className="btn-primary">Ajouter un tarif</button>
+              <button type="submit" className="btn-primary col-span-2 xl:col-span-1">Ajouter un tarif</button>
             </form>
             <h3 className="mt-5 text-sm font-bold">Pays</h3>
             <ul className="mt-2 flex flex-wrap gap-2">
@@ -154,9 +184,9 @@ export default function AdminShippingPage() {
         ))}
       </div>
       <form onSubmit={onAddZone} className="card mt-6 flex items-end gap-3 p-4">
-        <div>
+        <div className="min-w-0 flex-1 sm:flex-none">
           <label htmlFor="zone-nom" className="field-label">Nouvelle zone</label>
-          <input id="zone-nom" name="name" required className="field-input w-64" />
+          <input id="zone-nom" name="name" required className="field-input w-full sm:w-64" />
         </div>
         <button type="submit" className="btn-primary">Créer</button>
       </form>

@@ -221,7 +221,7 @@ export default function NewProductPage() {
           <div className="flex flex-wrap items-end gap-4">
             <div>
               <label htmlFor="systeme" className="field-label">Type de taille</label>
-              <select id="systeme" value={system} onChange={(e) => setSystem(e.target.value)} className="field-input w-64">
+              <select id="systeme" value={system} onChange={(e) => setSystem(e.target.value)} className="field-input w-full sm:w-64">
                 {SIZE_SYSTEMS.map((s) => (
                   <option key={s.value} value={s.value}>{s.label}</option>
                 ))}
@@ -233,13 +233,13 @@ export default function NewProductPage() {
             </div>
             <p className="pb-3 text-xs text-muted">Utilisé pour les tailles dont le prix est vide.</p>
           </div>
-          <table className="w-full text-sm">
+          <table className="w-full table-fixed text-sm">
             <thead className="text-left text-muted">
               <tr>
                 <th scope="col" className="pb-2">Taille</th>
-                <th scope="col" className="pb-2">Prix (€)</th>
-                <th scope="col" className="pb-2">Stock</th>
-                <th scope="col"><span className="sr-only">Retirer</span></th>
+                <th scope="col" className="w-[30%] pb-2 sm:w-40">Prix (€)</th>
+                <th scope="col" className="w-[22%] pb-2 sm:w-28">Stock</th>
+                <th scope="col" className="w-11 sm:w-20"><span className="sr-only">Retirer</span></th>
               </tr>
             </thead>
             <tbody>
@@ -259,12 +259,13 @@ export default function NewProductPage() {
                     <input aria-label={`Prix taille ${index + 1}`} inputMode="decimal" value={r.price} onChange={(e) => updateRow(r.key, { price: e.target.value })} className="field-input" placeholder={samePrice || '0,00'} />
                   </td>
                   <td className="pb-2 pr-2">
-                    <input aria-label={`Stock taille ${index + 1}`} type="number" min={0} value={r.stock} onChange={(e) => updateRow(r.key, { stock: e.target.value })} className="field-input w-24" />
+                    <input aria-label={`Stock taille ${index + 1}`} type="number" min={0} value={r.stock} onChange={(e) => updateRow(r.key, { stock: e.target.value })} className="field-input" />
                   </td>
                   <td className="pb-2">
                     {rows.length > 1 && system !== 'ONE_SIZE' && (
-                      <button type="button" className="font-semibold text-danger underline" onClick={() => setRows((all) => all.filter((x) => x.key !== r.key))}>
-                        Retirer
+                      <button type="button" className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center font-semibold text-danger underline" onClick={() => setRows((all) => all.filter((x) => x.key !== r.key))}>
+                        <span aria-hidden="true" className="text-xl no-underline sm:hidden">×</span>
+                        <span className="sr-only sm:not-sr-only">Retirer</span>
                       </button>
                     )}
                   </td>

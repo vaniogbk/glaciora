@@ -45,13 +45,13 @@ export default function AdminCustomersPage() {
       <h1 className="text-2xl">Clients</h1>
       <form className="mt-6 flex gap-3" onSubmit={(e: FormEvent) => { e.preventDefault(); setSearch(q.trim()); }}>
         <label htmlFor="client-q" className="sr-only">Rechercher un client</label>
-        <input id="client-q" className="field-input w-64" placeholder="E-mail ou nom" value={q} onChange={(e) => setQ(e.target.value)} />
+        <input id="client-q" className="field-input w-full sm:w-64" placeholder="E-mail ou nom" value={q} onChange={(e) => setQ(e.target.value)} />
         <button type="submit" className="btn-primary">Rechercher</button>
       </form>
       <p aria-live="polite" className="mt-3 text-sm font-semibold text-deep">{message}</p>
       <div className="mt-3 grid gap-6 xl:grid-cols-[1fr_380px]">
         <div className="card overflow-x-auto">
-          <table className="w-full min-w-[600px] text-left text-sm">
+          <table className="table-stack lg:min-w-[600px]">
             <thead className="border-b border-line text-muted">
               <tr>
                 <th scope="col" className="p-3">Client</th>
@@ -70,10 +70,10 @@ export default function AdminCustomersPage() {
                     </button>
                     <p className="text-xs text-muted">{c.email}</p>
                   </td>
-                  <td>{new Date(c.createdAt).toLocaleDateString('fr-FR')}</td>
-                  <td>{c._count.orders}</td>
-                  <td>{c.isActive ? 'Actif' : 'Désactivé'}</td>
-                  <td className="p-3 text-right">
+                  <td data-label="Inscription">{new Date(c.createdAt).toLocaleDateString('fr-FR')}</td>
+                  <td data-label="Commandes">{c._count.orders}</td>
+                  <td data-label="Statut">{c.isActive ? 'Actif' : 'Désactivé'}</td>
+                  <td data-label="Action" className="p-3 text-right">
                     <button type="button" className={c.isActive ? 'font-semibold text-danger underline' : 'font-semibold text-success underline'} onClick={() => toggle(c)}>
                       {c.isActive ? 'Désactiver' : 'Réactiver'}
                     </button>
