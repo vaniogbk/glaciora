@@ -1,7 +1,7 @@
 export const BRAND = {
   name: 'GLACIORA',
   tagline: 'Born for ice. Made for adventure.',
-  email: 'glacioara@outlook.com',
+  email: 'glaciora@outlook.com',
   phoneDisplay: '+33 7 56 97 38 64',
   phoneE164: '+33756973864',
   whatsappUrl: 'https://wa.me/33756973864',

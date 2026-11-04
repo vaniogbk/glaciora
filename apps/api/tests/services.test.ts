@@ -26,14 +26,14 @@ describe('e-mails transactionnels', () => {
   it('ne marque SENT qu’après confirmation du fournisseur', async () => {
     const provider: EmailProvider = { name: 'fake', send: jest.fn().mockResolvedValue({ accepted: true, providerMessageId: 'msg-1' }) };
     setEmailProvider(provider);
-    const message = await queueEmail({ to: 'glacioara@outlook.com', template: 'admin-transfer-proof', payload });
+    const message = await queueEmail({ to: 'glaciora@outlook.com', template: 'admin-transfer-proof', payload });
     await processEmailQueue();
     expect(await prisma.emailMessage.findUniqueOrThrow({ where: { id: message.id } })).toMatchObject({ status: 'SENT', providerMessageId: 'msg-1', attempts: 1 });
   });
 
   it('replanifie après un échec puis abandonne après le nombre maximal de tentatives', async () => {
     setEmailProvider({ name: 'fake', send: jest.fn().mockResolvedValue({ accepted: false, error: 'HTTP 500' }) });
-    const message = await queueEmail({ to: 'glacioara@outlook.com', template: 'admin-transfer-proof', payload });
+    const message = await queueEmail({ to: 'glaciora@outlook.com', template: 'admin-transfer-proof', payload });
     await processEmailQueue();
     const afterFirst = await prisma.emailMessage.findUniqueOrThrow({ where: { id: message.id } });
     expect(afterFirst).toMatchObject({ status: 'QUEUED', attempts: 1, lastError: 'HTTP 500' });
@@ -47,7 +47,7 @@ describe('e-mails transactionnels', () => {
   });
 
   it('mode console : e-mail journalisé, jamais considéré comme envoyé', async () => {
-    const message = await queueEmail({ to: 'glacioara@outlook.com', template: 'admin-transfer-proof', payload });
+    const message = await queueEmail({ to: 'glaciora@outlook.com', template: 'admin-transfer-proof', payload });
     await processEmailQueue();
     expect((await prisma.emailMessage.findUniqueOrThrow({ where: { id: message.id } })).status).toBe('LOGGED');
   });
@@ -58,10 +58,10 @@ describe('e-mails transactionnels', () => {
     const ko = brevoProvider('cle-test', 'boutique@glaciora.test', 'GLACIORA', jest.fn().mockResolvedValue(new Response('quota', { status: 429 })));
     const noId = brevoProvider('cle-test', 'boutique@glaciora.test', 'GLACIORA', jest.fn().mockResolvedValue(new Response('{}', { status: 201 })));
     const mail = adminTransferProof(payload);
-    expect(await ok.send('glacioara@outlook.com', mail)).toEqual({ accepted: true, providerMessageId: '<abc@brevo>' });
+    expect(await ok.send('glaciora@outlook.com', mail)).toEqual({ accepted: true, providerMessageId: '<abc@brevo>' });
     expect(JSON.parse(okFetch.mock.calls[0][1].body).replyTo).toEqual({ email: 'boutique@glaciora.test', name: 'GLACIORA' });
-    expect((await ko.send('glacioara@outlook.com', mail)).accepted).toBe(false);
-    expect((await noId.send('glacioara@outlook.com', mail)).accepted).toBe(false);
+    expect((await ko.send('glaciora@outlook.com', mail)).accepted).toBe(false);
+    expect((await noId.send('glaciora@outlook.com', mail)).accepted).toBe(false);
   });
 });
 

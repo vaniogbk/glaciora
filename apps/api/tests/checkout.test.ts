@@ -79,7 +79,7 @@ describe('checkout par virement', () => {
     expect(order.proofs).toHaveLength(1);
     expect(order.proofs[0]!.storageKey).toMatch(/^proofs\/\d{4}\/\d{2}\/[a-f0-9-]+\.pdf$/);
     expect(order.payments[0]).toMatchObject({ method: 'BANK_TRANSFER', status: 'PENDING_VERIFICATION', amountCents: 45980 });
-    expect(order.emails.map((e) => e.toAddress)).toContain('glacioara@outlook.com');
+    expect(order.emails.map((e) => e.toAddress)).toContain('glaciora@outlook.com');
     const adminMail = order.emails.find((e) => e.template === 'admin-transfer-proof')!;
     expect(JSON.stringify(adminMail.payload)).not.toContain('FR76');
     expect((await prisma.stock.findUniqueOrThrow({ where: { variantId: variant.id } })).quantity).toBe(1);
