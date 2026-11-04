@@ -31,7 +31,7 @@ describe('coordonnées bancaires par pays', () => {
     const log = await prisma.activityLog.findFirstOrThrow({ where: { action: 'bank_account.created' } });
     expect(JSON.stringify(log.metadata)).not.toContain('0532013000');
     const alert = await prisma.emailMessage.findFirstOrThrow({ where: { template: 'bank-account-changed' } });
-    expect(alert.toAddress).toBe('glacioara@outlook.fr');
+    expect(alert.toAddress).toBe('glacioara@outlook.com');
   });
 
   it('affiche le compte du pays de livraison, sinon le compte par défaut', async () => {

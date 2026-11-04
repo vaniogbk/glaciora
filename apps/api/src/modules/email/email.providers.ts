@@ -42,7 +42,7 @@ export function brevoProvider(apiKey: string, fromEmail: string, fromName: strin
           headers: { 'api-key': apiKey, 'content-type': 'application/json', accept: 'application/json' },
           body: JSON.stringify({
             sender: { email: fromEmail, name: fromName },
-            // Brevo remplace l'expéditeur d'une adresse gratuite (outlook.fr…) non authentifiable : les réponses restent chez GLACIORA.
+            // Brevo remplace l'expéditeur d'une adresse gratuite (outlook.com…) non authentifiable : les réponses restent chez GLACIORA.
             replyTo: { email: fromEmail, name: fromName },
             to: [{ email: to }],
             subject: email.subject,

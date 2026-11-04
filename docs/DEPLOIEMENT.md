@@ -59,7 +59,7 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 
 1. Brevo → *Senders, Domains & Dedicated IPs* : valider l'adresse ou le domaine expéditeur (SPF, DKIM, DMARC).
 2. *SMTP & API → API Keys* : créer une clé. **Ne la collez jamais dans un chat ni dans le dépôt** : saisissez-la directement dans Railway (`BREVO_API_KEY`).
-3. Railway : `EMAIL_PROVIDER=brevo`, `EMAIL_FROM=<expéditeur validé>`, `EMAIL_FROM_NAME=GLACIORA`, `ORDER_NOTIFICATION_EMAIL=glacioara@outlook.fr`.
+3. Railway : `EMAIL_PROVIDER=brevo`, `EMAIL_FROM=<expéditeur validé>`, `EMAIL_FROM_NAME=GLACIORA`, `ORDER_NOTIFICATION_EMAIL=glacioara@outlook.com`.
 4. Vérifier : passer une commande test, puis Admin → *Journaux & e-mails* : statut `SENT` (accusé Brevo). En cas d'échec, nouvelles tentatives automatiques (1, 5, 15, 60, 360 min), bouton *Renvoyer*.
 
 ## 5. Stockage des justificatifs (Cloudflare R2)
@@ -95,7 +95,7 @@ git -c credential.namespace=glaciora-ci -c credential.gitHubAuthModes=browser pu
 
 - [ ] `APP_ENV=production`, `COOKIE_SECURE=true`, `TRUST_PROXY=2`, secrets JWT uniques
 - [ ] Compte bancaire principal (`BANK_*`) **réel** et vérifié ; comptes par pays vérifiés dans l'admin
-- [ ] Brevo : expéditeur validé, clé saisie dans Railway, commande test reçue sur glacioara@outlook.fr (statut `SENT`)
+- [ ] Brevo : expéditeur validé, clé saisie dans Railway, commande test reçue sur glacioara@outlook.com (statut `SENT`)
 - [ ] R2 privé configuré, dépôt d'un justificatif test, consultation depuis l'admin, URL inaccessible sans session
 - [ ] Admin créé (mot de passe fort), `ADMIN_PASSWORD` absent des variables d'environnement
 - [ ] Catalogue importé ; prix vérifiés ; **stocks saisis** ; produits en brouillon relus puis publiés

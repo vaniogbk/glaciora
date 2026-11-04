@@ -34,7 +34,7 @@ const schema = z
     BANK_BIC: optional,
     BANK_NAME: optional,
 
-    ORDER_NOTIFICATION_EMAIL: z.string().email().default('glacioara@outlook.fr'),
+    ORDER_NOTIFICATION_EMAIL: z.string().email().default('glacioara@outlook.com'),
     EMAIL_PROVIDER: z.enum(['console', 'brevo']).default('console'),
     BREVO_API_KEY: optional,
     EMAIL_FROM: optional,
