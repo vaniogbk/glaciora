@@ -62,7 +62,7 @@ export async function CatalogueView({ basePath, params, fixedCategory }: { baseP
             </Link>
           </div>
         ) : (
-          <ProductGrid products={list.items} columns={3} />
+          <ProductGrid products={list.items} columns={3} priorityCount={2} />
         )}
         {list.totalPages > 1 && (
           <nav aria-label="Pagination" className="mt-10 flex flex-wrap items-center justify-center gap-2">

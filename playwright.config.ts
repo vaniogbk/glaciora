@@ -54,7 +54,9 @@ export default defineConfig({
     },
     {
       // Cache de données Next vidé : la base de test est recréée à chaque exécution (nouveaux identifiants).
-      command: `node -e "require('fs').rmSync('.next/cache/fetch-cache',{recursive:true,force:true})" && npx next start -p 3000`,
+      // Base de test recréée à chaque lancement (nouveaux identifiants) : on vide le cache des données et les fiches produit
+      // générées à la demande (ISR) lors d'un lancement précédent.
+      command: `node -e "const fs=require('fs');fs.rmSync('.next/cache/fetch-cache',{recursive:true,force:true});for(const f of fs.readdirSync('.next/server/app/produit'))if(['.html','.rsc','.meta'].some((e)=>f.endsWith(e)))fs.rmSync('.next/server/app/produit/'+f)" && npx next start -p 3000`,
       cwd: './apps/web',
       url: 'http://localhost:3000',
       env: { API_URL: 'http://localhost:4000', NEXT_PUBLIC_SITE_URL: 'http://localhost:3000' },

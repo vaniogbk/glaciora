@@ -54,6 +54,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   /**
    * Interface optimiste : l'écran est mis à jour avant la réponse du serveur ; en cas de refus (stock, réseau),
    * il revient à l'état précédent puis se resynchronise, et l'erreur remonte à l'appelant pour l'afficher.
+   * Les requêtes partent en keepalive : l'écran étant déjà à jour, un changement de page immédiat ne doit pas les interrompre.
    */
   const optimistic = useCallback(
     async (preview: (current: Cart) => Cart, request: () => Promise<{ cart: Cart }>): Promise<Cart> => {
@@ -92,18 +93,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
             if (!line) return { ...current, itemCount: current.itemCount + quantity };
             return withItems(current, current.items.map((i) => (i.variantId === variantId ? { ...i, quantity: i.quantity + quantity, lineTotalCents: i.unitPriceCents * (i.quantity + quantity) } : i)));
           },
-          () => api<{ cart: Cart }>('/api/cart/items', { method: 'POST', json: { variantId, quantity } }),
+          () => api<{ cart: Cart }>('/api/cart/items', { method: 'POST', json: { variantId, quantity }, keepalive: true }),
         );
       },
       update: (variantId, quantity) =>
         optimistic(
           (current) => withItems(current, current.items.map((i) => (i.variantId === variantId ? { ...i, quantity, lineTotalCents: i.unitPriceCents * quantity } : i))),
-          () => api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'PATCH', json: { quantity } }),
+          () => api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'PATCH', json: { quantity }, keepalive: true }),
         ),
       remove: (variantId) =>
         optimistic(
           (current) => withItems(current, current.items.filter((i) => i.variantId !== variantId)),
-          () => api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'DELETE' }),
+          () => api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'DELETE', keepalive: true }),
         ),
     }),
     [cart, loading, pulse, refresh, setCart, optimistic],

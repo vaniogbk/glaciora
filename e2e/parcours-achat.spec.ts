@@ -32,7 +32,11 @@ test('parcours complet : accueil → catalogue → fiche → panier → virement
   await expect(page.getByRole('radio', { name: '180 cm' })).toHaveAttribute('aria-checked', 'true');
 
   // 6. Ajout au panier
-  await page.getByTestId('add-to-cart').click();
+  // Affichage optimiste : on attend aussi la confirmation du serveur avant de changer de page.
+  await Promise.all([
+    page.waitForResponse((r) => r.url().includes('/api/cart/items') && r.request().method() === 'POST' && r.status() === 201),
+    page.getByTestId('add-to-cart').click(),
+  ]);
   await expect(page.getByText(/ajouté au panier/)).toBeVisible();
   await expect(page.getByTestId('cart-count')).toHaveText('1');
 
