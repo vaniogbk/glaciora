@@ -56,6 +56,13 @@ export function maskIban(iban: string): string {
   return `${clean.slice(0, 4)} •••• ${clean.slice(-4)}`;
 }
 
+/** Pays où un virement est possible : null = tous (compte principal configuré), sinon les pays des comptes actifs. */
+export async function bankTransferCountries(): Promise<string[] | null> {
+  if (bankDetailsConfigured) return null;
+  const accounts = await prisma.bankAccount.findMany({ where: { isActive: true }, select: { countryCodes: true } });
+  return [...new Set(accounts.flatMap((a) => a.countryCodes))].sort();
+}
+
 /** Clé du compte affiché au client, signée avec la référence de virement : identifiant BankAccount ou compte par défaut. */
 export const ENV_ACCOUNT_KEY = 'env';
 export const accountKeyOf = (account: ReceivingAccount): string => account.bankAccountId ?? ENV_ACCOUNT_KEY;

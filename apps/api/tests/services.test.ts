@@ -3,10 +3,10 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { resetDb, createUser, loginAgent, CSRF } from './helpers';
 import { prisma } from '../src/lib/prisma';
-import { LocalStorage } from '../src/modules/storage/storage';
+import { LocalStorage, getStorage } from '../src/modules/storage/storage';
 import { brevoProvider, setEmailProvider, type EmailProvider } from '../src/modules/email/email.providers';
 import { nextAttemptDelayMs, processEmailQueue, queueEmail } from '../src/modules/email/email.service';
-import { escapeHtml, adminTransferProof } from '../src/modules/email/email.templates';
+import { escapeHtml, adminTransferProof, MAX_ATTACHMENTS_BYTES } from '../src/modules/email/email.templates';
 
 afterAll(() => prisma.$disconnect());
 beforeEach(resetDb);
@@ -50,6 +50,22 @@ describe('e-mails transactionnels', () => {
     const message = await queueEmail({ to: 'glaciora@outlook.com', template: 'admin-transfer-proof', payload });
     await processEmailQueue();
     expect((await prisma.emailMessage.findUniqueOrThrow({ where: { id: message.id } })).status).toBe('LOGGED');
+  });
+
+  it('joint les preuves de virement à l’e-mail de la boutique, sous la limite de taille', async () => {
+    await getStorage().put('proofs/test/preuve.pdf', Buffer.from('%PDF-1.7 preuve'), 'application/pdf');
+    const base = { orderReference: 'GLA-261105-ABCDE', customerName: 'Léa Martin', amountCents: 1000, countryCode: 'FR', adminOrderUrl: 'https://x/admin', proofCount: 1 };
+    const small = adminTransferProof({ ...base, attachments: [{ storageKey: 'proofs/test/preuve.pdf', name: 'preuve.pdf', mime: 'application/pdf', sizeBytes: 15 }] });
+    expect(small.attachments).toEqual([{ name: 'preuve.pdf', storageKey: 'proofs/test/preuve.pdf' }]);
+    const big = adminTransferProof({ ...base, attachments: [{ storageKey: 'k', name: 'gros.pdf', mime: 'application/pdf', sizeBytes: MAX_ATTACHMENTS_BYTES + 1 }] });
+    expect(big.attachments).toBeUndefined();
+    expect(big.text).toContain('trop volumineux');
+
+    const fetchMock = jest.fn().mockResolvedValue(new Response(JSON.stringify({ messageId: '<m@brevo>' }), { status: 201 }));
+    await brevoProvider('cle-test', 'boutique@glaciora.test', 'GLACIORA', fetchMock).send('glaciora@outlook.com', small);
+    const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+    expect(body.attachment).toEqual([{ name: 'preuve.pdf', content: Buffer.from('%PDF-1.7 preuve').toString('base64') }]);
+    await getStorage().remove('proofs/test/preuve.pdf');
   });
 
   it('Brevo : succès uniquement sur réponse 2xx avec messageId', async () => {

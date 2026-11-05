@@ -1,6 +1,7 @@
 import { env } from '../../config/env';
 import { logger } from '../../lib/logger';
 import type { RenderedEmail } from './email.templates';
+import { getStorage } from '../storage/storage';
 
 export interface SendResult {
   /** true seulement si le fournisseur a confirmé la prise en charge. */
@@ -31,6 +32,12 @@ export const consoleProvider: EmailProvider = {
   },
 };
 
+/** Pièces jointes lues dans le stockage privé au moment de l'envoi (format Brevo : contenu en base64). */
+async function loadAttachments(files: { name: string; storageKey: string }[]) {
+  const storage = getStorage();
+  return Promise.all(files.map(async (f) => ({ name: f.name, content: (await storage.get(f.storageKey)).toString('base64') })));
+}
+
 /** Brevo (API transactionnelle v3). Confirmé uniquement sur réponse 2xx avec messageId. */
 export function brevoProvider(apiKey: string, fromEmail: string, fromName: string, fetchImpl: typeof fetch = fetch): EmailProvider {
   return {
@@ -48,6 +55,7 @@ export function brevoProvider(apiKey: string, fromEmail: string, fromName: strin
             subject: email.subject,
             htmlContent: email.html,
             textContent: email.text,
+            ...(email.attachments?.length ? { attachment: await loadAttachments(email.attachments) } : {}),
           }),
           signal: AbortSignal.timeout(15_000),
         });

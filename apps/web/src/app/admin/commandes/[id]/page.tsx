@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, countryName, formatPrice, type OrderStatus } from '@glaciora/shared';
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api } from '@/lib/api-client';
+import { OrderTracking } from '@/components/order/OrderTracking';
 
 interface AdminOrder {
   order: {
@@ -90,6 +91,7 @@ export default function AdminOrderPage({ params }: { params: { id: string } }) {
       <p aria-live="polite" className="text-sm font-semibold text-deep">
         {message}
       </p>
+      <OrderTracking status={order.status} />
 
       <div className="grid gap-6 xl:grid-cols-3">
         <section className="card p-5 text-sm xl:col-span-2" aria-labelledby="paiement">
@@ -145,28 +147,46 @@ export default function AdminOrderPage({ params }: { params: { id: string } }) {
               </li>
             ))}
           </ul>
-          {order.status === 'PENDING_PAYMENT_VERIFICATION' && payment && (
+          {(['PENDING_PAYMENT_VERIFICATION', 'PAID', 'PREPARING', 'SHIPPED'] as OrderStatus[]).includes(order.status) && (
             <div className="mt-5 flex flex-wrap gap-3">
-              <button
-                type="button"
-                className="btn-primary"
-                disabled={busy}
-                data-testid="mark-paid"
-                onClick={() => act(() => api(`/api/admin/orders/${order.id}/status`, { method: 'PATCH', json: { status: 'PAID', notifyCustomer: true } }), 'Virement vérifié : commande marquée payée.')}
-              >
-                Virement reçu : marquer payée
-              </button>
-              <button
-                type="button"
-                className="btn-outline"
-                disabled={busy}
-                onClick={() => {
-                  const reason = window.prompt('Motif du refus du justificatif ?');
-                  if (reason) void act(() => api(`/api/admin/orders/${order.id}/payments/${payment.id}/reject`, { method: 'POST', json: { reason } }), 'Justificatif refusé.');
-                }}
-              >
-                Refuser le justificatif
-              </button>
+              {order.status !== 'SHIPPED' ? (
+                <button
+                  type="button"
+                  className="btn-primary"
+                  disabled={busy}
+                  data-testid="mark-shipped"
+                  onClick={() => {
+                    if (window.confirm('Le virement est-il bien crédité ? La commande passe « En route » et le client est prévenu par e-mail.')) {
+                      void act(() => api(`/api/admin/orders/${order.id}/status`, { method: 'PATCH', json: { status: 'SHIPPED', notifyCustomer: true } }), 'Commande marquée « En route » : le client a été prévenu.');
+                    }
+                  }}
+                >
+                  Virement crédité : marquer « En route »
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn-primary"
+                  disabled={busy}
+                  data-testid="mark-delivered"
+                  onClick={() => act(() => api(`/api/admin/orders/${order.id}/status`, { method: 'PATCH', json: { status: 'DELIVERED', notifyCustomer: true } }), 'Commande marquée « Livrée » : le client a été prévenu.')}
+                >
+                  Marquer « Livrée »
+                </button>
+              )}
+              {payment?.status === 'PENDING_VERIFICATION' && (
+                <button
+                  type="button"
+                  className="btn-outline"
+                  disabled={busy}
+                  onClick={() => {
+                    const reason = window.prompt('Motif du refus du justificatif ?');
+                    if (reason) void act(() => api(`/api/admin/orders/${order.id}/payments/${payment.id}/reject`, { method: 'POST', json: { reason } }), 'Justificatif refusé.');
+                  }}
+                >
+                  Refuser le justificatif
+                </button>
+              )}
             </div>
           )}
         </section>

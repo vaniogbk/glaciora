@@ -6,6 +6,7 @@ import { ORDER_STATUSES, ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, countryName
 import { AccountShell } from '@/components/account/AccountShell';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { api } from '@/lib/api-client';
+import { OrderTracking } from '@/components/order/OrderTracking';
 
 interface OrderDetail {
   reference: string;
@@ -30,8 +31,6 @@ interface OrderDetail {
   proofs: { createdAt: string; originalName: string }[];
 }
 
-const STEPS: OrderStatus[] = ['PENDING_PAYMENT_VERIFICATION', 'PAID', 'PREPARING', 'SHIPPED', 'DELIVERED'];
-
 export default function OrderDetailPage({ params }: { params: { reference: string } }) {
   const { user } = useAuth();
   const [order, setOrder] = useState<OrderDetail | null>(null);
@@ -46,20 +45,7 @@ export default function OrderDetailPage({ params }: { params: { reference: strin
       {missing && <p>Commande introuvable.</p>}
       {order && (
         <div className="space-y-8">
-          {order.status === 'CANCELLED' ? (
-            <p className="rounded-md bg-danger/10 p-4 font-semibold text-danger">Commande annulée.</p>
-          ) : (
-            <ol className="grid gap-2 sm:grid-cols-5" aria-label="Avancement de la commande">
-              {STEPS.map((step) => {
-                const done = ORDER_STATUSES.indexOf(step) <= ORDER_STATUSES.indexOf(order.status);
-                return (
-                  <li key={step} aria-current={step === order.status ? 'step' : undefined} className={done ? 'rounded-md bg-marine p-3 text-xs font-semibold text-white' : 'rounded-md bg-snow p-3 text-xs text-muted'}>
-                    {ORDER_STATUS_LABELS[step]}
-                  </li>
-                );
-              })}
-            </ol>
-          )}
+          <OrderTracking status={order.status} />
           <div className="grid gap-6 md:grid-cols-2">
             <div className="card p-5 text-sm">
               <h2 className="text-base">Paiement</h2>

@@ -20,7 +20,7 @@ export default function AdminDashboard() {
   if (error) return <p role="alert" className="text-danger">{error}</p>;
   if (!data) return <p className="text-muted">Chargement…</p>;
   const tiles = [
-    { label: 'Virements à vérifier', value: data.pendingVerification, href: '/admin/commandes?status=PENDING_PAYMENT_VERIFICATION', alert: data.pendingVerification > 0 },
+    { label: 'Virements à vérifier', value: data.pendingVerification, href: '/admin/commandes?status=PREPARING', alert: data.pendingVerification > 0 },
     { label: 'CA encaissé (30 j)', value: formatPrice(data.revenue30dCents), href: '/admin/commandes?status=PAID' },
     { label: 'Produits publiés', value: data.productsByStatus.ACTIVE ?? 0, href: '/admin/produits?status=ACTIVE' },
     { label: 'Produits en brouillon', value: data.productsByStatus.DRAFT ?? 0, href: '/admin/produits?status=DRAFT' },

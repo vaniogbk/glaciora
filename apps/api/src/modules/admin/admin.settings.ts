@@ -23,7 +23,7 @@ adminSettingsRouter.get(
   asyncHandler(async (_req, res) => {
     const since = new Date(Date.now() - 30 * 24 * 3600 * 1000);
     const [pending, byStatus, revenue, products, lowStock, recent, failedEmails] = await Promise.all([
-      prisma.order.count({ where: { status: 'PENDING_PAYMENT_VERIFICATION' } }),
+      prisma.order.count({ where: { status: { notIn: ['CANCELLED', 'DELIVERED'] }, payments: { some: { status: 'PENDING_VERIFICATION' } } } }),
       prisma.order.groupBy({ by: ['status'], _count: { _all: true } }),
       prisma.order.aggregate({ where: { status: { in: ['PAID', 'PREPARING', 'SHIPPED', 'DELIVERED'] }, paidAt: { gte: since } }, _sum: { totalCents: true } }),
       prisma.product.groupBy({ by: ['status'], _count: { _all: true } }),

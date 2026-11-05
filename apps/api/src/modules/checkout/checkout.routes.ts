@@ -6,14 +6,14 @@ import { env } from '../../config/env';
 import { asyncHandler } from '../../lib/http';
 import { checkoutLimiter, uploadLimiter } from '../../middlewares/security';
 import { listShippableCountries } from '../shipping/shipping.repository';
-import { listPaymentMethods } from '../payments/payment-methods';
+import { bankTransferCountries, listPaymentMethods } from '../payments/payment-methods';
 import * as checkout from './checkout.service';
 
 export const checkoutRouter = Router();
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: env.UPLOAD_MAX_BYTES, files: 1, fields: 4, fieldSize: 20_000, parts: 6 },
+  limits: { fileSize: env.UPLOAD_MAX_BYTES, files: checkout.MAX_PROOF_FILES, fields: 4, fieldSize: 20_000, parts: 4 + checkout.MAX_PROOF_FILES },
 });
 
 const countrySchema = z.string().regex(/^[A-Za-z]{2}$/).transform((v) => v.toUpperCase());
@@ -29,7 +29,9 @@ checkoutRouter.get(
     res.json({
       countries: await listShippableCountries(),
       paymentMethods: await listPaymentMethods(),
-      upload: { maxBytes: env.UPLOAD_MAX_BYTES, mimeTypes: PROOF_MIME_TYPES },
+      // Pays où le virement est possible (null = tous, compte principal configuré).
+      bankTransferCountries: await bankTransferCountries(),
+      upload: { maxBytes: env.UPLOAD_MAX_BYTES, mimeTypes: PROOF_MIME_TYPES, maxFiles: checkout.MAX_PROOF_FILES },
     });
   }),
 );
@@ -55,9 +57,9 @@ checkoutRouter.post(
   '/orders',
   checkoutLimiter,
   uploadLimiter,
-  upload.single('proof'),
+  upload.array('proof', checkout.MAX_PROOF_FILES),
   asyncHandler(async (req, res) => {
-    const result = await checkout.placeBankTransferOrder(req, res, req.body?.data, req.file);
+    const result = await checkout.placeBankTransferOrder(req, res, req.body?.data, (req.files as Express.Multer.File[] | undefined) ?? []);
     res.status(201).json({ order: result });
   }),
 );
@@ -66,6 +68,6 @@ checkoutRouter.get(
   '/orders/:reference',
   asyncHandler(async (req, res) => {
     const reference = z.string().regex(/^GLA-\d{6}-[A-Z0-9]{5}$/).parse(req.params.reference);
-    res.json({ order: await checkout.getOrderConfirmation(req, reference) });
+    res.json({ order: await checkout.getOrderConfirmation(req, reference, req.query.t) });
   }),
 );

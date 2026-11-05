@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
-import { PROOF_MIME_TYPES, addressSchema, checkoutSchema, emailSchema, formatPrice } from '@glaciora/shared';
+import { BRAND, PROOF_MIME_TYPES, addressSchema, checkoutSchema, countryName, emailSchema, formatPrice } from '@glaciora/shared';
 import { useCart } from '@/components/providers/CartProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { ApiError, api, fieldErrors } from '@/lib/api-client';
@@ -12,7 +12,9 @@ import { ApiError, api, fieldErrors } from '@/lib/api-client';
 interface CheckoutConfig {
   countries: { code: string; name: string }[];
   paymentMethods: { id: 'BANK_TRANSFER' | 'CARD'; label: string; available: boolean; unavailableReason?: string }[];
-  upload: { maxBytes: number; mimeTypes: string[] };
+  /** Pays où le virement est possible ; null ou absent = tous. */
+  bankTransferCountries?: string[] | null;
+  upload: { maxBytes: number; mimeTypes: string[]; maxFiles?: number };
 }
 interface Quote {
   rateId: string;
@@ -72,7 +74,8 @@ export default function CheckoutPage() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [rateId, setRateId] = useState('');
   const [payment, setPayment] = useState<PaymentDetails | null>(null);
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
+  const [paymentError, setPaymentError] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [globalError, setGlobalError] = useState('');
@@ -111,6 +114,9 @@ export default function CheckoutPage() {
   const quote = useMemo(() => quotes.find((q) => q.rateId === rateId), [quotes, rateId]);
   const bankAvailable = config?.paymentMethods.find((m) => m.id === 'BANK_TRANSFER')?.available ?? false;
   const card = config?.paymentMethods.find((m) => m.id === 'CARD');
+  const maxFiles = config?.upload.maxFiles ?? 1;
+  // Virement possible pour le pays choisi (un compte bancaire couvre ce pays, ou le compte principal couvre tous les pays).
+  const bankForCountry = !config?.bankTransferCountries || !address.countryCode || config.bankTransferCountries.includes(address.countryCode);
 
   function applySaved(a: SavedAddress) {
     setAddress({
@@ -131,6 +137,7 @@ export default function CheckoutPage() {
     const { name, value } = e.target;
     setAddress((a) => ({ ...a, [name]: value }));
     setPayment(null);
+    setPaymentError('');
   }
 
   function validateDelivery(): boolean {
@@ -146,30 +153,37 @@ export default function CheckoutPage() {
 
   async function showPaymentDetails() {
     setGlobalError('');
+    setPaymentError('');
     if (!validateDelivery()) {
-      setGlobalError('Vérifiez les champs signalés avant de continuer.');
+      // Le message s'affiche sous le bouton et le premier champ à corriger reçoit le focus (souvent hors écran sur mobile).
+      setPaymentError('Complétez les champs signalés dans « 1. Livraison » pour afficher les coordonnées bancaires.');
+      requestAnimationFrame(() => document.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus());
       return;
     }
     setLoadingPayment(true);
     try {
       setPayment(await api<PaymentDetails>('/api/checkout/payment-details', { method: 'POST', json: { countryCode: address.countryCode, shippingRateId: rateId } }));
     } catch (err) {
-      setGlobalError(err instanceof ApiError ? err.message : 'Coordonnées bancaires indisponibles.');
+      setPaymentError(err instanceof ApiError ? err.message : 'Coordonnées bancaires indisponibles, réessayez.');
     } finally {
       setLoadingPayment(false);
     }
   }
 
   function onFile(e: ChangeEvent<HTMLInputElement>) {
-    const selected = e.target.files?.[0] ?? null;
+    const selected = Array.from(e.target.files ?? []);
     const next = { ...errors };
     delete next.proof;
-    if (selected && config) {
-      if (!config.upload.mimeTypes.includes(selected.type)) next.proof = 'Format non accepté : PDF, JPG, PNG ou WEBP uniquement.';
-      else if (selected.size > config.upload.maxBytes) next.proof = `Fichier trop volumineux (${Math.round(config.upload.maxBytes / 1024 / 1024)} Mo maximum).`;
+    if (selected.length > maxFiles) next.proof = `${maxFiles} fichiers maximum.`;
+    else if (config) {
+      for (const f of selected) {
+        if (!config.upload.mimeTypes.includes(f.type)) next.proof = `« ${f.name} » : format non accepté (PDF, JPG, PNG ou WEBP uniquement).`;
+        else if (f.size > config.upload.maxBytes) next.proof = `« ${f.name} » : fichier trop volumineux (${Math.round(config.upload.maxBytes / 1024 / 1024)} Mo maximum).`;
+        if (next.proof) break;
+      }
     }
     setErrors(next);
-    setFile(next.proof ? null : selected);
+    setFiles(next.proof ? [] : selected);
   }
 
   async function onSubmit(e: FormEvent) {
@@ -179,7 +193,7 @@ export default function CheckoutPage() {
     const parsed = checkoutSchema.safeParse(data);
     const next: Record<string, string> = {};
     if (!parsed.success) for (const issue of parsed.error.issues) next[issue.path.join('.')] ??= issue.message;
-    if (!file) next.proof = 'Ajoutez la confirmation de votre virement (PDF, JPG, PNG ou WEBP).';
+    if (files.length === 0) next.proof = 'Ajoutez la preuve de votre virement (reçu PDF ou photo).';
     setErrors(next);
     if (Object.keys(next).length > 0 || !payment) {
       setGlobalError('Vérifiez les champs signalés avant de valider.');
@@ -189,7 +203,7 @@ export default function CheckoutPage() {
     try {
       const body = new FormData();
       body.set('data', JSON.stringify(data));
-      body.set('proof', file!);
+      for (const f of files) body.append('proof', f);
       const res = await api<{ order: { reference: string } }>('/api/checkout/orders', { method: 'POST', body });
       await refresh();
       router.push(`/commande/confirmation?ref=${encodeURIComponent(res.order.reference)}`);
@@ -336,8 +350,13 @@ export default function CheckoutPage() {
               <label className="flex min-h-[44px] items-center gap-3 rounded-md border border-deep p-3 text-sm">
                 <input type="radio" name="paymentMethod" value="BANK_TRANSFER" defaultChecked disabled={!bankAvailable} className="h-4 w-4 accent-deep" data-testid="pay-bank-transfer" />
                 <span className="font-semibold">Virement bancaire</span>
-                {!bankAvailable && config && <span className="text-danger">— indisponible</span>}
+                {(!bankAvailable || !bankForCountry) && config && <span className="text-danger">— indisponible{!bankForCountry ? ` pour ${countryName(address.countryCode)}` : ''}</span>}
               </label>
+              {bankAvailable && !bankForCountry && (
+                <p role="alert" className="rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning" data-testid="bank-unavailable-country">
+                  Le paiement par virement n’est pas encore disponible pour {countryName(address.countryCode)}. Écrivez-nous à {BRAND.email} ou sur WhatsApp au {BRAND.phoneDisplay} pour finaliser votre commande.
+                </p>
+              )}
               <label className="flex min-h-[44px] cursor-not-allowed items-center gap-3 rounded-md border border-line bg-snow p-3 text-sm text-muted">
                 <input type="radio" name="paymentMethod" value="CARD" disabled aria-describedby="carte-indispo" className="h-4 w-4" />
                 <span className="font-semibold">{card?.label ?? 'Carte bancaire'}</span>
@@ -348,9 +367,16 @@ export default function CheckoutPage() {
             </fieldset>
 
             {!payment ? (
-              <button type="button" className="btn-outline" onClick={showPaymentDetails} disabled={!bankAvailable || loadingPayment} data-testid="show-bank-details">
-                {loadingPayment ? 'Chargement…' : 'Afficher les coordonnées bancaires'}
-              </button>
+              <div>
+                <button type="button" className="btn-primary" onClick={showPaymentDetails} disabled={!bankAvailable || !bankForCountry || loadingPayment} aria-describedby={paymentError ? 'erreur-coordonnees' : undefined} data-testid="show-bank-details">
+                  {loadingPayment ? 'Chargement…' : 'Afficher les coordonnées bancaires'}
+                </button>
+                {paymentError && (
+                  <p id="erreur-coordonnees" role="alert" className="mt-3 rounded-md bg-danger/10 p-3 text-sm font-semibold text-danger">
+                    {paymentError}
+                  </p>
+                )}
+              </div>
             ) : (
               <div className="grid gap-6 rounded-lg border border-line p-5 sm:grid-cols-[1fr_auto]" data-testid="bank-details">
                 <dl className="space-y-2 text-sm">
@@ -394,12 +420,19 @@ export default function CheckoutPage() {
             {payment && (
               <div>
                 <label htmlFor="proof" className="field-label">
-                  Confirmation de virement <span aria-hidden="true">*</span>
+                  Preuve de virement (reçu PDF ou photos) <span aria-hidden="true">*</span>
                 </label>
                 <p id="proof-aide" className="mb-2 text-xs text-muted">
-                  Capture ou avis d’opéré de votre banque : {PROOF_MIME_TYPES.map((m) => m.split('/')[1]!.toUpperCase().replace('JPEG', 'JPG')).join(', ')} — {config ? Math.round(config.upload.maxBytes / 1024 / 1024) : 10} Mo maximum.
+                  Reçu ou capture de votre banque : {PROOF_MIME_TYPES.map((m) => m.split('/')[1]!.toUpperCase().replace('JPEG', 'JPG')).join(', ')} — {maxFiles > 1 ? `jusqu’à ${maxFiles} fichiers, ` : ''}{config ? Math.round(config.upload.maxBytes / 1024 / 1024) : 10} Mo maximum par fichier. Elle est transmise à la boutique pour vérification.
                 </p>
-                <input id="proof" name="proof" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp" onChange={onFile} className="field-input file:mr-3 file:rounded-md file:border-0 file:bg-snow file:px-3 file:py-1 file:font-semibold" aria-invalid={Boolean(err('proof'))} aria-describedby={err('proof') ? 'proof-aide proof-erreur' : 'proof-aide'} />
+                <input id="proof" name="proof" type="file" multiple={maxFiles > 1} accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp" onChange={onFile} className="field-input file:mr-3 file:rounded-md file:border-0 file:bg-snow file:px-3 file:py-1 file:font-semibold" aria-invalid={Boolean(err('proof'))} aria-describedby={err('proof') ? 'proof-aide proof-erreur' : 'proof-aide'} />
+                {files.length > 0 && (
+                  <ul className="mt-2 space-y-1 text-xs text-muted" data-testid="proof-files">
+                    {files.map((f) => (
+                      <li key={`${f.name}-${f.size}`}>✓ {f.name} ({Math.max(1, Math.round(f.size / 1024))} Ko)</li>
+                    ))}
+                  </ul>
+                )}
                 {err('proof') && (
                   <p id="proof-erreur" className="field-error">
                     {err('proof')}
@@ -452,7 +485,7 @@ export default function CheckoutPage() {
           <button type="submit" className="btn-primary w-full" disabled={!payment || submitting} data-testid="place-order">
             {submitting ? 'Envoi en cours…' : 'Valider la commande'}
           </button>
-          {!payment && <p className="text-xs text-muted">Affichez les coordonnées bancaires et ajoutez votre confirmation de virement pour valider.</p>}
+          {!payment && <p className="text-xs text-muted">Affichez les coordonnées bancaires et ajoutez la preuve de votre virement pour valider.</p>}
         </aside>
       </form>
     </div>

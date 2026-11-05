@@ -67,8 +67,8 @@ test('parcours complet : accueil → catalogue → fiche → panier → virement
   const reference = (await page.getByTestId('transfer-reference').textContent())!.trim();
   expect(reference).toMatch(/^GLA-\d{6}-[A-Z0-9]{5}$/);
 
-  // 12. Upload de la confirmation de virement
-  await page.getByLabel(/Confirmation de virement/).setInputFiles({ name: 'virement.pdf', mimeType: 'application/pdf', buffer: PROOF_PDF });
+  // 12. Upload de la preuve de virement
+  await page.getByLabel(/Preuve de virement/).setInputFiles({ name: 'virement.pdf', mimeType: 'application/pdf', buffer: PROOF_PDF });
 
   // 13. Création de la commande
   await page.getByLabel(/J’accepte les/).check();
@@ -77,7 +77,8 @@ test('parcours complet : accueil → catalogue → fiche → panier → virement
   // 14. Page de confirmation
   await expect(page).toHaveURL(new RegExp(`/commande/confirmation\\?ref=${reference}`));
   await expect(page.getByTestId('confirmation-title')).toContainText(reference);
-  await expect(page.getByTestId('order-status')).toHaveText('En attente de vérification du paiement');
+  await expect(page.getByTestId('order-status')).toHaveText('En préparation');
+  await expect(page.getByTestId('tracking-message')).toHaveText('Votre commande est en préparation auprès du fournisseur. Merci de patienter!');
   await expect(page.getByTestId('cart-count')).toHaveCount(0);
 
   // 15. Connexion admin
@@ -90,7 +91,7 @@ test('parcours complet : accueil → catalogue → fiche → panier → virement
   // 16. Consultation de la commande et du fichier de confirmation
   await page.getByRole('link', { name: reference }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText(reference);
-  await expect(page.getByTestId('admin-order-status')).toHaveText('En attente de vérification du paiement');
+  await expect(page.getByTestId('admin-order-status')).toHaveText('En préparation');
   const proofHref = await page.getByTestId('view-proof').getAttribute('href');
   const proof = await page.request.get(proofHref!);
   expect(proof.status()).toBe(200);

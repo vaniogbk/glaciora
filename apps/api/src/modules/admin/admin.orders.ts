@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import type { Prisma } from '@prisma/client';
-import { ORDER_STATUSES, ORDER_STATUS_LABELS, canTransition, type OrderStatus } from '@glaciora/shared';
-import { env } from '../../config/env';
+import { ORDER_STATUSES, ORDER_STATUS_LABELS, canTransition, trackingStep, type OrderStatus } from '@glaciora/shared';
 import { asyncHandler } from '../../lib/http';
 import { notFound, unprocessable } from '../../lib/errors';
 import { prisma } from '../../lib/prisma';
 import { logActivity } from '../../lib/activity';
 import { getStorage } from '../storage/storage';
 import { kickEmailQueue, queueEmail } from '../email/email.service';
+import { orderTrackingUrl } from '../checkout/order-tracking';
 
 export const adminOrdersRouter = Router();
 
@@ -129,9 +129,6 @@ adminOrdersRouter.patch(
     if (!canTransition(from, input.status)) {
       throw unprocessable('INVALID_TRANSITION', `Passage de « ${ORDER_STATUS_LABELS[from]} » à « ${ORDER_STATUS_LABELS[input.status]} » impossible`);
     }
-    if (input.status === 'SHIPPED' && !input.trackingNumber && !order.trackingNumber) {
-      throw unprocessable('TRACKING_REQUIRED', "Indiquez un numéro de suivi pour marquer la commande comme expédiée");
-    }
     const now = new Date();
     const updated = await prisma.$transaction(async (tx) => {
       if (input.status === 'CANCELLED') {
@@ -141,7 +138,9 @@ adminOrdersRouter.patch(
           await tx.stockMovement.create({ data: { variantId: item.variantId, type: 'ORDER_RELEASE', delta: item.quantity, orderId: id, actorId: req.user!.id } });
         }
       }
-      if (input.status === 'PAID') {
+      // « En route » : l'admin ne l'indique qu'une fois le virement crédité, qui est donc vérifié.
+      const paymentConfirmed = input.status === 'PAID' || input.status === 'SHIPPED';
+      if (paymentConfirmed) {
         await tx.payment.updateMany({ where: { orderId: id, status: 'PENDING_VERIFICATION' }, data: { status: 'VERIFIED', verifiedAt: now, verifiedById: req.user!.id } });
       }
       const result = await tx.order.update({
@@ -152,13 +151,15 @@ adminOrdersRouter.patch(
           trackingNumber: input.trackingNumber ?? undefined,
           trackingUrl: input.trackingUrl === '' ? null : input.trackingUrl ?? undefined,
           adminNote: input.adminNote ?? undefined,
-          paidAt: input.status === 'PAID' ? now : undefined,
+          paidAt: paymentConfirmed && !order.paidAt ? now : undefined,
           shippedAt: input.status === 'SHIPPED' ? now : undefined,
           deliveredAt: input.status === 'DELIVERED' ? now : undefined,
           cancelledAt: input.status === 'CANCELLED' ? now : undefined,
         },
       });
-      if (input.notifyCustomer) {
+      // Chaque étape du suivi (En route, Livrée) est toujours annoncée au client ; les autres changements selon la case cochée.
+      const step = input.status === 'SHIPPED' || input.status === 'DELIVERED' ? trackingStep(input.status) : null;
+      if (step || input.notifyCustomer) {
         await queueEmail(
           {
             to: order.email,
@@ -168,7 +169,8 @@ adminOrdersRouter.patch(
               orderReference: order.reference,
               firstName: order.shipFirstName,
               statusLabel: ORDER_STATUS_LABELS[input.status],
-              orderUrl: order.user ? `${env.PUBLIC_SITE_URL}/compte/commandes/${order.reference}` : `${env.PUBLIC_SITE_URL}/commande/confirmation?ref=${order.reference}`,
+              message: step?.message ?? (input.status === 'CANCELLED' ? 'Votre commande a été annulée. Contactez-nous pour toute question.' : undefined),
+              orderUrl: orderTrackingUrl(order),
               trackingNumber: result.trackingNumber,
               trackingUrl: result.trackingUrl,
               trackingCarrier: result.trackingCarrier,

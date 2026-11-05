@@ -19,6 +19,7 @@ interface Account {
 interface BankResponse {
   accounts: Account[];
   defaultAccount: { label: string; accountHolder: string; ibanMasked: string; bic: string | null } | null;
+  uncoveredCountries?: string[];
 }
 
 /** Comptes de réception des virements, par pays de livraison. */
@@ -90,6 +91,11 @@ export default function AdminBankPage() {
         Au moment du paiement, le client voit le compte rattaché à son pays de livraison. Un pays peut être servi par plusieurs comptes : chaque nouvelle commande est alors attribuée au compte de ce pays qui a reçu une commande le moins récemment. Sans compte dédié, c’est le compte principal (variables d’environnement) qui s’affiche ; sans aucun compte, le virement est indisponible pour ce pays. Chaque modification est journalisée et signalée par e-mail à la boutique.
       </p>
       <p aria-live="polite" className="mt-3 text-sm font-semibold text-deep">{message}</p>
+      {data?.uncoveredCountries && data.uncoveredCountries.length > 0 && (
+        <p role="alert" className="mt-3 rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning">
+          Virement impossible pour ces pays livrés, faute de compte bancaire : {data.uncoveredCountries.map(countryName).join(', ')}. Ajoutez-les à un compte ci-dessous (ou désactivez-les dans Livraison).
+        </p>
+      )}
 
       <section className="card mt-4 p-5 text-sm" aria-labelledby="compte-principal">
         <h2 id="compte-principal" className="text-lg">Compte principal</h2>

@@ -1,4 +1,4 @@
-import { BRAND, countryName, formatPrice } from '@glaciora/shared';
+import { BRAND, TRACKING_STEPS, countryName, formatPrice } from '@glaciora/shared';
 
 export function escapeHtml(value: string): string {
   return value
@@ -13,6 +13,18 @@ export interface RenderedEmail {
   subject: string;
   html: string;
   text: string;
+  /** Fichiers du stockage privé à joindre (lus au moment de l'envoi). */
+  attachments?: { name: string; storageKey: string }[];
+}
+
+/** Preuves jointes à l'e-mail de la boutique tant que leur total reste sous la limite des pièces jointes. */
+export const MAX_ATTACHMENTS_BYTES = 4 * 1024 * 1024;
+
+export interface ProofAttachment {
+  storageKey: string;
+  name: string;
+  mime: string;
+  sizeBytes: number;
 }
 
 function layout(title: string, bodyHtml: string): string {
@@ -35,10 +47,18 @@ export interface AdminTransferProofPayload {
   countryCode: string;
   adminOrderUrl: string;
   proofCount: number;
+  attachments?: ProofAttachment[];
 }
 
-/** Notification boutique : aucune donnée bancaire, pas de pièce jointe, lien vers l'admin authentifié. */
+/** Notification boutique : preuve(s) de virement jointe(s) si elles tiennent sous la limite, et lien vers l'admin authentifié. */
 export function adminTransferProof(p: AdminTransferProofPayload): RenderedEmail {
+  const files = p.attachments ?? [];
+  const attached = files.length > 0 && files.reduce((sum, f) => sum + f.sizeBytes, 0) <= MAX_ATTACHMENTS_BYTES;
+  const fileNote = attached
+    ? 'La ou les preuves de virement sont jointes à cet e-mail ; elles restent aussi consultables dans l’admin.'
+    : files.length > 0
+      ? 'Fichiers trop volumineux pour être joints : consultez-les dans l’admin après connexion.'
+      : 'Le fichier se consulte dans l’admin après connexion.';
   const amount = formatPrice(p.amountCents);
   const country = countryName(p.countryCode);
   const subject = `Confirmation de virement reçue — commande ${p.orderReference}`;
@@ -53,7 +73,7 @@ export function adminTransferProof(p: AdminTransferProofPayload): RenderedEmail 
 <tr><td><strong>Fichier(s)</strong></td><td>${p.proofCount}</td></tr>
 </table>
 ${button(p.adminOrderUrl, 'Ouvrir la commande dans l’admin')}
-<p style="font-size:12px">Le fichier n'est pas joint : il se consulte dans l'espace admin après connexion.</p>`,
+<p style="font-size:12px">${escapeHtml(fileNote)}</p>`,
   );
   const text = `Nouvelle confirmation de virement à vérifier
 Commande : ${p.orderReference}
@@ -61,8 +81,9 @@ Client : ${p.customerName}
 Montant : ${amount}
 Pays de livraison : ${country}
 Fichier(s) : ${p.proofCount}
+${fileNote}
 Consulter (connexion admin requise) : ${p.adminOrderUrl}`;
-  return { subject, html, text };
+  return { subject, html, text, attachments: attached ? files.map((f) => ({ name: f.name, storageKey: f.storageKey })) : undefined };
 }
 
 export interface OrderReceivedPayload {
@@ -72,19 +93,21 @@ export interface OrderReceivedPayload {
   orderUrl: string;
 }
 
+/** Étape 1 du suivi, envoyée dès le dépôt de la preuve de virement. */
 export function orderReceived(p: OrderReceivedPayload): RenderedEmail {
   const amount = formatPrice(p.totalCents);
-  const subject = `Commande ${p.orderReference} reçue — paiement en cours de vérification`;
+  const step = TRACKING_STEPS[0];
+  const subject = `Commande ${p.orderReference} : ${step.label.toLowerCase()}`;
   const html = layout(
     `Merci ${p.firstName} !`,
-    `<p>Nous avons bien reçu votre commande <strong>${escapeHtml(p.orderReference)}</strong> d'un montant de <strong>${escapeHtml(amount)}</strong>, ainsi que votre confirmation de virement.</p>
-<p>Statut : <strong>en attente de vérification du paiement</strong>. Nous vous écrivons dès que le virement est reçu et la commande préparée.</p>
+    `<p>Nous avons bien reçu votre commande <strong>${escapeHtml(p.orderReference)}</strong> d'un montant de <strong>${escapeHtml(amount)}</strong>, ainsi que votre preuve de virement.</p>
+<p style="font-size:16px"><strong>${escapeHtml(step.message)}</strong></p>
 ${button(p.orderUrl, 'Suivre ma commande')}`,
   );
   const text = `Merci ${p.firstName} !
 Commande ${p.orderReference} — ${amount}
-Statut : en attente de vérification du paiement.
-Suivre la commande : ${p.orderUrl}`;
+${step.message}
+Suivre ma commande : ${p.orderUrl}`;
   return { subject, html, text };
 }
 
@@ -96,6 +119,8 @@ export interface OrderStatusPayload {
   trackingNumber?: string | null;
   trackingUrl?: string | null;
   trackingCarrier?: string | null;
+  /** Message de l'étape de suivi (En route, Livrée) ou d'annulation. */
+  message?: string;
 }
 
 export function orderStatusChanged(p: OrderStatusPayload): RenderedEmail {
@@ -105,9 +130,9 @@ export function orderStatusChanged(p: OrderStatusPayload): RenderedEmail {
     : '';
   const html = layout(
     `Bonjour ${p.firstName},`,
-    `<p>Votre commande <strong>${escapeHtml(p.orderReference)}</strong> est maintenant : <strong>${escapeHtml(p.statusLabel)}</strong>.</p>${tracking}${button(p.orderUrl, 'Voir ma commande')}`,
+    `<p>Commande <strong>${escapeHtml(p.orderReference)}</strong> : <strong>${escapeHtml(p.statusLabel)}</strong></p>${p.message ? `<p style="font-size:16px"><strong>${escapeHtml(p.message)}</strong></p>` : ''}${tracking}${button(p.orderUrl, 'Suivre ma commande')}`,
   );
-  const text = `Commande ${p.orderReference} : ${p.statusLabel}${p.trackingNumber ? `\nSuivi : ${p.trackingNumber} ${p.trackingUrl ?? ''}` : ''}\n${p.orderUrl}`;
+  const text = `Commande ${p.orderReference} : ${p.statusLabel}${p.message ? `\n${p.message}` : ''}${p.trackingNumber ? `\nSuivi : ${p.trackingNumber} ${p.trackingUrl ?? ''}` : ''}\nSuivre ma commande : ${p.orderUrl}`;
   return { subject, html, text };
 }
 

@@ -19,6 +19,7 @@ import { logActivity } from '../../lib/activity';
 import { findCurrentCart, loadCartItems, toCartView } from '../cart/cart.service';
 import { loadShippingZones } from '../shipping/shipping.repository';
 import { accountKeyOf, findShownAccount, maskIban, resolveReceivingAccount } from '../payments/payment-methods';
+import { isValidTrackingToken, orderTrackingUrl } from './order-tracking';
 import { getStorage } from '../storage/storage';
 import { kickEmailQueue, queueEmail } from '../email/email.service';
 import { REFERENCE_COOKIE, REFERENCE_TTL_MS, decodeReference, encodeReference, newReference } from './checkout-reference';
@@ -89,7 +90,10 @@ export interface UploadedProof {
   mimetype: string;
 }
 
-export async function placeBankTransferOrder(req: Request, res: Response, rawData: unknown, file: UploadedProof | undefined) {
+/** Preuve de virement : 1 à 3 fichiers (reçu PDF ou photos). */
+export const MAX_PROOF_FILES = 3;
+
+export async function placeBankTransferOrder(req: Request, res: Response, rawData: unknown, files: UploadedProof[]) {
   let data: CheckoutInput;
   try {
     data = checkoutSchema.parse(typeof rawData === 'string' ? JSON.parse(rawData) : rawData);
@@ -97,24 +101,41 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
     if (err instanceof SyntaxError) throw badRequest('Données de commande illisibles');
     throw err;
   }
-  if (!file) throw unprocessable('PROOF_REQUIRED', 'La confirmation de virement est obligatoire');
-  const check = validateProofFile({
-    bytes: file.buffer.subarray(0, 16),
-    sizeBytes: file.size,
-    originalName: file.originalname,
-    declaredMime: file.mimetype,
-    maxBytes: env.UPLOAD_MAX_BYTES,
+  if (files.length === 0) throw unprocessable('PROOF_REQUIRED', 'La confirmation de virement est obligatoire');
+  if (files.length > MAX_PROOF_FILES) throw unprocessable('PROOF_TOO_MANY', `${MAX_PROOF_FILES} fichiers maximum`);
+  const checked = files.map((file) => {
+    const check = validateProofFile({
+      bytes: file.buffer.subarray(0, 16),
+      sizeBytes: file.size,
+      originalName: file.originalname,
+      declaredMime: file.mimetype,
+      maxBytes: env.UPLOAD_MAX_BYTES,
+    });
+    if (!check.ok) throw unprocessable(`PROOF_${check.error}`, PROOF_ERROR_MESSAGES[check.error]);
+    return { file, check };
   });
-  if (!check.ok) throw unprocessable(`PROOF_${check.error}`, PROOF_ERROR_MESSAGES[check.error]);
 
   const signed = decodeReference(req.cookies?.[REFERENCE_COOKIE] as string | undefined);
   if (!signed) throw conflict('Référence de virement expirée : affichez à nouveau les coordonnées bancaires', { code: 'REFERENCE_EXPIRED' });
   const cart = await requireCart(req);
 
   const now = new Date();
-  const storageKey = `proofs/${now.getUTCFullYear()}/${String(now.getUTCMonth() + 1).padStart(2, '0')}/${randomUUID()}.${check.extension}`;
   const storage = getStorage();
-  await storage.put(storageKey, file.buffer, check.mime);
+  const proofs = checked.map(({ file, check }) => ({
+    file,
+    check,
+    storageKey: `proofs/${now.getUTCFullYear()}/${String(now.getUTCMonth() + 1).padStart(2, '0')}/${randomUUID()}.${check.extension}`,
+  }));
+  const stored: string[] = [];
+  try {
+    for (const p of proofs) {
+      await storage.put(p.storageKey, p.file.buffer, p.check.mime);
+      stored.push(p.storageKey);
+    }
+  } catch (err) {
+    await Promise.all(stored.map((key) => storage.remove(key).catch(() => undefined)));
+    throw err;
+  }
 
   const accessToken = generateOpaqueToken();
   try {
@@ -149,6 +170,8 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
       const created = await tx.order.create({
         data: {
           reference: signed.reference,
+          // Étape 1 du suivi dès le dépôt de la preuve ; le paiement reste « à vérifier » jusqu'au passage « En route ».
+          status: 'PREPARING',
           userId: req.user?.id ?? null,
           email: data.email,
           shipFirstName: a.firstName,
@@ -199,18 +222,18 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
         data: items.map((item) => ({ variantId: item.variantId, type: 'ORDER_RESERVE' as const, delta: -item.quantity, orderId: created.id })),
       });
 
-      await tx.transferProof.create({
-        data: {
+      await tx.transferProof.createMany({
+        data: proofs.map((p) => ({
           orderId: created.id,
           paymentId: created.payments[0]?.id,
           storageDriver: storage.driver,
-          storageKey,
-          originalName: check.safeName,
-          mimeType: check.mime,
-          sizeBytes: file.size,
-          sha256: createHash('sha256').update(file.buffer).digest('hex'),
+          storageKey: p.storageKey,
+          originalName: p.check.safeName,
+          mimeType: p.check.mime,
+          sizeBytes: p.file.size,
+          sha256: createHash('sha256').update(p.file.buffer).digest('hex'),
           deleteAfter: new Date(Date.now() + env.PROOF_RETENTION_DAYS * 24 * 3600 * 1000),
-        },
+        })),
       });
 
       await tx.cartItem.deleteMany({ where: { cartId: cart.id } });
@@ -226,7 +249,8 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
             amountCents: totalCents,
             countryCode: a.countryCode,
             adminOrderUrl: `${env.PUBLIC_SITE_URL}/admin/commandes/${created.id}`,
-            proofCount: 1,
+            proofCount: proofs.length,
+            attachments: proofs.map((p) => ({ storageKey: p.storageKey, name: p.check.safeName, mime: p.check.mime, sizeBytes: p.file.size })),
           },
         },
         tx,
@@ -240,7 +264,7 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
             orderReference: created.reference,
             firstName: a.firstName,
             totalCents,
-            orderUrl: req.user ? `${env.PUBLIC_SITE_URL}/compte/commandes/${created.reference}` : `${env.PUBLIC_SITE_URL}/commande/confirmation?ref=${created.reference}`,
+            orderUrl: orderTrackingUrl(created),
           },
         },
         tx,
@@ -263,7 +287,7 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
     kickEmailQueue();
     return { reference: order.reference, totalCents: order.totalCents, status: order.status };
   } catch (err) {
-    await storage.remove(storageKey).catch(() => undefined);
+    await Promise.all(proofs.map((p) => storage.remove(p.storageKey).catch(() => undefined)));
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
       res.clearCookie(REFERENCE_COOKIE, { path: '/api/checkout' });
       throw conflict('Cette référence a déjà été utilisée : rechargez la page de paiement', { code: 'REFERENCE_USED' });
@@ -272,8 +296,8 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
   }
 }
 
-/** Récapitulatif de commande pour la page de confirmation (propriétaire connecté ou jeton invité). */
-export async function getOrderConfirmation(req: Request, reference: string) {
+/** Récapitulatif et suivi de commande : propriétaire connecté, cookie invité ou lien de suivi signé (e-mails). */
+export async function getOrderConfirmation(req: Request, reference: string, trackingToken?: unknown) {
   const order = await prisma.order.findUnique({
     where: { reference },
     include: { items: true, payments: { select: { method: true, status: true, amountCents: true } }, proofs: { select: { id: true } } },
@@ -283,11 +307,16 @@ export async function getOrderConfirmation(req: Request, reference: string) {
   const [cookieRef, token] = cookie?.split('.') ?? [];
   const ownsByToken = cookieRef === reference && token && order.accessTokenHash && safeEqual(hashToken(token), order.accessTokenHash);
   const ownsByAccount = req.user && order.userId === req.user.id;
-  if (!ownsByToken && !ownsByAccount) throw notFound('Commande introuvable');
+  if (!ownsByToken && !ownsByAccount && !isValidTrackingToken(order.id, trackingToken)) throw notFound('Commande introuvable');
   return {
     reference: order.reference,
     status: order.status,
     createdAt: order.createdAt,
+    shippedAt: order.shippedAt,
+    deliveredAt: order.deliveredAt,
+    trackingCarrier: order.trackingCarrier,
+    trackingNumber: order.trackingNumber,
+    trackingUrl: order.trackingUrl,
     email: order.email,
     subtotalCents: order.subtotalCents,
     shippingCents: order.shippingCents,

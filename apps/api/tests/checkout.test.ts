@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { app, CSRF, PDF_BYTES, createUser, loginAgent, resetDb, seedCatalogue } from './helpers';
 import { prisma } from '../src/lib/prisma';
+import { orderTrackingToken } from '../src/modules/checkout/order-tracking';
 
 afterAll(() => prisma.$disconnect());
 beforeEach(resetDb);
@@ -71,24 +72,34 @@ describe('checkout par virement', () => {
       .post('/api/checkout/orders')
       .set(CSRF)
       .field('data', orderData(rate.id))
-      .attach('proof', PDF_BYTES, { filename: 'virement.pdf', contentType: 'application/pdf' });
+      .attach('proof', PDF_BYTES, { filename: 'virement.pdf', contentType: 'application/pdf' })
+      .attach('proof', PDF_BYTES, { filename: 'avis-banque.pdf', contentType: 'application/pdf' });
     expect(res.status).toBe(201);
-    expect(res.body.order).toMatchObject({ reference: details.body.reference, status: 'PENDING_PAYMENT_VERIFICATION', totalCents: 45980 });
+    // Étape 1 du suivi dès le dépôt de la preuve.
+    expect(res.body.order).toMatchObject({ reference: details.body.reference, status: 'PREPARING', totalCents: 45980 });
 
     const order = await prisma.order.findUniqueOrThrow({ where: { reference: res.body.order.reference }, include: { proofs: true, payments: true, emails: true } });
-    expect(order.proofs).toHaveLength(1);
+    expect(order.proofs).toHaveLength(2);
     expect(order.proofs[0]!.storageKey).toMatch(/^proofs\/\d{4}\/\d{2}\/[a-f0-9-]+\.pdf$/);
     expect(order.payments[0]).toMatchObject({ method: 'BANK_TRANSFER', status: 'PENDING_VERIFICATION', amountCents: 45980 });
     expect(order.emails.map((e) => e.toAddress)).toContain('glaciora@outlook.com');
     const adminMail = order.emails.find((e) => e.template === 'admin-transfer-proof')!;
     expect(JSON.stringify(adminMail.payload)).not.toContain('FR76');
+    // Les preuves sont jointes à l'e-mail de la boutique (lues dans le stockage privé à l'envoi).
+    expect((adminMail.payload as { attachments: unknown[] }).attachments).toHaveLength(2);
+    const customerMail = order.emails.find((e) => e.template === 'order-received')!;
+    expect((customerMail.payload as { orderUrl: string }).orderUrl).toBe(`http://localhost:3000/commande/suivi?ref=${order.reference}&t=${orderTrackingToken(order.id)}`);
     expect((await prisma.stock.findUniqueOrThrow({ where: { variantId: variant.id } })).quantity).toBe(1);
 
     const confirmation = await agent.get(`/api/checkout/orders/${order.reference}`);
     expect(confirmation.status).toBe(200);
     expect(confirmation.body.order.proofReceived).toBe(true);
-    // Un autre visiteur ne peut pas lire la commande.
+    // Un autre visiteur ne peut pas lire la commande, sauf avec le lien de suivi signé des e-mails.
     expect((await request(app).get(`/api/checkout/orders/${order.reference}`)).status).toBe(404);
+    expect((await request(app).get(`/api/checkout/orders/${order.reference}?t=faux-jeton`)).status).toBe(404);
+    const tracked = await request(app).get(`/api/checkout/orders/${order.reference}?t=${orderTrackingToken(order.id)}`);
+    expect(tracked.status).toBe(200);
+    expect(tracked.body.order.status).toBe('PREPARING');
   });
 
   it('exige un justificatif valide', async () => {
@@ -135,7 +146,7 @@ describe('checkout par virement', () => {
     expect((await prisma.stock.findUniqueOrThrow({ where: { variantId: seeded.variant.id } })).quantity).toBe(0);
   });
 
-  it('permet à l’admin de consulter le justificatif et de marquer la commande payée', async () => {
+  it('permet à l’admin de consulter le justificatif et de passer la commande « En route »', async () => {
     const { agent, rate } = await cartWith(1);
     await agent.post('/api/checkout/payment-details').set(CSRF).send({ countryCode: 'FR', shippingRateId: rate.id });
     const created = await agent.post('/api/checkout/orders').set(CSRF).field('data', orderData(rate.id)).attach('proof', PDF_BYTES, { filename: 'v.pdf', contentType: 'application/pdf' });
@@ -151,12 +162,40 @@ describe('checkout par virement', () => {
     expect(file.headers['content-type']).toBe('application/pdf');
     expect(file.headers['cache-control']).toContain('no-store');
 
-    const invalid = await admin.patch(`/api/admin/orders/${order.id}/status`).set(CSRF).send({ status: 'SHIPPED' });
+    const invalid = await admin.patch(`/api/admin/orders/${order.id}/status`).set(CSRF).send({ status: 'PAID' });
     expect(invalid.status).toBe(422);
-    const paid = await admin.patch(`/api/admin/orders/${order.id}/status`).set(CSRF).send({ status: 'PAID' });
+    const paid = await admin.patch(`/api/admin/orders/${order.id}/status`).set(CSRF).send({ status: 'SHIPPED' });
     expect(paid.status).toBe(200);
     const payment = await prisma.payment.findFirstOrThrow({ where: { orderId: order.id } });
     expect(payment.status).toBe('VERIFIED');
     expect(await prisma.activityLog.count({ where: { entityId: order.id, action: 'order.status_changed' } })).toBe(1);
+  });
+});
+
+describe('suivi de commande en 3 étapes', () => {
+  it('passe « En route » (virement vérifié) puis « Livrée », avec un e-mail au client à chaque étape', async () => {
+    const { agent, rate } = await cartWith(1);
+    await agent.post('/api/checkout/payment-details').set(CSRF).send({ countryCode: 'FR', shippingRateId: rate.id });
+    const placed = await agent.post('/api/checkout/orders').set(CSRF).field('data', orderData(rate.id)).attach('proof', PDF_BYTES, { filename: 'virement.pdf', contentType: 'application/pdf' });
+    const order = await prisma.order.findUniqueOrThrow({ where: { reference: placed.body.order.reference } });
+    const { email, password } = await createUser('ADMIN');
+    const admin = await loginAgent(email, password);
+
+    expect((await admin.patch(`/api/admin/orders/${order.id}/status`).set(CSRF).send({ status: 'DELIVERED' })).status).toBe(422);
+    // « En route » sans numéro de suivi ni case cochée : l'e-mail d'étape part quand même.
+    const shipped = await admin.patch(`/api/admin/orders/${order.id}/status`).set(CSRF).send({ status: 'SHIPPED', notifyCustomer: false });
+    expect(shipped.status).toBe(200);
+    const afterShip = await prisma.order.findUniqueOrThrow({ where: { id: order.id }, include: { payments: true } });
+    expect(afterShip.status).toBe('SHIPPED');
+    expect(afterShip.payments[0]!.status).toBe('VERIFIED');
+    expect(afterShip.paidAt).not.toBeNull();
+
+    expect((await admin.patch(`/api/admin/orders/${order.id}/status`).set(CSRF).send({ status: 'DELIVERED' })).status).toBe(200);
+    const mails = await prisma.emailMessage.findMany({ where: { orderId: order.id, template: 'order-status' }, orderBy: { createdAt: 'asc' } });
+    expect(mails.map((m) => (m.payload as { message: string }).message)).toEqual([
+      'Votre commande est déjà en route vers votre adresse.',
+      'Votre commande est arrivée à votre adresse. Merci pour l’achat.',
+    ]);
+    expect(mails.every((m) => m.toAddress === 'lea@glaciora.test' && (m.payload as { orderUrl: string }).orderUrl.includes(`t=${orderTrackingToken(order.id)}`))).toBe(true);
   });
 });

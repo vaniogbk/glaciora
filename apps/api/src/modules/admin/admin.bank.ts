@@ -7,7 +7,8 @@ import { notFound, unprocessable } from '../../lib/errors';
 import { prisma } from '../../lib/prisma';
 import { logActivity } from '../../lib/activity';
 import { kickEmailQueue, queueEmail } from '../email/email.service';
-import { maskIban } from '../payments/payment-methods';
+import { bankTransferCountries, maskIban } from '../payments/payment-methods';
+import { listShippableCountries } from '../shipping/shipping.repository';
 
 /**
  * Comptes bancaires de réception par pays.
@@ -72,9 +73,11 @@ function assertCountries(codes: string[]) {
 adminBankRouter.get(
   '/',
   asyncHandler(async (_req, res) => {
-    const accounts = await prisma.bankAccount.findMany({ orderBy: { createdAt: 'asc' } });
+    const [accounts, covered, shippable] = await Promise.all([prisma.bankAccount.findMany({ orderBy: { createdAt: 'asc' } }), bankTransferCountries(), listShippableCountries()]);
     res.json({
       accounts: accounts.map(publicAccount),
+      // Pays proposés à la livraison où aucun compte actif ne permet le virement (le client ne peut pas payer).
+      uncoveredCountries: covered === null ? [] : shippable.filter((c) => !covered.includes(c.code)).map((c) => c.code),
       defaultAccount: env.BANK_IBAN ? { label: 'Compte principal (variables d’environnement)', accountHolder: env.BANK_ACCOUNT_HOLDER ?? '', ibanMasked: maskIban(env.BANK_IBAN), bic: env.BANK_BIC ?? null } : null,
     });
   }),

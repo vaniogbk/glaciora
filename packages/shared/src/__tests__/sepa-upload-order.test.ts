@@ -1,6 +1,6 @@
 import { buildEpcQrPayload, formatIban, isValidIban } from '../sepa';
 import { detectMimeFromBytes, sanitizeFileName, validateProofFile } from '../upload';
-import { canTransition, generateOrderReference } from '../order';
+import { canTransition, generateOrderReference, trackingStep } from '../order';
 import { checkoutSchema } from '../schemas';
 
 // IBAN d'exemple publiés (documentation bancaire) : aucun compte réel.
@@ -91,8 +91,15 @@ describe('commandes', () => {
   });
 
   it('n’autorise que les transitions prévues', () => {
-    expect(canTransition('PENDING_PAYMENT_VERIFICATION', 'PAID')).toBe(true);
-    expect(canTransition('PENDING_PAYMENT_VERIFICATION', 'SHIPPED')).toBe(false);
+    expect(canTransition('PREPARING', 'SHIPPED')).toBe(true);
+    expect(canTransition('SHIPPED', 'DELIVERED')).toBe(true);
+    expect(canTransition('PREPARING', 'DELIVERED')).toBe(false);
+    expect(canTransition('DELIVERED', 'CANCELLED')).toBe(false);
+    expect(trackingStep('PREPARING')?.step).toBe(1);
+    expect(trackingStep('PENDING_PAYMENT_VERIFICATION')?.step).toBe(1);
+    expect(trackingStep('SHIPPED')?.message).toBe('Votre commande est déjà en route vers votre adresse.');
+    expect(trackingStep('DELIVERED')?.step).toBe(3);
+    expect(trackingStep('CANCELLED')).toBeNull();
     expect(canTransition('DELIVERED', 'CANCELLED')).toBe(false);
   });
 
