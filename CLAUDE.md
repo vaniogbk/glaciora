@@ -3,7 +3,7 @@
 Boutique en ligne ski, hockey sur glace et sports de neige. Monorepo npm workspaces.
 
 ```
-apps/web         Next.js 14 (App Router), TypeScript strict, Tailwind — déployé sur Vercel
+apps/web         Next.js 15 (App Router, React 19), TypeScript strict, Tailwind — déployé sur Vercel (région fra1)
 apps/api         Express + Prisma (PostgreSQL) — déployé sur Railway
 packages/shared  Logique partagée et testée : schémas Zod, panier, livraison, QR SEPA, upload, statuts
 e2e/             Playwright (parcours d'achat complet)
@@ -25,8 +25,9 @@ GLACIORA_CATALOGUE/, Identité graphique/   Sources client : lecture seule, jama
 | Tests unitaires | `npm run test` (API sur la base `glaciora_test`, remise à zéro automatique) |
 | Build | `npm run build` |
 | E2E | `npx playwright install chromium` puis `npm run build && npm run test:e2e` |
+| Vitesse mobile lente | `npm run test:perf` (site en ligne, ou `PERF_BASE_URL=…`) |
 | E-mails en attente | `npm run emails:process -w @glaciora/api` |
-| Purge justificatifs | `npm run proofs:purge -w @glaciora/api` |
+| Purge justificatifs | automatique (worker de maintenance) ; à la main : `npm run proofs:purge -w @glaciora/api` |
 
 ## Conventions
 
@@ -37,6 +38,9 @@ GLACIORA_CATALOGUE/, Identité graphique/   Sources client : lecture seule, jama
 - Textes d'interface en français. Composants accessibles : libellés liés, erreurs `aria-describedby`, cibles ≥ 44 px, `prefers-reduced-motion` respecté.
 - Données structurées (Product/Offer/BreadcrumbList/Organization) : uniquement des valeurs réelles venant de la base.
 - Pas de page « Mentions légales ».
+- Next 15 : `params` et `searchParams` sont des promesses dans les pages serveur ; dans les pages client, lire l'identifiant avec `useParams()`.
+- Fiches produit en ISR (`generateStaticParams` vide + `revalidate`) ; squelettes de chargement du catalogue au niveau du groupe `app/(listings)` pour ne pas masquer la page à chaque filtre.
+- Commandes : statut `PREPARING` dès le dépôt de la preuve, puis `SHIPPED` (« En route ») et `DELIVERED` ; messages de suivi dans `TRACKING_STEPS` (shared).
 
 ## Règles de sécurité (non négociables)
 

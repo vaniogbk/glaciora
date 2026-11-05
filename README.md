@@ -4,10 +4,10 @@
 
 Boutique e-commerce complète : catalogue ski / hockey / accessoires, panier, checkout par **virement bancaire SEPA avec QR code et dépôt du justificatif**, comptes clients, backoffice admin. Paiement par carte affiché comme indisponible (aucune simulation).
 
-- Front : Next.js 14 (App Router), TypeScript strict, Tailwind (tokens issus du pack logo), Vercel → `glaciora-chi.vercel.app`
+- Front : Next.js 15 (App Router, React 19), TypeScript strict, Tailwind (tokens issus du pack logo), Vercel (région `fra1`) → `www.glaciora.online` (`glaciora.online` y redirige)
 - API : Node.js / Express / TypeScript, Prisma + PostgreSQL, Railway
-- E-mails : Brevo (file d'envoi + retries) · Stockage des justificatifs : Cloudflare R2 privé
-- Tests : Jest (shared, API sur base réelle, composants web) + Playwright (parcours d'achat en 16 étapes)
+- E-mails : Brevo (file d'envoi + retries, suivi de livraison réel) · Stockage des justificatifs : Cloudflare R2 privé, purge automatique
+- Tests : Jest (shared, API sur base réelle, composants web) + Playwright (parcours d'achat en 16 étapes, mesures téléphone/réseau lents)
 
 ## Démarrage rapide (développement)
 
@@ -33,6 +33,7 @@ npm run typecheck
 npm run test             # shared + API (base glaciora_test remise à zéro) + web
 npm run build
 npx playwright install chromium && npm run test:e2e
+npm run test:perf        # FCP/LCP en conditions mobiles lentes (site en ligne ; PERF_BASE_URL pour une autre adresse)
 ```
 
 ## Structure
@@ -68,27 +69,28 @@ docs/DEPLOIEMENT.md                    Railway, Vercel, domaine, Brevo, R2, migr
 | Santé | `GET /health` |
 | Catalogue | `GET /catalogue/categories` · `GET /catalogue/products?q&category&sport&size&brand&condition&inStock&minPrice&maxPrice&sort&page` · `GET /catalogue/products/:slug` · `GET /catalogue/home` · `GET /catalogue/sitemap` |
 | Panier | `GET /cart` · `POST /cart/items` · `PATCH /cart/items/:variantId` · `DELETE /cart/items/:variantId` |
-| Checkout | `GET /checkout/config` · `GET /checkout/shipping-quotes?country` · `POST /checkout/payment-details` (IBAN + QR) · `POST /checkout/orders` (multipart `data` + `proof`) · `GET /checkout/orders/:reference` |
+| Checkout | `GET /checkout/config` (pays, moyens de paiement, pays couverts par un compte bancaire) · `GET /checkout/shipping-quotes?country` · `POST /checkout/payment-details` (IBAN + QR) · `POST /checkout/orders` (multipart `data` + 1 à 3 `proof`) · `GET /checkout/orders/:reference[?t=jeton de suivi]` |
 | Auth | `POST /auth/register` · `POST /auth/login` · `POST /auth/refresh` · `POST /auth/logout` · `GET /auth/me` · `POST /auth/password/forgot` · `POST /auth/password/reset` |
 | Compte | `GET/PATCH /account/profile` · `GET/POST /account/addresses` · `PATCH/DELETE /account/addresses/:id` · `GET /account/orders` · `GET /account/orders/:reference` |
 | Admin | `GET /admin/dashboard` · produits (`/admin/products`, variantes, stock, images) · commandes (`/admin/orders`, statut, suivi, justificatifs, refus) · `/admin/bank-accounts` · catégories · tailles · clients · livraison (zones, tarifs, pays) · `/admin/activity` · `/admin/emails` · `/admin/import` |
 | Médias | `GET /media/products/:file` (images ajoutées depuis l'admin) |
 
-Toute écriture exige l'en-tête `x-glaciora-csrf: 1` et une origine autorisée.
+Toute écriture exige l'en-tête `x-glaciora-csrf: 1` et une origine autorisée. Si `PROXY_SECRET` est défini (Railway et Vercel), l'API refuse tout appel qui ne vient pas du site (en-tête `x-glaciora-proxy` ajouté par `apps/web/src/middleware.ts` et le rendu serveur).
 
 ## Fonctionnement du paiement par virement
 
 1. Le client choisit son pays et son mode de livraison.
-2. « Afficher les coordonnées bancaires » : l'API calcule le montant définitif, réserve une **référence signée** liée à ce montant (3 h) et renvoie le compte du **pays de livraison** (Admin → Coordonnées bancaires), sinon le compte principal (`BANK_*`), avec un **QR code SEPA EPC069-12**.
-3. Le client dépose sa confirmation (PDF/JPG/PNG/WEBP, 10 Mo, type vérifié par signature).
-4. La commande est créée en transaction : stock décrémenté sans survente, statut « en attente de vérification du paiement », justificatif stocké en privé, e-mails mis en file (boutique : référence, nom, montant, pays, lien admin sécurisé — sans pièce jointe ni IBAN ; client : récapitulatif).
-5. L'admin consulte le justificatif puis marque la commande payée.
+2. « Afficher les coordonnées bancaires » : l'API calcule le montant définitif, réserve une **référence signée** liée à ce montant (3 h) et renvoie le compte du **pays de livraison** (Admin → Coordonnées bancaires ; plusieurs comptes possibles par pays, attribués au moins récemment utilisé), sinon le compte principal (`BANK_*`), avec un **QR code SEPA EPC069-12**. Le compte affiché est signé avec la référence : c'est lui qui est enregistré sur la commande.
+3. Le client dépose sa preuve de virement : 1 à 3 fichiers PDF/JPG/PNG/WEBP, 10 Mo chacun, type vérifié par signature.
+4. La commande est créée en transaction : stock décrémenté sans survente, statut **« En préparation »** (étape 1), preuves stockées en privé, e-mails mis en file (boutique : référence, nom, montant, pays, lien admin, preuves jointes si elles font moins de 4 Mo au total ; client : message de l'étape 1 et lien de suivi signé).
+5. Suivi en 3 étapes (`/commande/suivi?ref=…&t=…`, sans connexion) : l'admin passe la commande **« En route »** quand le virement est crédité (paiement vérifié automatiquement), puis **« Livrée »**. Chaque étape envoie son message au client par e-mail.
 
 ## Catalogue
 
 - Source : `GLACIORA_CATALOGUE/04_SUIVI_PRODUITS/suivi_produits.csv` + images `01_SKI` / `02_HOCKEY` (`03_CATALOGUE_COMPLET` = copies, ignoré).
 - `apps/api/data/catalogue-complement.csv` : **prix du marché relevés le 26/10/2026** (prix le plus bas trouvé chez un revendeur européen en euros, URL source par produit), tailles usuelles par type d'article, descriptions factuelles.
 - Import idempotent (empreinte par produit), rapport dans `apps/api/import-reports/`, historique dans Admin → Import.
+- `npm run import:catalogue` (en local, sur la base locale) met aussi à jour `apps/api/data/catalogue-snapshot.json`. Après déploiement, **Admin → Import catalogue** installe cet instantané en production (serveur sans dossier catalogue) : produits inchangés et modifications de l'admin conservés, stock fixé seulement à la création.
 - Statut à l'import : publié si « terminé » dans le suivi **et** prix trouvé ; sinon brouillon. Le stock n'est jamais écrasé par un ré-import.
 - Visuels générés par IA : mention « Visuel d'illustration non contractuel » sur les fiches.
 - Images d'ambiance de l'accueil : déposer les fichiers dans `GLACIORA_CATALOGUE/05_ACCUEIL` (voir « À compléter »).

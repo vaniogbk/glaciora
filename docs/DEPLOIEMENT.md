@@ -1,8 +1,8 @@
 # Déploiement GLACIORA
 
-État au 26/10/2026 : dépôt public `vaniogbk/glaciora` ; Railway projet `glaciora` (service `api` → `https://api-production-70d8.up.railway.app`, PostgreSQL) ; Vercel projet `glaciora` (racine `apps/web`, déploiement automatique à chaque push sur `main`), adresse **`https://glaciora-chi.vercel.app`** : `glaciora.vercel.app` appartient déjà à un autre compte Vercel. Si l'adresse change (domaine personnalisé), mettre à jour `WEB_ORIGIN` et `PUBLIC_SITE_URL` (Railway) et `NEXT_PUBLIC_SITE_URL` (Vercel), sinon l'API refuse les ajouts au panier et les commandes (contrôle d'origine).
+État au 05/11/2026 : domaine `www.glaciora.online` ; dépôt public `vaniogbk/glaciora` ; Railway projet `glaciora` (service `api` → `https://api-production-70d8.up.railway.app`, PostgreSQL) ; Vercel projet `glaciora` (racine `apps/web`, déploiement automatique à chaque push sur `main`), adresse **`https://www.glaciora.online`** : `glaciora.vercel.app` appartient déjà à un autre compte Vercel. Si l'adresse change (domaine personnalisé), mettre à jour `WEB_ORIGIN` et `PUBLIC_SITE_URL` (Railway) et `NEXT_PUBLIC_SITE_URL` (Vercel), sinon l'API refuse les ajouts au panier et les commandes (contrôle d'origine).
 
-Architecture : **Vercel** (site Next.js, `glaciora-chi.vercel.app`) → proxy `/api/*` → **Railway** (API Express + PostgreSQL).
+Architecture : **Vercel** (site Next.js, `https://www.glaciora.online` ; `glaciora.online` redirige vers `www`) → proxy `/api/*` → **Railway** (API Express + PostgreSQL).
 Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune configuration CORS.
 
 ## 1. Backend sur Railway
@@ -12,7 +12,7 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 3. Variables du service API (onglet *Variables*) — voir `.env.example` :
    - `DATABASE_URL=${{Postgres.DATABASE_URL}}`
    - `NODE_ENV=production`, `APP_ENV=production` (ou `staging` pour la préproduction), `TRUST_PROXY=2`, `COOKIE_SECURE=true`
-   - `WEB_ORIGIN=https://glaciora-chi.vercel.app`, `PUBLIC_SITE_URL=https://glaciora-chi.vercel.app`
+   - `WEB_ORIGIN=https://www.glaciora.online,https://glaciora.online`, `PUBLIC_SITE_URL=https://www.glaciora.online`
    - `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` (aléatoires, différents, ≥ 32 caractères)
    - `BANK_ACCOUNT_HOLDER`, `BANK_IBAN`, `BANK_BIC`, `BANK_NAME` (compte principal)
    - E-mail (§4) et stockage (§5)
@@ -36,14 +36,14 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 
 1. *Add New Project* → dépôt GitHub → **Root Directory : `apps/web`** → nom du projet **`glaciora`** (Vercel attribue `glaciora-chi.vercel.app`, `glaciora.vercel.app` étant pris).
 2. `apps/web/vercel.json` gère l'installation (racine du monorepo) et le build.
-3. Variables : `API_URL=https://<api>.up.railway.app`, `NEXT_PUBLIC_SITE_URL=https://glaciora-chi.vercel.app` (Production) ; mêmes clés avec les URL de préproduction pour *Preview*.
+3. Variables : `API_URL=https://<api>.up.railway.app`, `NEXT_PUBLIC_SITE_URL=https://www.glaciora.online` (Production) ; mêmes clés avec les URL de préproduction pour *Preview*.
 4. Le proxy `/api/*` est défini dans `next.config.mjs` (évalué au build : redéployer après tout changement d'`API_URL`).
 
 ### Environnements
 
 | | Développement | Préproduction | Production |
 |---|---|---|---|
-| Web | `localhost:3000` | Vercel *Preview* | `glaciora-chi.vercel.app` |
+| Web | `localhost:3000` | Vercel *Preview* | `www.glaciora.online` |
 | API | `localhost:4000` | service Railway `staging` (`APP_ENV=staging`) | service Railway `production` |
 | Base | Docker `:5466` | Postgres Railway dédié | Postgres Railway dédié |
 | E-mail | `console` | Brevo (adresse de test) | Brevo |
@@ -91,6 +91,13 @@ Pousser une modification de ce fichier exige un jeton GitHub avec la permission 
 git -c credential.namespace=glaciora-ci -c credential.gitHubAuthModes=browser push origin main
 ```
 
+## 8 bis. Tâches de fond et sécurité de l'API
+
+- **Worker de maintenance** (dans le processus de l'API, rien à planifier sur Railway) : purge des preuves de virement expirées (`PROOF_RETENTION_DAYS`, 400 jours) au démarrage puis toutes les 6 h ; vérification de la livraison réelle des e-mails Brevo toutes les 10 min (livré → « livré » dans Admin → Journaux ; refus après acceptation → `FAILED` avec le motif, renvoi possible). `npm run proofs:purge -w @glaciora/api` reste disponible à la main.
+- **Secret entre le site et l'API** : générer une valeur aléatoire de 32 caractères ou plus et la déclarer sous le nom `PROXY_SECRET` **d'abord dans Vercel** (variable serveur, puis redéployer le site), **ensuite dans Railway** (service `api`). Dès qu'il est défini côté API, les appels directs à l'adresse Railway sont refusés (sauf `/api/health`), ce qui empêche de falsifier `X-Forwarded-For` pour contourner les limites par IP.
+- « Mot de passe oublié » : au plus 3 liens par compte et par heure, quelle que soit l'adresse IP.
+- En-têtes du site : CSP stricte (tout depuis le site lui-même), HSTS, `X-Frame-Options: DENY`, `nosniff`.
+
 ## 9. Checklist de mise en production
 
 - [ ] `APP_ENV=production`, `COOKIE_SECURE=true`, `TRUST_PROXY=2`, secrets JWT uniques
@@ -102,5 +109,7 @@ git -c credential.namespace=glaciora-ci -c credential.gitHubAuthModes=browser pu
 - [ ] **Tarifs de livraison réels** saisis (supprimer les tarifs `[DÉMO]`) ; pays activés
 - [ ] Conditions de vente complétées (rétractation, garanties, retours)
 - [ ] `npm run lint && npm run typecheck && npm run test && npm run build` verts ; E2E vert sur la préproduction
-- [ ] `https://glaciora-chi.vercel.app/robots.txt` et `/sitemap.xml` répondent ; Search Console déclarée
-- [ ] Sauvegardes Postgres Railway activées ; cron `proofs:purge` planifié
+- [ ] `https://www.glaciora.online/robots.txt` et `/sitemap.xml` répondent ; Search Console déclarée
+- [ ] Sauvegardes Postgres Railway activées (la purge des justificatifs est automatique)
+- [ ] `PROXY_SECRET` défini dans Vercel puis dans Railway
+- [ ] Vercel → Speed Insights activé
