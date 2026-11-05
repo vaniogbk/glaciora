@@ -44,32 +44,6 @@ export function CatalogueBodySkeleton() {
   );
 }
 
-/** Fiche produit en attente : galerie, titre, prix, tailles. */
-export function ProductPageSkeleton() {
-  return (
-    <div className="container py-8" role="status" aria-live="polite">
-      <span className="sr-only">Chargement du produit…</span>
-      <Skeleton className="h-4 w-56" />
-      <div className="mt-6 grid gap-10 lg:grid-cols-2">
-        <Skeleton className="aspect-square w-full" />
-        <div className="space-y-4">
-          <Skeleton className="h-3 w-24" />
-          <Skeleton className="h-9 w-3/4" />
-          <Skeleton className="h-7 w-32" />
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-5/6" />
-          <div className="flex flex-wrap gap-2 pt-2">
-            {Array.from({ length: 5 }, (_, i) => (
-              <Skeleton key={i} className="h-11 w-16" />
-            ))}
-          </div>
-          <Skeleton className="h-12 w-full" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /** Bloc de page admin ou de commande en attente (remplace le texte « Chargement… »). */
 export function PanelSkeleton({ rows = 4, label = 'Chargement…' }: { rows?: number; label?: string }) {
   return (

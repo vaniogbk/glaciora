@@ -19,7 +19,7 @@ export const revalidate = 60;
 function Section({ id, eyebrow, title, href, linkLabel, products }: { id: string; eyebrow: string; title: string; href: string; linkLabel: string; products: ProductCard[] }) {
   if (products.length === 0) return null;
   return (
-    <section aria-labelledby={id} className="container py-14">
+    <section aria-labelledby={id} className="cv-auto container py-14">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="eyebrow">{eyebrow}</p>
@@ -93,7 +93,7 @@ export default async function HomePage() {
 
       <Section id="produits-phares" eyebrow="Sélection" title="Nos produits phares" href="/catalogue" linkLabel="Tout le catalogue" products={home.featured} />
 
-      <section className="container grid gap-4 py-6 md:grid-cols-2" aria-label="Collections">
+      <section className="cv-auto container grid gap-4 py-6 md:grid-cols-2" aria-label="Collections">
         <Link href="/categorie/skis" className="group relative isolate flex min-h-[280px] overflow-hidden rounded-xl bg-marine p-8 text-white">
           <HomeVisual name="collectionSki" className="transition duration-700 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-marine/90 via-marine/40 to-transparent" aria-hidden="true" />
@@ -117,7 +117,7 @@ export default async function HomePage() {
       </section>
 
       <Section id="bloc-ski" eyebrow="Ski" title="Glisser plus loin" href="/categorie/skis" linkLabel="Tous les skis" products={home.ski} />
-      <section className="relative isolate overflow-hidden bg-marine text-white" aria-labelledby="banniere-hockey">
+      <section className="cv-auto relative isolate overflow-hidden bg-marine text-white" aria-labelledby="banniere-hockey">
         <HomeVisual name="hockeyBanner" position="75% center" />
         <div className="absolute inset-0 bg-gradient-to-r from-marine via-marine/75 to-transparent" aria-hidden="true" />
         <div className="container relative py-20 sm:py-24">
@@ -138,7 +138,7 @@ export default async function HomePage() {
       <Section id="bloc-accessoires" eyebrow="Accessoires" title="Les essentiels de la montagne" href="/categorie/accessoires" linkLabel="Tous les accessoires" products={home.accessories} />
       <Section id="nouveautes" eyebrow="Saison 2026/2027" title="Nouveautés" href="/catalogue?sort=newest" linkLabel="Voir les nouveautés" products={home.newest} />
 
-      <section aria-labelledby="avantages" className="bg-snow py-14">
+      <section aria-labelledby="avantages" className="cv-auto bg-snow py-14">
         <div className="container">
           <h2 id="avantages" className="sr-only">
             Pourquoi GLACIORA
@@ -161,7 +161,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="contact" className="relative isolate overflow-hidden bg-marine py-16 text-white">
+      <section aria-labelledby="contact" className="cv-auto relative isolate overflow-hidden bg-marine py-16 text-white">
         <HomeVisual name="essentials" />
         <div className="absolute inset-0 bg-marine/80" aria-hidden="true" />
         <div className="container relative grid gap-8 md:grid-cols-2 md:items-center">

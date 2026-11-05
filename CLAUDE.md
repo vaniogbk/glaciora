@@ -39,7 +39,8 @@ GLACIORA_CATALOGUE/, Identité graphique/   Sources client : lecture seule, jama
 - Données structurées (Product/Offer/BreadcrumbList/Organization) : uniquement des valeurs réelles venant de la base.
 - Pas de page « Mentions légales ».
 - Next 15 : `params` et `searchParams` sont des promesses dans les pages serveur ; dans les pages client, lire l'identifiant avec `useParams()`.
-- Fiches produit en ISR (`generateStaticParams` vide + `revalidate`) ; squelettes de chargement du catalogue au niveau du groupe `app/(listings)` pour ne pas masquer la page à chaque filtre.
+- Fiches produit en ISR (`generateStaticParams` vide + `revalidate`), **sans `loading.tsx`** : la page mise en cache doit contenir le produit directement (un squelette oblige le téléphone à l'afficher puis à le remplacer, ce qui retarde le LCP). Catalogue : squelette dans un `<Suspense>` de page (`CatalogueBodySkeleton`), jamais de `loading.tsx` au niveau du groupe `app/(listings)` (casse la navigation des filtres sous Next 15).
+- Accueil : sections sous la ligne de flottaison en `cv-auto` (`content-visibility: auto`) pour alléger le premier affichage mobile. Vitesse du build local : `PERF_LOCAL=1 npm run test:perf`.
 - Commandes : statut `PREPARING` dès le dépôt de la preuve, puis `SHIPPED` (« En route ») et `DELIVERED` ; messages de suivi dans `TRACKING_STEPS` (shared).
 
 ## Règles de sécurité (non négociables)

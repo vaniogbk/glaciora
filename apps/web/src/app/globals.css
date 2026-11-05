@@ -106,6 +106,13 @@
     }
   }
 }
+/* Sections sous la ligne de flottaison : mises en page et peintes seulement à l'approche de l'écran,
+   ce qui allège le premier affichage sur téléphone. « auto » mémorise ensuite la hauteur réelle. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 @keyframes reveal-up {
   from {
     opacity: 0;

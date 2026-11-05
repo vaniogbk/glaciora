@@ -34,6 +34,7 @@ npm run test             # shared + API (base glaciora_test remise à zéro) + w
 npm run build
 npx playwright install chromium && npm run test:e2e
 npm run test:perf        # FCP/LCP en conditions mobiles lentes (site en ligne ; PERF_BASE_URL pour une autre adresse)
+PERF_LOCAL=1 npm run test:perf   # idem sur le build local (npm run build d'abord), API et base de test des e2e
 ```
 
 ## Structure
