@@ -95,7 +95,7 @@ export async function getProductBySlug(slug: string) {
     where: { slug, status: 'ACTIVE' },
     include: {
       category: { select: { slug: true, name: true, parent: { select: { slug: true, name: true } } } },
-      images: { orderBy: { position: 'asc' }, select: { url: true, alt: true, width: true, height: true } },
+      images: { orderBy: { position: 'asc' }, select: { url: true, alt: true, width: true, height: true, color: true } },
       variants: {
         where: { isActive: true },
         orderBy: [{ position: 'asc' }],

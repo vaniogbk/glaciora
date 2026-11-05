@@ -42,7 +42,7 @@ export const checkoutSchema = z.object({
   shippingRateId: z.string().min(1, 'Choisissez un mode de livraison').max(64),
   paymentMethod: z.literal('BANK_TRANSFER'),
   customerNote: optionalText(500),
-  acceptTerms: z.literal(true, { errorMap: () => ({ message: 'Vous devez accepter les conditions de vente' }) }),
+  acceptTerms: z.literal(true, { error: 'Vous devez accepter les conditions de vente' }),
 });
 export type CheckoutInput = z.infer<typeof checkoutSchema>;
 

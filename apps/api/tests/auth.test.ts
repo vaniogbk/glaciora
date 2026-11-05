@@ -1,7 +1,10 @@
 import request from 'supertest';
 import { app, CSRF, createUser, resetDb } from './helpers';
 import { prisma } from '../src/lib/prisma';
-import { MAX_FAILED_LOGINS } from '../src/modules/auth/auth.service';
+import express from 'express';
+import { MAX_FAILED_LOGINS, MAX_RESETS_PER_HOUR } from '../src/modules/auth/auth.service';
+import { createProxyGuard } from '../src/middlewares/security';
+import { errorHandler } from '../src/middlewares/error-handler';
 
 afterAll(() => prisma.$disconnect());
 beforeEach(resetDb);
@@ -69,5 +72,35 @@ describe('authentification', () => {
     const login = await request(app).post('/api/auth/login').set(CSRF).send({ email, password: 'Nouveau-Motdepasse-9' });
     expect(login.status).toBe(200);
     expect(login.body.user.id).toBe(user.id);
+  });
+});
+
+describe('protections contre les abus', () => {
+  it('limite les liens « mot de passe oublié » par compte, même depuis plusieurs adresses IP', async () => {
+    const { email } = await createUser('CLIENT');
+    for (let i = 0; i < MAX_RESETS_PER_HOUR + 2; i++) {
+      const res = await request(app).post('/api/auth/password/forgot').set(CSRF).set('x-forwarded-for', `203.0.113.${i}`).send({ email });
+      expect(res.status).toBe(202);
+    }
+    expect(await prisma.passwordResetToken.count()).toBe(MAX_RESETS_PER_HOUR);
+    expect(await prisma.emailMessage.count({ where: { template: 'password-reset' } })).toBe(MAX_RESETS_PER_HOUR);
+  });
+
+  it('refuse les appels directs sans le secret du site quand il est configuré', async () => {
+    const secret = 's'.repeat(40);
+    const mini = express();
+    mini.use(createProxyGuard(secret));
+    mini.get('/api/health', (_req, res) => res.json({ ok: true }));
+    mini.get('/api/catalogue', (_req, res) => res.json({ ok: true }));
+    mini.use(errorHandler);
+    expect((await request(mini).get('/api/catalogue')).status).toBe(403);
+    expect((await request(mini).get('/api/catalogue').set('x-glaciora-proxy', 'faux')).status).toBe(403);
+    expect((await request(mini).get('/api/catalogue').set('x-glaciora-proxy', secret)).status).toBe(200);
+    expect((await request(mini).get('/api/health')).status).toBe(200);
+    // Sans secret configuré : aucun blocage.
+    const open = express();
+    open.use(createProxyGuard(undefined));
+    open.get('/api/catalogue', (_req, res) => res.json({ ok: true }));
+    expect((await request(open).get('/api/catalogue')).status).toBe(200);
   });
 });

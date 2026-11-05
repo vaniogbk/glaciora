@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import pinoHttp from 'pino-http';
 import { env } from './config/env';
 import { logger } from './lib/logger';
-import { csrfGuard, globalLimiter, requestId } from './middlewares/security';
+import { csrfGuard, globalLimiter, requestId, createProxyGuard } from './middlewares/security';
 import { optionalAuth } from './middlewares/auth';
 import { errorHandler, notFoundHandler } from './middlewares/error-handler';
 import { apiRouter } from './routes';
@@ -40,6 +40,7 @@ export function createApp() {
       crossOriginResourcePolicy: { policy: 'same-site' },
     }),
   );
+  app.use(createProxyGuard(env.PROXY_SECRET));
   app.use(globalLimiter);
   app.use(express.json({ limit: '100kb' }));
   app.use(cookieParser());

@@ -49,9 +49,12 @@ const variantBody = z.object({
   stock: z.coerce.number().int().min(0).max(100_000).default(0),
 });
 
-async function refreshPriceFrom(productId: string, tx: Prisma.TransactionClient = prisma) {
-  const agg = await tx.productVariant.aggregate({ where: { productId, isActive: true }, _min: { priceCents: true } });
-  await tx.product.update({ where: { id: productId }, data: { priceFromCents: agg._min.priceCents ?? null } });
+/** Prix « à partir de » et liste des coloris du produit, recalculés depuis ses variantes actives. */
+async function refreshFromVariants(productId: string, tx: Prisma.TransactionClient = prisma) {
+  const variants = await tx.productVariant.findMany({ where: { productId, isActive: true }, orderBy: { position: 'asc' }, select: { priceCents: true, color: true } });
+  const prices = variants.map((v) => v.priceCents);
+  const colors = [...new Set(variants.map((v) => v.color?.trim()).filter((c): c is string => Boolean(c)))];
+  await tx.product.update({ where: { id: productId }, data: { priceFromCents: prices.length ? Math.min(...prices) : null, colors } });
 }
 
 async function resolveSizeId(label: string | null | undefined, system: string, tx: Prisma.TransactionClient = prisma) {
@@ -212,7 +215,7 @@ adminProductsRouter.post(
         },
       });
       if (input.stock > 0) await tx.stockMovement.create({ data: { variantId: created.id, type: 'ADJUSTMENT', delta: input.stock, reason: 'Création', actorId: req.user!.id } });
-      await refreshPriceFrom(productId, tx);
+      await refreshFromVariants(productId, tx);
       return created;
     });
     await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: 'variant.created', entityType: 'ProductVariant', entityId: variant.id });
@@ -240,7 +243,7 @@ adminProductsRouter.patch(
           isActive: input.isActive,
         },
       });
-      await refreshPriceFrom(existing.productId, tx);
+      await refreshFromVariants(existing.productId, tx);
       return updated;
     });
     await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: 'variant.updated', entityType: 'ProductVariant', entityId: variantId, metadata: { fields: Object.keys(input) } });
@@ -281,24 +284,26 @@ adminProductsRouter.delete(
     } else {
       await prisma.productVariant.delete({ where: { id: variantId } });
     }
-    await refreshPriceFrom(variant.productId);
+    await refreshFromVariants(variant.productId);
     await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: ordered > 0 ? 'variant.deactivated' : 'variant.deleted', entityType: 'ProductVariant', entityId: variantId });
     res.status(204).end();
   }),
 );
 
-const imageUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 3 } });
+const imageUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 4 } });
 
 adminProductsRouter.post(
   '/:id/images',
   imageUpload.single('image'),
   asyncHandler(async (req, res) => {
     const productId = idParam.parse(req.params.id);
-    const { alt } = z.object({ alt: z.string().trim().min(3).max(200) }).parse(req.body);
+    const { alt, color } = z
+      .object({ alt: z.string().trim().min(3).max(200), color: z.string().trim().max(40).optional().transform((c) => c || null) })
+      .parse(req.body);
     if (!req.file) throw unprocessable('IMAGE_REQUIRED', 'Image obligatoire');
     const product = await prisma.product.findUnique({ where: { id: productId }, select: { id: true } });
     if (!product) throw notFound('Produit introuvable');
-    let webp: { data: Buffer; info: sharp.OutputInfo };
+    let webp: { data: Buffer; info: { width: number; height: number } };
     try {
       webp = await sharp(req.file.buffer, { limitInputPixels: 40_000_000 })
         .rotate()
@@ -312,7 +317,7 @@ adminProductsRouter.post(
     await getStorage().put(key, webp.data, 'image/webp');
     const position = await prisma.productImage.count({ where: { productId } });
     const image = await prisma.productImage.create({
-      data: { productId, url: `/api/${key}`, alt, position, width: webp.info.width, height: webp.info.height, isIllustration: false },
+      data: { productId, url: `/api/${key}`, alt, color, position, width: webp.info.width, height: webp.info.height, isIllustration: false },
     });
     await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: 'image.uploaded', entityType: 'Product', entityId: productId });
     res.status(201).json({ image });
@@ -323,7 +328,13 @@ adminProductsRouter.patch(
   '/images/:imageId',
   asyncHandler(async (req, res) => {
     const imageId = idParam.parse(req.params.imageId);
-    const input = z.object({ alt: z.string().trim().min(3).max(200).optional(), position: z.coerce.number().int().min(0).max(100).optional() }).parse(req.body);
+    const input = z
+      .object({
+        alt: z.string().trim().min(3).max(200).optional(),
+        position: z.coerce.number().int().min(0).max(100).optional(),
+        color: z.string().trim().max(40).nullable().optional().transform((c) => (c === undefined ? undefined : c || null)),
+      })
+      .parse(req.body);
     const image = await prisma.productImage.update({ where: { id: imageId }, data: input });
     res.json({ image });
   }),

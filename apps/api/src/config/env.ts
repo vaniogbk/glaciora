@@ -27,7 +27,9 @@ const schema = z
     JWT_REFRESH_SECRET: z.string().min(32, 'JWT_REFRESH_SECRET : 32 caractères minimum'),
     ACCESS_TOKEN_TTL_SECONDS: z.coerce.number().int().min(60).default(900),
     REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().min(1).default(30),
-    COOKIE_SECURE: bool.default('false'),
+    COOKIE_SECURE: bool.default(false),
+    /** Secret ajouté par le site (middleware Next) à chaque appel : s'il est défini, l'accès direct à l'API est refusé. */
+    PROXY_SECRET: z.string().min(32, 'PROXY_SECRET : 32 caractères minimum').optional(),
 
     BANK_ACCOUNT_HOLDER: optional,
     BANK_IBAN: optional,

@@ -51,7 +51,7 @@ interface SnapshotProduct {
   imagesAreIllustrations: boolean;
   importChecksum: string | null;
   variants: SnapshotVariant[];
-  images: { url: string; alt: string; position: number; width: number | null; height: number | null; isIllustration: boolean; sourceFile: string | null }[];
+  images: { url: string; alt: string; position: number; width: number | null; height: number | null; isIllustration: boolean; sourceFile: string | null; color?: string | null }[];
 }
 interface Snapshot {
   exportedAt: string;
@@ -115,7 +115,7 @@ export async function exportCatalogueSnapshot(file = SNAPSHOT_FILE): Promise<num
         position: v.position,
         stock: v.stock?.quantity ?? 0,
       })),
-      images: p.images.map((i) => ({ url: i.url, alt: i.alt, position: i.position, width: i.width, height: i.height, isIllustration: i.isIllustration, sourceFile: i.sourceFile })),
+      images: p.images.map((i) => ({ url: i.url, alt: i.alt, position: i.position, width: i.width, height: i.height, isIllustration: i.isIllustration, sourceFile: i.sourceFile, color: i.color })),
     })),
   };
   await writeFile(file, `${JSON.stringify(snapshot, null, 2)}\n`, 'utf8');
@@ -181,7 +181,7 @@ export async function installCatalogueSnapshot(options: { triggeredById?: string
           await tx.productImage.upsert({
             where: { productId_url: { productId: product.id, url: image.url } },
             create: { ...image, productId: product.id },
-            update: { alt: image.alt, position: image.position, width: image.width, height: image.height, isIllustration: image.isIllustration },
+            update: { alt: image.alt, position: image.position, width: image.width, height: image.height, isIllustration: image.isIllustration, color: image.color ?? null },
           });
         }
         for (const v of p.variants) {

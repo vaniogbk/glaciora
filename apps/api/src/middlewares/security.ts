@@ -3,8 +3,24 @@ import { randomUUID } from 'node:crypto';
 import rateLimit from 'express-rate-limit';
 import { allowedOrigins, env } from '../config/env';
 import { forbidden } from '../lib/errors';
+import { safeEqual } from '../lib/tokens';
 
 export const CSRF_HEADER = 'x-glaciora-csrf';
+export const PROXY_HEADER = 'x-glaciora-proxy';
+
+/**
+ * L'API n'est appelée que par le site (proxy Vercel et rendu serveur). Avec un secret configuré, une requête qui ne le porte pas
+ * (appel direct à l'adresse Railway) est refusée : elle ne peut donc plus falsifier X-Forwarded-For pour contourner les limites
+ * par IP. Le contrôle de santé reste ouvert. Sans secret, rien n'est bloqué (développement, tests, déploiement progressif).
+ */
+export function createProxyGuard(secret: string | undefined): RequestHandler {
+  return (req, _res, next) => {
+    if (!secret || req.path === '/api/health') return next();
+    const provided = req.get(PROXY_HEADER);
+    if (provided && safeEqual(provided, secret)) return next();
+    next(forbidden('Accès direct à l’API refusé'));
+  };
+}
 
 export const requestId: RequestHandler = (req, res, next) => {
   const incoming = req.get('x-request-id');

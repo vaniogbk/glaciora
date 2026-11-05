@@ -227,8 +227,8 @@ export async function runCatalogueImport(options: ImportOptions) {
           sourceFile: `${source.folder}/${file}`,
           alt:
             index === 0
-              ? `${source.brand} ${complement.name}${complement.color ? ` coloris ${complement.color}` : ''} — visuel d'illustration`
-              : `${source.brand} ${complement.name} — autre coloris (visuel d'illustration)`,
+              ? `${source.brand} ${complement.name}${complement.color ? ` coloris ${complement.color}` : ''}`
+              : `${source.brand} ${complement.name} — autre coloris`,
         });
       }
 

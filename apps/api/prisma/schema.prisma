@@ -249,6 +249,8 @@ model ProductImage {
   width          Int?
   height         Int?
   isIllustration Boolean         @default(true)
+  /// Coloris montré par la photo (même libellé que ProductVariant.color) ; vide = photo commune à tous les coloris.
+  color          String?
   sourceFile     String?
   createdAt      DateTime        @default(now())
 

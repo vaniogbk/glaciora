@@ -11,6 +11,8 @@ import { burnPasswordCheck, hashPassword, verifyPassword } from './password';
 export const MAX_FAILED_LOGINS = 5;
 export const LOCK_MINUTES = 15;
 const RESET_TTL_MINUTES = 30;
+/** Liens de réinitialisation par compte et par heure : protège la boîte du client et le quota d'e-mails, même si l'IP change. */
+export const MAX_RESETS_PER_HOUR = 3;
 
 const INVALID_CREDENTIALS = 'Adresse e-mail ou mot de passe incorrect';
 
@@ -104,6 +106,8 @@ export async function logout(refreshToken: string | undefined) {
 export async function requestPasswordReset(email: string) {
   const user = await prisma.user.findUnique({ where: { email }, select: { id: true, isActive: true } });
   if (!user || !user.isActive) return;
+  const recent = await prisma.passwordResetToken.count({ where: { userId: user.id, createdAt: { gte: new Date(Date.now() - 3600 * 1000) } } });
+  if (recent >= MAX_RESETS_PER_HOUR) return;
   const token = generateOpaqueToken(32);
   await prisma.$transaction(async (tx) => {
     await tx.passwordResetToken.updateMany({ where: { userId: user.id, usedAt: null }, data: { usedAt: new Date() } });
