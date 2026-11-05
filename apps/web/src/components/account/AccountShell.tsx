@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, type ReactNode } from 'react';
 import clsx from 'clsx';
 import { useAuth } from '@/components/providers/AuthProvider';
+import { PanelSkeleton } from '@/components/ui/Skeleton';
 
 const LINKS = [
   { href: '/compte', label: 'Profil' },
@@ -22,7 +23,7 @@ export function AccountShell({ title, children }: { title: string; children: Rea
     if (!loading && !user) router.replace(`/compte/connexion?retour=${encodeURIComponent(pathname)}`);
   }, [loading, user, router, pathname]);
 
-  if (loading || !user) return <p className="text-muted">Chargement…</p>;
+  if (loading || !user) return <PanelSkeleton label="Chargement de votre compte…" />;
 
   return (
     <div className="grid gap-8 lg:grid-cols-[220px_1fr]">

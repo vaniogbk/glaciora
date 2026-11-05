@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { ORDER_STATUS_LABELS, countryName, formatPrice, type OrderStatus } from '@glaciora/shared';
 import { api } from '@/lib/api-client';
 import { OrderTracking } from './OrderTracking';
+import { PanelSkeleton } from '@/components/ui/Skeleton';
 
 interface OrderView {
   reference: string;
@@ -58,7 +59,7 @@ export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
       </div>
     );
   }
-  if (!order) return <p className="text-center text-muted">Chargement de votre commande…</p>;
+  if (!order) return <div className="mx-auto max-w-2xl"><PanelSkeleton rows={6} label="Chargement de votre commande…" /></div>;
 
   return (
     <div className="mx-auto max-w-2xl">

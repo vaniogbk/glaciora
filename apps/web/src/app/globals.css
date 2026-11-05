@@ -46,6 +46,13 @@
   .card {
     @apply rounded-lg bg-white shadow-card;
   }
+  /* Catalogue : pendant l'application d'un filtre (navigation en cours), les résultats actuels s'estompent au lieu de disparaître. */
+  .catalogue-results {
+    @apply transition-opacity duration-200;
+  }
+  .catalogue:has(form[data-pending]) .catalogue-results {
+    @apply pointer-events-none opacity-50;
+  }
   /* Tableaux (admin) : lignes en fiches sous 1024 px. Chaque <td> porte data-label = intitulé de sa colonne ; sans data-label, la cellule occupe toute la ligne (titre de la fiche, actions). */
   .table-stack {
     @apply w-full text-left text-sm;

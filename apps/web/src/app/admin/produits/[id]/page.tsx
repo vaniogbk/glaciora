@@ -6,6 +6,7 @@ import { useState, type FormEvent } from 'react';
 import { formatPrice, toCents } from '@glaciora/shared';
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api } from '@/lib/api-client';
+import { PanelSkeleton } from '@/components/ui/Skeleton';
 
 type Status = 'DRAFT' | 'ACTIVE' | 'ARCHIVED';
 
@@ -188,7 +189,7 @@ export default function AdminProductPage({ params }: { params: { id: string } })
   }
 
   if (error) return <p role="alert" className="text-danger">{error}</p>;
-  if (!isNew && !product) return <p className="text-muted">Chargement…</p>;
+  if (!isNew && !product) return <PanelSkeleton rows={8} label="Chargement du produit…" />;
   const categories = cats?.categories.filter((c) => c.parentId) ?? [];
 
   return (

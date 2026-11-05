@@ -4,6 +4,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { ORDER_STATUS_LABELS, formatPrice, type OrderStatus } from '@glaciora/shared';
 import { useAdminData } from '@/components/admin/useAdminData';
+import { PanelSkeleton } from '@/components/ui/Skeleton';
 
 interface Dashboard {
   pendingVerification: number;
@@ -18,7 +19,7 @@ interface Dashboard {
 export default function AdminDashboard() {
   const { data, error } = useAdminData<Dashboard>('/api/admin/dashboard');
   if (error) return <p role="alert" className="text-danger">{error}</p>;
-  if (!data) return <p className="text-muted">Chargement…</p>;
+  if (!data) return <PanelSkeleton rows={6} label="Chargement du tableau de bord…" />;
   const tiles = [
     { label: 'Virements à vérifier', value: data.pendingVerification, href: '/admin/commandes?status=PREPARING', alert: data.pendingVerification > 0 },
     { label: 'CA encaissé (30 j)', value: formatPrice(data.revenue30dCents), href: '/admin/commandes?status=PAID' },

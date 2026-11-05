@@ -39,7 +39,7 @@ export async function CatalogueView({ basePath, params, fixedCategory }: { baseP
   }
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8">
+    <div className="catalogue grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8">
       <aside aria-label="Filtres et tri">
         <Suspense>
           <FiltersPanel total={list.total} fixedCategory={fixedCategory}>
@@ -47,7 +47,7 @@ export async function CatalogueView({ basePath, params, fixedCategory }: { baseP
           </FiltersPanel>
         </Suspense>
       </aside>
-      <section aria-labelledby="resultats">
+      <section aria-labelledby="resultats" className="catalogue-results">
         <h2 id="resultats" className="sr-only">
           Résultats
         </h2>

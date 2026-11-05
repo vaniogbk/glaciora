@@ -5,6 +5,7 @@ import { ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, countryName, formatPrice, t
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api } from '@/lib/api-client';
 import { OrderTracking } from '@/components/order/OrderTracking';
+import { PanelSkeleton } from '@/components/ui/Skeleton';
 
 interface AdminOrder {
   order: {
@@ -76,7 +77,7 @@ export default function AdminOrderPage({ params }: { params: { id: string } }) {
   }
 
   if (error) return <p role="alert" className="text-danger">{error}</p>;
-  if (!data) return <p className="text-muted">Chargement…</p>;
+  if (!data) return <PanelSkeleton rows={8} label="Chargement de la commande…" />;
   const { order } = data;
   const payment = order.payments[0];
 

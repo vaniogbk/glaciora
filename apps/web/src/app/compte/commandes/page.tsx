@@ -6,6 +6,7 @@ import { ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, formatPrice, type OrderStat
 import { AccountShell } from '@/components/account/AccountShell';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { api } from '@/lib/api-client';
+import { PanelSkeleton } from '@/components/ui/Skeleton';
 
 interface OrderSummary {
   reference: string;
@@ -28,7 +29,7 @@ export default function OrdersPage() {
   return (
     <AccountShell title="Mes commandes">
       {!orders ? (
-        <p className="text-muted">Chargement…</p>
+        <PanelSkeleton label="Chargement de vos commandes…" />
       ) : orders.length === 0 ? (
         <p className="rounded-lg bg-snow p-6">
           Aucune commande pour le moment.{' '}
