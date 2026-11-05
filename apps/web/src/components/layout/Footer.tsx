@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BRAND } from '@glaciora/shared/contact';
 
+/** Passe à « true » (NEXT_PUBLIC_CARD_PAYMENT_ENABLED) quand le paiement par carte sera branché : la mention « bientôt disponible » disparaît. */
+const CARD_PAYMENT_ENABLED = process.env.NEXT_PUBLIC_CARD_PAYMENT_ENABLED === 'true';
+
 export function Footer() {
   const pathname = usePathname();
   if (pathname.startsWith('/admin')) return null;
@@ -35,6 +38,7 @@ export function Footer() {
             <li><Link className="hover:text-glacier" href="/compte">Mon compte</Link></li>
             <li><Link className="hover:text-glacier" href="/compte/commandes">Suivre une commande</Link></li>
             <li><Link className="hover:text-glacier" href="/conditions-de-vente">Conditions de vente</Link></li>
+            <li className="text-white/80">Paiement par carte bancaire{CARD_PAYMENT_ENABLED ? '' : ' (bientôt disponible)'}</li>
             <li className="text-white/80">Paiement par virement bancaire</li>
           </ul>
         </nav>

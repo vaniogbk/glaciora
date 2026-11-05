@@ -1862,9 +1862,9 @@
       "importChecksum": "5068a1850fd9b1a32d5ab21800c2f9d0e6e897995cbbeb65f4b6fe39412a7e8b",
       "variants": [
         {
-          "sku": "GLA-020-S-52-55",
+          "sku": "GLA-020-S-52-55-5-CM",
           "sizeSystem": "HELMET",
-          "sizeLabel": "S (52-55",
+          "sizeLabel": "S (52-55,5 cm)",
           "sizeSortOrder": 10,
           "color": "Matte Black",
           "priceCents": 22495,
@@ -1874,51 +1874,27 @@
           "stock": 30
         },
         {
-          "sku": "GLA-020-M-55",
+          "sku": "GLA-020-M-55-5-59-CM",
           "sizeSystem": "HELMET",
-          "sizeLabel": "M (55",
+          "sizeLabel": "M (55,5-59 cm)",
           "sizeSortOrder": 20,
           "color": "Matte Black",
           "priceCents": 22495,
           "compareAtPriceCents": 24995,
           "isActive": true,
-          "position": 2,
+          "position": 1,
           "stock": 30
         },
         {
-          "sku": "GLA-020-5-59-CM",
+          "sku": "GLA-020-L-59-62-5-CM",
           "sizeSystem": "HELMET",
-          "sizeLabel": "5-59 cm)",
-          "sizeSortOrder": -10,
-          "color": "Matte Black",
-          "priceCents": 22495,
-          "compareAtPriceCents": 24995,
-          "isActive": true,
-          "position": 3,
-          "stock": 30
-        },
-        {
-          "sku": "GLA-020-L-59-62",
-          "sizeSystem": "HELMET",
-          "sizeLabel": "L (59-62",
+          "sizeLabel": "L (59-62,5 cm)",
           "sizeSortOrder": 30,
           "color": "Matte Black",
           "priceCents": 22495,
           "compareAtPriceCents": 24995,
           "isActive": true,
-          "position": 4,
-          "stock": 30
-        },
-        {
-          "sku": "GLA-020-5-CM",
-          "sizeSystem": "HELMET",
-          "sizeLabel": "5 cm)",
-          "sizeSortOrder": -10,
-          "color": "Matte Black",
-          "priceCents": 22495,
-          "compareAtPriceCents": 24995,
-          "isActive": true,
-          "position": 5,
+          "position": 2,
           "stock": 30
         }
       ],

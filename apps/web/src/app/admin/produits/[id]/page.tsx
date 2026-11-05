@@ -186,6 +186,49 @@ export default function AdminProductPage() {
     }, 'Taille ajoutée.');
   }
 
+  /**
+   * Nouveau coloris en une fois : reprend chaque taille existante (même prix) dans le nouveau coloris, avec le stock saisi,
+   * et ajoute sa photo. Si les tailles actuelles n'ont pas encore de coloris, on leur donne d'abord leur nom (« coloris actuel »),
+   * sinon elles vaudraient pour tous les coloris.
+   */
+  function onAddColor(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!product) return;
+    const form = e.currentTarget;
+    const f = new FormData(form);
+    const color = String(f.get('newColor') ?? '').trim();
+    const current = String(f.get('currentColor') ?? '').trim();
+    const stock = Number(f.get('stock') ?? 0);
+    const photo = f.get('photo');
+    if (!color) return setMessage('Indiquez le nom du nouveau coloris.');
+    if (productColors.some((c) => c.toLowerCase() === color.toLowerCase())) return setMessage(`Le coloris « ${color} » existe déjà.`);
+    const uncolored = product.variants.filter((v) => !v.color);
+    if (uncolored.length > 0 && !current) return setMessage('Indiquez d’abord le nom du coloris actuel (celui de la photo actuelle).');
+    const sizes = new Map<string, Variant>();
+    for (const v of product.variants) if (v.isActive) sizes.set(`${v.size?.system ?? ''}|${v.size?.label ?? ''}`, v);
+    if (sizes.size === 0) return setMessage('Ajoutez d’abord au moins une taille en vente.');
+    void act(async () => {
+      if (uncolored.length > 0) {
+        for (const v of uncolored) await api(`/api/admin/products/variants/${v.id}`, { method: 'PATCH', json: { color: current } });
+        for (const img of product.images) if (!img.color) await api(`/api/admin/products/images/${img.id}`, { method: 'PATCH', json: { color: current } });
+      }
+      for (const v of sizes.values()) {
+        await api(`/api/admin/products/${id}/variants`, {
+          method: 'POST',
+          json: { sizeLabel: v.size?.label ?? null, sizeSystem: v.size?.system ?? 'ONE_SIZE', color, priceCents: v.priceCents, stock: Number.isInteger(stock) && stock > 0 ? stock : 0 },
+        });
+      }
+      if (photo instanceof File && photo.size > 0) {
+        const body = new FormData();
+        body.set('image', photo);
+        body.set('color', color);
+        body.set('alt', `${product.brand} ${product.name} coloris ${color}`);
+        await api(`/api/admin/products/${id}/images`, { method: 'POST', body });
+      }
+      form.reset();
+    }, `Coloris « ${color} » ajouté (${sizes.size} taille${sizes.size > 1 ? 's' : ''}). Vérifiez le stock de chaque taille.`);
+  }
+
   function onUploadImage(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -408,6 +451,33 @@ export default function AdminProductPage() {
               </div>
               <button type="submit" className="btn-outline col-span-2" disabled={busy}>Ajouter la taille</button>
             </form>
+            {product.variants.length > 0 && (
+              <form onSubmit={onAddColor} className="mt-5 grid gap-3 rounded-md border border-dashed border-deep/40 bg-snow p-4 sm:grid-cols-2 xl:flex xl:flex-wrap xl:items-end" aria-labelledby="ajout-coloris">
+                <h3 id="ajout-coloris" className="text-base font-bold text-marine sm:col-span-2 xl:w-full">Ajouter un coloris</h3>
+                <p className="-mt-2 text-xs text-muted sm:col-span-2 xl:w-full">
+                  Crée toutes les tailles actuelles dans le nouveau coloris (même prix). Sur la fiche, le client choisit le coloris à côté de la taille et la photo change.
+                </p>
+                {product.variants.some((v) => !v.color) && (
+                  <div>
+                    <label htmlFor="coloris-actuel" className="field-label">Coloris actuel *</label>
+                    <input id="coloris-actuel" name="currentColor" required placeholder="ex. Noir mat" className="field-input w-full xl:w-40" />
+                  </div>
+                )}
+                <div>
+                  <label htmlFor="coloris-nouveau-nom" className="field-label">Nouveau coloris *</label>
+                  <input id="coloris-nouveau-nom" name="newColor" required placeholder="ex. Blanc" className="field-input w-full xl:w-40" />
+                </div>
+                <div>
+                  <label htmlFor="coloris-stock" className="field-label">Stock par taille</label>
+                  <input id="coloris-stock" name="stock" type="number" min={0} defaultValue={0} className="field-input w-full xl:w-28" />
+                </div>
+                <div>
+                  <label htmlFor="coloris-photo" className="field-label">Photo de ce coloris</label>
+                  <input id="coloris-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" className="field-input w-full" />
+                </div>
+                <button type="submit" className="btn-primary sm:col-span-2 xl:col-span-1" disabled={busy}>Ajouter le coloris</button>
+              </form>
+            )}
           </section>
 
           <section className="card p-5" aria-labelledby="images">

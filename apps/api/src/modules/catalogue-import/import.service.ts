@@ -105,6 +105,26 @@ function readCsv(content: string): Record<string, string>[] {
   return parseCsv(content, { bom: true, delimiter: ';', columns: true, skip_empty_lines: true, relax_quotes: true, trim: true });
 }
 
+/**
+ * Liste de tailles séparées par des virgules, sauf les virgules entre parenthèses (décimales françaises :
+ * « S (52-55,5 cm),M (55,5-59 cm) » donne 2 tailles, pas 4 fragments).
+ */
+export function splitSizes(raw: string): string[] {
+  const sizes: string[] = [];
+  let depth = 0;
+  let current = '';
+  for (const char of raw) {
+    if (char === '(') depth++;
+    if (char === ')') depth = Math.max(0, depth - 1);
+    if (char === ',' && depth === 0) {
+      sizes.push(current);
+      current = '';
+    } else current += char;
+  }
+  sizes.push(current);
+  return sizes.map((s) => s.trim()).filter(Boolean);
+}
+
 function parseSpecs(raw: string): Record<string, string> | undefined {
   if (!raw) return undefined;
   const entries = raw
@@ -202,7 +222,7 @@ export async function runCatalogueImport(options: ImportOptions) {
       const complement = complementSchema.parse(complementRaw);
       const priceCents = complement.price_eur ? toCents(complement.price_eur) : null;
       const compareAt = complement.compare_at_eur ? toCents(complement.compare_at_eur) : null;
-      const sizes = complement.sizes.split(',').map((s) => s.trim()).filter(Boolean);
+      const sizes = splitSizes(complement.sizes);
       const sport: Sport = source.folder.startsWith('02_HOCKEY') ? 'HOCKEY' : 'SKI';
       const slug = slugify(`${source.brand.split(' ')[0]} ${complement.name}`);
       const isIllustration = /IA/i.test(source.imageOrigin);

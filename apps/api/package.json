@@ -20,6 +20,7 @@
     "e2e:prepare": "prisma migrate reset --force --skip-seed --skip-generate && tsx prisma/seed.ts && tsx scripts/seed-e2e.ts",
     "shipping:apply": "tsx scripts/apply-shipping-rates.ts",
     "stock:min": "tsx scripts/set-min-stock.ts",
+    "sizes:fix": "tsx scripts/fix-size-labels.ts",
     "catalogue:snapshot": "tsx scripts/export-catalogue-snapshot.ts",
     "catalogue:install": "tsx scripts/import-catalogue-snapshot.ts"
   },
