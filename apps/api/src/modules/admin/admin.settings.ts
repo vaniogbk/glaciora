@@ -290,7 +290,7 @@ adminSettingsRouter.get(
     const emails = await prisma.emailMessage.findMany({
       orderBy: { createdAt: 'desc' },
       take: 100,
-      select: { id: true, template: true, subject: true, status: true, attempts: true, lastError: true, sentAt: true, createdAt: true, provider: true, order: { select: { id: true, reference: true } } },
+      select: { id: true, template: true, subject: true, status: true, attempts: true, lastError: true, sentAt: true, deliveredAt: true, createdAt: true, provider: true, order: { select: { id: true, reference: true } } },
     });
     res.json({ emails });
   }),

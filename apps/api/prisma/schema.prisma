@@ -176,6 +176,9 @@ model Product {
   @@index([categoryId, status])
   @@index([sport, status])
   @@index([brand])
+  // Tris du catalogue (prix, nouveautés) sur les produits publiés.
+  @@index([status, priceFromCents])
+  @@index([status, createdAt])
 }
 
 model Size {
@@ -461,6 +464,9 @@ model EmailMessage {
   provider          String?
   providerMessageId String?
   sentAt            DateTime?
+  /// Livraison confirmée par le fournisseur (événement « delivered » de Brevo), vérifiée après l'envoi.
+  deliveredAt       DateTime?
+  deliveryCheckedAt DateTime?
   orderId           String?
   order             Order?      @relation(fields: [orderId], references: [id], onDelete: SetNull)
   createdAt         DateTime    @default(now())

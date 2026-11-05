@@ -22,6 +22,7 @@ interface Email {
   attempts: number;
   lastError: string | null;
   sentAt: string | null;
+  deliveredAt?: string | null;
   createdAt: string;
   provider: string | null;
   order: { id: string; reference: string } | null;
@@ -47,7 +48,7 @@ export default function AdminLogsPage() {
     <div className="space-y-10">
       <section aria-labelledby="titre-emails">
         <h1 id="titre-emails" className="text-2xl">E-mails transactionnels</h1>
-        <p className="mt-1 text-sm text-muted">SENT = confirmé par Brevo · LOGGED = mode développement, non envoyé · FAILED = échec après toutes les tentatives.</p>
+        <p className="mt-1 text-sm text-muted">SENT = accepté par Brevo (« livré » une fois la réception confirmée, vérifiée toutes les 10 min) · LOGGED = mode développement, non envoyé · FAILED = échec après toutes les tentatives ou refus de Brevo.</p>
         <p aria-live="polite" className="mt-2 text-sm font-semibold text-deep">{message}</p>
         <div className="card mt-3 overflow-x-auto">
           <table className="table-stack lg:min-w-[720px]">
@@ -67,7 +68,7 @@ export default function AdminLogsPage() {
                   <td data-label="Sujet">{m.subject}</td>
                   <td data-label="Commande">{m.order ? <Link href={`/admin/commandes/${m.order.id}`} className="text-deep underline">{m.order.reference}</Link> : '—'}</td>
                   <td data-label="Statut" className={m.status === 'FAILED' ? 'font-semibold text-danger' : ''}>
-                    {m.status} ({m.attempts}){m.lastError ? ` — ${m.lastError}` : ''}
+                    {m.status} ({m.attempts}){m.status === 'SENT' ? (m.deliveredAt ? ' · livré' : ' · livraison non confirmée') : ''}{m.lastError ? ` — ${m.lastError}` : ''}
                   </td>
                   <td className="p-3 text-right">
                     {(m.status === 'FAILED' || m.status === 'LOGGED') && (
