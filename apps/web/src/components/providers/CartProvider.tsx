@@ -1,8 +1,19 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { api } from '@/lib/api-client';
-import type { Cart } from '@/lib/types';
+import type { Cart, CartLine } from '@/lib/types';
+
+/** Panier recalculé localement pour l'affichage immédiat ; la réponse du serveur le remplace ensuite. */
+function withItems(cart: Cart, items: CartLine[]): Cart {
+  return {
+    ...cart,
+    items,
+    subtotalCents: items.reduce((sum, i) => sum + i.lineTotalCents, 0),
+    itemCount: items.reduce((sum, i) => sum + i.quantity, 0),
+    hasIssues: items.some((i) => i.issue),
+  };
+}
 
 interface CartContextValue {
   cart: Cart | null;
@@ -19,9 +30,15 @@ interface CartContextValue {
 const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<Cart | null>(null);
+  const [cart, setCartState] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
   const [pulse, setPulse] = useState(0);
+  const cartRef = useRef<Cart | null>(null);
+
+  const setCart = useCallback((next: Cart | null) => {
+    cartRef.current = next;
+    setCartState(next);
+  }, []);
 
   const refresh = useCallback(async () => {
     try {
@@ -32,7 +49,28 @@ export function CartProvider({ children }: { children: ReactNode }) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [setCart]);
+
+  /**
+   * Interface optimiste : l'écran est mis à jour avant la réponse du serveur ; en cas de refus (stock, réseau),
+   * il revient à l'état précédent puis se resynchronise, et l'erreur remonte à l'appelant pour l'afficher.
+   */
+  const optimistic = useCallback(
+    async (preview: (current: Cart) => Cart, request: () => Promise<{ cart: Cart }>): Promise<Cart> => {
+      const previous = cartRef.current;
+      if (previous) setCart(preview(previous));
+      try {
+        const data = await request();
+        setCart(data.cart);
+        return data.cart;
+      } catch (err) {
+        setCart(previous);
+        void refresh();
+        throw err;
+      }
+    },
+    [refresh, setCart],
+  );
 
   useEffect(() => {
     void refresh();
@@ -45,24 +83,30 @@ export function CartProvider({ children }: { children: ReactNode }) {
       pulse,
       refresh,
       setCart,
-      add: async (variantId, quantity) => {
-        const data = await api<{ cart: Cart }>('/api/cart/items', { method: 'POST', json: { variantId, quantity } });
-        setCart(data.cart);
+      add: (variantId, quantity) => {
         setPulse((p) => p + 1);
-        return data.cart;
+        // Article déjà au panier : quantité et total mis à jour ; nouvel article : seul le compteur avance (détails fournis par le serveur).
+        return optimistic(
+          (current) => {
+            const line = current.items.find((i) => i.variantId === variantId);
+            if (!line) return { ...current, itemCount: current.itemCount + quantity };
+            return withItems(current, current.items.map((i) => (i.variantId === variantId ? { ...i, quantity: i.quantity + quantity, lineTotalCents: i.unitPriceCents * (i.quantity + quantity) } : i)));
+          },
+          () => api<{ cart: Cart }>('/api/cart/items', { method: 'POST', json: { variantId, quantity } }),
+        );
       },
-      update: async (variantId, quantity) => {
-        const data = await api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'PATCH', json: { quantity } });
-        setCart(data.cart);
-        return data.cart;
-      },
-      remove: async (variantId) => {
-        const data = await api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'DELETE' });
-        setCart(data.cart);
-        return data.cart;
-      },
+      update: (variantId, quantity) =>
+        optimistic(
+          (current) => withItems(current, current.items.map((i) => (i.variantId === variantId ? { ...i, quantity, lineTotalCents: i.unitPriceCents * quantity } : i))),
+          () => api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'PATCH', json: { quantity } }),
+        ),
+      remove: (variantId) =>
+        optimistic(
+          (current) => withItems(current, current.items.filter((i) => i.variantId !== variantId)),
+          () => api<{ cart: Cart }>(`/api/cart/items/${encodeURIComponent(variantId)}`, { method: 'DELETE' }),
+        ),
     }),
-    [cart, loading, pulse, refresh],
+    [cart, loading, pulse, refresh, setCart, optimistic],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

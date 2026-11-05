@@ -25,11 +25,11 @@ export function AddToCart({ variants, productName }: { variants: ProductVariant[
       setMessage('Choisissez une taille avant d’ajouter au panier.');
       return;
     }
-    setStatus('loading');
+    // Confirmation immédiate (interface optimiste) ; annulée avec le message du serveur si l'ajout est refusé.
+    setStatus('added');
+    setMessage(`${productName}${selected.size ? ` (${selected.size.label})` : ''} ajouté au panier.`);
     try {
       await add(selected.id, quantity);
-      setStatus('added');
-      setMessage(`${productName}${selected.size ? ` (${selected.size.label})` : ''} ajouté au panier.`);
     } catch (err) {
       setStatus('error');
       setMessage(err instanceof ApiError ? err.message : 'Ajout impossible, réessayez.');
