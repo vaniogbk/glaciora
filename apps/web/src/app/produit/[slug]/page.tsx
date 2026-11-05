@@ -11,6 +11,12 @@ import { absoluteUrl } from '@/lib/site';
 
 export const revalidate = 60;
 
+// Aucune fiche générée au build : chacune est rendue à la première visite puis servie depuis le cache (régénérée toutes les 60 s).
+// Sans cette déclaration, Next recalcule la fiche à chaque visite.
+export function generateStaticParams() {
+  return [];
+}
+
 const SPORT_LABEL = { SKI: 'Ski', HOCKEY: 'Hockey sur glace' } as const;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
