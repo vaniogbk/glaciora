@@ -18,6 +18,15 @@ export class ApiError extends Error {
 
 let refreshing: Promise<boolean> | null = null;
 
+/** Délai maximal d'un appel : plus long pour l'envoi de fichiers (preuve de virement sur réseau mobile lent). */
+const TIMEOUT_MS = 20_000;
+const UPLOAD_TIMEOUT_MS = 120_000;
+const TIMEOUT_ERROR: ApiErrorBody = { code: 'TIMEOUT', message: 'Le serveur met trop de temps à répondre. Vérifiez votre connexion et réessayez.' };
+
+function timeoutSignal(ms: number): AbortSignal | undefined {
+  return typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal ? AbortSignal.timeout(ms) : undefined;
+}
+
 async function refreshSession(): Promise<boolean> {
   refreshing ??= fetch('/api/auth/refresh', { method: 'POST', headers: { 'x-glaciora-csrf': '1' }, credentials: 'same-origin' })
     .then((r) => r.ok)
@@ -41,7 +50,13 @@ export async function api<T>(path: string, init: RequestInit & { json?: unknown 
     headers.set('content-type', 'application/json');
     body = JSON.stringify(init.json);
   }
-  const res = await fetch(path, { ...init, headers, body, credentials: 'same-origin', cache: 'no-store' });
+  let res: Response;
+  try {
+    res = await fetch(path, { ...init, headers, body, credentials: 'same-origin', cache: 'no-store', signal: init.signal ?? timeoutSignal(body instanceof FormData ? UPLOAD_TIMEOUT_MS : TIMEOUT_MS) });
+  } catch (err) {
+    if (err instanceof DOMException && (err.name === 'TimeoutError' || err.name === 'AbortError')) throw new ApiError(0, TIMEOUT_ERROR);
+    throw new ApiError(0, { code: 'NETWORK', message: 'Connexion impossible. Vérifiez votre réseau et réessayez.' });
+  }
   if (res.status === 401 && retry && !path.startsWith('/api/auth/')) {
     if (await refreshSession()) return api<T>(path, init, false);
   }

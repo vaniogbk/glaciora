@@ -61,6 +61,9 @@ export class R2Storage implements PrivateStorage {
       region: 'auto',
       endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
       credentials: { accessKeyId, secretAccessKey },
+      // R2 lent ou injoignable : échec rapide (l'envoi de commande l'indique au client) au lieu d'une requête suspendue.
+      requestHandler: { connectionTimeout: 5_000, requestTimeout: 30_000 },
+      maxAttempts: 3,
     });
   }
 

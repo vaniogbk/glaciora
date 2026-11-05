@@ -2,14 +2,27 @@ import type { Category, ProductCard, ProductDetail, ProductList } from './types'
 
 const API_URL = (process.env.API_URL ?? 'http://localhost:4000').replace(/\/$/, '');
 
-/** Lecture côté serveur (Server Components) avec cache ISR. Ne lève jamais : renvoie null si l'API ne répond pas. */
+/** Au-delà, la page s'affiche sans ces données (message « momentanément indisponible ») plutôt que de rester bloquée. */
+const API_TIMEOUT_MS = 8000;
+
+/**
+ * Lecture côté serveur (Server Components) avec cache ISR. Ne lève jamais : renvoie null si l'API ne répond pas
+ * ou dépasse API_TIMEOUT_MS. Délai appliqué par course plutôt que par AbortSignal, pour ne pas toucher au cache de fetch.
+ */
 async function get<T>(path: string, revalidate = 60): Promise<T | null> {
-  try {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<null>((resolve) => {
+    timer = setTimeout(() => resolve(null), API_TIMEOUT_MS);
+  });
+  const request = (async () => {
     const res = await fetch(`${API_URL}${path}`, { next: { revalidate }, headers: { accept: 'application/json' } });
     if (!res.ok) return null;
     return (await res.json()) as T;
-  } catch {
-    return null;
+  })().catch(() => null);
+  try {
+    return await Promise.race([request, timeout]);
+  } finally {
+    clearTimeout(timer);
   }
 }
 
