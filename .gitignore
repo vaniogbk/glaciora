@@ -19,3 +19,6 @@ Thumbs.db
 # Sources client (lues par l'import, jamais modifiées, pas versionnées)
 GLACIORA_CATALOGUE/
 Identité graphique/
+
+# Archive source du pack de skills (installé dans .claude/skills/)
+/saas-60-claude-code-skills/

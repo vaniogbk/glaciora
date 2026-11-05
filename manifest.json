@@ -1,0 +1,366 @@
+{
+  "pack": "60 Claude Code Skills",
+  "version": "1.0",
+  "skills": [
+    {
+      "category": "security",
+      "name": "Reconnaissance Engine",
+      "slug": "reconnaissance-engine",
+      "path": ".claude/skills/reconnaissance-engine/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Subdomain Discovery",
+      "slug": "subdomain-discovery",
+      "path": ".claude/skills/subdomain-discovery/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Port Scanner",
+      "slug": "port-scanner",
+      "path": ".claude/skills/port-scanner/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Technology Fingerprinting",
+      "slug": "technology-fingerprinting",
+      "path": ".claude/skills/technology-fingerprinting/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "DNS Security Auditor",
+      "slug": "dns-security-auditor",
+      "path": ".claude/skills/dns-security-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "SSL/TLS Auditor",
+      "slug": "ssl-tls-auditor",
+      "path": ".claude/skills/ssl-tls-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Cloud Security Auditor",
+      "slug": "cloud-security-auditor",
+      "path": ".claude/skills/cloud-security-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Infrastructure Exposure Scanner",
+      "slug": "infrastructure-exposure-scanner",
+      "path": ".claude/skills/infrastructure-exposure-scanner/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "OWASP Top 10 Auditor",
+      "slug": "owasp-top-10-auditor",
+      "path": ".claude/skills/owasp-top-10-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "SQL Injection Tester",
+      "slug": "sql-injection-tester",
+      "path": ".claude/skills/sql-injection-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "XSS Vulnerability Tester",
+      "slug": "xss-vulnerability-tester",
+      "path": ".claude/skills/xss-vulnerability-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "CSRF Security Tester",
+      "slug": "csrf-security-tester",
+      "path": ".claude/skills/csrf-security-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "SSRF Vulnerability Tester",
+      "slug": "ssrf-vulnerability-tester",
+      "path": ".claude/skills/ssrf-vulnerability-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "IDOR BOLA Auditor",
+      "slug": "idor-bola-auditor",
+      "path": ".claude/skills/idor-bola-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Authentication Penetration Tester",
+      "slug": "authentication-penetration-tester",
+      "path": ".claude/skills/authentication-penetration-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Session Security Auditor",
+      "slug": "session-security-auditor",
+      "path": ".claude/skills/session-security-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "API Penetration Tester",
+      "slug": "api-penetration-tester",
+      "path": ".claude/skills/api-penetration-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Business Logic Tester",
+      "slug": "business-logic-tester",
+      "path": ".claude/skills/business-logic-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Database Security Auditor",
+      "slug": "database-security-auditor",
+      "path": ".claude/skills/database-security-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Secrets Detection Scanner",
+      "slug": "secrets-detection-scanner",
+      "path": ".claude/skills/secrets-detection-scanner/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Dependency Vulnerability Scanner",
+      "slug": "dependency-vulnerability-scanner",
+      "path": ".claude/skills/dependency-vulnerability-scanner/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "File-Upload Security Tester",
+      "slug": "file-upload-security-tester",
+      "path": ".claude/skills/file-upload-security-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Rate-Limiting Tester",
+      "slug": "rate-limiting-tester",
+      "path": ".claude/skills/rate-limiting-tester/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Access Control Auditor",
+      "slug": "access-control-auditor",
+      "path": ".claude/skills/access-control-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Encryption Auditor",
+      "slug": "encryption-auditor",
+      "path": ".claude/skills/encryption-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Ddos Resilience Auditor",
+      "slug": "ddos-resilience-auditor",
+      "path": ".claude/skills/ddos-resilience-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Waf Security Auditor",
+      "slug": "waf-security-auditor",
+      "path": ".claude/skills/waf-security-auditor/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Security Monitoring Analyst",
+      "slug": "security-monitoring-analyst",
+      "path": ".claude/skills/security-monitoring-analyst/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Incident Response Assistant",
+      "slug": "incident-response-assistant",
+      "path": ".claude/skills/incident-response-assistant/SKILL.md"
+    },
+    {
+      "category": "security",
+      "name": "Automated Security Remediation",
+      "slug": "automated-security-remediation",
+      "path": ".claude/skills/automated-security-remediation/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "SEO Audit Engine",
+      "slug": "seo-audit-engine",
+      "path": ".claude/skills/seo-audit-engine/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Technical SEO Analyzer",
+      "slug": "technical-seo-analyzer",
+      "path": ".claude/skills/technical-seo-analyzer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Website Crawler",
+      "slug": "website-crawler",
+      "path": ".claude/skills/website-crawler/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Sitemap Optimizer",
+      "slug": "sitemap-optimizer",
+      "path": ".claude/skills/sitemap-optimizer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Robots Txt Auditor",
+      "slug": "robots-txt-auditor",
+      "path": ".claude/skills/robots-txt-auditor/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Indexability Checker",
+      "slug": "indexability-checker",
+      "path": ".claude/skills/indexability-checker/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Canonical URL Manager",
+      "slug": "canonical-url-manager",
+      "path": ".claude/skills/canonical-url-manager/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Core Web Vitals Optimizer",
+      "slug": "core-web-vitals-optimizer",
+      "path": ".claude/skills/core-web-vitals-optimizer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Mobile SEO Auditor",
+      "slug": "mobile-seo-auditor",
+      "path": ".claude/skills/mobile-seo-auditor/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Structured Data Generator",
+      "slug": "structured-data-generator",
+      "path": ".claude/skills/structured-data-generator/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Keyword Research Engine",
+      "slug": "keyword-research-engine",
+      "path": ".claude/skills/keyword-research-engine/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Search Intent Analyzer",
+      "slug": "search-intent-analyzer",
+      "path": ".claude/skills/search-intent-analyzer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Keyword Difficulty Analyzer",
+      "slug": "keyword-difficulty-analyzer",
+      "path": ".claude/skills/keyword-difficulty-analyzer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Competitor SEO Intelligence",
+      "slug": "competitor-seo-intelligence",
+      "path": ".claude/skills/competitor-seo-intelligence/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Keyword Clustering",
+      "slug": "keyword-clustering",
+      "path": ".claude/skills/keyword-clustering/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Content Gap Analyzer",
+      "slug": "content-gap-analyzer",
+      "path": ".claude/skills/content-gap-analyzer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "SEO Content Writer",
+      "slug": "seo-content-writer",
+      "path": ".claude/skills/seo-content-writer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Content Optimization Engine",
+      "slug": "content-optimization-engine",
+      "path": ".claude/skills/content-optimization-engine/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Topical Authority Builder",
+      "slug": "topical-authority-builder",
+      "path": ".claude/skills/topical-authority-builder/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Blog Strategy Generator",
+      "slug": "blog-strategy-generator",
+      "path": ".claude/skills/blog-strategy-generator/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "On Page SEO Optimizer",
+      "slug": "on-page-seo-optimizer",
+      "path": ".claude/skills/on-page-seo-optimizer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Meta Tags Optimizer",
+      "slug": "meta-tags-optimizer",
+      "path": ".claude/skills/meta-tags-optimizer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Internal Linking Builder",
+      "slug": "internal-linking-builder",
+      "path": ".claude/skills/internal-linking-builder/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Image SEO Optimizer",
+      "slug": "image-seo-optimizer",
+      "path": ".claude/skills/image-seo-optimizer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Backlink Profile Analyzer",
+      "slug": "backlink-profile-analyzer",
+      "path": ".claude/skills/backlink-profile-analyzer/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Link Building Strategist",
+      "slug": "link-building-strategist",
+      "path": ".claude/skills/link-building-strategist/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Google Search Console Analyst",
+      "slug": "google-search-console-analyst",
+      "path": ".claude/skills/google-search-console-analyst/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "Google Analytics 4 Analyst",
+      "slug": "google-analytics-4-analyst",
+      "path": ".claude/skills/google-analytics-4-analyst/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "SEO Ranking Monitor",
+      "slug": "seo-ranking-monitor",
+      "path": ".claude/skills/seo-ranking-monitor/SKILL.md"
+    },
+    {
+      "category": "seo",
+      "name": "SEO Reporting Automation",
+      "slug": "seo-reporting-automation",
+      "path": ".claude/skills/seo-reporting-automation/SKILL.md"
+    }
+  ]
+}
