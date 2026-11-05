@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
-import { toCents } from '@glaciora/shared';
+import { toCents } from '@glaciora/shared/money';
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api } from '@/lib/api-client';
 

@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { CatalogueView, pickParams, type SearchParams } from '@/components/catalogue/CatalogueView';
 import { getCategories } from '@/lib/server-api';
+import { Suspense } from 'react';
+import { CatalogueBodySkeleton } from '@/components/ui/Skeleton';
 
 const INTROS: Record<string, string> = {
   skis: 'Skis all-mountain, freeride, randonnée et junior des marques Völkl et Zag.',
@@ -18,8 +20,8 @@ async function findCategory(slug: string) {
   return { category, categories };
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { category } = await findCategory(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { category } = await findCategory((await params).slug);
   if (!category) return { title: 'Catégorie introuvable' };
   return {
     title: `${category.name} — ski et hockey`,
@@ -28,8 +30,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function CategoryPage({ params, searchParams }: { params: { slug: string }; searchParams: SearchParams }) {
-  const { category, categories } = await findCategory(params.slug);
+export default async function CategoryPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<SearchParams> }) {
+  const [{ slug }, query] = await Promise.all([params, searchParams]);
+  const { category, categories } = await findCategory(slug);
   if (!category) notFound();
   const parent = category.parentId ? categories.find((c) => c.id === category.parentId) : undefined;
   const children = categories.filter((c) => c.parentId === category.id && c.productCount > 0);
@@ -55,7 +58,9 @@ export default async function CategoryPage({ params, searchParams }: { params: {
         {category.productCount === 0 ? (
           <p className="rounded-lg bg-snow p-8 text-center font-semibold text-marine">Cette collection arrive bientôt.</p>
         ) : (
-          <CatalogueView basePath={`/categorie/${category.slug}`} params={pickParams(searchParams, { category: category.slug })} fixedCategory={category.slug} />
+          <Suspense fallback={<CatalogueBodySkeleton />}>
+            <CatalogueView basePath={`/categorie/${category.slug}`} params={pickParams(query, { category: category.slug })} fixedCategory={category.slug} />
+          </Suspense>
         )}
       </div>
     </div>

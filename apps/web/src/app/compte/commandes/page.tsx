@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, formatPrice, type OrderStatus } from '@glaciora/shared';
+import { formatPrice } from '@glaciora/shared/money';
+import { ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, type OrderStatus } from '@glaciora/shared/order';
 import { AccountShell } from '@/components/account/AccountShell';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { api } from '@/lib/api-client';

@@ -15,7 +15,9 @@ async function get<T>(path: string, revalidate = 60): Promise<T | null> {
     timer = setTimeout(() => resolve(null), API_TIMEOUT_MS);
   });
   const request = (async () => {
-    const res = await fetch(`${API_URL}${path}`, { next: { revalidate }, headers: { accept: 'application/json' } });
+    const headers: Record<string, string> = { accept: 'application/json' };
+    if (process.env.PROXY_SECRET) headers['x-glaciora-proxy'] = process.env.PROXY_SECRET;
+    const res = await fetch(`${API_URL}${path}`, { next: { revalidate }, headers });
     if (!res.ok) return null;
     return (await res.json()) as T;
   })().catch(() => null);

@@ -23,27 +23,22 @@ export function ProductGridSkeleton({ count = 6 }: { count?: number }) {
   );
 }
 
-/** Page catalogue / catégorie / recherche en attente : titre, filtres et grille. */
-export function CatalogueSkeleton({ title }: { title?: string }) {
+/** Zone filtres + grille du catalogue en attente (titre de page déjà affiché). */
+export function CatalogueBodySkeleton() {
   return (
-    <div className="container py-10" role="status" aria-live="polite">
+    <div className="grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8" role="status" aria-live="polite">
       <span className="sr-only">Chargement des produits…</span>
-      <Skeleton className="h-4 w-40" />
-      {title ? <h1 className="mt-4 text-3xl sm:text-4xl">{title}</h1> : <Skeleton className="mt-4 h-9 w-64" />}
-      <Skeleton className="mt-3 h-4 w-full max-w-lg" />
-      <div className="mt-8 grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8">
-        <div className="hidden space-y-4 rounded-lg bg-snow p-5 lg:block">
-          {Array.from({ length: 5 }, (_, i) => (
-            <Skeleton key={i} className="h-11 w-full" />
-          ))}
+      <div className="hidden space-y-4 rounded-lg bg-snow p-5 lg:block">
+        {Array.from({ length: 5 }, (_, i) => (
+          <Skeleton key={i} className="h-11 w-full" />
+        ))}
+      </div>
+      <div>
+        <div className="mb-4 flex min-h-[44px] items-center justify-between">
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-8 w-24 rounded-full lg:hidden" />
         </div>
-        <div>
-          <div className="mb-4 flex items-center justify-between">
-            <Skeleton className="h-4 w-24" />
-            <Skeleton className="h-8 w-24 rounded-full lg:hidden" />
-          </div>
-          <ProductGridSkeleton />
-        </div>
+        <ProductGridSkeleton />
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { CatalogueView, pickParams, type SearchParams } from '@/components/catalogue/CatalogueView';
+import { Suspense } from 'react';
+import { CatalogueBodySkeleton } from '@/components/ui/Skeleton';
 
 export const metadata: Metadata = {
   title: 'Recherche',
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/recherche' },
 };
 
-export default function SearchPage({ searchParams }: { searchParams: SearchParams }) {
-  const params = pickParams(searchParams);
+export default async function SearchPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const params = pickParams(await searchParams);
   return (
     <div className="container py-10">
       <Breadcrumbs items={[{ label: 'Recherche', href: '/recherche' }]} />
@@ -25,7 +27,9 @@ export default function SearchPage({ searchParams }: { searchParams: SearchParam
         </button>
       </form>
       <div className="mt-8">
-        <CatalogueView basePath="/recherche" params={params} />
+        <Suspense fallback={<CatalogueBodySkeleton />}>
+          <CatalogueView basePath="/recherche" params={params} />
+        </Suspense>
       </div>
     </div>
   );

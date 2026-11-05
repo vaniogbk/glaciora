@@ -1,7 +1,26 @@
 /** @type {import('next').NextConfig} */
 const apiUrl = process.env.API_URL ?? 'http://localhost:4000';
 
+// CSP : tout vient du site lui-même (police, images, Speed Insights sous /_vercel). « unsafe-inline » reste nécessaire aux
+// scripts d'amorçage de Next sans nonce ; « unsafe-eval » seulement en développement (rechargement à chaud).
+const isDev = process.env.NODE_ENV !== 'production';
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self'",
+  `connect-src 'self'${isDev ? ' ws: wss:' : ''}`,
+  "frame-ancestors 'none'",
+  "frame-src 'none'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  ...(isDev ? [] : ['upgrade-insecure-requests']),
+].join('; ');
+
 const securityHeaders = [
+  { key: 'Content-Security-Policy', value: contentSecurityPolicy },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },

@@ -60,7 +60,7 @@ export interface ProductDetail {
   dimensions: string | null;
   isNew: boolean;
   imagesAreIllustrations: boolean;
-  images: { url: string; alt: string; width: number | null; height: number | null }[];
+  images: { url: string; alt: string; width: number | null; height: number | null; color?: string | null }[];
   variants: ProductVariant[];
   priceFromCents: number | null;
   compareAtPriceCents: number | null;

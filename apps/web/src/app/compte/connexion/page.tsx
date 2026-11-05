@@ -7,10 +7,8 @@ import { Field } from '@/components/ui/Field';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useCart } from '@/components/providers/CartProvider';
 import { ApiError } from '@/lib/api-client';
+import { safeReturn } from '@/lib/safe-return';
 
-function safeReturn(value: string | null): string | null {
-  return value && value.startsWith('/') && !value.startsWith('//') ? value : null;
-}
 
 function LoginForm() {
   const router = useRouter();

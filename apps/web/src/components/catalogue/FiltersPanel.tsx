@@ -1,19 +1,15 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import clsx from 'clsx';
-
-const FILTER_KEYS = ['category', 'sport', 'size', 'brand', 'condition', 'inStock', 'minPrice', 'maxPrice'];
 
 /**
  * Sous 1024 px, les filtres sont masqués et s'ouvrent depuis un petit bouton « Filtrer » placé à côté du nombre de résultats.
  * Au-delà, ils restent affichés en colonne. Le panneau reste ouvert pendant l'application des filtres (navigation sans rechargement).
  */
-export function FiltersPanel({ total, fixedCategory, children }: { total: number; fixedCategory?: string; children: ReactNode }) {
-  const params = useSearchParams();
+/** Rendu dès le serveur (nombre de filtres actifs calculé par la page) : pas de bandeau qui apparaît après coup et décale la grille. */
+export function FiltersPanel({ total, active, children }: { total: number; active: number; children: ReactNode }) {
   const [open, setOpen] = useState(false);
-  const active = FILTER_KEYS.filter((key) => params.get(key) && !(key === 'category' && fixedCategory)).length;
 
   return (
     <div>

@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { ProductGallery } from '@/components/product/ProductGallery';
 import { AddToCart } from '@/components/product/AddToCart';
+import { ColorSelectionProvider } from '@/components/product/ColorSelection';
+import { variantColors } from '@/components/product/color-swatch';
 import { Price } from '@/components/product/Price';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -19,8 +21,8 @@ export function generateStaticParams() {
 
 const SPORT_LABEL = { SKI: 'Ski', HOCKEY: 'Hockey sur glace' } as const;
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const product = await getProduct(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const product = await getProduct((await params).slug);
   if (!product) return { title: 'Produit introuvable', robots: { index: false } };
   const title = `${product.brand} ${product.name}`;
   const description = (product.shortDescription ?? `${title} — ${product.category.name}, ${SPORT_LABEL[product.sport].toLowerCase()}.`).slice(0, 155);
@@ -34,8 +36,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const product = await getProduct(params.slug);
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const product = await getProduct((await params).slug);
   if (!product) notFound();
 
   const crumbs = [
@@ -74,8 +76,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
   return (
     <div className="container py-10">
       <Breadcrumbs items={crumbs} />
+      <ColorSelectionProvider initial={variantColors(product.variants)[0] ?? null}>
       <div className="mt-6 grid gap-10 lg:grid-cols-2">
-        <ProductGallery images={product.images} name={product.name} isIllustration={product.imagesAreIllustrations} />
+        <ProductGallery images={product.images} name={product.name} />
         <div>
           <p className="eyebrow">{product.brand}</p>
           <h1 className="mt-2 text-3xl sm:text-4xl">{product.name}</h1>
@@ -103,6 +106,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           </div>
         </div>
       </div>
+      </ColorSelectionProvider>
 
       <section className="mt-14 grid gap-10 lg:grid-cols-2" aria-labelledby="caracteristiques">
         <div>

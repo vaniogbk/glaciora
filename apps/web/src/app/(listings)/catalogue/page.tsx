@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { CatalogueView, pickParams, type SearchParams } from '@/components/catalogue/CatalogueView';
+import { Suspense } from 'react';
+import { CatalogueBodySkeleton } from '@/components/ui/Skeleton';
 
 export const metadata: Metadata = {
   title: 'Catalogue ski et hockey sur glace',
@@ -8,15 +10,17 @@ export const metadata: Metadata = {
   alternates: { canonical: '/catalogue' },
 };
 
-export default function CataloguePage({ searchParams }: { searchParams: SearchParams }) {
-  const params = pickParams(searchParams);
+export default async function CataloguePage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const params = pickParams(await searchParams);
   return (
     <div className="container py-10">
       <Breadcrumbs items={[{ label: 'Catalogue', href: '/catalogue' }]} />
       <h1 className="mt-4 text-3xl sm:text-4xl">Catalogue</h1>
       <p className="mt-2 max-w-2xl text-muted">Ski, hockey sur glace et accessoires de montagne : filtrez pour trouver le bon équipement.</p>
       <div className="mt-8">
-        <CatalogueView basePath="/catalogue" params={params} />
+        <Suspense fallback={<CatalogueBodySkeleton />}>
+          <CatalogueView basePath="/catalogue" params={params} />
+        </Suspense>
       </div>
     </div>
   );

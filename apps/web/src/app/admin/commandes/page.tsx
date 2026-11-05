@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useState, type FormEvent } from 'react';
-import { ORDER_STATUSES, ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, countryName, formatPrice, type OrderStatus } from '@glaciora/shared';
+import { countryName } from '@glaciora/shared/countries';
+import { formatPrice } from '@glaciora/shared/money';
+import { ORDER_STATUSES, ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, type OrderStatus } from '@glaciora/shared/order';
 import { useAdminData } from '@/components/admin/useAdminData';
 
 interface OrdersResponse {

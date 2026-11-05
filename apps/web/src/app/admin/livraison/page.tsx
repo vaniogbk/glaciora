@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { formatPrice, toCents } from '@glaciora/shared';
+import { formatPrice, toCents } from '@glaciora/shared/money';
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api } from '@/lib/api-client';
 

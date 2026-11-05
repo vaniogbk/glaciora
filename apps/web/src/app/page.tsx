@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { BRAND } from '@glaciora/shared';
+import { BRAND } from '@glaciora/shared/contact';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { HomeVisual } from '@/components/home/HomeVisual';
 import { Reveal } from '@/components/ui/Reveal';

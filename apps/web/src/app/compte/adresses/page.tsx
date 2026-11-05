@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
-import { EUROPEAN_COUNTRIES, countryName } from '@glaciora/shared';
+import { EUROPEAN_COUNTRIES, countryName } from '@glaciora/shared/countries';
 import { AccountShell } from '@/components/account/AccountShell';
 import { Field } from '@/components/ui/Field';
 import { useAuth } from '@/components/providers/AuthProvider';

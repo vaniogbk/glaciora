@@ -1,7 +1,10 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
-import { ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, countryName, formatPrice, type OrderStatus } from '@glaciora/shared';
+import { countryName } from '@glaciora/shared/countries';
+import { formatPrice } from '@glaciora/shared/money';
+import { ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, type OrderStatus } from '@glaciora/shared/order';
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api } from '@/lib/api-client';
 import { OrderTracking } from '@/components/order/OrderTracking';
@@ -42,8 +45,9 @@ interface AdminOrder {
   allowedTransitions: OrderStatus[];
 }
 
-export default function AdminOrderPage({ params }: { params: { id: string } }) {
-  const { data, error, reload } = useAdminData<AdminOrder>(`/api/admin/orders/${params.id}`);
+export default function AdminOrderPage() {
+  const { id } = useParams<{ id: string }>();
+  const { data, error, reload } = useAdminData<AdminOrder>(`/api/admin/orders/${id}`);
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
 
@@ -73,7 +77,7 @@ export default function AdminOrderPage({ params }: { params: { id: string } }) {
       notifyCustomer: f.get('notifyCustomer') === 'on',
     };
     if (json.status === 'CANCELLED' && !window.confirm('Annuler la commande ? Le stock sera remis en vente.')) return;
-    void act(() => api(`/api/admin/orders/${params.id}/status`, { method: 'PATCH', json }), 'Statut mis à jour.');
+    void act(() => api(`/api/admin/orders/${id}/status`, { method: 'PATCH', json }), 'Statut mis à jour.');
   }
 
   if (error) return <p role="alert" className="text-danger">{error}</p>;

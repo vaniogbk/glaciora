@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { EUROPEAN_COUNTRIES, countryName } from '@glaciora/shared';
+import { EUROPEAN_COUNTRIES, countryName } from '@glaciora/shared/countries';
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api, fieldErrors } from '@/lib/api-client';
 

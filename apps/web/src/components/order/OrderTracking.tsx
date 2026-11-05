@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { TRACKING_STEPS, trackingStep, type OrderStatus } from '@glaciora/shared';
+import { TRACKING_STEPS, trackingStep, type OrderStatus } from '@glaciora/shared/order';
 
 /** Suivi en 3 étapes (En préparation → En route → Livrée) : trait d'évolution et message de l'étape en cours. */
 export function OrderTracking({ status }: { status: OrderStatus }) {

@@ -3,34 +3,44 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { useColorSelection } from './ColorSelection';
 
 interface GalleryImage {
   url: string;
   alt: string;
+  color?: string | null;
 }
 
-export function ProductGallery({ images, name, isIllustration }: { images: GalleryImage[]; name: string; isIllustration: boolean }) {
-  const [active, setActive] = useState(0);
-  const current = images[active];
+/** Photos du coloris choisi (sinon photos communes, sinon toutes) ; revient à la première vue à chaque changement de coloris. */
+function imagesForColor(images: GalleryImage[], color: string | null): GalleryImage[] {
+  const ofColor = color ? images.filter((i) => i.color === color) : [];
+  if (ofColor.length) return ofColor;
+  const common = images.filter((i) => !i.color);
+  return common.length ? common : images;
+}
+
+export function ProductGallery({ images, name }: { images: GalleryImage[]; name: string }) {
+  const { color } = useColorSelection();
+  const shown = imagesForColor(images, color);
+  const [view, setView] = useState({ color, index: 0 });
+  const active = view.color === color ? Math.min(view.index, shown.length - 1) : 0;
+  const current = shown[active];
   return (
     <div>
       <div className="relative aspect-square overflow-hidden rounded-lg bg-snow">
         {current ? (
-          <Image src={current.url} alt={current.alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain p-6" />
+          <Image key={current.url} src={current.url} alt={current.alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain p-6" data-testid="product-photo" />
         ) : (
           <div className="flex h-full items-center justify-center text-muted">Visuel à venir</div>
         )}
       </div>
-      {isIllustration && (
-        <p className="mt-2 text-xs text-muted">Visuel d&apos;illustration non contractuel : coloris et détails peuvent différer du produit livré.</p>
-      )}
-      {images.length > 1 && (
+      {shown.length > 1 && (
         <ul className="mt-4 flex gap-3" aria-label={`Autres vues de ${name}`}>
-          {images.map((image, index) => (
+          {shown.map((image, index) => (
             <li key={image.url}>
               <button
                 type="button"
-                onClick={() => setActive(index)}
+                onClick={() => setView({ color, index })}
                 aria-label={`Afficher la vue ${index + 1}`}
                 aria-pressed={index === active}
                 className={clsx('relative block h-20 w-20 overflow-hidden rounded-md border-2 bg-snow transition', index === active ? 'border-deep' : 'border-transparent hover:border-line')}

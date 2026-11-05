@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import clsx from 'clsx';
-import { ORDER_STATUS_LABELS, formatPrice, type OrderStatus } from '@glaciora/shared';
+import { formatPrice } from '@glaciora/shared/money';
+import { ORDER_STATUS_LABELS, type OrderStatus } from '@glaciora/shared/order';
 import { useAdminData } from '@/components/admin/useAdminData';
 import { PanelSkeleton } from '@/components/ui/Skeleton';
 

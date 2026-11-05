@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { ORDER_STATUS_LABELS, countryName, formatPrice, type OrderStatus } from '@glaciora/shared';
+import { countryName } from '@glaciora/shared/countries';
+import { formatPrice } from '@glaciora/shared/money';
+import { ORDER_STATUS_LABELS, type OrderStatus } from '@glaciora/shared/order';
 import { api } from '@/lib/api-client';
 import { OrderTracking } from './OrderTracking';
 import { PanelSkeleton } from '@/components/ui/Skeleton';

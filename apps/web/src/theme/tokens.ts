@@ -19,6 +19,21 @@ export const colors = {
   danger: '#B42318',
 } as const;
 
+/**
+ * Pastilles de coloris des produits (données catalogue, pas la charte) : mot-clé du libellé → teinte affichée.
+ * « Noir / Bleu » ou « Race Blue / White » donnent une pastille bicolore ; un libellé inconnu, une pastille neutre.
+ */
+export const productColorSwatches: Record<string, string> = {
+  noir: '#15171A', black: '#15171A', blanc: '#F7F8FA', white: '#F7F8FA', gris: '#8A929B', grey: '#8A929B', gray: '#8A929B',
+  argent: '#C3C8CE', silver: '#C3C8CE', bleu: '#1F5FBF', blue: '#1F5FBF', marine: '#14284B', navy: '#14284B', ciel: '#6FB7EA',
+  turquoise: '#1BB3B0', vert: '#2E7D4F', green: '#2E7D4F', forest: '#24563B', kaki: '#6B6B3A', rouge: '#C62F2F', red: '#C62F2F',
+  rose: '#E0709A', pink: '#E0709A', violet: '#6E3FA8', purple: '#6E3FA8', orange: '#E8741E', jaune: '#E9C229', yellow: '#E9C229',
+  or: '#C9A23A', gold: '#C9A23A', marron: '#7A4E2D', brown: '#7A4E2D', beige: '#D9C7A5',
+};
+export const productColorFallback = '#B9C3CD';
+/** Motif multicolore (coloris « Graffiti », « Multicolore »…). */
+export const productColorMulti = 'conic-gradient(#C62F2F, #E9C229, #2E7D4F, #1F5FBF, #6E3FA8, #C62F2F)';
+
 export const fonts = {
   // --font-montserrat est toujours défini (police locale chargée par next/font dans app/layout.tsx).
   sans: ['var(--font-montserrat)', 'sans-serif'],

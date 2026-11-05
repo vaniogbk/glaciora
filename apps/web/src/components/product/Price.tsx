@@ -1,4 +1,4 @@
-import { formatPrice } from '@glaciora/shared';
+import { formatPrice } from '@glaciora/shared/money';
 import clsx from 'clsx';
 
 interface PriceProps {

@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { MAX_QUANTITY_PER_LINE, formatPrice } from '@glaciora/shared';
+import { MAX_QUANTITY_PER_LINE } from '@glaciora/shared/cart';
+import { formatPrice } from '@glaciora/shared/money';
 import { useCart } from '@/components/providers/CartProvider';
 import { ApiError } from '@/lib/api-client';
 

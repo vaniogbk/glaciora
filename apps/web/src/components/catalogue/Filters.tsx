@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useTransition, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import type { Category, ProductList } from '@/lib/types';
 
 const SORTS = [
@@ -24,12 +24,16 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
-  const [pending, startTransition] = useTransition();
+  // Filtre en cours d'application tant que l'URL n'a pas rejoint la recherche demandée. Pas de startTransition autour de
+  // router.push : Next le fait déjà, et l'imbrication bloque la navigation si un filtre change pendant l'arrivée sur la page.
+  const [targetQuery, setTargetQuery] = useState<string | null>(null);
+  const pending = targetQuery !== null && targetQuery !== params.toString();
 
   function apply(next: URLSearchParams) {
     next.delete('page');
     for (const [key, value] of [...next.entries()]) if (!value) next.delete(key);
-    startTransition(() => router.push(`${pathname}${next.toString() ? `?${next}` : ''}`, { scroll: false }));
+    setTargetQuery(next.toString());
+    router.push(`${pathname}${next.toString() ? `?${next}` : ''}`, { scroll: false });
   }
 
   function onChange(e: FormEvent<HTMLFormElement>, submitted = false) {
@@ -182,7 +186,10 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
         <button type="submit" className="btn-primary flex-1">
           Appliquer
         </button>
-        <button type="button" className="btn-outline" onClick={() => startTransition(() => router.push(pathname, { scroll: false }))}>
+        <button type="button" className="btn-outline" onClick={() => {
+            setTargetQuery('');
+            router.push(pathname, { scroll: false });
+          }}>
           Effacer
         </button>
       </div>

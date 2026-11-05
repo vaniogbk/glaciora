@@ -3,20 +3,38 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import clsx from 'clsx';
-import { MAX_QUANTITY_PER_LINE, formatPrice } from '@glaciora/shared';
+import { MAX_QUANTITY_PER_LINE } from '@glaciora/shared/cart';
+import { formatPrice } from '@glaciora/shared/money';
 import { useCart } from '@/components/providers/CartProvider';
 import { ApiError } from '@/lib/api-client';
 import type { ProductVariant } from '@/lib/types';
+import { useColorSelection } from './ColorSelection';
+import { swatchBackground, variantColors } from './color-swatch';
 
-export function AddToCart({ variants, productName }: { variants: ProductVariant[]; productName: string }) {
+export function AddToCart({ variants: allVariants, productName }: { variants: ProductVariant[]; productName: string }) {
   const { add } = useCart();
+  const { color, setColor } = useColorSelection();
+  const colors = variantColors(allVariants);
+  // Tailles du coloris choisi (les variantes sans coloris valent pour tous les coloris).
+  const variants = colors.length && color ? allVariants.filter((v) => !v.color || v.color === color) : allVariants;
   const single = variants.length === 1 ? variants[0] : undefined;
-  const [selectedId, setSelectedId] = useState<string | undefined>(single?.id);
+  const [chosenId, setSelectedId] = useState<string | undefined>(single?.id);
+  const selectedId = variants.some((v) => v.id === chosenId) ? chosenId : single?.id;
   const [quantity, setQuantity] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'added' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const selected = variants.find((v) => v.id === selectedId);
-  const anyInStock = variants.some((v) => v.inStock);
+  const anyInStock = allVariants.some((v) => v.inStock);
+
+  function chooseColor(next: string) {
+    if (next === color) return;
+    // Même taille dans le nouveau coloris si elle existe, sinon nouvelle sélection.
+    const sizeLabel = selected?.size?.label;
+    const match = allVariants.find((v) => v.color === next && v.size?.label === sizeLabel && sizeLabel);
+    setColor(next);
+    setSelectedId(match?.id);
+    setStatus('idle');
+  }
   const needsSize = variants.some((v) => v.size && v.size.system !== 'ONE_SIZE');
 
   async function onAdd() {
@@ -47,6 +65,34 @@ export function AddToCart({ variants, productName }: { variants: ProductVariant[
 
   return (
     <div className="space-y-5">
+      {colors.length > 0 && (
+        <fieldset>
+          <legend className="field-label">
+            Coloris <span className="font-normal text-muted">: {color ?? colors[0]}</span>
+          </legend>
+          <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label="Choisir un coloris">
+            {colors.map((c) => {
+              const checked = c === (color ?? colors[0]);
+              const available = allVariants.some((v) => v.color === c && v.inStock);
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  role="radio"
+                  aria-checked={checked}
+                  aria-label={`${c}${available ? '' : ' (épuisé)'}`}
+                  title={c}
+                  onClick={() => chooseColor(c)}
+                  data-testid="color-option"
+                  className={clsx('inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 p-1 transition', checked ? 'border-deep' : 'border-line hover:border-deep', !available && 'opacity-50')}
+                >
+                  <span aria-hidden="true" className="block h-8 w-8 rounded-full border border-line" style={{ background: swatchBackground(c) }} />
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+      )}
       {needsSize && (
         <fieldset>
           <legend className="field-label">Taille {selected?.size ? <span className="font-normal text-muted">: {selected.size.label}</span> : null}</legend>

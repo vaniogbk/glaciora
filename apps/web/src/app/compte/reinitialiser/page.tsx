@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useState, type FormEvent } from 'react';
-import { passwordSchema } from '@glaciora/shared';
+import { passwordSchema } from '@glaciora/shared/schemas';
 import { Field } from '@/components/ui/Field';
 import { ApiError, api } from '@/lib/api-client';
 

@@ -4,7 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
-import { BRAND, PROOF_MIME_TYPES, addressSchema, checkoutSchema, countryName, emailSchema, formatPrice } from '@glaciora/shared';
+import { BRAND } from '@glaciora/shared/contact';
+import { countryName } from '@glaciora/shared/countries';
+import { formatPrice } from '@glaciora/shared/money';
+// Validation (Zod, ~100 Ko) chargée après l'affichage de la page, pas au premier rendu : la page de commande s'ouvre plus vite sur mobile.
+const loadSchemas = () => import('@glaciora/shared/schemas');
+import { PROOF_MIME_TYPES } from '@glaciora/shared/upload';
 import { useCart } from '@/components/providers/CartProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { ApiError, api, fieldErrors } from '@/lib/api-client';
@@ -68,6 +73,11 @@ export default function CheckoutPage() {
   const { cart, loading: cartLoading, refresh } = useCart();
   const { user } = useAuth();
   const [config, setConfig] = useState<CheckoutConfig | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => void loadSchemas(), 1500);
+    return () => clearTimeout(timer);
+  }, []);
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState<AddressState>(EMPTY_ADDRESS);
   const [saved, setSaved] = useState<SavedAddress[]>([]);
@@ -140,7 +150,8 @@ export default function CheckoutPage() {
     setPaymentError('');
   }
 
-  function validateDelivery(): boolean {
+  async function validateDelivery(): Promise<boolean> {
+    const { addressSchema, emailSchema } = await loadSchemas();
     const next: Record<string, string> = {};
     const emailCheck = emailSchema.safeParse(email);
     if (!emailCheck.success) next.email = emailCheck.error.issues[0]?.message ?? 'E-mail invalide';
@@ -154,7 +165,7 @@ export default function CheckoutPage() {
   async function showPaymentDetails() {
     setGlobalError('');
     setPaymentError('');
-    if (!validateDelivery()) {
+    if (!(await validateDelivery())) {
       // Le message s'affiche sous le bouton et le premier champ à corriger reçoit le focus (souvent hors écran sur mobile).
       setPaymentError('Complétez les champs signalés dans « 1. Livraison » pour afficher les coordonnées bancaires.');
       requestAnimationFrame(() => document.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus());
@@ -190,6 +201,7 @@ export default function CheckoutPage() {
     e.preventDefault();
     setGlobalError('');
     const data = { email, shippingAddress: address, shippingRateId: rateId, paymentMethod: 'BANK_TRANSFER' as const, acceptTerms };
+    const { checkoutSchema } = await loadSchemas();
     const parsed = checkoutSchema.safeParse(data);
     const next: Record<string, string> = {};
     if (!parsed.success) for (const issue of parsed.error.issues) next[issue.path.join('.')] ??= issue.message;

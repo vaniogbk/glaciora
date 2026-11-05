@@ -1,8 +1,11 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ORDER_STATUSES, ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, countryName, formatPrice, type OrderStatus } from '@glaciora/shared';
+import { countryName } from '@glaciora/shared/countries';
+import { formatPrice } from '@glaciora/shared/money';
+import { ORDER_STATUSES, ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS, type OrderStatus } from '@glaciora/shared/order';
 import { AccountShell } from '@/components/account/AccountShell';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { api } from '@/lib/api-client';
@@ -31,17 +34,18 @@ interface OrderDetail {
   proofs: { createdAt: string; originalName: string }[];
 }
 
-export default function OrderDetailPage({ params }: { params: { reference: string } }) {
+export default function OrderDetailPage() {
+  const { reference } = useParams<{ reference: string }>();
   const { user } = useAuth();
   const [order, setOrder] = useState<OrderDetail | null>(null);
   const [missing, setMissing] = useState(false);
 
   useEffect(() => {
-    if (user) api<{ order: OrderDetail }>(`/api/account/orders/${encodeURIComponent(params.reference)}`).then((d) => setOrder(d.order)).catch(() => setMissing(true));
-  }, [user, params.reference]);
+    if (user) api<{ order: OrderDetail }>(`/api/account/orders/${encodeURIComponent(reference)}`).then((d) => setOrder(d.order)).catch(() => setMissing(true));
+  }, [user, reference]);
 
   return (
-    <AccountShell title={`Commande ${params.reference}`}>
+    <AccountShell title={`Commande ${reference}`}>
       {missing && <p>Commande introuvable.</p>}
       {order && (
         <div className="space-y-8">

@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
-import { formatPrice, toCents } from '@glaciora/shared';
+import { formatPrice, toCents } from '@glaciora/shared/money';
 import { errorMessage, useAdminData } from '@/components/admin/useAdminData';
 import { api } from '@/lib/api-client';
 import { PanelSkeleton } from '@/components/ui/Skeleton';
@@ -37,7 +37,7 @@ interface AdminProduct {
   isFeatured: boolean;
   isNew: boolean;
   priceSourceUrl: string | null;
-  images: { id: string; url: string; alt: string; position: number }[];
+  images: { id: string; url: string; alt: string; position: number; color: string | null }[];
   variants: Variant[];
 }
 interface Category {
@@ -54,10 +54,11 @@ function parseEuros(value: FormDataEntryValue | null): number | null {
   return toCents(text);
 }
 
-export default function AdminProductPage({ params }: { params: { id: string } }) {
-  const isNew = params.id === 'nouveau';
+export default function AdminProductPage() {
+  const { id } = useParams<{ id: string }>();
+  const isNew = id === 'nouveau';
   const router = useRouter();
-  const { data, error, reload } = useAdminData<{ product: AdminProduct }>(isNew ? null : `/api/admin/products/${params.id}`);
+  const { data, error, reload } = useAdminData<{ product: AdminProduct }>(isNew ? null : `/api/admin/products/${id}`);
   const { data: cats } = useAdminData<{ categories: Category[] }>('/api/admin/categories');
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
@@ -100,7 +101,7 @@ export default function AdminProductPage({ params }: { params: { id: string } })
         const res = await api<{ product: { id: string } }>('/api/admin/products', { method: 'POST', json });
         router.replace(`/admin/produits/${res.product.id}`);
       } else {
-        await api(`/api/admin/products/${params.id}`, { method: 'PATCH', json });
+        await api(`/api/admin/products/${id}`, { method: 'PATCH', json });
         setMessage('Fiche produit enregistrée.');
         await reload();
       }
@@ -149,8 +150,9 @@ export default function AdminProductPage({ params }: { params: { id: string } })
     }
     const quantity = Number(f.get('stock'));
     const isActive = f.get('isActive') === 'on';
+    const color = String(f.get('color') ?? '').trim() || null;
     void act(async () => {
-      if (priceCents) await api(`/api/admin/products/variants/${variant.id}`, { method: 'PATCH', json: { priceCents, compareAtPriceCents, isActive } });
+      if (priceCents) await api(`/api/admin/products/variants/${variant.id}`, { method: 'PATCH', json: { priceCents, compareAtPriceCents, isActive, color } });
       else await api(`/api/admin/products/variants/${variant.id}`, { method: 'PATCH', json: { isActive: false } });
       if (Number.isInteger(quantity) && quantity !== (variant.stock?.quantity ?? 0)) {
         await api(`/api/admin/products/variants/${variant.id}/stock`, { method: 'PUT', json: { quantity, reason: 'Ajustement admin' } });
@@ -170,9 +172,15 @@ export default function AdminProductPage({ params }: { params: { id: string } })
       return;
     }
     void act(async () => {
-      await api(`/api/admin/products/${params.id}/variants`, {
+      await api(`/api/admin/products/${id}/variants`, {
         method: 'POST',
-        json: { sizeLabel: String(f.get('sizeLabel') ?? '') || null, sizeSystem: String(f.get('sizeSystem') ?? 'GENERIC'), priceCents, stock: Number(f.get('stock') ?? 0) },
+        json: {
+          sizeLabel: String(f.get('sizeLabel') ?? '') || null,
+          sizeSystem: String(f.get('sizeSystem') ?? 'GENERIC'),
+          color: String(f.get('color') ?? '').trim() || null,
+          priceCents,
+          stock: Number(f.get('stock') ?? 0),
+        },
       });
       form.reset();
     }, 'Taille ajoutée.');
@@ -183,13 +191,18 @@ export default function AdminProductPage({ params }: { params: { id: string } })
     const form = e.currentTarget;
     const body = new FormData(form);
     void act(async () => {
-      await api(`/api/admin/products/${params.id}/images`, { method: 'POST', body });
+      await api(`/api/admin/products/${id}/images`, { method: 'POST', body });
       form.reset();
     }, 'Image ajoutée.');
   }
 
+  function onImageColor(imageId: string, color: string) {
+    void act(() => api(`/api/admin/products/images/${imageId}`, { method: 'PATCH', json: { color: color || null } }), 'Coloris de la photo enregistré.');
+  }
+
   if (error) return <p role="alert" className="text-danger">{error}</p>;
   if (!isNew && !product) return <PanelSkeleton rows={8} label="Chargement du produit…" />;
+  const productColors = [...new Set((product?.variants ?? []).map((v) => v.color?.trim()).filter((c): c is string => Boolean(c)))];
   const categories = cats?.categories.filter((c) => c.parentId) ?? [];
 
   return (
@@ -331,7 +344,7 @@ export default function AdminProductPage({ params }: { params: { id: string } })
             )}
             <div className="mt-4 space-y-3">
               {product.variants.map((v) => (
-                <form key={v.id} onSubmit={(e) => onSaveVariant(e, v)} className="grid grid-cols-2 items-end gap-x-3 gap-y-2 rounded-md border border-line p-3 xl:grid-cols-[minmax(0,1fr)_120px_120px_100px_auto_auto]">
+                <form key={v.id} onSubmit={(e) => onSaveVariant(e, v)} className="grid grid-cols-2 items-end gap-x-3 gap-y-2 rounded-md border border-line p-3 xl:grid-cols-[minmax(0,1fr)_110px_110px_130px_90px_auto_auto]">
                   <div className="col-span-2 xl:col-span-1">
                     <p className="font-semibold text-marine">{v.size?.label ?? 'Taille unique'}</p>
                     <p className="text-xs text-muted">{v.sku}</p>
@@ -343,6 +356,10 @@ export default function AdminProductPage({ params }: { params: { id: string } })
                   <div>
                     <label htmlFor={`barre-${v.id}`} className="field-label text-xs">Prix barré (€)</label>
                     <input id={`barre-${v.id}`} name="compareAt" inputMode="decimal" defaultValue={euros(v.compareAtPriceCents)} className="field-input" />
+                  </div>
+                  <div>
+                    <label htmlFor={`coloris-${v.id}`} className="field-label text-xs">Coloris</label>
+                    <input id={`coloris-${v.id}`} name="color" list="coloris-existants" defaultValue={v.color ?? ''} placeholder="ex. Noir" className="field-input" />
                   </div>
                   <div>
                     <label htmlFor={`stock-${v.id}`} className="field-label text-xs">Stock</label>
@@ -373,6 +390,15 @@ export default function AdminProductPage({ params }: { params: { id: string } })
                 </select>
               </div>
               <div>
+                <label htmlFor="nouveau-coloris" className="field-label">Coloris</label>
+                <input id="nouveau-coloris" name="color" list="coloris-existants" placeholder="ex. Noir" className="field-input w-full sm:w-36" />
+                <datalist id="coloris-existants">
+                  {productColors.map((c) => (
+                    <option key={c} value={c} />
+                  ))}
+                </datalist>
+              </div>
+              <div>
                 <label htmlFor="nouveau-prix" className="field-label">Prix (€)</label>
                 <input id="nouveau-prix" name="price" inputMode="decimal" required className="field-input w-full sm:w-32" />
               </div>
@@ -392,6 +418,17 @@ export default function AdminProductPage({ params }: { params: { id: string } })
                   <div className="relative h-36 w-36 rounded-md bg-snow">
                     <Image src={img.url} alt={img.alt} fill sizes="144px" className="object-contain p-2" />
                   </div>
+                  {productColors.length > 0 && (
+                    <>
+                      <label htmlFor={`photo-coloris-${img.id}`} className="mt-2 block font-semibold text-marine">Coloris</label>
+                      <select id={`photo-coloris-${img.id}`} defaultValue={img.color ?? ''} onChange={(e) => onImageColor(img.id, e.target.value)} className="field-input mt-1 min-h-[36px] py-1 text-xs">
+                        <option value="">Tous les coloris</option>
+                        {productColors.map((c) => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </>
+                  )}
                   <button type="button" className="mt-2 font-semibold text-danger underline" onClick={() => act(() => api(`/api/admin/products/images/${img.id}`, { method: 'DELETE' }), 'Image supprimée.')}>
                     Supprimer
                   </button>
@@ -403,6 +440,17 @@ export default function AdminProductPage({ params }: { params: { id: string } })
                 <label htmlFor="image" className="field-label">Fichier (JPG, PNG, WEBP)</label>
                 <input id="image" name="image" type="file" accept="image/jpeg,image/png,image/webp" required className="field-input" />
               </div>
+              {productColors.length > 0 && (
+                <div className="w-full sm:w-auto">
+                  <label htmlFor="photo-coloris" className="field-label">Coloris de la photo</label>
+                  <select id="photo-coloris" name="color" className="field-input w-full sm:w-44">
+                    <option value="">Tous les coloris</option>
+                    {productColors.map((c) => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
               <div className="w-full sm:w-auto">
                 <label htmlFor="alt" className="field-label">Texte alternatif *</label>
                 <input id="alt" name="alt" required minLength={3} className="field-input w-full sm:w-72" placeholder="Description de l’image" />

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BRAND } from '@glaciora/shared';
+import { BRAND } from '@glaciora/shared/contact';
 
 export function Footer() {
   const pathname = usePathname();

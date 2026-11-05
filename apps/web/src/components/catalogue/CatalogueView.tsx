@@ -7,6 +7,7 @@ import { FiltersPanel } from './FiltersPanel';
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
+const FILTER_KEYS = ['category', 'sport', 'size', 'brand', 'condition', 'inStock', 'minPrice', 'maxPrice'];
 const ALLOWED = ['q', 'category', 'sport', 'size', 'brand', 'condition', 'inStock', 'minPrice', 'maxPrice', 'sort', 'page'];
 
 export function pickParams(searchParams: SearchParams, overrides: Record<string, string> = {}) {
@@ -41,11 +42,11 @@ export async function CatalogueView({ basePath, params, fixedCategory }: { baseP
   return (
     <div className="catalogue grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8">
       <aside aria-label="Filtres et tri">
-        <Suspense>
-          <FiltersPanel total={list.total} fixedCategory={fixedCategory}>
+        <FiltersPanel total={list.total} active={FILTER_KEYS.filter((key) => params[key] && !(key === 'category' && fixedCategory)).length}>
+          <Suspense>
             <Filters facets={list.facets} categories={categories} fixedCategory={fixedCategory} />
-          </FiltersPanel>
-        </Suspense>
+          </Suspense>
+        </FiltersPanel>
       </aside>
       <section aria-labelledby="resultats" className="catalogue-results">
         <h2 id="resultats" className="sr-only">

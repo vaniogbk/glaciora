@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
-import { registerSchema } from '@glaciora/shared';
+import { registerSchema } from '@glaciora/shared/schemas';
 import { Field } from '@/components/ui/Field';
 import { ApiError, api, fieldErrors } from '@/lib/api-client';
 
