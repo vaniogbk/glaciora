@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { BRAND } from '@glaciora/shared';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
@@ -71,6 +72,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </CartProvider>
         </AuthProvider>
         <JsonLd data={organization} />
+        {/* Core Web Vitals des vrais visiteurs (Vercel Speed Insights : sans cookie, actif seulement en production Vercel). */}
+        <SpeedInsights />
       </body>
     </html>
   );
