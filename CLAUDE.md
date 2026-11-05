@@ -40,6 +40,7 @@ GLACIORA_CATALOGUE/, Identité graphique/   Sources client : lecture seule, jama
 - Pas de page « Mentions légales ».
 - Next 15 : `params` et `searchParams` sont des promesses dans les pages serveur ; dans les pages client, lire l'identifiant avec `useParams()`.
 - Fiches produit en ISR (`generateStaticParams` vide + `revalidate`), **sans `loading.tsx`** : la page mise en cache doit contenir le produit directement (un squelette oblige le téléphone à l'afficher puis à le remplacer, ce qui retarde le LCP). Catalogue : squelette dans un `<Suspense>` de page (`CatalogueBodySkeleton`), jamais de `loading.tsx` au niveau du groupe `app/(listings)` (casse la navigation des filtres sous Next 15).
+- **Langues** : la boutique est traduite en 17 langues (`app/[locale]`, middleware de détection, `src/i18n`). Aucun texte en dur dans les pages publiques : ajouter la clé dans `i18n/messages/fr.ts` **et** dans les 16 autres langues (le test `i18n.test.ts` échoue sinon). Liens internes avec `Link` de `@/i18n/client` (ajoute le préfixe de langue). Contenu du catalogue traduit par slug dans `i18n/catalogue/<langue>.ts`. L'admin reste en français (`app/admin/layout.tsx`, racine à part).
 - Accueil : sections sous la ligne de flottaison en `cv-auto` (`content-visibility: auto`) pour alléger le premier affichage mobile. Vitesse du build local : `PERF_LOCAL=1 npm run test:perf`.
 - Commandes : statut `PREPARING` dès le dépôt de la preuve, puis `SHIPPED` (« En route ») et `DELIVERED` ; messages de suivi dans `TRACKING_STEPS` (shared).
 

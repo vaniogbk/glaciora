@@ -98,6 +98,14 @@ git -c credential.namespace=glaciora-ci -c credential.gitHubAuthModes=browser pu
 - « Mot de passe oublié » : au plus 3 liens par compte et par heure, quelle que soit l'adresse IP.
 - En-têtes du site : CSP stricte (tout depuis le site lui-même), HSTS, `X-Frame-Options: DENY`, `nosniff`.
 
+## 8 ter. Langues du site
+
+- 17 langues, une par pays de livraison : fr (sans préfixe : `/produit/…`), de, en, es, it, nl, pt, pl, cs, sk, sl, et, lt, fi, sv, nb, is (préfixées : `/de/produit/…`).
+- Le middleware choisit la langue : URL préfixée → cette langue ; sinon cookie `glaciora_lang` (sélecteur de l'en-tête), sinon langue du navigateur (`Accept-Language`), sinon français. Les publicités peuvent pointer directement vers `/de/…`, `/sk/…`, `/it/…`.
+- Textes de l'interface : `apps/web/src/i18n/messages/<langue>.ts` (le français fait référence ; un test vérifie que chaque langue a toutes les clés et variables). Textes du catalogue (catégories, descriptions courtes, caractéristiques) : `apps/web/src/i18n/catalogue/<langue>.ts`, par slug. Un produit ajouté ensuite dans l'admin s'affiche en français tant que sa traduction n'est pas ajoutée à ces fichiers.
+- E-mails clients (confirmation, suivi, mot de passe) : dans la langue de la commande ou de la demande (`Order.locale`, `User.locale`, migration `customer_locale`). Textes : `apps/api/src/modules/email/email.i18n.ts`. Les e-mails de la boutique et l'admin restent en français.
+- Conditions de vente traduites à titre informatif : la version française fait foi.
+
 ## 9. Checklist de mise en production
 
 - [ ] `APP_ENV=production`, `COOKIE_SECURE=true`, `TRUST_PROXY=2`, secrets JWT uniques

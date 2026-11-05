@@ -24,10 +24,10 @@ export function ProductGridSkeleton({ count = 6 }: { count?: number }) {
 }
 
 /** Zone filtres + grille du catalogue en attente (titre de page déjà affiché). */
-export function CatalogueBodySkeleton() {
+export function CatalogueBodySkeleton({ label }: { label: string }) {
   return (
     <div className="grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8" role="status" aria-live="polite">
-      <span className="sr-only">Chargement des produits…</span>
+      <span className="sr-only">{label}</span>
       <div className="hidden space-y-4 rounded-lg bg-snow p-5 lg:block">
         {Array.from({ length: 5 }, (_, i) => (
           <Skeleton key={i} className="h-11 w-full" />

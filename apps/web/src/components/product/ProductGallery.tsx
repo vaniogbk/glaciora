@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { useI18n } from '@/i18n/client';
+import { fmt } from '@/i18n/format';
 import { useColorSelection } from './ColorSelection';
 
 interface GalleryImage {
@@ -21,6 +23,7 @@ function imagesForColor(images: GalleryImage[], color: string | null): GalleryIm
 
 export function ProductGallery({ images, name }: { images: GalleryImage[]; name: string }) {
   const { color } = useColorSelection();
+  const { m } = useI18n();
   const shown = imagesForColor(images, color);
   const [view, setView] = useState({ color, index: 0 });
   const active = view.color === color ? Math.min(view.index, shown.length - 1) : 0;
@@ -31,17 +34,17 @@ export function ProductGallery({ images, name }: { images: GalleryImage[]; name:
         {current ? (
           <Image key={current.url} src={current.url} alt={current.alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain p-6" data-testid="product-photo" />
         ) : (
-          <div className="flex h-full items-center justify-center text-muted">Visuel à venir</div>
+          <div className="flex h-full items-center justify-center text-muted">{m.productClient.visualSoon}</div>
         )}
       </div>
       {shown.length > 1 && (
-        <ul className="mt-4 flex gap-3" aria-label={`Autres vues de ${name}`}>
+        <ul className="mt-4 flex gap-3" aria-label={fmt(m.productClient.otherViews, { name })}>
           {shown.map((image, index) => (
             <li key={image.url}>
               <button
                 type="button"
                 onClick={() => setView({ color, index })}
-                aria-label={`Afficher la vue ${index + 1}`}
+                aria-label={fmt(m.productClient.showView, { n: index + 1 })}
                 aria-pressed={index === active}
                 className={clsx('relative block h-20 w-20 overflow-hidden rounded-md border-2 bg-snow transition', index === active ? 'border-deep' : 'border-transparent hover:border-line')}
               >

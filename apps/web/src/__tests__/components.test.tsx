@@ -3,6 +3,10 @@ import { Price } from '@/components/product/Price';
 import { ProductCard } from '@/components/product/ProductCard';
 import { Footer } from '@/components/layout/Footer';
 import type { ProductCard as ProductCardData } from '@/lib/types';
+import { I18nProvider } from '@/i18n/client';
+import fr from '@/i18n/messages/fr';
+
+const withI18n = (ui: React.ReactElement) => render(<I18nProvider locale="fr" messages={fr}>{ui}</I18nProvider>);
 
 jest.mock('next/navigation', () => ({ usePathname: () => '/' }));
 
@@ -29,21 +33,21 @@ const product: ProductCardData = {
 
 describe('Price', () => {
   it('affiche le prix, le prix barré et la remise', () => {
-    render(<Price cents={45490} compareAtCents={64990} />);
+    render(<Price cents={45490} compareAtCents={64990} locale="fr" labels={fr.price} />);
     expect(screen.getByText(/454,90/)).toBeInTheDocument();
     expect(screen.getByText(/649,90/).tagName).toBe('S');
     expect(screen.getByText('-30 %')).toBeInTheDocument();
   });
 
   it('n’invente pas de prix quand il est absent', () => {
-    render(<Price cents={null} />);
+    render(<Price cents={null} locale="fr" labels={fr.price} />);
     expect(screen.getByText('Prix bientôt disponible')).toBeInTheDocument();
   });
 });
 
 describe('ProductCard', () => {
   it('relie la fiche produit, affiche la marque, le texte alternatif et la disponibilité réelle', () => {
-    render(<ProductCard product={product} />);
+    withI18n(<ProductCard product={product} locale="fr" m={fr} />);
     expect(screen.getByRole('link', { name: 'Slap 98' })).toHaveAttribute('href', '/produit/zag-slap-98');
     expect(screen.getByAltText('Zag Slap 98 — visuel d’illustration')).toBeInTheDocument();
     expect(screen.getByText('Rupture de stock')).toBeInTheDocument();
@@ -53,7 +57,7 @@ describe('ProductCard', () => {
 
 describe('Footer', () => {
   it('affiche les coordonnées cliquables et aucun lien « Mentions légales »', () => {
-    render(<Footer />);
+    withI18n(<Footer locale="fr" m={fr} />);
     expect(screen.getByRole('link', { name: 'glaciora@outlook.com' })).toHaveAttribute('href', 'mailto:glaciora@outlook.com');
     expect(screen.getByRole('link', { name: /Appeler le \+33 7 56 97 38 64/ })).toHaveAttribute('href', 'tel:+33756973864');
     expect(screen.getByRole('link', { name: /WhatsApp/ })).toHaveAttribute('href', 'https://wa.me/33756973864');

@@ -6,4 +6,5 @@ export * from './shipping';
 export * from './sepa';
 export * from './upload';
 export * from './order';
+export * from './locales';
 export * from './schemas';

@@ -168,7 +168,9 @@ adminOrdersRouter.patch(
             payload: {
               orderReference: order.reference,
               firstName: order.shipFirstName,
+              status: input.status,
               statusLabel: ORDER_STATUS_LABELS[input.status],
+              locale: order.locale,
               message: step?.message ?? (input.status === 'CANCELLED' ? 'Votre commande a été annulée. Contactez-nous pour toute question.' : undefined),
               orderUrl: orderTrackingUrl(order),
               trackingNumber: result.trackingNumber,

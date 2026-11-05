@@ -1,5 +1,9 @@
 import { z } from 'zod';
 import { MAX_QUANTITY_PER_LINE } from './cart';
+import { SITE_LOCALES } from './locales';
+
+/** Langue de la page d'où vient la demande : e-mails et liens envoyés au client dans cette langue. */
+const localeSchema = z.enum(SITE_LOCALES).optional();
 
 const required = (max: number) => z.string().trim().min(1, 'Champ obligatoire').max(max, `${max} caractères maximum`);
 const optionalText = (max: number) => z.string().trim().max(max).optional().or(z.literal(''));
@@ -43,6 +47,7 @@ export const checkoutSchema = z.object({
   paymentMethod: z.literal('BANK_TRANSFER'),
   customerNote: optionalText(500),
   acceptTerms: z.literal(true, { error: 'Vous devez accepter les conditions de vente' }),
+  locale: localeSchema,
 });
 export type CheckoutInput = z.infer<typeof checkoutSchema>;
 
@@ -56,9 +61,10 @@ export const registerSchema = z.object({
   password: passwordSchema,
   firstName: required(60),
   lastName: required(60),
+  locale: localeSchema,
 });
 export const loginSchema = z.object({ email: emailSchema, password: z.string().min(1).max(128) });
-export const resetRequestSchema = z.object({ email: emailSchema });
+export const resetRequestSchema = z.object({ email: emailSchema, locale: localeSchema });
 export const resetConfirmSchema = z.object({ token: z.string().min(20).max(200), password: passwordSchema });
 export const profileSchema = z.object({ firstName: required(60), lastName: required(60), phone: phoneSchema.optional().or(z.literal('')) });
 

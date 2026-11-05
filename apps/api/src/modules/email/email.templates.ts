@@ -1,4 +1,5 @@
-import { BRAND, TRACKING_STEPS, countryName, formatPrice } from '@glaciora/shared';
+import { BRAND, DEFAULT_SITE_LOCALE, countryName, formatPrice, intlTag, isSiteLocale, type OrderStatus } from '@glaciora/shared';
+import { emailTexts, fill } from './email.i18n';
 
 export function escapeHtml(value: string): string {
   return value
@@ -27,8 +28,8 @@ export interface ProofAttachment {
   sizeBytes: number;
 }
 
-function layout(title: string, bodyHtml: string): string {
-  return `<!doctype html><html lang="fr"><body style="margin:0;background:#E8EEF4;font-family:Montserrat,Arial,sans-serif;color:#0A1A2F">
+function layout(title: string, bodyHtml: string, locale: string = DEFAULT_SITE_LOCALE): string {
+  return `<!doctype html><html lang="${isSiteLocale(locale) ? locale : DEFAULT_SITE_LOCALE}"><body style="margin:0;background:#E8EEF4;font-family:Montserrat,Arial,sans-serif;color:#0A1A2F">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:12px;overflow:hidden">
 <tr><td style="background:#0A1A2F;color:#ffffff;padding:20px 28px;font-weight:800;letter-spacing:4px;font-size:20px">GLACIORA</td></tr>
@@ -86,7 +87,14 @@ Consulter (connexion admin requise) : ${p.adminOrderUrl}`;
   return { subject, html, text, attachments: attached ? files.map((f) => ({ name: f.name, storageKey: f.storageKey })) : undefined };
 }
 
-export interface OrderReceivedPayload {
+/** Langue du client (site au moment de la commande ou de la demande) ; absente des anciens e-mails en file : français. */
+interface Localized {
+  locale?: string;
+}
+
+const price = (cents: number, locale?: string) => formatPrice(cents, intlTag(isSiteLocale(locale) ? locale : DEFAULT_SITE_LOCALE));
+
+export interface OrderReceivedPayload extends Localized {
   orderReference: string;
   firstName: string;
   totalCents: number;
@@ -95,62 +103,83 @@ export interface OrderReceivedPayload {
 
 /** Étape 1 du suivi, envoyée dès le dépôt de la preuve de virement. */
 export function orderReceived(p: OrderReceivedPayload): RenderedEmail {
-  const amount = formatPrice(p.totalCents);
-  const step = TRACKING_STEPS[0];
-  const subject = `Commande ${p.orderReference} : ${step.label.toLowerCase()}`;
+  const t = emailTexts(p.locale);
+  const amount = price(p.totalCents, p.locale);
+  const step = t.steps[0];
+  const subject = fill(t.receivedSubject, { ref: p.orderReference });
+  const title = fill(t.receivedTitle, { name: p.firstName });
+  const body = escapeHtml(fill(t.receivedBody, { ref: '\u0001', amount: '\u0002' }))
+    .replace('\u0001', `<strong>${escapeHtml(p.orderReference)}</strong>`)
+    .replace('\u0002', `<strong>${escapeHtml(amount)}</strong>`);
   const html = layout(
-    `Merci ${p.firstName} !`,
-    `<p>Nous avons bien reçu votre commande <strong>${escapeHtml(p.orderReference)}</strong> d'un montant de <strong>${escapeHtml(amount)}</strong>, ainsi que votre preuve de virement.</p>
-<p style="font-size:16px"><strong>${escapeHtml(step.message)}</strong></p>
-${button(p.orderUrl, 'Suivre ma commande')}`,
+    title,
+    `<p>${body}</p>
+<p style="font-size:16px"><strong>${escapeHtml(step)}</strong></p>
+${button(p.orderUrl, t.trackButton)}`,
+    p.locale,
   );
-  const text = `Merci ${p.firstName} !
-Commande ${p.orderReference} — ${amount}
-${step.message}
-Suivre ma commande : ${p.orderUrl}`;
+  const text = `${title}
+${fill(t.receivedBody, { ref: p.orderReference, amount })}
+${step}
+${t.trackButton} : ${p.orderUrl}`;
   return { subject, html, text };
 }
 
-export interface OrderStatusPayload {
+export interface OrderStatusPayload extends Localized {
   orderReference: string;
   firstName: string;
-  statusLabel: string;
+  /** Statut traduit dans la langue du client ; statusLabel (français) reste pour les e-mails déjà en file. */
+  status?: OrderStatus;
+  statusLabel?: string;
   orderUrl: string;
   trackingNumber?: string | null;
   trackingUrl?: string | null;
   trackingCarrier?: string | null;
-  /** Message de l'étape de suivi (En route, Livrée) ou d'annulation. */
+  /** Message libre (anciens e-mails en file) ; sinon message de l'étape (En route, Livrée) ou d'annulation selon le statut. */
   message?: string;
 }
 
+const STEP_INDEX: Partial<Record<OrderStatus, 0 | 1 | 2>> = { PREPARING: 0, SHIPPED: 1, DELIVERED: 2 };
+
 export function orderStatusChanged(p: OrderStatusPayload): RenderedEmail {
-  const subject = `Commande ${p.orderReference} : ${p.statusLabel.toLowerCase()}`;
+  const t = emailTexts(p.locale);
+  const statusLabel = p.status ? t.status[p.status] : (p.statusLabel ?? '');
+  const stepIndex = p.status ? STEP_INDEX[p.status] : undefined;
+  const message = p.status && p.locale ? (stepIndex !== undefined ? t.steps[stepIndex] : p.status === 'CANCELLED' ? t.cancelled : undefined) : p.message;
+  const subject = fill(t.statusSubject, { ref: p.orderReference, status: statusLabel.toLowerCase() });
+  const trackingLabel = fill(t.tracking, { carrier: p.trackingCarrier ?? '' }).replace(/\s+:/, ' :').replace(/\s{2,}/g, ' ');
   const tracking = p.trackingNumber
-    ? `<p>Suivi ${escapeHtml(p.trackingCarrier ?? '')} : <strong>${escapeHtml(p.trackingNumber)}</strong>${p.trackingUrl ? ` — <a href="${escapeHtml(p.trackingUrl)}">suivre le colis</a>` : ''}</p>`
+    ? `<p>${escapeHtml(trackingLabel)} <strong>${escapeHtml(p.trackingNumber)}</strong>${p.trackingUrl ? ` — <a href="${escapeHtml(p.trackingUrl)}">${escapeHtml(t.trackParcel)}</a>` : ''}</p>`
     : '';
+  const line = escapeHtml(fill(t.statusLine, { ref: '\u0001', status: '\u0002' }))
+    .replace('\u0001', `<strong>${escapeHtml(p.orderReference)}</strong>`)
+    .replace('\u0002', `<strong>${escapeHtml(statusLabel)}</strong>`);
   const html = layout(
-    `Bonjour ${p.firstName},`,
-    `<p>Commande <strong>${escapeHtml(p.orderReference)}</strong> : <strong>${escapeHtml(p.statusLabel)}</strong></p>${p.message ? `<p style="font-size:16px"><strong>${escapeHtml(p.message)}</strong></p>` : ''}${tracking}${button(p.orderUrl, 'Suivre ma commande')}`,
+    fill(t.hello, { name: p.firstName }),
+    `<p>${line}</p>${message ? `<p style="font-size:16px"><strong>${escapeHtml(message)}</strong></p>` : ''}${tracking}${button(p.orderUrl, t.trackButton)}`,
+    p.locale,
   );
-  const text = `Commande ${p.orderReference} : ${p.statusLabel}${p.message ? `\n${p.message}` : ''}${p.trackingNumber ? `\nSuivi : ${p.trackingNumber} ${p.trackingUrl ?? ''}` : ''}\nSuivre ma commande : ${p.orderUrl}`;
+  const text = `${fill(t.statusLine, { ref: p.orderReference, status: statusLabel })}${message ? `\n${message}` : ''}${p.trackingNumber ? `\n${trackingLabel} ${p.trackingNumber} ${p.trackingUrl ?? ''}` : ''}\n${t.trackButton} : ${p.orderUrl}`;
   return { subject, html, text };
 }
 
-export interface PasswordResetPayload {
+export interface PasswordResetPayload extends Localized {
   resetUrl: string;
   expiresInMinutes: number;
 }
 
 export function passwordReset(p: PasswordResetPayload): RenderedEmail {
-  const subject = 'Réinitialisation de votre mot de passe GLACIORA';
+  const t = emailTexts(p.locale);
+  const body = fill(t.resetBody, { minutes: p.expiresInMinutes });
   const html = layout(
-    'Réinitialiser votre mot de passe',
-    `<p>Vous avez demandé à réinitialiser votre mot de passe. Ce lien est valable ${p.expiresInMinutes} minutes et ne peut servir qu'une fois.</p>
-${button(p.resetUrl, 'Choisir un nouveau mot de passe')}
-<p style="font-size:12px">Si vous n'êtes pas à l'origine de cette demande, ignorez ce message : votre mot de passe reste inchangé.</p>`,
+    t.resetTitle,
+    `<p>${escapeHtml(body)}</p>
+${button(p.resetUrl, t.resetButton)}
+<p style="font-size:12px">${escapeHtml(t.resetIgnore)}</p>`,
+    p.locale,
   );
-  const text = `Réinitialiser votre mot de passe (valable ${p.expiresInMinutes} minutes) : ${p.resetUrl}`;
-  return { subject, html, text };
+  const text = `${t.resetTitle}\n${body}\n${t.resetButton} : ${p.resetUrl}`;
+  return { subject: t.resetSubject, html, text };
 }
 
 export interface BankAccountChangedPayload {

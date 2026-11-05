@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { countryName } from '@glaciora/shared/countries';
-import { formatPrice } from '@glaciora/shared/money';
-import { ORDER_STATUS_LABELS, type OrderStatus } from '@glaciora/shared/order';
+import type { OrderStatus } from '@glaciora/shared/order';
+import { Link, useI18n } from '@/i18n/client';
+import { countryName, fmt, money } from '@/i18n/format';
+import { sizeLabel } from '@/i18n/labels';
 import { api } from '@/lib/api-client';
 import { OrderTracking } from './OrderTracking';
 import { PanelSkeleton } from '@/components/ui/Skeleton';
@@ -34,6 +34,9 @@ interface OrderView {
  */
 export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
   const params = useSearchParams();
+  const { locale, m } = useI18n();
+  const t = m.followUp;
+  const price = (cents: number) => money(cents, locale);
   const reference = params.get('ref') ?? '';
   const token = params.get('t');
   const [order, setOrder] = useState<OrderView | null>(null);
@@ -53,26 +56,25 @@ export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
   if (error) {
     return (
       <div className="mx-auto max-w-xl text-center">
-        <h1 className="text-3xl">Commande introuvable</h1>
-        <p className="mt-4 text-muted">Ouvrez le lien « Suivre ma commande » reçu par e-mail, ou retrouvez la commande dans votre compte.</p>
+        <h1 className="text-3xl">{t.notFoundTitle}</h1>
+        <p className="mt-4 text-muted">{t.notFoundText}</p>
         <Link href="/compte/commandes" className="btn-primary mt-6">
-          Mes commandes
+          {m.common.myOrders}
         </Link>
       </div>
     );
   }
-  if (!order) return <div className="mx-auto max-w-2xl"><PanelSkeleton rows={6} label="Chargement de votre commande…" /></div>;
+  if (!order) return <div className="mx-auto max-w-2xl"><PanelSkeleton rows={6} label={t.loading} /></div>;
 
   return (
     <div className="mx-auto max-w-2xl">
       <div className="rounded-xl bg-marine p-8 text-white">
-        <p className="text-xs font-semibold uppercase tracking-brand text-glacier">{mode === 'confirmation' ? 'Merci pour votre commande' : 'Suivi de commande'}</p>
+        <p className="text-xs font-semibold uppercase tracking-brand text-glacier">{mode === 'confirmation' ? t.thanks : t.trackingEyebrow}</p>
         <h1 className="mt-2 text-3xl font-extrabold text-white" data-testid="confirmation-title">
-          Commande {order.reference}
-          {mode === 'confirmation' ? ' enregistrée' : ''}
+          {fmt(mode === 'confirmation' ? t.orderRegistered : t.orderTitle, { reference: order.reference })}
         </h1>
         <p className="mt-3 text-white/85">
-          Statut : <strong className="text-white" data-testid="order-status">{ORDER_STATUS_LABELS[order.status]}</strong>
+          {t.status} <strong className="text-white" data-testid="order-status">{m.orderStatus[order.status]}</strong>
         </p>
       </div>
       <div className="mt-8">
@@ -80,45 +82,45 @@ export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
       </div>
       {order.trackingNumber && (
         <p className="mt-4 text-sm">
-          Suivi du colis {order.trackingCarrier ? `(${order.trackingCarrier})` : ''} : <strong>{order.trackingNumber}</strong>
+          {fmt(t.parcel, { carrier: order.trackingCarrier ? `(${order.trackingCarrier})` : '' })} <strong>{order.trackingNumber}</strong>
           {order.trackingUrl && (
             <>
               {' '}
               —{' '}
               <a href={order.trackingUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-deep underline">
-                suivre le colis<span className="sr-only"> (nouvelle fenêtre)</span>
+                {t.trackParcel}<span className="sr-only"> {m.common.newWindow}</span>
               </a>
             </>
           )}
         </p>
       )}
-      <p className="mt-4 text-sm text-muted">Chaque étape vous est aussi annoncée par e-mail à {order.email}.</p>
+      <p className="mt-4 text-sm text-muted">{fmt(t.emailNotice, { email: order.email })}</p>
       <section className="mt-8 rounded-lg border border-line p-5" aria-labelledby="recap">
         <h2 id="recap" className="text-lg">
-          Récapitulatif
+          {m.common.summary}
         </h2>
         <ul className="mt-3 divide-y divide-line text-sm">
           {order.items.map((item, index) => (
             <li key={index} className="flex justify-between gap-3 py-2">
               <span>
                 {item.quantity} × {item.productName}
-                {item.sizeLabel && <span className="text-muted"> — {item.sizeLabel}</span>}
+                {item.sizeLabel && <span className="text-muted"> — {sizeLabel(item.sizeLabel, m.productClient.sizeWords)}</span>}
               </span>
-              <span className="font-semibold">{formatPrice(item.lineTotalCents)}</span>
+              <span className="font-semibold">{price(item.lineTotalCents)}</span>
             </li>
           ))}
         </ul>
         <dl className="mt-3 space-y-1 border-t border-line pt-3 text-sm">
-          <div className="flex justify-between gap-3"><dt>Livraison ({order.shippingRateName}) — {order.shipCity}, {countryName(order.shipCountryCode)}</dt><dd>{formatPrice(order.shippingCents)}</dd></div>
-          <div className="flex justify-between gap-3 text-lg font-extrabold"><dt>Total payé par virement</dt><dd>{formatPrice(order.totalCents)}</dd></div>
+          <div className="flex justify-between gap-3"><dt>{fmt(t.shippingLine, { rate: order.shippingRateName, city: order.shipCity, country: countryName(order.shipCountryCode, locale) })}</dt><dd>{price(order.shippingCents)}</dd></div>
+          <div className="flex justify-between gap-3 text-lg font-extrabold"><dt>{t.totalPaid}</dt><dd>{price(order.totalCents)}</dd></div>
         </dl>
       </section>
       <div className="mt-8 flex flex-wrap gap-3">
         <Link href="/catalogue" className="btn-primary">
-          Continuer mes achats
+          {m.common.continueShopping}
         </Link>
         <Link href="/compte/commandes" className="btn-outline">
-          Mes commandes
+          {m.common.myOrders}
         </Link>
       </div>
     </div>

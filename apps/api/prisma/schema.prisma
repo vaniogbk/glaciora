@@ -71,6 +71,8 @@ model User {
   email            String    @unique
   passwordHash     String
   role             Role      @default(CLIENT)
+  /// Langue du site lors de l'inscription : e-mails du compte dans cette langue.
+  locale           String    @default("fr")
   firstName        String?
   lastName         String?
   phone            String?
@@ -313,6 +315,8 @@ model Order {
   userId           String?
   user             User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
   email            String
+  /// Langue du site au moment de la commande : e-mails de suivi et lien de suivi dans cette langue.
+  locale           String      @default("fr")
   status           OrderStatus @default(PENDING_PAYMENT_VERIFICATION)
   shipFirstName    String
   shipLastName     String

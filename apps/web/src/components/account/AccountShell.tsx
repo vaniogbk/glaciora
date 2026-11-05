@@ -1,37 +1,40 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, type ReactNode } from 'react';
 import clsx from 'clsx';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { PanelSkeleton } from '@/components/ui/Skeleton';
-
-const LINKS = [
-  { href: '/compte', label: 'Profil' },
-  { href: '/compte/adresses', label: 'Adresses' },
-  { href: '/compte/commandes', label: 'Commandes' },
-];
+import { Link, useI18n, useLocalizedRouter } from '@/i18n/client';
+import { stripLocale } from '@/i18n/config';
 
 /** Espace client : redirige vers la connexion si nécessaire (l'API refuse de toute façon sans session). */
 export function AccountShell({ title, children }: { title: string; children: ReactNode }) {
   const { user, loading, logout } = useAuth();
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useLocalizedRouter();
+  const fullPath = usePathname();
+  const pathname = stripLocale(fullPath);
+  const { m } = useI18n();
+  const t = m.account;
+  const links = [
+    { href: '/compte', label: t.profile },
+    { href: '/compte/adresses', label: t.addresses },
+    { href: '/compte/commandes', label: t.orders },
+  ];
 
   useEffect(() => {
-    if (!loading && !user) router.replace(`/compte/connexion?retour=${encodeURIComponent(pathname)}`);
-  }, [loading, user, router, pathname]);
+    if (!loading && !user) router.replace(`/compte/connexion?retour=${encodeURIComponent(fullPath)}`);
+  }, [loading, user, router, fullPath]);
 
-  if (loading || !user) return <PanelSkeleton label="Chargement de votre compte…" />;
+  if (loading || !user) return <PanelSkeleton label={t.loading} />;
 
   return (
     <div className="grid gap-8 lg:grid-cols-[220px_1fr]">
-      <nav aria-label="Mon compte" className="space-y-1">
+      <nav aria-label={t.nav} className="space-y-1">
         <p className="mb-3 text-sm text-muted">
-          Bonjour <strong className="text-marine">{user.firstName ?? user.email}</strong>
+          {t.hello} <strong className="text-marine">{user.firstName ?? user.email}</strong>
         </p>
-        {LINKS.map((l) => (
+        {links.map((l) => (
           <Link
             key={l.href}
             href={l.href}
@@ -43,7 +46,7 @@ export function AccountShell({ title, children }: { title: string; children: Rea
         ))}
         {user.role === 'ADMIN' && (
           <Link href="/admin" className="block rounded-md px-3 py-2.5 text-sm font-semibold text-deep hover:bg-snow">
-            Administration
+            {t.admin}
           </Link>
         )}
         <button
@@ -54,7 +57,7 @@ export function AccountShell({ title, children }: { title: string; children: Rea
           }}
           className="block w-full rounded-md px-3 py-2.5 text-left text-sm font-semibold text-muted hover:bg-snow"
         >
-          Se déconnecter
+          {t.logout}
         </button>
       </nav>
       <section>

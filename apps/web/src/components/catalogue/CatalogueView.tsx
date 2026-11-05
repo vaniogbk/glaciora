@@ -1,6 +1,10 @@
-import Link from 'next/link';
 import { Suspense } from 'react';
 import { ProductGrid } from '@/components/product/ProductGrid';
+import { getCatalogueLocalizer } from '@/i18n/catalogue';
+import { Link } from '@/i18n/client';
+import type { Locale } from '@/i18n/config';
+import { plural } from '@/i18n/format';
+import type { Messages } from '@/i18n/messages';
 import { getCategories, getProducts } from '@/lib/server-api';
 import { Filters } from './Filters';
 import { FiltersPanel } from './FiltersPanel';
@@ -28,20 +32,23 @@ function pageHref(base: string, params: Record<string, string>, page: number) {
   return `${base}${qs.toString() ? `?${qs}` : ''}`;
 }
 
-export async function CatalogueView({ basePath, params, fixedCategory }: { basePath: string; params: Record<string, string>; fixedCategory?: string }) {
-  const [list, categories] = await Promise.all([getProducts(params), getCategories()]);
+export async function CatalogueView({ basePath, params, fixedCategory, locale, m }: { basePath: string; params: Record<string, string>; fixedCategory?: string; locale: Locale; m: Messages }) {
+  const [rawList, rawCategories, l10n] = await Promise.all([getProducts(params), getCategories(), getCatalogueLocalizer(locale, m)]);
 
-  if (!list) {
+  if (!rawList) {
     return (
       <p className="rounded-md bg-snow p-6 text-sm" role="alert">
-        Le catalogue est momentanément indisponible. Merci de réessayer dans quelques instants.
+        {m.listing.unavailable}
       </p>
     );
   }
+  const list = l10n.list(rawList);
+  const categories = l10n.categories(rawCategories);
+  const l = m.listing;
 
   return (
     <div className="catalogue grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8">
-      <aside aria-label="Filtres et tri">
+      <aside aria-label={l.filtersAndSort}>
         <FiltersPanel total={list.total} active={FILTER_KEYS.filter((key) => params[key] && !(key === 'category' && fixedCategory)).length}>
           <Suspense>
             <Filters facets={list.facets} categories={categories} fixedCategory={fixedCategory} />
@@ -50,26 +57,26 @@ export async function CatalogueView({ basePath, params, fixedCategory }: { baseP
       </aside>
       <section aria-labelledby="resultats" className="catalogue-results">
         <h2 id="resultats" className="sr-only">
-          Résultats
+          {l.results}
         </h2>
         <p className="mb-4 hidden text-sm text-muted lg:block" aria-live="polite">
-          {list.total} produit{list.total > 1 ? 's' : ''}
+          {plural(locale, list.total, l.productCount)}
         </p>
         {list.items.length === 0 ? (
           <div className="rounded-lg bg-snow p-8 text-center">
-            <p className="font-semibold text-marine">Aucun produit ne correspond à ces critères.</p>
+            <p className="font-semibold text-marine">{l.noResults}</p>
             <Link href={basePath} className="mt-3 inline-block text-sm font-semibold text-deep underline">
-              Effacer les filtres
+              {l.clearFilters}
             </Link>
           </div>
         ) : (
-          <ProductGrid products={list.items} columns={3} priorityCount={2} />
+          <ProductGrid products={list.items} columns={3} priorityCount={2} locale={locale} m={m} />
         )}
         {list.totalPages > 1 && (
-          <nav aria-label="Pagination" className="mt-10 flex flex-wrap items-center justify-center gap-2">
+          <nav aria-label={l.pagination} className="mt-10 flex flex-wrap items-center justify-center gap-2">
             {list.page > 1 && (
               <Link className="btn-outline" href={pageHref(basePath, params, list.page - 1)} rel="prev">
-                Précédent
+                {l.previous}
               </Link>
             )}
             {Array.from({ length: list.totalPages }, (_, i) => i + 1).map((page) => (
@@ -84,7 +91,7 @@ export async function CatalogueView({ basePath, params, fixedCategory }: { baseP
             ))}
             {list.page < list.totalPages && (
               <Link className="btn-outline" href={pageHref(basePath, params, list.page + 1)} rel="next">
-                Suivant
+                {l.next}
               </Link>
             )}
           </nav>

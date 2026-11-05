@@ -4,6 +4,8 @@ import { ColorSelectionProvider } from '@/components/product/ColorSelection';
 import { ProductGallery } from '@/components/product/ProductGallery';
 import { swatchBackground } from '@/components/product/color-swatch';
 import type { ProductVariant } from '@/lib/types';
+import { I18nProvider } from '@/i18n/client';
+import fr from '@/i18n/messages/fr';
 
 jest.mock('@/components/providers/CartProvider', () => ({ useCart: () => ({ add: jest.fn() }) }));
 
@@ -26,10 +28,12 @@ const images = [
 function renderProduct() {
   const variants = [variant('n-s', 'Noir', 'S'), variant('n-m', 'Noir', 'M'), variant('b-m', 'Bleu', 'M'), variant('b-l', 'Bleu', 'L', false)];
   render(
+    <I18nProvider locale="fr" messages={fr}>
     <ColorSelectionProvider initial="Noir">
       <ProductGallery images={images} name="Casque" />
       <AddToCart variants={variants} productName="Casque" />
-    </ColorSelectionProvider>,
+    </ColorSelectionProvider>
+    </I18nProvider>,
   );
 }
 

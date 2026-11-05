@@ -78,8 +78,8 @@ authRouter.post(
   '/password/forgot',
   passwordResetLimiter,
   asyncHandler(async (req, res) => {
-    const { email } = resetRequestSchema.parse(req.body);
-    await auth.requestPasswordReset(email);
+    const { email, locale } = resetRequestSchema.parse(req.body);
+    await auth.requestPasswordReset(email, locale);
     res.status(202).json({ message: 'Si un compte existe pour cette adresse, un e-mail de réinitialisation vient d’être envoyé.' });
   }),
 );

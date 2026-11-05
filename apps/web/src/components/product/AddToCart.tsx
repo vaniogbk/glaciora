@@ -1,18 +1,21 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { MAX_QUANTITY_PER_LINE } from '@glaciora/shared/cart';
-import { formatPrice } from '@glaciora/shared/money';
 import { useCart } from '@/components/providers/CartProvider';
-import { ApiError } from '@/lib/api-client';
+import { Link, useI18n } from '@/i18n/client';
+import { apiErrorMessage } from '@/i18n/errors';
+import { fmt, money } from '@/i18n/format';
+import { colorLabel } from '@/i18n/labels';
 import type { ProductVariant } from '@/lib/types';
 import { useColorSelection } from './ColorSelection';
 import { swatchBackground, variantColors } from './color-swatch';
 
 export function AddToCart({ variants: allVariants, productName }: { variants: ProductVariant[]; productName: string }) {
   const { add } = useCart();
+  const { locale, m } = useI18n();
+  const t = m.productClient;
   const { color, setColor } = useColorSelection();
   const colors = variantColors(allVariants);
   // Tailles du coloris choisi (les variantes sans coloris valent pour tous les coloris).
@@ -40,25 +43,25 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
   async function onAdd() {
     if (!selected) {
       setStatus('error');
-      setMessage('Choisissez une taille avant d’ajouter au panier.');
+      setMessage(t.chooseSizeFirst);
       return;
     }
     // Confirmation immédiate (interface optimiste) ; annulée avec le message du serveur si l'ajout est refusé.
     setStatus('added');
-    setMessage(`${productName}${selected.size ? ` (${selected.size.label})` : ''} ajouté au panier.`);
+    setMessage(fmt(t.addedMessage, { name: `${productName}${selected.size ? ` (${selected.size.label})` : ''}` }));
     try {
       await add(selected.id, quantity);
     } catch (err) {
       setStatus('error');
-      setMessage(err instanceof ApiError ? err.message : 'Ajout impossible, réessayez.');
+      setMessage(apiErrorMessage(err, locale, m, t.addFailed));
     }
   }
 
   if (variants.length === 0 || !anyInStock) {
     return (
       <div className="rounded-md bg-snow p-4 text-sm">
-        <p className="font-semibold text-marine">Actuellement indisponible.</p>
-        <p className="mt-1 text-muted">Contactez-nous pour connaître la date de réassort.</p>
+        <p className="font-semibold text-marine">{t.unavailable}</p>
+        <p className="mt-1 text-muted">{t.restock}</p>
       </div>
     );
   }
@@ -68,9 +71,9 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
       {colors.length > 0 && (
         <fieldset>
           <legend className="field-label">
-            Coloris <span className="font-normal text-muted">: {color ?? colors[0]}</span>
+            {t.color} <span className="font-normal text-muted">: {colorLabel(color ?? colors[0]!, m.colors)}</span>
           </legend>
-          <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label="Choisir un coloris">
+          <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={t.chooseColor}>
             {colors.map((c) => {
               const checked = c === (color ?? colors[0]);
               const available = allVariants.some((v) => v.color === c && v.inStock);
@@ -80,8 +83,8 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
                   type="button"
                   role="radio"
                   aria-checked={checked}
-                  aria-label={`${c}${available ? '' : ' (épuisé)'}`}
-                  title={c}
+                  aria-label={`${colorLabel(c, m.colors)}${available ? '' : ` ${t.soldOut}`}`}
+                  title={colorLabel(c, m.colors)}
                   onClick={() => chooseColor(c)}
                   data-testid="color-option"
                   className={clsx('inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 p-1 transition', checked ? 'border-deep' : 'border-line hover:border-deep', !available && 'opacity-50')}
@@ -95,8 +98,8 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
       )}
       {needsSize && (
         <fieldset>
-          <legend className="field-label">Taille {selected?.size ? <span className="font-normal text-muted">: {selected.size.label}</span> : null}</legend>
-          <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label="Choisir une taille">
+          <legend className="field-label">{t.size} {selected?.size ? <span className="font-normal text-muted">: {selected.size.label}</span> : null}</legend>
+          <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={t.chooseSize}>
             {variants.map((v) => (
               <button
                 key={v.id}
@@ -114,18 +117,18 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
                   !v.inStock && 'cursor-not-allowed text-muted line-through opacity-60',
                 )}
               >
-                {v.size?.label ?? 'Unique'}
-                <span className="sr-only">{v.inStock ? '' : ' (épuisé)'}</span>
+                {v.size?.label ?? t.oneSize}
+                <span className="sr-only">{v.inStock ? '' : ` ${t.soldOut}`}</span>
               </button>
             ))}
           </div>
         </fieldset>
       )}
-      {selected && selected.priceCents !== variants[0]?.priceCents && <p className="text-sm text-muted">Prix pour cette taille : {formatPrice(selected.priceCents)}</p>}
+      {selected && selected.priceCents !== variants[0]?.priceCents && <p className="text-sm text-muted">{fmt(t.sizePrice, { price: money(selected.priceCents, locale) })}</p>}
       <div className="flex flex-wrap items-end gap-3">
         <div>
           <label htmlFor="quantite" className="field-label">
-            Quantité
+            {t.quantity}
           </label>
           <select
             id="quantite"
@@ -141,16 +144,16 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
           </select>
         </div>
         <button type="button" className="btn-primary flex-1 sm:flex-none sm:px-10" onClick={onAdd} disabled={status === 'loading'} data-testid="add-to-cart">
-          {status === 'loading' ? 'Ajout…' : status === 'added' ? '✓ Ajouté' : 'Ajouter au panier'}
+          {status === 'loading' ? t.adding : status === 'added' ? t.added : t.add}
         </button>
       </div>
-      {selected && selected.available > 0 && selected.available <= 3 && <p className="text-sm font-semibold text-warning">Plus que {selected.available} en stock</p>}
+      {selected && selected.available > 0 && selected.available <= 3 && <p className="text-sm font-semibold text-warning">{fmt(t.lowStock, { count: selected.available })}</p>}
       <div aria-live="polite" className="min-h-[1.5rem] text-sm">
         {status === 'added' && (
           <p className="font-semibold text-success">
             {message}{' '}
             <Link href="/panier" className="underline">
-              Voir le panier
+              {t.viewCart}
             </Link>
           </p>
         )}

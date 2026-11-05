@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import type { User } from '@prisma/client';
+import { localizedPath } from '@glaciora/shared';
 import { env } from '../../config/env';
 import { AppError, unauthorized } from '../../lib/errors';
 import { prisma } from '../../lib/prisma';
@@ -37,7 +38,7 @@ async function issueTokens(user: Pick<User, 'id' | 'role'>, familyId: string = r
  * Inscription. Réponse identique que l'adresse soit libre ou déjà utilisée (pas d'énumération) :
  * le client se connecte ensuite avec ses identifiants.
  */
-export async function register(input: { email: string; password: string; firstName: string; lastName: string }) {
+export async function register(input: { email: string; password: string; firstName: string; lastName: string; locale?: string }) {
   const existing = await prisma.user.findUnique({ where: { email: input.email }, select: { id: true } });
   if (existing) {
     await burnPasswordCheck(input.password);
@@ -49,6 +50,7 @@ export async function register(input: { email: string; password: string; firstNa
       passwordHash: await hashPassword(input.password),
       firstName: input.firstName,
       lastName: input.lastName,
+      locale: input.locale ?? 'fr',
     },
   });
   await logActivity({ actorId: user.id, actorRole: 'CLIENT', action: 'user.registered', entityType: 'User', entityId: user.id });
@@ -103,8 +105,9 @@ export async function logout(refreshToken: string | undefined) {
 }
 
 /** Toujours la même réponse ; un e-mail n'est envoyé que si le compte existe. */
-export async function requestPasswordReset(email: string) {
-  const user = await prisma.user.findUnique({ where: { email }, select: { id: true, isActive: true } });
+/** locale : langue de la page d'où vient la demande (sinon celle du compte) pour l'e-mail et le lien. */
+export async function requestPasswordReset(email: string, locale?: string) {
+  const user = await prisma.user.findUnique({ where: { email }, select: { id: true, isActive: true, locale: true } });
   if (!user || !user.isActive) return;
   const recent = await prisma.passwordResetToken.count({ where: { userId: user.id, createdAt: { gte: new Date(Date.now() - 3600 * 1000) } } });
   if (recent >= MAX_RESETS_PER_HOUR) return;
@@ -118,7 +121,11 @@ export async function requestPasswordReset(email: string) {
       {
         to: email,
         template: 'password-reset',
-        payload: { resetUrl: `${env.PUBLIC_SITE_URL}/compte/reinitialiser?token=${encodeURIComponent(token)}`, expiresInMinutes: RESET_TTL_MINUTES },
+        payload: {
+          resetUrl: `${env.PUBLIC_SITE_URL}${localizedPath(locale ?? user.locale, '/compte/reinitialiser')}?token=${encodeURIComponent(token)}`,
+          expiresInMinutes: RESET_TTL_MINUTES,
+          locale: locale ?? user.locale,
+        },
       },
       tx,
     );

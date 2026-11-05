@@ -2,15 +2,12 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
+import { useI18n } from '@/i18n/client';
+import { fmt } from '@/i18n/format';
+import { sizeLabel } from '@/i18n/labels';
 import type { Category, ProductList } from '@/lib/types';
 
-const SORTS = [
-  { value: 'featured', label: 'Recommandés' },
-  { value: 'price_asc', label: 'Prix croissant' },
-  { value: 'price_desc', label: 'Prix décroissant' },
-  { value: 'newest', label: 'Nouveautés' },
-  { value: 'name', label: 'Nom (A-Z)' },
-];
+const SORTS = ['featured', 'price_asc', 'price_desc', 'newest', 'name'] as const;
 
 interface FiltersProps {
   facets: ProductList['facets'];
@@ -21,6 +18,8 @@ interface FiltersProps {
 
 /** Filtres pilotés par l'URL (partageables, indexables, utilisables sans JS via le bouton Appliquer). */
 export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
+  const { m } = useI18n();
+  const t = m.filters;
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -57,18 +56,18 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
         e.preventDefault();
         onChange(e, true);
       }}
-      aria-label="Filtrer les produits"
+      aria-label={t.form}
       className="space-y-6"
       data-pending={pending || undefined}
     >
       <div>
         <label htmlFor="tri" className="field-label">
-          Trier par
+          {t.sortBy}
         </label>
         <select id="tri" name="sort" defaultValue={params.get('sort') ?? 'featured'} className="field-input">
           {SORTS.map((s) => (
-            <option key={s.value} value={s.value}>
-              {s.label}
+            <option key={s} value={s}>
+              {t.sorts[s]}
             </option>
           ))}
         </select>
@@ -77,13 +76,13 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
       {!fixedCategory && roots.length > 0 && (
         <div>
           <label htmlFor="filtre-categorie" className="field-label">
-            Catégorie
+            {t.category}
           </label>
           <select id="filtre-categorie" name="category" defaultValue={params.get('category') ?? ''} className="field-input">
-            <option value="">Toutes</option>
+            <option value="">{t.allCategories}</option>
             {roots.map((root) => (
               <optgroup key={root.id} label={root.name}>
-                <option value={root.slug}>Tout {root.name.toLowerCase()}</option>
+                <option value={root.slug}>{fmt(t.allOf, { name: root.name })}</option>
                 {children(root.id).map((c) => (
                   <option key={c.id} value={c.slug}>
                     {c.name}
@@ -96,12 +95,12 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
       )}
 
       <fieldset>
-        <legend className="field-label">Sport</legend>
+        <legend className="field-label">{t.sport}</legend>
         <div className="mt-1 flex gap-4 text-sm">
           {[
-            ['', 'Tous'],
-            ['SKI', 'Ski'],
-            ['HOCKEY', 'Hockey'],
+            ['', t.all],
+            ['SKI', t.ski],
+            ['HOCKEY', t.hockey],
           ].map(([value, label]) => (
             <label key={value} className="inline-flex min-h-[44px] items-center gap-2">
               <input type="radio" name="sport" value={value} defaultChecked={(params.get('sport') ?? '') === value} className="h-4 w-4 accent-deep" />
@@ -114,13 +113,13 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
       {facets.sizes.length > 0 && (
         <div>
           <label htmlFor="filtre-taille" className="field-label">
-            Taille
+            {t.size}
           </label>
           <select id="filtre-taille" name="size" defaultValue={params.get('size') ?? ''} className="field-input">
-            <option value="">Toutes les tailles</option>
+            <option value="">{t.allSizes}</option>
             {facets.sizes.map((s) => (
               <option key={s} value={s}>
-                {s}
+                {sizeLabel(s, m.productClient.sizeWords)}
               </option>
             ))}
           </select>
@@ -130,10 +129,10 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
       {facets.brands.length > 0 && (
         <div>
           <label htmlFor="filtre-marque" className="field-label">
-            Marque
+            {t.brand}
           </label>
           <select id="filtre-marque" name="brand" defaultValue={params.get('brand') ?? ''} className="field-input">
-            <option value="">Toutes les marques</option>
+            <option value="">{t.allBrands}</option>
             {facets.brands.map((b) => (
               <option key={b} value={b}>
                 {b}
@@ -144,30 +143,30 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
       )}
 
       <fieldset>
-        <legend className="field-label">Prix (€)</legend>
+        <legend className="field-label">{t.price}</legend>
         <div className="mt-1 grid grid-cols-2 gap-3">
           <div>
             <label htmlFor="prix-min" className="sr-only">
-              Prix minimum
+              {t.minPrice}
             </label>
-            <input id="prix-min" name="minPrice" type="number" min={0} inputMode="numeric" placeholder={facets.price ? `Min ${facets.price.min}` : 'Min'} defaultValue={params.get('minPrice') ?? ''} className="field-input" />
+            <input id="prix-min" name="minPrice" type="number" min={0} inputMode="numeric" placeholder={facets.price ? `${t.min} ${facets.price.min}` : t.min} defaultValue={params.get('minPrice') ?? ''} className="field-input" />
           </div>
           <div>
             <label htmlFor="prix-max" className="sr-only">
-              Prix maximum
+              {t.maxPrice}
             </label>
-            <input id="prix-max" name="maxPrice" type="number" min={0} inputMode="numeric" placeholder={facets.price ? `Max ${facets.price.max}` : 'Max'} defaultValue={params.get('maxPrice') ?? ''} className="field-input" />
+            <input id="prix-max" name="maxPrice" type="number" min={0} inputMode="numeric" placeholder={facets.price ? `${t.max} ${facets.price.max}` : t.max} defaultValue={params.get('maxPrice') ?? ''} className="field-input" />
           </div>
         </div>
       </fieldset>
 
       <fieldset>
-        <legend className="field-label">État</legend>
+        <legend className="field-label">{t.condition}</legend>
         <div className="mt-1 flex flex-wrap gap-4 text-sm">
           {[
-            ['', 'Tous'],
-            ['NEW', 'Neuf'],
-            ['USED', 'Occasion'],
+            ['', t.all],
+            ['NEW', t.new],
+            ['USED', t.used],
           ].map(([value, label]) => (
             <label key={value} className="inline-flex min-h-[44px] items-center gap-2">
               <input type="radio" name="condition" value={value} defaultChecked={(params.get('condition') ?? '') === value} className="h-4 w-4 accent-deep" />
@@ -179,18 +178,18 @@ export function Filters({ facets, categories, fixedCategory }: FiltersProps) {
 
       <label className="flex min-h-[44px] items-center gap-2 text-sm font-semibold text-marine">
         <input type="checkbox" name="inStock" value="true" defaultChecked={params.get('inStock') === 'true'} className="h-4 w-4 accent-deep" />
-        Disponible uniquement
+        {t.inStock}
       </label>
 
       <div className="flex gap-3">
         <button type="submit" className="btn-primary flex-1">
-          Appliquer
+          {t.apply}
         </button>
         <button type="button" className="btn-outline" onClick={() => {
             setTargetQuery('');
             router.push(pathname, { scroll: false });
           }}>
-          Effacer
+          {t.clear}
         </button>
       </div>
     </form>
