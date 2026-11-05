@@ -20,7 +20,8 @@ export const colors = {
 } as const;
 
 export const fonts = {
-  sans: ['Montserrat', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+  // --font-montserrat est toujours défini (police locale chargée par next/font dans app/layout.tsx).
+  sans: ['var(--font-montserrat)', 'sans-serif'],
 } as const;
 
 export const radii = {

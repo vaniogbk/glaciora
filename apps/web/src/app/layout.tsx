@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
 import { BRAND } from '@glaciora/shared';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
@@ -42,16 +43,20 @@ const organization = {
   address: { '@type': 'PostalAddress', streetAddress: BRAND.streetAddress, postalCode: BRAND.postalCode, addressLocality: BRAND.addressLocality, addressRegion: BRAND.addressRegion, addressCountry: BRAND.addressCountry },
 };
 
+// Montserrat (charte GLACIORA) auto-hébergée : une seule police variable WOFF2 (sous-ensemble latin, graisses 100 à 900),
+// préchargée par Next et servie avec le site — plus d'appel à Google Fonts. Licence : ./fonts/OFL.txt.
+const montserrat = localFont({
+  src: './fonts/montserrat-latin-wght-normal.woff2',
+  weight: '100 900',
+  style: 'normal',
+  display: 'swap',
+  variable: '--font-montserrat',
+  fallback: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Montserrat (charte GLACIORA) chargée en CSS : next/font/google échouait au build Vercel. */}
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" />
-      </head>
+    <html lang="fr" className={montserrat.variable}>
       <body className="flex min-h-screen flex-col">
         <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow-lift">
           Aller au contenu
