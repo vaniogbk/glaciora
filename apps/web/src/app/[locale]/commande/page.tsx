@@ -702,15 +702,15 @@ export default function CheckoutPage() {
             ))}
           </ul>
           <dl className="space-y-1 border-t border-line pt-3 text-sm">
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-4">
               <dt>{m.common.subtotal}</dt>
               <dd>{price(cart?.subtotalCents ?? 0)}</dd>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-4">
               <dt>{m.common.shipping}</dt>
               <dd>{quote ? (quote.isFree ? m.common.free : price(quote.priceCents)) : '—'}</dd>
             </div>
-            <div className="flex justify-between border-t border-line pt-2 text-lg font-extrabold">
+            <div className="flex justify-between gap-4 border-t border-line pt-2 text-lg font-extrabold">
               <dt>{t.totalInclTax}</dt>
               <dd data-testid="order-total">{price(onPayment ? payment.amountCents : totalCents)}</dd>
             </div>

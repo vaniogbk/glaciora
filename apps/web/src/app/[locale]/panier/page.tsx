@@ -104,16 +104,16 @@ export default function CartPage() {
               {m.common.summary}
             </h2>
             <dl className="mt-4 space-y-2 text-sm">
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-4">
                 <dt>{fmt(t.itemsCount, { count: cart.itemCount })}</dt>
                 <dd className="font-semibold">{price(cart.subtotalCents)}</dd>
               </div>
-              <div className="flex justify-between text-muted">
+              <div className="flex justify-between gap-4 text-muted">
                 <dt>{m.common.shipping}</dt>
-                <dd>{t.shippingNext}</dd>
+                <dd className="text-right">{t.shippingNext}</dd>
               </div>
             </dl>
-            <p className="mt-4 flex justify-between border-t border-line pt-4 text-lg font-extrabold">
+            <p className="mt-4 flex justify-between gap-4 border-t border-line pt-4 text-lg font-extrabold">
               <span>{m.common.subtotal}</span>
               <span>{price(cart.subtotalCents)}</span>
             </p>
