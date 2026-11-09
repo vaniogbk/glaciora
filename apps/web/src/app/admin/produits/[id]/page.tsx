@@ -300,7 +300,7 @@ export default function AdminProductPage() {
         </section>
       )}
 
-      <form onSubmit={onSaveProduct} className="card grid gap-4 p-5 md:grid-cols-2" aria-label="Fiche produit">
+      <form onSubmit={onSaveProduct} className="card grid grid-cols-1 gap-4 p-5 md:grid-cols-2" aria-label="Fiche produit">
         <h2 className="text-lg md:col-span-2">Fiche produit</h2>
         <div>
           <label htmlFor="name" className="field-label">Nom de l’article *</label>
@@ -452,7 +452,7 @@ export default function AdminProductPage() {
               <button type="submit" className="btn-outline col-span-2" disabled={busy}>Ajouter la taille</button>
             </form>
             {product.variants.length > 0 && (
-              <form onSubmit={onAddColor} className="mt-5 grid gap-3 rounded-md border border-dashed border-deep/40 bg-snow p-4 sm:grid-cols-2 xl:flex xl:flex-wrap xl:items-end" aria-labelledby="ajout-coloris">
+              <form onSubmit={onAddColor} className="mt-5 grid grid-cols-1 gap-3 rounded-md border border-dashed border-deep/40 bg-snow p-4 sm:grid-cols-2 xl:flex xl:flex-wrap xl:items-end" aria-labelledby="ajout-coloris">
                 <h3 id="ajout-coloris" className="text-base font-bold text-marine sm:col-span-2 xl:w-full">Ajouter un coloris</h3>
                 <p className="-mt-2 text-xs text-muted sm:col-span-2 xl:w-full">
                   Crée toutes les tailles actuelles dans le nouveau coloris (même prix). Sur la fiche, le client choisit le coloris à côté de la taille et la photo change.

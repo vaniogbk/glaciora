@@ -19,16 +19,21 @@ export function Breadcrumbs({ items, locale, m }: { items: Crumb[]; locale: Loca
   return (
     <>
       <nav aria-label={m.breadcrumbs.label} className="text-sm text-muted">
-        <ol className="flex items-center gap-1 whitespace-nowrap">
+        {/* Noms longs (catégories en finnois, polonais, islandais…) raccourcis par « … » au lieu d'élargir la page. */}
+        <ol className="flex min-w-0 items-center gap-1 whitespace-nowrap">
           {all.map((item, index) => (
-            <li key={item.href} className={index === all.length - 1 ? 'flex min-w-0 items-center gap-1' : 'flex shrink-0 items-center gap-1'}>
-              {index > 0 && <span aria-hidden="true">/</span>}
+            <li key={item.href} className={index === 0 ? 'flex shrink-0 items-center gap-1' : 'flex min-w-0 items-center gap-1'}>
+              {index > 0 && (
+                <span aria-hidden="true" className="shrink-0">
+                  /
+                </span>
+              )}
               {index === all.length - 1 ? (
-                <span aria-current="page" className="truncate font-semibold text-marine">
+                <span aria-current="page" className="min-w-0 truncate font-semibold text-marine">
                   {item.label}
                 </span>
               ) : (
-                <Link href={item.href} className="hover:text-deep hover:underline">
+                <Link href={item.href} className="min-w-0 truncate hover:text-deep hover:underline">
                   {item.label}
                 </Link>
               )}

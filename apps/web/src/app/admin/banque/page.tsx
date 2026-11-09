@@ -139,7 +139,7 @@ export default function AdminBankPage() {
       )}
 
       {editing && (
-        <form onSubmit={onSubmit} className="card mt-6 grid gap-4 p-5 md:grid-cols-2" noValidate>
+        <form onSubmit={onSubmit} className="card mt-6 grid grid-cols-1 gap-4 p-5 md:grid-cols-2" noValidate>
           <h2 className="text-lg md:col-span-2">{current ? `Modifier « ${current.label} »` : 'Nouveau compte bancaire'}</h2>
           <div>
             <label htmlFor="label" className="field-label">Nom interne *</label>

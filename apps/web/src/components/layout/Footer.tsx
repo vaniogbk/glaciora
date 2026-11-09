@@ -16,7 +16,7 @@ export function Footer({ m }: { locale: Locale; m: Messages }) {
       <h2 id="pied-de-page" className="sr-only">
         {f.heading}
       </h2>
-      <div className="container grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image src="/brand/logo-horizontal-slogan-sombre.svg" alt={f.logoAlt} width={220} height={45} className="h-auto w-[220px]" />
           <p className="mt-4 max-w-xs text-sm text-white/80">{f.tagline}</p>

@@ -76,14 +76,14 @@ export default function AddressesPage() {
       {editing ? (
         <form onSubmit={onSubmit} className="max-w-2xl space-y-4" noValidate>
           <Field label={t.addressLabel} name="label" defaultValue={current?.label ?? ''} placeholder={t.addressLabelPlaceholder} error={errors.label} />
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label={m.common.firstName} name="firstName" required defaultValue={current?.firstName ?? user?.firstName ?? ''} autoComplete="given-name" error={errors.firstName} />
             <Field label={m.common.lastName} name="lastName" required defaultValue={current?.lastName ?? user?.lastName ?? ''} autoComplete="family-name" error={errors.lastName} />
           </div>
           <Field label={t.company} name="company" defaultValue={current?.company ?? ''} autoComplete="organization" error={errors.company} />
           <Field label={t.line1} name="line1" required defaultValue={current?.line1 ?? ''} autoComplete="address-line1" error={errors.line1} />
           <Field label={t.line2} name="line2" defaultValue={current?.line2 ?? ''} autoComplete="address-line2" error={errors.line2} />
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label={t.postalCode} name="postalCode" required defaultValue={current?.postalCode ?? ''} autoComplete="postal-code" error={errors.postalCode} />
             <Field label={t.city} name="city" required defaultValue={current?.city ?? ''} autoComplete="address-level2" error={errors.city} />
             <Field label={t.region} name="region" defaultValue={current?.region ?? ''} autoComplete="address-level1" error={errors.region} />
@@ -118,7 +118,7 @@ export default function AddressesPage() {
         </form>
       ) : (
         <>
-          <ul className="grid gap-4 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {addresses.map((a) => (
               <li key={a.id} className="card p-5 text-sm">
                 <p className="font-bold text-marine">

@@ -42,7 +42,7 @@ export default function CartPage() {
           </Link>
         </div>
       ) : (
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_360px]">
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
           <section aria-labelledby="articles">
             <h2 id="articles" className="sr-only">
               {t.items}
@@ -58,7 +58,7 @@ export default function CartPage() {
                   <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-snow">
                     {item.image && <Image src={item.image.url} alt={item.image.alt} fill sizes="96px" className="object-contain p-1" />}
                   </div>
-                  <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex min-w-0 flex-1 flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <p className="eyebrow">{item.brand}</p>
                       <Link href={`/produit/${item.slug}`} className="font-bold text-marine hover:underline">
@@ -72,7 +72,7 @@ export default function CartPage() {
                         </p>
                       )}
                     </div>
-                    <div className="flex items-center gap-3 sm:flex-col sm:items-end">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 sm:flex-col sm:flex-nowrap sm:items-end">
                       <label className="sr-only" htmlFor={`qte-${item.variantId}`}>
                         {fmt(t.quantityFor, { name: item.productName })}
                       </label>

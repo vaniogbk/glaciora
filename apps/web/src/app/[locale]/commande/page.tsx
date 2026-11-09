@@ -411,7 +411,7 @@ export default function CheckoutPage() {
         </p>
       )}
 
-      <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_380px]">
+      <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_380px]">
         <div className="min-w-0">
           {globalError && (
             <p role="alert" className="mb-6 rounded-md bg-danger/10 p-4 text-sm font-semibold text-danger">
@@ -463,7 +463,7 @@ export default function CheckoutPage() {
                 {config && config.countries.length === 0 && <p className="field-error">{t.noCountries}</p>}
                 {err('shippingAddress.countryCode') && <p className="field-error">{err('shippingAddress.countryCode')}</p>}
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {ADDRESS_FIELDS.map((f) => {
                   const key = `shippingAddress.${f.name}`;
                   return (
@@ -587,7 +587,7 @@ export default function CheckoutPage() {
                   </label>
                 </fieldset>
 
-                <div className="grid gap-6 rounded-lg border border-line p-5 sm:grid-cols-[1fr_auto]" data-testid="bank-details">
+                <div className="grid grid-cols-1 gap-6 rounded-lg border border-line p-5 sm:grid-cols-[minmax(0,1fr)_auto]" data-testid="bank-details">
                   <h4 className="text-sm font-bold sm:col-span-2">{t.bankDetailsTitle}</h4>
                   <dl className="space-y-2 text-sm">
                     <div>

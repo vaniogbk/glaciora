@@ -50,7 +50,7 @@ export default function AdminCustomersPage() {
         <button type="submit" className="btn-primary">Rechercher</button>
       </form>
       <p aria-live="polite" className="mt-3 text-sm font-semibold text-deep">{message}</p>
-      <div className="mt-3 grid gap-6 xl:grid-cols-[1fr_380px]">
+      <div className="mt-3 grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
         <div className="card overflow-x-auto">
           <table className="table-stack lg:min-w-[600px]">
             <thead className="border-b border-line text-muted">

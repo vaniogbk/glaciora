@@ -53,7 +53,7 @@ export default function OrderDetailPage() {
       {order && (
         <div className="space-y-8">
           <OrderTracking status={order.status} />
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="card p-5 text-sm">
               <h2 className="text-base">{t.payment}</h2>
               <p className="mt-2">{t.bankTransfer} — {m.paymentStatus[order.payments[0]?.status ?? ''] ?? '—'}</p>

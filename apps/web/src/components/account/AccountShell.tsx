@@ -29,7 +29,7 @@ export function AccountShell({ title, children }: { title: string; children: Rea
   if (loading || !user) return <PanelSkeleton label={t.loading} />;
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[220px_1fr]">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[220px_minmax(0,1fr)]">
       <nav aria-label={t.nav} className="space-y-1">
         <p className="mb-3 text-sm text-muted">
           {t.hello} <strong className="text-marine">{user.firstName ?? user.email}</strong>

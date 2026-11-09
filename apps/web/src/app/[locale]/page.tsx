@@ -100,7 +100,7 @@ export default async function HomePage({ params }: Params) {
 
       <Section id="produits-phares" eyebrow={h.featuredEyebrow} title={h.featuredTitle} href="/catalogue" linkLabel={h.featuredLink} products={home.featured} {...section} />
 
-      <section className="cv-auto container grid gap-4 py-6 md:grid-cols-2" aria-label={h.collections}>
+      <section className="cv-auto container grid grid-cols-1 gap-4 py-6 md:grid-cols-2" aria-label={h.collections}>
         <Link href="/categorie/skis" className="group relative isolate flex min-h-[280px] overflow-hidden rounded-xl bg-marine p-8 text-white">
           <HomeVisual name="collectionSki" className="transition duration-700 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-marine/90 via-marine/40 to-transparent" aria-hidden="true" />
@@ -150,7 +150,7 @@ export default async function HomePage({ params }: Params) {
           <h2 id="avantages" className="sr-only">
             {h.whyHeading}
           </h2>
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {h.advantages.map((a, index) => (
               <li key={a.title}>
                 <Reveal className="flex gap-4">
@@ -171,7 +171,7 @@ export default async function HomePage({ params }: Params) {
       <section aria-labelledby="contact" className="cv-auto relative isolate overflow-hidden bg-marine py-16 text-white">
         <HomeVisual name="essentials" />
         <div className="absolute inset-0 bg-marine/80" aria-hidden="true" />
-        <div className="container relative grid gap-8 md:grid-cols-2 md:items-center">
+        <div className="container relative grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-brand text-glacier">{h.contactEyebrow}</p>
             <h2 id="contact" className="mt-2 text-3xl font-extrabold text-white">
@@ -179,7 +179,7 @@ export default async function HomePage({ params }: Params) {
             </h2>
             <p className="mt-3 max-w-md text-white/85">{h.contactText}</p>
           </div>
-          <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
             <li>
               <a href={BRAND.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-accent w-full">
                 WhatsApp<span className="sr-only"> {m.common.newWindow}</span>

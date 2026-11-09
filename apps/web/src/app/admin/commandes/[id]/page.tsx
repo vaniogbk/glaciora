@@ -113,7 +113,7 @@ export default function AdminOrderPage() {
       </p>
       <OrderTracking status={order.status} />
 
-      <div className="grid gap-6 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <section className="card p-5 text-sm xl:col-span-2" aria-labelledby="paiement">
           <h2 id="paiement" className="text-lg">
             Paiement et justificatif
@@ -282,7 +282,7 @@ export default function AdminOrderPage() {
         {data.allowedTransitions.length === 0 ? (
           <p className="mt-2 text-sm text-muted">Aucun changement de statut possible.</p>
         ) : (
-          <form onSubmit={onStatus} className="mt-4 grid gap-4 md:grid-cols-2">
+          <form onSubmit={onStatus} className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
               <label htmlFor="status" className="field-label">Nouveau statut</label>
               <select id="status" name="status" className="field-input">
@@ -317,7 +317,7 @@ export default function AdminOrderPage() {
         )}
       </section>
 
-      <div className="grid gap-6 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <section className="card p-5 text-sm" aria-labelledby="emails">
           <h2 id="emails" className="text-lg">E-mails</h2>
           <ul className="mt-3 space-y-2">

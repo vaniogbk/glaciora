@@ -136,7 +136,7 @@ export default function NewProductPage() {
         </p>
       )}
       <form onSubmit={onSubmit} className="mt-6 space-y-6" noValidate>
-        <fieldset className="card grid gap-4 p-5 md:grid-cols-2">
+        <fieldset className="card grid grid-cols-1 gap-4 p-5 md:grid-cols-2">
           <legend className="sr-only">Informations de l’article</legend>
           <h2 className="text-lg md:col-span-2">1. Article</h2>
           <div>
@@ -280,7 +280,7 @@ export default function NewProductPage() {
           )}
         </fieldset>
 
-        <fieldset className="card grid gap-4 p-5 md:grid-cols-2">
+        <fieldset className="card grid grid-cols-1 gap-4 p-5 md:grid-cols-2">
           <legend className="sr-only">Photo et publication</legend>
           <h2 className="text-lg md:col-span-2">3. Photo et publication</h2>
           <div>

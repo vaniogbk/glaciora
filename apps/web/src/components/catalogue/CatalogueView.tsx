@@ -47,7 +47,7 @@ export async function CatalogueView({ basePath, params, fixedCategory, locale, m
   const l = m.listing;
 
   return (
-    <div className="catalogue grid gap-4 lg:grid-cols-[260px_1fr] lg:gap-8">
+    <div className="catalogue grid grid-cols-1 gap-4 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-8">
       <aside aria-label={l.filtersAndSort}>
         <FiltersPanel total={list.total} active={FILTER_KEYS.filter((key) => params[key] && !(key === 'category' && fixedCategory)).length}>
           <Suspense>

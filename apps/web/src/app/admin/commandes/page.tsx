@@ -55,7 +55,7 @@ function OrdersList() {
         <label htmlFor="statut" className="sr-only">
           Statut
         </label>
-        <select id="statut" className="field-input w-auto" value={params.get('status') ?? ''} onChange={(e) => setParam('status', e.target.value)}>
+        <select id="statut" className="field-input w-full max-w-full sm:w-auto" value={params.get('status') ?? ''} onChange={(e) => setParam('status', e.target.value)}>
           <option value="">Tous les statuts</option>
           {ORDER_STATUSES.map((s) => (
             <option key={s} value={s}>

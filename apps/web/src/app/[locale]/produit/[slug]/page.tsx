@@ -93,7 +93,7 @@ export default async function ProductPage({ params }: Props) {
     <div className="container py-10">
       <Breadcrumbs items={crumbs} locale={locale} m={m} />
       <ColorSelectionProvider initial={variantColors(product.variants)[0] ?? null}>
-      <div className="mt-6 grid gap-10 lg:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-2">
         <ProductGallery images={product.images} name={product.name} />
         <div>
           <p className="eyebrow">{product.brand}</p>
@@ -124,7 +124,7 @@ export default async function ProductPage({ params }: Props) {
       </div>
       </ColorSelectionProvider>
 
-      <section className="mt-14 grid gap-10 lg:grid-cols-2" aria-labelledby="caracteristiques">
+      <section className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-2" aria-labelledby="caracteristiques">
         <div>
           <h2 id="caracteristiques" className="text-2xl">
             {p.specs}

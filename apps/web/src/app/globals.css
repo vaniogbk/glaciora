@@ -3,18 +3,27 @@
 @tailwind utilities;
 
 @layer base {
+  /*
+   * Téléphones : rien ne doit faire défiler la page sur le côté. Les causes sont corrigées une à une (test e2e
+   * mobile-sans-debordement) ; « clip » est un filet de sécurité qui, contrairement à « hidden », ne casse pas l'en-tête collant.
+   * Un mot plus long que l'écran (allemand, finnois, adresse e-mail…) passe à la ligne au lieu d'élargir la page.
+   */
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
   body {
     @apply bg-white font-sans text-ink antialiased;
+    overflow-x: clip;
+    overflow-wrap: break-word;
   }
   :focus-visible {
     @apply outline outline-2 outline-offset-2 outline-deep;
   }
   h1, h2, h3 {
     @apply font-extrabold tracking-tight text-marine;
+    hyphens: auto;
   }
 }
 

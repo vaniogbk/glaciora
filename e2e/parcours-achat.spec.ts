@@ -1,16 +1,7 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { E2E_ENV } from '../playwright.config';
+import { receiptPdf } from './helpers';
 
-/** Faux reçu de virement (banque fictive) en PDF, comme celui que la banque du client permet de télécharger. */
-async function receiptPdf(page: Page, reference: string, amount: string): Promise<Buffer> {
-  const doc = await page.context().newPage();
-  await doc.setContent(
-    `<!doctype html><html><body style="font:16px Arial;padding:24px"><h1>Banque Exemple</h1><p>Virement émis</p><p>Bénéficiaire : Boutique Exemple</p><p>Montant : ${amount}</p><p>Référence : ${reference}</p></body></html>`,
-  );
-  const pdf = await doc.pdf({ width: '400px', height: '600px' });
-  await doc.close();
-  return pdf;
-}
 
 test('parcours complet : accueil → catalogue → fiche → panier → virement → confirmation → admin', async ({ page }) => {
   // 1. Accueil

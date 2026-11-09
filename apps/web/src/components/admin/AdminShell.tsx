@@ -43,9 +43,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-snow">
       <header className="bg-marine text-white">
-        <div className="flex h-14 items-center gap-3 px-4 sm:gap-4">
+        <div className="flex h-14 items-center gap-2 px-4 sm:gap-4">
           <Link href="/admin" aria-label="Administration GLACIORA" className="shrink-0">
-            <Image src="/brand/logo-horizontal-sombre.svg" alt="GLACIORA" width={140} height={25} className="h-5 w-auto sm:h-6" />
+            <Image src="/brand/logo-horizontal-sombre.svg" alt="GLACIORA" width={140} height={25} className="h-4 w-auto min-[360px]:h-5 sm:h-6" />
           </Link>
           <span className="rounded-sm bg-glacier px-2 py-0.5 text-xs font-bold uppercase text-marine">Admin</span>
           <Link href="/" className="ml-auto inline-flex min-h-[44px] items-center text-sm font-semibold hover:text-glacier">

@@ -55,7 +55,7 @@ export default function ProfilePage() {
           <p className="text-sm text-muted">
             {m.common.email} : <strong className="text-marine">{profile.email}</strong> · {fmt(t.customerSince, { date: formatDate(profile.createdAt, locale) })}
           </p>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label={m.common.firstName} name="firstName" defaultValue={profile.firstName ?? ''} required autoComplete="given-name" error={errors.firstName} />
             <Field label={m.common.lastName} name="lastName" defaultValue={profile.lastName ?? ''} required autoComplete="family-name" error={errors.lastName} />
           </div>

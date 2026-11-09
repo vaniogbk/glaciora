@@ -45,7 +45,7 @@ export default function RegisterPage() {
             {error}
           </p>
         )}
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label={m.common.firstName} name="firstName" autoComplete="given-name" required error={errors.firstName} />
           <Field label={m.common.lastName} name="lastName" autoComplete="family-name" required error={errors.lastName} />
         </div>

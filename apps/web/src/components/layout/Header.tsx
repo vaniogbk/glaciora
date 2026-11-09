@@ -40,7 +40,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-marine text-white shadow-lift">
-      <div className="container flex h-16 items-center gap-4 lg:h-20">
+      <div className="container flex h-16 items-center gap-2 sm:gap-4 lg:h-20">
         <button
           type="button"
           className="inline-flex h-11 w-11 items-center justify-center rounded-md xl:hidden"
@@ -54,7 +54,7 @@ export function Header() {
           </svg>
         </button>
         <Link href="/" className="shrink-0" aria-label={m.header.logoHome}>
-          <Image src="/brand/logo-horizontal-sombre.svg" alt="GLACIORA" width={170} height={30} priority className="h-7 w-auto lg:h-8" />
+          <Image src="/brand/logo-horizontal-sombre.svg" alt="GLACIORA" width={170} height={30} priority className="h-6 w-auto min-[360px]:h-7 lg:h-8" />
         </Link>
         <nav aria-label={m.header.mainNav} className="ml-6 hidden xl:block">
           <ul className="flex items-center gap-6 text-sm font-semibold">
@@ -84,16 +84,16 @@ export function Header() {
             className="h-10 w-56 rounded-md border border-white/20 bg-white/10 px-3 text-sm text-white placeholder:text-white/70 focus:bg-white focus:text-ink focus:outline-none xl:w-72"
           />
         </form>
-        <div className="ml-auto flex items-center gap-1 md:ml-2">
+        <div className="ml-auto flex items-center sm:gap-1 md:ml-2">
           <LanguageSwitcher className="hidden sm:block" />
-          <Link href={user ? (user.role === 'ADMIN' ? '/admin' : '/compte') : '/compte/connexion'} className="inline-flex h-11 items-center gap-2 rounded-md px-3 text-sm font-semibold hover:text-glacier">
+          <Link href={user ? (user.role === 'ADMIN' ? '/admin' : '/compte') : '/compte/connexion'} className="inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md px-2.5 text-sm font-semibold hover:text-glacier sm:px-3">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" />
             </svg>
             <span className="hidden sm:inline">{user ? user.firstName ?? m.header.myAccount : m.header.login}</span>
           </Link>
-          <Link href="/panier" className="relative inline-flex h-11 items-center gap-2 rounded-md px-3 text-sm font-semibold hover:text-glacier" aria-label={plural(locale, count, m.header.cartLabel)}>
+          <Link href="/panier" className="relative inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md px-2.5 text-sm font-semibold hover:text-glacier sm:px-3" aria-label={plural(locale, count, m.header.cartLabel)}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6" />
               <circle cx="10" cy="20" r="1.4" />

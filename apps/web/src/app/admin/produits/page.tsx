@@ -64,7 +64,7 @@ function ProductsList() {
         <label htmlFor="statut-produit" className="sr-only">
           Statut
         </label>
-        <select id="statut-produit" className="field-input w-auto" value={params.get('status') ?? ''} onChange={(e) => setParam('status', e.target.value)}>
+        <select id="statut-produit" className="field-input w-full max-w-full sm:w-auto" value={params.get('status') ?? ''} onChange={(e) => setParam('status', e.target.value)}>
           <option value="">Tous les statuts</option>
           <option value="ACTIVE">Publiés</option>
           <option value="DRAFT">Brouillons</option>
