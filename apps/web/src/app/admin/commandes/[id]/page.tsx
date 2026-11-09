@@ -10,6 +10,21 @@ import { api } from '@/lib/api-client';
 import { OrderTracking } from '@/components/order/OrderTracking';
 import { PanelSkeleton } from '@/components/ui/Skeleton';
 
+/** Contrôle automatique du justificatif fait à la commande (référence et montant lus dans le fichier). */
+interface ProofCheck {
+  status: 'MATCHED' | 'DISABLED';
+  methods?: ('pdf' | 'pdf-ocr' | 'ocr')[];
+}
+
+const READ_METHODS: Record<string, string> = { pdf: 'texte du PDF', 'pdf-ocr': 'PDF scanné, lecture de l’image', ocr: 'lecture de l’image' };
+
+function proofCheckLabel(check: ProofCheck | null): string {
+  if (!check) return 'Non effectué (commande antérieure au contrôle)';
+  if (check.status === 'DISABLED') return 'Désactivé (PROOF_AUTO_CHECK=false) : vérifiez le justificatif à la main';
+  const methods = [...new Set(check.methods ?? [])].map((m) => READ_METHODS[m] ?? m).join(', ');
+  return `Référence et montant trouvés sur le justificatif${methods ? ` (${methods})` : ''}. À confirmer sur le relevé bancaire.`;
+}
+
 interface AdminOrder {
   order: {
     id: string;
@@ -37,7 +52,7 @@ interface AdminOrder {
     trackingNumber: string | null;
     trackingUrl: string | null;
     items: { id: string; productName: string; productReference: string; variantSku: string; sizeLabel: string | null; quantity: number; unitPriceCents: number; lineTotalCents: number }[];
-    payments: { id: string; method: string; status: string; amountCents: number; transferReference: string | null; receivingAccount: string | null; verifiedAt: string | null; rejectionReason: string | null; verifiedBy: { firstName: string | null; lastName: string | null } | null }[];
+    payments: { id: string; method: string; status: string; amountCents: number; transferReference: string | null; receivingAccount: string | null; verifiedAt: string | null; rejectionReason: string | null; proofCheck: ProofCheck | null; verifiedBy: { firstName: string | null; lastName: string | null } | null }[];
     proofs: { id: string; originalName: string; mimeType: string; sizeBytes: number; createdAt: string; deletedAt: string | null }[];
     emails: { id: string; template: string; status: string; attempts: number; sentAt: string | null; lastError: string | null }[];
   };
@@ -113,6 +128,8 @@ export default function AdminOrderPage() {
               <dd>{payment.receivingAccount ?? '—'}</dd>
               <dt className="text-muted">Statut</dt>
               <dd>{PAYMENT_STATUS_LABELS[payment.status]}</dd>
+              <dt className="text-muted">Contrôle automatique</dt>
+              <dd data-testid="proof-check">{proofCheckLabel(payment.proofCheck)}</dd>
               {payment.verifiedAt && (
                 <>
                   <dt className="text-muted">Vérifié le</dt>

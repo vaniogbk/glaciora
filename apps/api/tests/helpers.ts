@@ -3,8 +3,19 @@ import type { Role } from '@prisma/client';
 import { createApp } from '../src/app';
 import { prisma } from '../src/lib/prisma';
 import { hashPassword } from '../src/modules/auth/password';
+import { setProofTextReader } from '../src/modules/checkout/proof-check';
 
 export const app = createApp();
+
+/**
+ * Lecture des justificatifs dans les tests d'intégration : le fichier factice est lu comme du texte brut (rapide, sans OCR).
+ * La vraie lecture (PDF, OCR des photos) est testée sur de vrais fichiers dans proof-check.test.ts.
+ */
+export const plainTextProofReader = async (file: { buffer: Buffer; mime: string }) => ({
+  text: file.buffer.toString('latin1'),
+  method: file.mime === 'application/pdf' ? ('pdf' as const) : ('ocr' as const),
+});
+setProofTextReader(plainTextProofReader);
 
 /** En-tête anti-CSRF exigé sur toute requête qui modifie des données. */
 export const CSRF = { 'x-glaciora-csrf': '1' };
@@ -64,4 +75,18 @@ export async function seedCatalogue(stock = 2, priceCents = 44990) {
   return { category, product, variant: product.variants[0]!, rate: zone.rates[0]! };
 }
 
+/** PDF factice sans texte (aucune référence, aucun montant). */
 export const PDF_BYTES = Buffer.concat([Buffer.from('%PDF-1.7\n'), Buffer.alloc(200, 0x20), Buffer.from('\n%%EOF')]);
+
+/** Faux reçu de virement portant la référence et le montant donnés (montant écrit à l'allemande : -459,80 EUR). */
+export function proofFor(reference: string, amountCents: number): Buffer {
+  const amount = (amountCents / 100).toFixed(2).replace('.', ',');
+  return Buffer.concat([
+    Buffer.from(`%PDF-1.7\nUeberweisung ausgefuehrt\nVerwendungszweck ${reference}\nBetrag -${amount} EUR\n`),
+    Buffer.alloc(200, 0x20),
+    Buffer.from('\n%%EOF'),
+  ]);
+}
+
+/** Justificatif conforme à la dernière réponse de /api/checkout/payment-details. */
+export const proofOf = (details: { body: { reference: string; amountCents: number } }) => proofFor(details.body.reference, details.body.amountCents);

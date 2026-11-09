@@ -1,8 +1,16 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { E2E_ENV } from '../playwright.config';
 
-/** Justificatif PDF minimal généré pour le test (aucune donnée réelle). */
-const PROOF_PDF = Buffer.from('%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n');
+/** Faux reçu de virement (banque fictive) en PDF, comme celui que la banque du client permet de télécharger. */
+async function receiptPdf(page: Page, reference: string, amount: string): Promise<Buffer> {
+  const doc = await page.context().newPage();
+  await doc.setContent(
+    `<!doctype html><html><body style="font:16px Arial;padding:24px"><h1>Banque Exemple</h1><p>Virement émis</p><p>Bénéficiaire : Boutique Exemple</p><p>Montant : ${amount}</p><p>Référence : ${reference}</p></body></html>`,
+  );
+  const pdf = await doc.pdf({ width: '400px', height: '600px' });
+  await doc.close();
+  return pdf;
+}
 
 test('parcours complet : accueil → catalogue → fiche → panier → virement → confirmation → admin', async ({ page }) => {
   // 1. Accueil
@@ -46,10 +54,9 @@ test('parcours complet : accueil → catalogue → fiche → panier → virement
   await page.getByTestId('checkout-link').click();
   await expect(page).toHaveURL(/\/commande$/);
 
-  // 8. Choix du pays
+  // 8. Étape 1 : informations et livraison
+  await expect(page.getByTestId('checkout-step-1')).toBeVisible();
   await page.getByTestId('country-select').selectOption('FR');
-
-  // 9. Formulaire de livraison
   await page.getByLabel('E-mail').fill('client.e2e@glaciora.test');
   await page.getByLabel('Prénom').fill('Léa');
   await page.getByLabel(/^Nom/).fill('Martin');
@@ -58,44 +65,58 @@ test('parcours complet : accueil → catalogue → fiche → panier → virement
   await page.getByLabel('Ville').fill('Chamonix');
   await page.getByLabel('Téléphone').fill('+33 6 12 34 56 78');
   await expect(page.getByText('[DÉMO] Livraison standard')).toBeVisible();
+  await page.getByTestId('continue-to-payment').click();
 
-  // 10. Virement bancaire sélectionné, carte indisponible
+  // 9. Étape 2 : coordonnées bancaires du pays choisi, virement sélectionné, carte indisponible
+  await expect(page.getByTestId('checkout-step-2')).toBeVisible();
+  await expect(page.getByTestId('delivery-recap')).toContainText('12 route des Alpes');
   await expect(page.getByTestId('pay-bank-transfer')).toBeChecked();
   await expect(page.getByRole('radio', { name: /Carte bancaire/ })).toBeDisabled();
   await expect(page.getByText('Indisponible pour le moment')).toBeVisible();
-
-  // 11. IBAN et QR code SEPA
-  await page.getByTestId('show-bank-details').click();
   await expect(page.getByTestId('iban')).toHaveText('FR76 3000 6000 0112 3456 7890 189');
   await expect(page.getByTestId('sepa-qr')).toBeVisible();
   const reference = (await page.getByTestId('transfer-reference').textContent())!.trim();
+  const amount = (await page.getByTestId('transfer-amount').textContent())!.trim();
   expect(reference).toMatch(/^GLA-\d{6}-[A-Z0-9]{5}$/);
 
-  // 12. Upload de la preuve de virement
-  await page.getByLabel(/Preuve de virement/).setInputFiles({ name: 'virement.pdf', mimeType: 'application/pdf', buffer: PROOF_PDF });
+  // 10. Retour du navigateur : étape 1 avec les informations saisies ; la même référence est reprise ensuite.
+  await page.goBack();
+  await expect(page.getByTestId('checkout-step-1')).toBeVisible();
+  await expect(page.getByLabel('Ville')).toHaveValue('Chamonix');
+  await page.getByTestId('continue-to-payment').click();
+  await expect(page.getByTestId('transfer-reference')).toHaveText(reference);
 
-  // 13. Création de la commande
+  // 11. Justificatif dont le montant ne correspond pas : refusé par le contrôle automatique, aucune commande créée.
+  await page.getByLabel(/Preuve de virement/).setInputFiles({ name: 'autre-virement.pdf', mimeType: 'application/pdf', buffer: await receiptPdf(page, reference, '12,00 €') });
   await page.getByLabel(/J’accepte les/).check();
   await page.getByTestId('place-order').click();
+  await expect(page.getByTestId('proof-rejected')).toContainText(`le montant exact de la commande (${amount})`);
+  await expect(page).toHaveURL(/\/commande$/);
 
-  // 14. Page de confirmation
+  // 12. Bon justificatif (référence et montant exacts) : accepté, la commande est créée.
+  await page.getByLabel(/Preuve de virement/).setInputFiles({ name: 'virement.pdf', mimeType: 'application/pdf', buffer: await receiptPdf(page, reference, amount) });
+  await expect(page.getByTestId('proof-rejected')).toHaveCount(0);
+  await page.getByTestId('place-order').click();
+
+  // 13. Page de confirmation
   await expect(page).toHaveURL(new RegExp(`/commande/confirmation\\?ref=${reference}`));
   await expect(page.getByTestId('confirmation-title')).toContainText(reference);
   await expect(page.getByTestId('order-status')).toHaveText('En préparation');
   await expect(page.getByTestId('tracking-message')).toHaveText('Votre commande est en préparation auprès du fournisseur. Merci de patienter!');
   await expect(page.getByTestId('cart-count')).toHaveCount(0);
 
-  // 15. Connexion admin
+  // 14. Connexion admin
   await page.goto('/compte/connexion?retour=/admin/commandes');
   await page.getByLabel('E-mail').fill(E2E_ENV.E2E_ADMIN_EMAIL);
   await page.getByLabel('Mot de passe').fill(E2E_ENV.E2E_ADMIN_PASSWORD);
   await page.getByRole('button', { name: 'Se connecter' }).click();
   await expect(page).toHaveURL(/\/admin\/commandes/);
 
-  // 16. Consultation de la commande et du fichier de confirmation
+  // 15. Consultation de la commande, du contrôle automatique et du fichier de confirmation
   await page.getByRole('link', { name: reference }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText(reference);
   await expect(page.getByTestId('admin-order-status')).toHaveText('En préparation');
+  await expect(page.getByTestId('proof-check')).toContainText('Référence et montant trouvés sur le justificatif (texte du PDF)');
   const proofHref = await page.getByTestId('view-proof').getAttribute('href');
   const proof = await page.request.get(proofHref!);
   expect(proof.status()).toBe(200);

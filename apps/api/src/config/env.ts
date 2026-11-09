@@ -52,6 +52,8 @@ const schema = z
     R2_BUCKET: optional,
     UPLOAD_MAX_BYTES: z.coerce.number().int().min(1024).default(10 * 1024 * 1024),
     PROOF_RETENTION_DAYS: z.coerce.number().int().min(1).default(400),
+    /** Contrôle automatique du justificatif (référence + montant lus dans le fichier) avant d'accepter la commande. */
+    PROOF_AUTO_CHECK: bool.default(true),
 
     CATALOGUE_DIR: z.string().default('../../GLACIORA_CATALOGUE'),
     PRODUCT_MEDIA_DIR: z.string().default('../web/public/media'),

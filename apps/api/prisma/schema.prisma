@@ -392,6 +392,8 @@ model Payment {
   rejectionReason   String?
   /// Compte de réception communiqué au client (libellé + IBAN masqué), figé à la commande.
   receivingAccount  String?
+  /// Contrôle automatique du justificatif à la commande : référence et montant trouvés (MATCHED) ou contrôle désactivé (DISABLED).
+  proofCheck        Json?
   bankAccountId     String?
   bankAccount       BankAccount?    @relation(fields: [bankAccountId], references: [id], onDelete: SetNull)
   createdAt         DateTime        @default(now())

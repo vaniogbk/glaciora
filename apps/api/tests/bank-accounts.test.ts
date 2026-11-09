@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app, CSRF, PDF_BYTES, createUser, loginAgent, resetDb, seedCatalogue } from './helpers';
+import { app, CSRF, createUser, loginAgent, proofOf, resetDb, seedCatalogue } from './helpers';
 import { prisma } from '../src/lib/prisma';
 
 afterAll(() => prisma.$disconnect());
@@ -47,12 +47,12 @@ describe('coordonnées bancaires par pays', () => {
     const fr = await agent.post('/api/checkout/payment-details').set(CSRF).send({ countryCode: 'FR', shippingRateId: seeded.rate.id });
     expect(fr.body.bank.iban).toBe('FR76 3000 6000 0112 3456 7890 189');
 
-    await agent.post('/api/checkout/payment-details').set(CSRF).send({ countryCode: 'DE', shippingRateId: seeded.rate.id });
+    const shown = await agent.post('/api/checkout/payment-details').set(CSRF).send({ countryCode: 'DE', shippingRateId: seeded.rate.id });
     const order = await agent
       .post('/api/checkout/orders')
       .set(CSRF)
       .field('data', JSON.stringify({ email: 'max@glaciora.test', shippingAddress: { firstName: 'Max', lastName: 'Muster', line1: 'Hauptstr. 1', postalCode: '80331', city: 'München', countryCode: 'DE', phone: '+49 89 000000' }, shippingRateId: seeded.rate.id, paymentMethod: 'BANK_TRANSFER', acceptTerms: true }))
-      .attach('proof', PDF_BYTES, { filename: 'beleg.pdf', contentType: 'application/pdf' });
+      .attach('proof', proofOf(shown), { filename: 'beleg.pdf', contentType: 'application/pdf' });
     expect(order.status).toBe(201);
     const payment = await prisma.payment.findFirstOrThrow({ where: { order: { reference: order.body.order.reference } } });
     expect(payment.receivingAccount).toBe('Allemagne — DE89 •••• 3000');
@@ -70,14 +70,14 @@ describe('coordonnées bancaires par pays', () => {
       const agent = request.agent(app);
       await agent.post('/api/cart/items').set(CSRF).send({ variantId: seeded.variant.id, quantity: 1 });
       const details = await agent.post('/api/checkout/payment-details').set(CSRF).send({ countryCode: 'DE', shippingRateId: seeded.rate.id });
-      return { agent, iban: details.body.bank.iban as string };
+      return { agent, iban: details.body.bank.iban as string, details };
     }
-    const place = (agent: ReturnType<typeof request.agent>) =>
-      agent.post('/api/checkout/orders').set(CSRF).field('data', orderData).attach('proof', PDF_BYTES, { filename: 'beleg.pdf', contentType: 'application/pdf' });
+    const place = (shown: { agent: ReturnType<typeof request.agent>; details: { body: { reference: string; amountCents: number } } }) =>
+      shown.agent.post('/api/checkout/orders').set(CSRF).field('data', orderData).attach('proof', proofOf(shown.details), { filename: 'beleg.pdf', contentType: 'application/pdf' });
 
     const a = await checkout();
     expect(a.iban).toBe('DE89 3704 0044 0532 0130 00');
-    expect((await place(a.agent)).status).toBe(201);
+    expect((await place(a)).status).toBe(201);
 
     // Le premier compte vient de recevoir une commande : le suivant est proposé, et reste le même si les coordonnées sont réaffichées.
     const b = await checkout();
@@ -87,7 +87,7 @@ describe('coordonnées bancaires par pays', () => {
 
     // Désactivé entre l'affichage et la validation : la commande garde le compte que le client a vu (et payé).
     await prisma.bankAccount.update({ where: { id: second.id }, data: { isActive: false } });
-    const placed = await place(b.agent);
+    const placed = await place(b);
     expect(placed.status).toBe(201);
     const payments = await prisma.payment.findMany({ orderBy: { createdAt: 'asc' }, select: { bankAccountId: true } });
     expect(payments.map((p) => p.bankAccountId)).toEqual([first.id, second.id]);

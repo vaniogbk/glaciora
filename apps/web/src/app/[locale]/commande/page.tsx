@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { BRAND } from '@glaciora/shared/contact';
 // Validation (Zod, ~100 Ko) chargée après l'affichage de la page, pas au premier rendu : la page de commande s'ouvre plus vite sur mobile.
 const loadSchemas = () => import('@glaciora/shared/schemas');
@@ -52,9 +52,16 @@ interface SavedAddress {
   countryCode: string;
   phone: string;
 }
+/** Résultat du contrôle automatique du justificatif renvoyé par l'API en cas de refus. */
+interface ProofRejection {
+  kind: 'mismatch' | 'unreadable';
+  referenceFound?: boolean;
+  amountFound?: boolean;
+}
 
 const EMPTY_ADDRESS = { firstName: '', lastName: '', company: '', line1: '', line2: '', postalCode: '', city: '', region: '', countryCode: '', phone: '' };
 type AddressState = typeof EMPTY_ADDRESS;
+type Step = 1 | 2;
 
 const ADDRESS_FIELDS: { name: Exclude<keyof AddressState, 'countryCode'>; autoComplete: string; required?: boolean; half?: boolean }[] = [
   { name: 'firstName', autoComplete: 'given-name', required: true, half: true },
@@ -67,6 +74,38 @@ const ADDRESS_FIELDS: { name: Exclude<keyof AddressState, 'countryCode'>; autoCo
   { name: 'region', autoComplete: 'address-level1', half: true },
   { name: 'phone', autoComplete: 'tel', required: true, half: true },
 ];
+
+/**
+ * Brouillon de l'onglet (sessionStorage, effacé à la fermeture de l'onglet et après la commande) : le client qui part faire son
+ * virement dans l'application de sa banque retrouve l'étape 2, avec la même référence, même si le navigateur a rechargé la page.
+ */
+const DRAFT_KEY = 'commande-brouillon';
+interface Draft {
+  email: string;
+  address: AddressState;
+  rateId: string;
+  step: Step;
+}
+function readDraft(): Draft | null {
+  try {
+    const raw = window.sessionStorage.getItem(DRAFT_KEY);
+    const draft = raw ? (JSON.parse(raw) as Partial<Draft>) : null;
+    if (!draft || typeof draft.email !== 'string' || !draft.address || typeof draft.address !== 'object') return null;
+    return { email: draft.email, address: { ...EMPTY_ADDRESS, ...draft.address }, rateId: String(draft.rateId ?? ''), step: draft.step === 2 ? 2 : 1 };
+  } catch {
+    return null;
+  }
+}
+function writeDraft(draft: Draft | null) {
+  try {
+    if (draft) window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+    else window.sessionStorage.removeItem(DRAFT_KEY);
+  } catch {
+    /* stockage indisponible (navigation privée) : la page fonctionne sans brouillon */
+  }
+}
+
+const STEP_STATE = 'glacioraCheckoutStep';
 
 export default function CheckoutPage() {
   const router = useLocalizedRouter();
@@ -82,6 +121,7 @@ export default function CheckoutPage() {
     const timer = setTimeout(() => void loadSchemas(), 1500);
     return () => clearTimeout(timer);
   }, []);
+  const [step, setStep] = useState<Step>(1);
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState<AddressState>(EMPTY_ADDRESS);
   const [saved, setSaved] = useState<SavedAddress[]>([]);
@@ -89,48 +129,97 @@ export default function CheckoutPage() {
   const [rateId, setRateId] = useState('');
   const [payment, setPayment] = useState<PaymentDetails | null>(null);
   const [files, setFiles] = useState<File[]>([]);
-  const [paymentError, setPaymentError] = useState('');
+  const [stepError, setStepError] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [globalError, setGlobalError] = useState('');
+  const [proofRejection, setProofRejection] = useState<ProofRejection | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [loadingPayment, setLoadingPayment] = useState(false);
+  const [draftLoaded, setDraftLoaded] = useState(false);
+  /** Mode de livraison à resélectionner après rechargement des tarifs (brouillon restauré). */
+  const preferredRate = useRef('');
+  /** Étape 2 à rouvrir automatiquement (brouillon d'un onglet rechargé pendant le virement). */
+  const resumePayment = useRef(false);
+  /** Commande enregistrée : le brouillon de l'onglet est effacé et n'est plus réécrit. */
+  const orderPlaced = useRef(false);
+  const stepHeading = useRef<HTMLHeadingElement>(null);
+  const proofInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     api<CheckoutConfig>('/api/checkout/config').then(setConfig).catch(() => setGlobalError(t.configError));
   }, [t.configError]);
 
+  // Brouillon de l'onglet : restauré une fois, avant les adresses enregistrées du compte.
   useEffect(() => {
-    if (!user) return;
+    const draft = readDraft();
+    if (draft) {
+      setEmail(draft.email);
+      setAddress(draft.address);
+      preferredRate.current = draft.rateId;
+      resumePayment.current = draft.step === 2;
+    }
+    setDraftLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!draftLoaded || orderPlaced.current) return;
+    // Étape 2 en cours de reprise (onglet rechargé) : elle reste l'étape enregistrée tant que la reprise n'a pas eu lieu.
+    writeDraft({ email, address, rateId, step: resumePayment.current ? 2 : step });
+  }, [draftLoaded, email, address, rateId, step]);
+
+  useEffect(() => {
+    if (!user || !draftLoaded) return;
     setEmail((e) => e || user.email);
     api<{ addresses: SavedAddress[] }>('/api/account/addresses')
       .then((d) => {
         setSaved(d.addresses);
         const def = d.addresses[0];
-        if (def) applySaved(def);
+        // Une adresse déjà saisie dans cet onglet n'est pas remplacée par l'adresse enregistrée.
+        if (def && !readDraft()?.address.line1) applySaved(def);
       })
       .catch(() => undefined);
-  }, [user]);
+  }, [user, draftLoaded]);
 
   useEffect(() => {
-    setPayment(null);
     setQuotes([]);
     setRateId('');
     if (!address.countryCode) return;
     api<{ quotes: Quote[] }>(`/api/checkout/shipping-quotes?country=${address.countryCode}`)
       .then((d) => {
         setQuotes(d.quotes);
-        setRateId(d.quotes[0]?.rateId ?? '');
+        const preferred = d.quotes.find((q) => q.rateId === preferredRate.current);
+        setRateId(preferred?.rateId ?? d.quotes[0]?.rateId ?? '');
       })
       .catch(() => setQuotes([]));
   }, [address.countryCode, cart?.subtotalCents]);
 
   const quote = useMemo(() => quotes.find((q) => q.rateId === rateId), [quotes, rateId]);
-  const bankAvailable = config?.paymentMethods.find((m) => m.id === 'BANK_TRANSFER')?.available ?? false;
-  const card = config?.paymentMethods.find((m) => m.id === 'CARD');
+  const bankAvailable = config?.paymentMethods.find((pm) => pm.id === 'BANK_TRANSFER')?.available ?? false;
+  const card = config?.paymentMethods.find((pm) => pm.id === 'CARD');
   const maxFiles = config?.upload.maxFiles ?? 1;
   // Virement possible pour le pays choisi (un compte bancaire couvre ce pays, ou le compte principal couvre tous les pays).
   const bankForCountry = !config?.bankTransferCountries || !address.countryCode || config.bankTransferCountries.includes(address.countryCode);
+
+  const showStep = useCallback((next: Step, push: boolean) => {
+    setStep(next);
+    setStepError('');
+    if (push && next === 2) window.history.pushState({ [STEP_STATE]: 2 }, '');
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0 });
+      stepHeading.current?.focus({ preventScroll: true });
+    });
+  }, []);
+
+  // Bouton « Retour » du navigateur à l'étape 2 : revient à l'étape 1 au lieu de quitter la commande.
+  useEffect(() => {
+    function onPopState(e: PopStateEvent) {
+      if ((e.state as Record<string, unknown> | null)?.[STEP_STATE] !== 2) showStep(1, false);
+      else if (payment) showStep(2, false);
+    }
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [payment, showStep]);
 
   function applySaved(a: SavedAddress) {
     setAddress({
@@ -150,8 +239,7 @@ export default function CheckoutPage() {
   function onAddressChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value } = e.target;
     setAddress((a) => ({ ...a, [name]: value }));
-    setPayment(null);
-    setPaymentError('');
+    setStepError('');
   }
 
   async function validateDelivery(): Promise<boolean> {
@@ -166,29 +254,49 @@ export default function CheckoutPage() {
     return Object.keys(next).length === 0;
   }
 
-  async function showPaymentDetails() {
+  /** Montant définitif, référence réservée et compte bancaire du pays de livraison (l'API les signe pour l'étape 2). */
+  const loadPaymentDetails = useCallback(async () => {
+    const details = await api<PaymentDetails>('/api/checkout/payment-details', { method: 'POST', json: { countryCode: address.countryCode, shippingRateId: rateId } });
+    setPayment(details);
+    return details;
+  }, [address.countryCode, rateId]);
+
+  /** Étape 1 validée : contrôle du formulaire puis affichage de l'étape 2 avec les coordonnées bancaires du pays choisi. */
+  async function onContinue(e: FormEvent) {
+    e.preventDefault();
     setGlobalError('');
-    setPaymentError('');
+    setStepError('');
     if (!(await validateDelivery())) {
       // Le message s'affiche sous le bouton et le premier champ à corriger reçoit le focus (souvent hors écran sur mobile).
-      setPaymentError(t.completeDelivery);
+      setStepError(t.completeDelivery);
       requestAnimationFrame(() => document.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus());
       return;
     }
     setLoadingPayment(true);
     try {
-      setPayment(await api<PaymentDetails>('/api/checkout/payment-details', { method: 'POST', json: { countryCode: address.countryCode, shippingRateId: rateId } }));
+      await loadPaymentDetails();
+      showStep(2, true);
     } catch (err) {
-      setPaymentError(apiErrorMessage(err, locale, m, t.bankDetailsFailed));
+      setStepError(apiErrorMessage(err, locale, m, t.bankDetailsFailed));
     } finally {
       setLoadingPayment(false);
     }
   }
 
+  // Onglet rechargé pendant le virement : l'étape 2 revient dès que les tarifs du pays sont chargés (même référence, cookie signé).
+  useEffect(() => {
+    if (!resumePayment.current || !config || !cart || cart.items.length === 0 || !rateId || !bankForCountry) return;
+    resumePayment.current = false;
+    loadPaymentDetails()
+      .then(() => showStep(2, false))
+      .catch(() => setStep(1));
+  }, [config, cart, rateId, bankForCountry, loadPaymentDetails, showStep]);
+
   function onFile(e: ChangeEvent<HTMLInputElement>) {
     const selected = Array.from(e.target.files ?? []);
     const next = { ...errors };
     delete next.proof;
+    setProofRejection(null);
     if (selected.length > maxFiles) next.proof = fmt(t.proofTooMany, { count: maxFiles });
     else if (config) {
       for (const f of selected) {
@@ -201,9 +309,11 @@ export default function CheckoutPage() {
     setFiles(next.proof ? [] : selected);
   }
 
+  /** Étape 2 : envoi de la preuve. L'API vérifie que la référence et le montant y figurent avant d'enregistrer la commande. */
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setGlobalError('');
+    setProofRejection(null);
     const data = { email, shippingAddress: address, shippingRateId: rateId, paymentMethod: 'BANK_TRANSFER' as const, acceptTerms, locale };
     const { checkoutSchema } = await loadSchemas();
     const parsed = checkoutSchema.safeParse(data);
@@ -211,6 +321,11 @@ export default function CheckoutPage() {
     if (!parsed.success) for (const issue of parsed.error.issues) next[issue.path.join('.')] ??= issue.message;
     if (files.length === 0) next.proof = t.proofRequired;
     setErrors(translateFieldErrors(next, m));
+    if (Object.keys(next).some((key) => key !== 'acceptTerms' && key !== 'proof')) {
+      showStep(1, false);
+      setStepError(t.completeDelivery);
+      return;
+    }
     if (Object.keys(next).length > 0 || !payment) {
       setGlobalError(t.checkFields);
       return;
@@ -221,14 +336,33 @@ export default function CheckoutPage() {
       body.set('data', JSON.stringify(data));
       for (const f of files) body.append('proof', f);
       const res = await api<{ order: { reference: string } }>('/api/checkout/orders', { method: 'POST', body });
+      orderPlaced.current = true;
+      writeDraft(null);
       await refresh();
       router.push(`/commande/confirmation?ref=${encodeURIComponent(res.order.reference)}`);
     } catch (err) {
-      setErrors(translateFieldErrors(fieldErrors(err), m));
-      const code = err instanceof ApiError ? (err.body.details as { code?: string } | undefined)?.code : undefined;
-      if (code === 'AMOUNT_CHANGED' || code === 'REFERENCE_EXPIRED' || code === 'REFERENCE_USED') setPayment(null);
-      setGlobalError(apiErrorMessage(err, locale, m, t.orderFailed));
       setSubmitting(false);
+      const body = err instanceof ApiError ? err.body : undefined;
+      const details = (body?.details ?? {}) as { code?: string; referenceFound?: boolean; amountFound?: boolean };
+      if (body?.code === 'PROOF_MISMATCH' || body?.code === 'PROOF_UNREADABLE') {
+        setProofRejection({ kind: body.code === 'PROOF_MISMATCH' ? 'mismatch' : 'unreadable', referenceFound: details.referenceFound, amountFound: details.amountFound });
+        setErrors((current) => ({ ...current, proof: ' ' }));
+        requestAnimationFrame(() => document.getElementById('refus-justificatif')?.scrollIntoView({ block: 'center' }));
+        return;
+      }
+      const serverFields = translateFieldErrors(fieldErrors(err), m);
+      setErrors(serverFields);
+      if (Object.keys(serverFields).some((key) => key.startsWith('shippingAddress') || key === 'email' || key === 'shippingRateId')) {
+        showStep(1, false);
+        setStepError(t.completeDelivery);
+        return;
+      }
+      setGlobalError(apiErrorMessage(err, locale, m, t.orderFailed));
+      // Montant, référence ou compte changés entre-temps : nouvelles coordonnées affichées tout de suite.
+      if (details.code === 'AMOUNT_CHANGED' || details.code === 'REFERENCE_EXPIRED' || details.code === 'REFERENCE_USED' || details.code === 'BANK_ACCOUNT_CHANGED') {
+        loadPaymentDetails().catch(() => showStep(1, false));
+      }
+      requestAnimationFrame(() => window.scrollTo({ top: 0 }));
     }
   }
 
@@ -244,226 +378,312 @@ export default function CheckoutPage() {
     );
   }
 
-  const err = (key: string) => errors[key];
+  const err = (key: string) => errors[key]?.trim() || undefined;
   const totalCents = (cart?.subtotalCents ?? 0) + (quote?.priceCents ?? 0);
+  const onPayment = step === 2 && payment !== null;
+
+  const rejectionMessage = (() => {
+    if (!proofRejection || !payment) return '';
+    const vars = { reference: payment.reference, amount: price(payment.amountCents) };
+    if (proofRejection.kind === 'unreadable') return t.proofUnreadable;
+    if (!proofRejection.referenceFound && !proofRejection.amountFound) return fmt(t.proofMismatchBoth, vars);
+    if (!proofRejection.referenceFound) return fmt(t.proofMismatchReference, vars);
+    return fmt(t.proofMismatchAmount, vars);
+  })();
 
   return (
     <div className="container py-10">
       <h1 className="text-3xl sm:text-4xl">{t.title}</h1>
-      {!user && (
-        <p className="mt-2 text-sm text-muted">
+      <ol aria-label={t.steps} className="mt-4 flex flex-wrap items-center gap-2 text-sm font-semibold">
+        <li aria-current={!onPayment ? 'step' : undefined} className={!onPayment ? 'rounded-full bg-marine px-3 py-1 text-white' : 'px-3 py-1 text-muted'}>
+          {t.stepDelivery}
+        </li>
+        <li aria-hidden="true" className="text-muted">
+          ›
+        </li>
+        <li aria-current={onPayment ? 'step' : undefined} className={onPayment ? 'rounded-full bg-marine px-3 py-1 text-white' : 'px-3 py-1 text-muted'}>
+          {t.stepPayment}
+        </li>
+      </ol>
+      {!user && !onPayment && (
+        <p className="mt-3 text-sm text-muted">
           {t.alreadyCustomer} <Link href={`/compte/connexion?retour=${encodeURIComponent(router.to('/commande'))}`} className="font-semibold text-deep underline">{t.loginLink}</Link> {t.loginToFind}
         </p>
       )}
-      <form onSubmit={onSubmit} noValidate className="mt-8 grid gap-10 lg:grid-cols-[1fr_380px]">
-        <div className="space-y-10">
+
+      <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_380px]">
+        <div className="min-w-0">
           {globalError && (
-            <p role="alert" className="rounded-md bg-danger/10 p-4 text-sm font-semibold text-danger">
+            <p role="alert" className="mb-6 rounded-md bg-danger/10 p-4 text-sm font-semibold text-danger">
               {globalError}
             </p>
           )}
 
-          <section aria-labelledby="etape-livraison" className="space-y-4">
-            <h2 id="etape-livraison" className="text-xl">
-              {t.stepDelivery}
-            </h2>
-            {saved.length > 0 && (
-              <div>
-                <label htmlFor="adresse-enregistree" className="field-label">
-                  {t.savedAddress}
-                </label>
-                <select id="adresse-enregistree" className="field-input" onChange={(e) => { const a = saved.find((s) => s.id === e.target.value); if (a) applySaved(a); }}>
-                  {saved.map((a) => (
-                    <option key={a.id} value={a.id}>
-                      {a.label ?? `${a.firstName} ${a.lastName}`} — {a.line1}, {a.city}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-            <div>
-              <label htmlFor="email" className="field-label">
-                {m.common.email} <span aria-hidden="true">*</span>
-              </label>
-              <input id="email" name="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="field-input" aria-invalid={Boolean(err('email'))} aria-describedby={err('email') ? 'email-erreur' : undefined} />
-              {err('email') && <p id="email-erreur" className="field-error">{err('email')}</p>}
-            </div>
-            <div>
-              <label htmlFor="countryCode" className="field-label">
-                {t.country} <span aria-hidden="true">*</span>
-              </label>
-              <select id="countryCode" name="countryCode" required value={address.countryCode} onChange={onAddressChange} className="field-input" autoComplete="country" aria-invalid={Boolean(err('shippingAddress.countryCode'))} data-testid="country-select">
-                <option value="">{t.chooseCountry}</option>
-                {config?.countries
-                  .map((c) => ({ code: c.code, name: countryName(c.code, locale, c.name) }))
-                  .sort((a, b) => a.name.localeCompare(b.name, locale))
-                  .map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.name}
-                    </option>
-                  ))}
-              </select>
-              {config && config.countries.length === 0 && <p className="field-error">{t.noCountries}</p>}
-              {err('shippingAddress.countryCode') && <p className="field-error">{err('shippingAddress.countryCode')}</p>}
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {ADDRESS_FIELDS.map((f) => {
-                const key = `shippingAddress.${f.name}`;
-                return (
-                  <div key={f.name} className={f.half ? '' : 'sm:col-span-2'}>
-                    <label htmlFor={f.name} className="field-label">
-                      {t.fields[f.name]} {f.required && <span aria-hidden="true">*</span>}
-                    </label>
-                    <input
-                      id={f.name}
-                      name={f.name}
-                      autoComplete={f.autoComplete}
-                      required={f.required}
-                      value={address[f.name]}
-                      onChange={onAddressChange}
-                      className="field-input"
-                      aria-invalid={Boolean(err(key))}
-                      aria-describedby={err(key) ? `${f.name}-erreur` : undefined}
-                      type={f.name === 'phone' ? 'tel' : 'text'}
-                    />
-                    {err(key) && (
-                      <p id={`${f.name}-erreur`} className="field-error">
-                        {err(key)}
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            {address.countryCode && (
-              <fieldset>
-                <legend className="field-label">{t.shippingMethod}</legend>
-                {quotes.length === 0 ? (
-                  <p className="field-error">{t.shippingUnavailable}</p>
-                ) : (
-                  <div className="mt-2 space-y-2">
-                    {quotes.map((q) => (
-                      <label key={q.rateId} className="flex min-h-[44px] cursor-pointer items-center justify-between gap-3 rounded-md border border-line p-3 text-sm has-[:checked]:border-deep">
-                        <span className="flex items-center gap-3">
-                          <input type="radio" name="shippingRateId" value={q.rateId} checked={rateId === q.rateId} onChange={() => { setRateId(q.rateId); setPayment(null); }} className="h-4 w-4 accent-deep" />
-                          <span>
-                            {q.name}
-                            {q.minDays != null && q.maxDays != null && <span className="block text-muted">{fmt(t.businessDays, { min: q.minDays, max: q.maxDays })}</span>}
-                          </span>
-                        </span>
-                        <span className="font-semibold">{q.isFree ? m.common.free : price(q.priceCents)}</span>
-                      </label>
+          {!onPayment ? (
+            <form onSubmit={onContinue} noValidate className="space-y-4" data-testid="checkout-step-1">
+              <h2 id="etape-livraison" ref={stepHeading} tabIndex={-1} className="text-xl outline-none">
+                {t.stepDelivery}
+              </h2>
+              {saved.length > 0 && (
+                <div>
+                  <label htmlFor="adresse-enregistree" className="field-label">
+                    {t.savedAddress}
+                  </label>
+                  <select id="adresse-enregistree" className="field-input" onChange={(e) => { const a = saved.find((s) => s.id === e.target.value); if (a) applySaved(a); }}>
+                    {saved.map((a) => (
+                      <option key={a.id} value={a.id}>
+                        {a.label ?? `${a.firstName} ${a.lastName}`} — {a.line1}, {a.city}
+                      </option>
                     ))}
-                  </div>
-                )}
-              </fieldset>
-            )}
-          </section>
-
-          <section aria-labelledby="etape-paiement" className="space-y-4">
-            <h2 id="etape-paiement" className="text-xl">
-              {t.stepPayment}
-            </h2>
-            <fieldset className="space-y-2">
-              <legend className="sr-only">{t.paymentMethod}</legend>
-              <label className="flex min-h-[44px] items-center gap-3 rounded-md border border-deep p-3 text-sm">
-                <input type="radio" name="paymentMethod" value="BANK_TRANSFER" defaultChecked disabled={!bankAvailable} className="h-4 w-4 accent-deep" data-testid="pay-bank-transfer" />
-                <span className="font-semibold">{t.bankTransfer}</span>
-                {(!bankAvailable || !bankForCountry) && config && <span className="text-danger">{!bankForCountry ? fmt(t.unavailableFor, { country: country(address.countryCode) }) : t.unavailable}</span>}
-              </label>
+                  </select>
+                </div>
+              )}
+              <div>
+                <label htmlFor="email" className="field-label">
+                  {m.common.email} <span aria-hidden="true">*</span>
+                </label>
+                <input id="email" name="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="field-input" aria-invalid={Boolean(err('email'))} aria-describedby={err('email') ? 'email-erreur' : undefined} />
+                {err('email') && <p id="email-erreur" className="field-error">{err('email')}</p>}
+              </div>
+              <div>
+                <label htmlFor="countryCode" className="field-label">
+                  {t.country} <span aria-hidden="true">*</span>
+                </label>
+                <select id="countryCode" name="countryCode" required value={address.countryCode} onChange={onAddressChange} className="field-input" autoComplete="country" aria-invalid={Boolean(err('shippingAddress.countryCode'))} data-testid="country-select">
+                  <option value="">{t.chooseCountry}</option>
+                  {config?.countries
+                    .map((c) => ({ code: c.code, name: countryName(c.code, locale, c.name) }))
+                    .sort((a, b) => a.name.localeCompare(b.name, locale))
+                    .map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.name}
+                      </option>
+                    ))}
+                </select>
+                {config && config.countries.length === 0 && <p className="field-error">{t.noCountries}</p>}
+                {err('shippingAddress.countryCode') && <p className="field-error">{err('shippingAddress.countryCode')}</p>}
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {ADDRESS_FIELDS.map((f) => {
+                  const key = `shippingAddress.${f.name}`;
+                  return (
+                    <div key={f.name} className={f.half ? '' : 'sm:col-span-2'}>
+                      <label htmlFor={f.name} className="field-label">
+                        {t.fields[f.name]} {f.required && <span aria-hidden="true">*</span>}
+                      </label>
+                      <input
+                        id={f.name}
+                        name={f.name}
+                        autoComplete={f.autoComplete}
+                        required={f.required}
+                        value={address[f.name]}
+                        onChange={onAddressChange}
+                        className="field-input"
+                        aria-invalid={Boolean(err(key))}
+                        aria-describedby={err(key) ? `${f.name}-erreur` : undefined}
+                        type={f.name === 'phone' ? 'tel' : 'text'}
+                      />
+                      {err(key) && (
+                        <p id={`${f.name}-erreur`} className="field-error">
+                          {err(key)}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              {address.countryCode && (
+                <fieldset>
+                  <legend className="field-label">{t.shippingMethod}</legend>
+                  {quotes.length === 0 ? (
+                    <p className="field-error">{t.shippingUnavailable}</p>
+                  ) : (
+                    <div className="mt-2 space-y-2">
+                      {quotes.map((q) => (
+                        <label key={q.rateId} className="flex min-h-[44px] cursor-pointer items-center justify-between gap-3 rounded-md border border-line p-3 text-sm has-[:checked]:border-deep">
+                          <span className="flex items-center gap-3">
+                            <input type="radio" name="shippingRateId" value={q.rateId} checked={rateId === q.rateId} onChange={() => { setRateId(q.rateId); preferredRate.current = q.rateId; }} className="h-4 w-4 accent-deep" />
+                            <span>
+                              {q.name}
+                              {q.minDays != null && q.maxDays != null && <span className="block text-muted">{fmt(t.businessDays, { min: q.minDays, max: q.maxDays })}</span>}
+                            </span>
+                          </span>
+                          <span className="font-semibold">{q.isFree ? m.common.free : price(q.priceCents)}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                  {err('shippingRateId') && <p className="field-error">{err('shippingRateId')}</p>}
+                </fieldset>
+              )}
               {bankAvailable && !bankForCountry && (
                 <p role="alert" className="rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning" data-testid="bank-unavailable-country">
                   {fmt(t.bankNotForCountry, { country: country(address.countryCode), email: BRAND.email, phone: BRAND.phoneDisplay })}
                 </p>
               )}
-              <label className="flex min-h-[44px] cursor-not-allowed items-center gap-3 rounded-md border border-line bg-snow p-3 text-sm text-muted">
-                <input type="radio" name="paymentMethod" value="CARD" disabled aria-describedby="carte-indispo" className="h-4 w-4" />
-                <span className="font-semibold">{t.card}</span>
-                <span id="carte-indispo" className="ml-auto rounded-sm bg-white px-2 py-0.5 text-xs font-bold uppercase text-muted">
-                  {locale === 'fr' && card?.unavailableReason ? card.unavailableReason : t.cardUnavailable}
-                </span>
-              </label>
-            </fieldset>
-
-            {!payment ? (
-              <div>
-                <button type="button" className="btn-primary" onClick={showPaymentDetails} disabled={!bankAvailable || !bankForCountry || loadingPayment} aria-describedby={paymentError ? 'erreur-coordonnees' : undefined} data-testid="show-bank-details">
-                  {loadingPayment ? m.common.loading : t.showBankDetails}
+              {config && !bankAvailable && <p className="rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning">{t.bankTransfer} {t.unavailable}</p>}
+              <div className="pt-2">
+                <button type="submit" className="btn-primary w-full sm:w-auto" disabled={!bankAvailable || !bankForCountry || loadingPayment} aria-describedby={stepError ? 'erreur-etape-1' : undefined} data-testid="continue-to-payment">
+                  {loadingPayment ? m.common.loading : t.continueToPayment}
                 </button>
-                {paymentError && (
-                  <p id="erreur-coordonnees" role="alert" className="mt-3 rounded-md bg-danger/10 p-3 text-sm font-semibold text-danger">
-                    {paymentError}
+                {stepError && (
+                  <p id="erreur-etape-1" role="alert" className="mt-3 rounded-md bg-danger/10 p-3 text-sm font-semibold text-danger">
+                    {stepError}
                   </p>
                 )}
               </div>
-            ) : (
-              <div className="grid gap-6 rounded-lg border border-line p-5 sm:grid-cols-[1fr_auto]" data-testid="bank-details">
-                <dl className="space-y-2 text-sm">
-                  <div>
-                    <dt className="text-muted">{t.beneficiary}</dt>
-                    <dd className="font-semibold">{payment.bank.accountHolder}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-muted">IBAN</dt>
-                    <dd className="font-mono font-semibold" data-testid="iban">{payment.bank.iban}</dd>
-                  </div>
-                  {payment.bank.bic && (
-                    <div>
-                      <dt className="text-muted">BIC</dt>
-                      <dd className="font-mono font-semibold">{payment.bank.bic}</dd>
-                    </div>
-                  )}
-                  {payment.bank.bankName && (
-                    <div>
-                      <dt className="text-muted">{t.bank}</dt>
-                      <dd className="font-semibold">{payment.bank.bankName}</dd>
-                    </div>
-                  )}
-                  <div>
-                    <dt className="text-muted">{t.exactAmount}</dt>
-                    <dd className="text-lg font-extrabold">{price(payment.amountCents)}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-muted">{t.reference}</dt>
-                    <dd className="font-mono text-lg font-extrabold text-deep" data-testid="transfer-reference">{payment.reference}</dd>
-                  </div>
-                </dl>
-                <figure className="text-center">
-                  <Image src={payment.qrCodeDataUrl} alt={fmt(t.qrAlt, { amount: price(payment.amountCents), reference: payment.reference })} width={180} height={180} unoptimized className="mx-auto rounded-md bg-white" data-testid="sepa-qr" />
-                  <figcaption className="mt-2 max-w-[180px] text-xs text-muted">{t.qrCaption}</figcaption>
-                </figure>
-                <p className="text-xs text-muted sm:col-span-2">{t.referenceHint}</p>
-              </div>
-            )}
+            </form>
+          ) : (
+            <form onSubmit={onSubmit} noValidate className="space-y-8" data-testid="checkout-step-2">
+              <h2 id="etape-paiement" ref={stepHeading} tabIndex={-1} className="text-xl outline-none">
+                {t.stepPayment}
+              </h2>
 
-            {payment && (
-              <div>
-                <label htmlFor="proof" className="field-label">
-                  {t.proofLabel} <span aria-hidden="true">*</span>
-                </label>
-                <p id="proof-aide" className="mb-2 text-xs text-muted">
-                  {fmt(t.proofHelp, {
-                    types: PROOF_MIME_TYPES.map((type) => type.split('/')[1]!.toUpperCase().replace('JPEG', 'JPG')).join(', '),
-                    files: maxFiles > 1 ? fmt(t.proofFiles, { count: maxFiles }) : '',
-                    size: config ? Math.round(config.upload.maxBytes / 1024 / 1024) : 10,
-                  })}
+              <section aria-labelledby="vos-informations" className="rounded-lg border border-line p-5 text-sm" data-testid="delivery-recap">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 id="vos-informations" className="text-base">
+                    {t.yourDetails}
+                  </h3>
+                  <button type="button" className="inline-flex min-h-[44px] items-center font-semibold text-deep underline" onClick={() => (window.history.state?.[STEP_STATE] === 2 ? window.history.back() : showStep(1, false))} data-testid="edit-details">
+                    {t.editDetails}
+                  </button>
+                </div>
+                <p className="mt-1">
+                  {address.firstName} {address.lastName}
+                  {address.company && <>, {address.company}</>}
+                  <br />
+                  {address.line1}
+                  {address.line2 && <>, {address.line2}</>}
+                  <br />
+                  {address.postalCode} {address.city}
+                  {address.region && <>, {address.region}</>} — <strong>{country(address.countryCode)}</strong>
+                  <br />
+                  {address.phone} · {email}
                 </p>
-                <input id="proof" name="proof" type="file" multiple={maxFiles > 1} accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp" onChange={onFile} className="field-input file:mr-3 file:rounded-md file:border-0 file:bg-snow file:px-3 file:py-1 file:font-semibold" aria-invalid={Boolean(err('proof'))} aria-describedby={err('proof') ? 'proof-aide proof-erreur' : 'proof-aide'} />
-                {files.length > 0 && (
-                  <ul className="mt-2 space-y-1 text-xs text-muted" data-testid="proof-files">
-                    {files.map((f) => (
-                      <li key={`${f.name}-${f.size}`}>✓ {f.name} ({Math.max(1, Math.round(f.size / 1024))} Ko)</li>
-                    ))}
-                  </ul>
-                )}
-                {err('proof') && (
-                  <p id="proof-erreur" className="field-error">
-                    {err('proof')}
+                {quote && (
+                  <p className="mt-2 text-muted">
+                    {t.shippingMethod} : {quote.name}
+                    {quote.minDays != null && quote.maxDays != null && <> ({fmt(t.businessDays, { min: quote.minDays, max: quote.maxDays })})</>}
                   </p>
                 )}
-              </div>
-            )}
-          </section>
+              </section>
+
+              <section aria-labelledby="mode-paiement" className="space-y-4">
+                <h3 id="mode-paiement" className="text-base">
+                  {t.paymentMethod}
+                </h3>
+                <fieldset className="space-y-2">
+                  <legend className="sr-only">{t.paymentMethod}</legend>
+                  <label className="flex min-h-[44px] items-center gap-3 rounded-md border border-deep p-3 text-sm">
+                    <input type="radio" name="paymentMethod" value="BANK_TRANSFER" defaultChecked className="h-4 w-4 accent-deep" data-testid="pay-bank-transfer" />
+                    <span className="font-semibold">{t.bankTransfer}</span>
+                  </label>
+                  <label className="flex min-h-[44px] cursor-not-allowed items-center gap-3 rounded-md border border-line bg-snow p-3 text-sm text-muted">
+                    <input type="radio" name="paymentMethod" value="CARD" disabled aria-describedby="carte-indispo" className="h-4 w-4" />
+                    <span className="font-semibold">{t.card}</span>
+                    <span id="carte-indispo" className="ml-auto rounded-sm bg-white px-2 py-0.5 text-xs font-bold uppercase text-muted">
+                      {locale === 'fr' && card?.unavailableReason ? card.unavailableReason : t.cardUnavailable}
+                    </span>
+                  </label>
+                </fieldset>
+
+                <div className="grid gap-6 rounded-lg border border-line p-5 sm:grid-cols-[1fr_auto]" data-testid="bank-details">
+                  <h4 className="text-sm font-bold sm:col-span-2">{t.bankDetailsTitle}</h4>
+                  <dl className="space-y-2 text-sm">
+                    <div>
+                      <dt className="text-muted">{t.beneficiary}</dt>
+                      <dd className="font-semibold">{payment.bank.accountHolder}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-muted">IBAN</dt>
+                      <dd className="font-mono font-semibold" data-testid="iban">{payment.bank.iban}</dd>
+                    </div>
+                    {payment.bank.bic && (
+                      <div>
+                        <dt className="text-muted">BIC</dt>
+                        <dd className="font-mono font-semibold">{payment.bank.bic}</dd>
+                      </div>
+                    )}
+                    {payment.bank.bankName && (
+                      <div>
+                        <dt className="text-muted">{t.bank}</dt>
+                        <dd className="font-semibold">{payment.bank.bankName}</dd>
+                      </div>
+                    )}
+                    <div>
+                      <dt className="text-muted">{t.exactAmount}</dt>
+                      <dd className="text-lg font-extrabold" data-testid="transfer-amount">{price(payment.amountCents)}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-muted">{t.reference}</dt>
+                      <dd className="font-mono text-lg font-extrabold text-deep" data-testid="transfer-reference">{payment.reference}</dd>
+                    </div>
+                  </dl>
+                  <figure className="text-center">
+                    <Image src={payment.qrCodeDataUrl} alt={fmt(t.qrAlt, { amount: price(payment.amountCents), reference: payment.reference })} width={180} height={180} unoptimized className="mx-auto rounded-md bg-white" data-testid="sepa-qr" />
+                    <figcaption className="mt-2 max-w-[180px] text-xs text-muted">{t.qrCaption}</figcaption>
+                  </figure>
+                  <p className="text-xs text-muted sm:col-span-2">{t.referenceHint}</p>
+                </div>
+              </section>
+
+              <section className="space-y-4">
+                <div>
+                  <label htmlFor="proof" className="field-label">
+                    {t.proofLabel} <span aria-hidden="true">*</span>
+                  </label>
+                  <p id="proof-aide" className="mb-2 text-xs text-muted">
+                    {fmt(t.proofHelp, {
+                      types: PROOF_MIME_TYPES.map((type) => type.split('/')[1]!.toUpperCase().replace('JPEG', 'JPG')).join(', '),
+                      files: maxFiles > 1 ? fmt(t.proofFiles, { count: maxFiles }) : '',
+                      size: config ? Math.round(config.upload.maxBytes / 1024 / 1024) : 10,
+                    })}
+                  </p>
+                  <input ref={proofInput} id="proof" name="proof" type="file" multiple={maxFiles > 1} accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp" onChange={onFile} className="field-input file:mr-3 file:rounded-md file:border-0 file:bg-snow file:px-3 file:py-1 file:font-semibold" aria-invalid={Boolean(errors.proof)} aria-describedby={['proof-aide', err('proof') && 'proof-erreur', proofRejection && 'refus-justificatif'].filter(Boolean).join(' ')} />
+                  {files.length > 0 && (
+                    <ul className="mt-2 space-y-1 text-xs text-muted" data-testid="proof-files">
+                      {files.map((f) => (
+                        <li key={`${f.name}-${f.size}`}>✓ {f.name} ({Math.max(1, Math.round(f.size / 1024))} Ko)</li>
+                      ))}
+                    </ul>
+                  )}
+                  {err('proof') && (
+                    <p id="proof-erreur" className="field-error">
+                      {err('proof')}
+                    </p>
+                  )}
+                </div>
+
+                <label className="flex items-start gap-2 text-sm">
+                  <input type="checkbox" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} className="mt-1 h-4 w-4 accent-deep" aria-invalid={Boolean(err('acceptTerms'))} />
+                  <span>
+                    {t.acceptTermsBefore}{' '}
+                    <Link href="/conditions-de-vente" target="_blank" className="font-semibold text-deep underline">
+                      {t.acceptTermsLink}
+                    </Link>
+                  </span>
+                </label>
+                {err('acceptTerms') && <p className="field-error">{err('acceptTerms')}</p>}
+
+                {proofRejection && (
+                  <div id="refus-justificatif" role="alert" className="rounded-md bg-danger/10 p-4 text-sm text-danger" data-testid="proof-rejected">
+                    <p className="font-semibold">{rejectionMessage}</p>
+                    <p className="mt-1">{t.proofMismatchAdvice}</p>
+                  </div>
+                )}
+
+                <p className="text-xs text-muted">{fmt(t.proofCheckHint, { reference: payment.reference, amount: price(payment.amountCents) })}</p>
+                <button type="submit" className="btn-primary w-full sm:w-auto" disabled={submitting} aria-describedby={proofRejection ? 'refus-justificatif' : undefined} data-testid="place-order">
+                  {submitting ? t.verifyingProof : t.placeOrder}
+                </button>
+                {submitting && (
+                  <p role="status" className="text-xs text-muted">
+                    {t.verifyingProof}
+                  </p>
+                )}
+              </section>
+            </form>
+          )}
         </div>
 
         <aside className="h-fit space-y-4 rounded-lg bg-snow p-6 lg:sticky lg:top-28" aria-labelledby="recap-commande">
@@ -492,25 +712,11 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between border-t border-line pt-2 text-lg font-extrabold">
               <dt>{t.totalInclTax}</dt>
-              <dd data-testid="order-total">{price(payment?.amountCents ?? totalCents)}</dd>
+              <dd data-testid="order-total">{price(onPayment ? payment.amountCents : totalCents)}</dd>
             </div>
           </dl>
-          <label className="flex items-start gap-2 text-sm">
-            <input type="checkbox" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} className="mt-1 h-4 w-4 accent-deep" aria-invalid={Boolean(err('acceptTerms'))} />
-            <span>
-              {t.acceptTermsBefore}{' '}
-              <Link href="/conditions-de-vente" target="_blank" className="font-semibold text-deep underline">
-                {t.acceptTermsLink}
-              </Link>
-            </span>
-          </label>
-          {err('acceptTerms') && <p className="field-error">{err('acceptTerms')}</p>}
-          <button type="submit" className="btn-primary w-full" disabled={!payment || submitting} data-testid="place-order">
-            {submitting ? t.submitting : t.placeOrder}
-          </button>
-          {!payment && <p className="text-xs text-muted">{t.placeOrderHint}</p>}
         </aside>
-      </form>
+      </div>
     </div>
   );
 }

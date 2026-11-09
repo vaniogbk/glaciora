@@ -106,6 +106,19 @@ git -c credential.namespace=glaciora-ci -c credential.gitHubAuthModes=browser pu
 - E-mails clients (confirmation, suivi, mot de passe) : dans la langue de la commande ou de la demande (`Order.locale`, `User.locale`, migration `customer_locale`). Textes : `apps/api/src/modules/email/email.i18n.ts`. Les e-mails de la boutique et l'admin restent en français.
 - Conditions de vente traduites à titre informatif : la version française fait foi.
 
+## 8 quater. Commande en 2 étapes et contrôle automatique du justificatif
+
+- Page `/commande` : **étape 1** (e-mail, adresse, pays, mode de livraison) → « Continuer vers le paiement » → **étape 2** (récapitulatif modifiable, coordonnées bancaires du compte rattaché au pays choisi, QR code, dépôt de la preuve, conditions de vente, validation). La référence et le montant affichés à l'étape 2 sont signés par l'API (cookie `glaciora_ref`, 3 h). Un brouillon de l'onglet (`sessionStorage`) ramène le client à l'étape 2, avec la même référence, s'il revient de l'application de sa banque après un rechargement de la page.
+- À la validation, l'API **lit le justificatif avant de l'accepter** et refuse la commande si la référence de virement **et** le montant exact n'y figurent pas (réponse 422 `PROOF_MISMATCH`, ou `PROOF_UNREADABLE` si rien n'est lisible ; le client voit ce qui manque, dans sa langue). Rien n'est enregistré en cas de refus (ni commande, ni fichier, ni stock réservé).
+  - PDF : texte du document ; PDF scanné sans texte : pages rendues en image puis lues par OCR. La lecture se fait dans un **processus séparé** (mémoire bornée à 256 Mo, arrêt forcé après 20 s) : un PDF malformé ne peut pas arrêter l'API.
+  - Photo / capture d'écran : OCR Tesseract **sur le serveur** (aucun envoi à un service externe ; données linguistiques fournies par `@tesseract.js-data/eng`, aucun téléchargement). Le lecteur est chargé 5 s après le démarrage de l'API.
+  - Tolérances : tirets supprimés par la banque, minuscules, un caractère mal lu par l'OCR, montants « 1 360,90 », « 1.360,90 », « 1,360.90 », « EUR 454.90 ». Le contrôle cherche dans l'ensemble des fichiers déposés (reçu sur 2 captures).
+  - Durées mesurées en local : PDF ≈ 1,5 s, capture d'écran ≈ 2 s, PDF scanné ≈ 5 à 10 s.
+  - **Limite** : ce contrôle écarte les fichiers sans rapport ; il ne prouve pas que l'argent est arrivé (un faux reçu portant la bonne référence passerait). La commande ne passe « En route » qu'après vérification du crédit sur le compte bancaire. L'admin affiche le résultat sur la fiche commande (« Contrôle automatique »).
+  - Interrupteur de secours : `PROOF_AUTO_CHECK=false` dans Railway désactive le contrôle (commandes acceptées et marquées « contrôle désactivé » dans l'admin).
+- Migration `payment_proof_check` (colonne `Payment.proofCheck`) : appliquée au démarrage par `railway up` comme les autres.
+- Mémoire Railway : prévoir environ 300 Mo de plus pour l'OCR (lecteur Tesseract gardé chaud + processus de lecture PDF ponctuel).
+
 ## 9. Checklist de mise en production
 
 - [ ] `APP_ENV=production`, `COOKIE_SECURE=true`, `TRUST_PROXY=2`, secrets JWT uniques

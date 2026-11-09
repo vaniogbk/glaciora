@@ -23,6 +23,7 @@ import { isValidTrackingToken, orderTrackingUrl } from './order-tracking';
 import { getStorage } from '../storage/storage';
 import { kickEmailQueue, queueEmail } from '../email/email.service';
 import { REFERENCE_COOKIE, REFERENCE_TTL_MS, decodeReference, encodeReference, newReference } from './checkout-reference';
+import { assertProofMatchesOrder } from './proof-check';
 
 export const ORDER_ACCESS_COOKIE = 'glaciora_order';
 
@@ -119,6 +120,12 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
   if (!signed) throw conflict('Référence de virement expirée : affichez à nouveau les coordonnées bancaires', { code: 'REFERENCE_EXPIRED' });
   const cart = await requireCart(req);
 
+  // Contrôle automatique avant tout enregistrement : la référence et le montant signés à l'étape 2 doivent figurer sur le justificatif.
+  const proofCheck = await assertProofMatchesOrder(
+    checked.map(({ file, check }) => ({ buffer: file.buffer, mime: check.mime })),
+    { reference: signed.reference, amountCents: signed.amountCents },
+  );
+
   const now = new Date();
   const storage = getStorage();
   const proofs = checked.map(({ file, check }) => ({
@@ -213,6 +220,7 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
               transferReference: signed.reference,
               bankAccountId: account.bankAccountId,
               receivingAccount: `${account.label} — ${maskIban(account.iban)}`,
+              proofCheck: proofCheck as unknown as Prisma.InputJsonValue,
             },
           },
         },
