@@ -1,0 +1,66 @@
+{
+  "fetchedAt": "2026-11-11T17:17:43.643Z",
+  "products": [
+    {
+      "slug": "giro-grid-spherical",
+      "brand": "Giro",
+      "name": "Grid Spherical",
+      "sport": "SKI",
+      "priceFromCents": 22495,
+      "hasPriceRange": false,
+      "image": "products/giro-grid-spherical.webp"
+    },
+    {
+      "slug": "volkl-shine-76-vmotion-10-gw",
+      "brand": "Völkl",
+      "name": "Shine 76 + vMotion 10 GW",
+      "sport": "SKI",
+      "priceFromCents": 32490,
+      "hasPriceRange": false,
+      "image": "products/volkl-shine-76-vmotion-10-gw.webp"
+    },
+    {
+      "slug": "zag-slap-98",
+      "brand": "Zag",
+      "name": "Slap 98",
+      "sport": "SKI",
+      "priceFromCents": 45490,
+      "hasPriceRange": false,
+      "image": "products/zag-slap-98.webp"
+    },
+    {
+      "slug": "salomon-s-pro-supra-boa-100-gw",
+      "brand": "Salomon",
+      "name": "S/Pro Supra BOA 100 GW",
+      "sport": "SKI",
+      "priceFromCents": 32490,
+      "hasPriceRange": false,
+      "image": "products/salomon-s-pro-supra-boa-100-gw.webp"
+    },
+    {
+      "slug": "ccm-tacks-xf-pro",
+      "brand": "CCM",
+      "name": "Tacks XF Pro",
+      "sport": "HOCKEY",
+      "priceFromCents": 136090,
+      "hasPriceRange": false,
+      "image": "products/ccm-tacks-xf-pro.webp"
+    },
+    {
+      "slug": "bauer-twitch-grip",
+      "brand": "Bauer",
+      "name": "Twitch Grip",
+      "sport": "HOCKEY",
+      "priceFromCents": 50995,
+      "hasPriceRange": false,
+      "image": "products/bauer-twitch-grip.webp"
+    }
+  ],
+  "visuals": {
+    "skiBanner": "visuals/skiBanner.webp",
+    "hockeyBanner": "visuals/hockeyBanner.webp",
+    "collectionSki": "visuals/collectionSki.webp",
+    "collectionHockey": "visuals/collectionHockey.webp",
+    "essentials": "visuals/essentials.webp"
+  }
+}

@@ -36,7 +36,6 @@ export function Footer({ m }: { locale: Locale; m: Messages }) {
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link className="hover:text-glacier" href="/compte">{f.myAccount}</Link></li>
             <li><Link className="hover:text-glacier" href="/compte/commandes">{f.trackOrder}</Link></li>
-            <li><Link className="hover:text-glacier" href="/conditions-de-vente">{f.terms}</Link></li>
             <li className="text-white/80">{CARD_PAYMENT_ENABLED ? f.payCard : f.payCardSoon}</li>
             <li className="text-white/80">{f.payTransfer}</li>
           </ul>

@@ -1,0 +1,22 @@
+{
+  "name": "glaciora-video",
+  "private": true,
+  "description": "Vidéos publicitaires GLACIORA (Reels / TikTok) : Remotion, plans Pexels, produits et prix réels du site. Hors des workspaces du site.",
+  "scripts": {
+    "data": "node scripts/data.mjs",
+    "voice": "node --env-file=.env scripts/voice.mjs",
+    "voice:check": "node --env-file=.env scripts/check-azure.mjs",
+    "studio": "remotion studio src/index.ts",
+    "render": "node scripts/render.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.541",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.541"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.13",
+    "typescript": "5.6.3"
+  }
+}
