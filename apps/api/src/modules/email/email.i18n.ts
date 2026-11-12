@@ -419,6 +419,29 @@ const TEXTS: Record<SiteLocale, EmailTexts> = {
     ],
     status: { PENDING_PAYMENT_VERIFICATION: 'Bíður staðfestingar á greiðslu', PAID: 'Greitt', PREPARING: 'Í undirbúningi', SHIPPED: 'Á leiðinni', DELIVERED: 'Afhent', CANCELLED: 'Hætt við' },
   },
+  ro: {
+    receivedSubject: 'Comanda {ref}: în pregătire',
+    receivedTitle: 'Mulțumim, {name}!',
+    receivedBody: 'Am primit comanda ta {ref} în valoare de {amount} și dovada transferului.',
+    trackButton: 'Urmărește comanda',
+    statusSubject: 'Comanda {ref}: {status}',
+    hello: 'Bună, {name},',
+    statusLine: 'Comanda {ref}: {status}',
+    cancelled: 'Comanda ta a fost anulată. Contactează-ne dacă ai întrebări.',
+    tracking: 'Urmărire {carrier}:',
+    trackParcel: 'urmărește coletul',
+    resetSubject: 'Resetează parola GLACIORA',
+    resetTitle: 'Resetarea parolei',
+    resetBody: 'Ai cerut resetarea parolei. Linkul este valabil {minutes} minute și poate fi folosit o singură dată.',
+    resetButton: 'Alege o parolă nouă',
+    resetIgnore: 'Dacă nu ai cerut acest lucru, ignoră mesajul: parola ta rămâne neschimbată.',
+    steps: [
+      'Comanda ta este în pregătire la furnizor. Îți mulțumim pentru răbdare!',
+      'Comanda ta este deja pe drum spre adresa ta.',
+      'Comanda ta a ajuns la adresa ta. Îți mulțumim pentru cumpărătură.',
+    ],
+    status: { PENDING_PAYMENT_VERIFICATION: 'Plată în curs de verificare', PAID: 'Plătită', PREPARING: 'În pregătire', SHIPPED: 'Pe drum', DELIVERED: 'Livrată', CANCELLED: 'Anulată' },
+  },
 };
 
 export function emailTexts(locale: unknown): EmailTexts {

@@ -5,6 +5,7 @@ import { registerSchema } from '@glaciora/shared/schemas';
 import { Field } from '@/components/ui/Field';
 import { api, fieldErrors } from '@/lib/api-client';
 import { Link, useI18n, useLocalizedRouter } from '@/i18n/client';
+import { apiLocale } from '@/i18n/config';
 import { apiErrorMessage, translateFieldErrors } from '@/i18n/errors';
 
 export default function RegisterPage() {
@@ -27,7 +28,7 @@ export default function RegisterPage() {
     setErrors({});
     setPending(true);
     try {
-      await api('/api/auth/register', { method: 'POST', json: { ...parsed.data, locale } });
+      await api('/api/auth/register', { method: 'POST', json: { ...parsed.data, locale: apiLocale(locale) } });
       router.push('/compte/connexion?inscrit=1');
     } catch (err) {
       setErrors(translateFieldErrors(fieldErrors(err), m));

@@ -21,6 +21,7 @@ const loaders: Record<Locale, () => Promise<{ default: Messages }>> = {
   sv: () => import('./sv'),
   nb: () => import('./nb'),
   is: () => import('./is'),
+  ro: () => import('./ro'),
 };
 
 /** Textes d'une langue (serveur). */

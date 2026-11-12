@@ -10,6 +10,7 @@ import { useCart } from '@/components/providers/CartProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { ApiError, api, fieldErrors } from '@/lib/api-client';
 import { Link, useI18n, useLocalizedRouter } from '@/i18n/client';
+import { apiLocale } from '@/i18n/config';
 import { apiErrorMessage, translateFieldErrors } from '@/i18n/errors';
 import { countryName, fmt, money } from '@/i18n/format';
 import { sizeLabel } from '@/i18n/labels';
@@ -314,7 +315,7 @@ export default function CheckoutPage() {
     e.preventDefault();
     setGlobalError('');
     setProofRejection(null);
-    const data = { email, shippingAddress: address, shippingRateId: rateId, paymentMethod: 'BANK_TRANSFER' as const, acceptTerms, locale };
+    const data = { email, shippingAddress: address, shippingRateId: rateId, paymentMethod: 'BANK_TRANSFER' as const, acceptTerms, locale: apiLocale(locale) };
     const { checkoutSchema } = await loadSchemas();
     const parsed = checkoutSchema.safeParse(data);
     const next: Record<string, string> = {};

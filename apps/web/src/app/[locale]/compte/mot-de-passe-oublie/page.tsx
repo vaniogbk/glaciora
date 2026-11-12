@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { Field } from '@/components/ui/Field';
 import { api } from '@/lib/api-client';
 import { useI18n } from '@/i18n/client';
+import { apiLocale } from '@/i18n/config';
 import { apiErrorMessage } from '@/i18n/errors';
 
 export default function ForgotPasswordPage() {
@@ -19,7 +20,7 @@ export default function ForgotPasswordPage() {
     setPending(true);
     setError('');
     try {
-      const res = await api<{ message: string }>('/api/auth/password/forgot', { method: 'POST', json: { email, locale } });
+      const res = await api<{ message: string }>('/api/auth/password/forgot', { method: 'POST', json: { email, locale: apiLocale(locale) } });
       setMessage(locale === 'fr' ? res.message : t.forgotSent);
     } catch (err) {
       setError(apiErrorMessage(err, locale, m, t.requestFailed));
