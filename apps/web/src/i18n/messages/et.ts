@@ -190,7 +190,6 @@ const et: Messages = {
     new: 'Uus',
     used: 'Kasutatud',
     sports: { SKI: 'Suusatamine', HOCKEY: 'Jäähoki' },
-    inStockShipping: 'Laos — saadetakse pärast ülekande kontrollimist',
     outOfStock: 'Otsas',
     deliveryTitle: 'Tarne ja makse',
     deliveryText: 'Tarne Euroopas: saadaolevad riigid ja tarnetasud kuvatakse tellimisel vastavalt teie aadressile.',

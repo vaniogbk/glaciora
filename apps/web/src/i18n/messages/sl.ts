@@ -190,7 +190,6 @@ const sl: Messages = {
     new: 'Novo',
     used: 'Rabljeno',
     sports: { SKI: 'Smučanje', HOCKEY: 'Hokej na ledu' },
-    inStockShipping: 'Na zalogi — odprema po preverjanju nakazila',
     outOfStock: 'Razprodano',
     deliveryTitle: 'Dostava in plačilo',
     deliveryText: 'Dostava po Evropi: razpoložljive države in stroški so prikazani pri naročilu glede na vaš naslov.',

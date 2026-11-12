@@ -190,7 +190,6 @@ const nl: Messages = {
     new: 'Nieuw',
     used: 'Tweedehands',
     sports: { SKI: 'Skiën', HOCKEY: 'IJshockey' },
-    inStockShipping: 'Op voorraad — verzending na controle van de overschrijving',
     outOfStock: 'Uitverkocht',
     deliveryTitle: 'Levering en betaling',
     deliveryText: 'Levering in Europa: de beschikbare landen en kosten worden bij het bestellen getoond, afhankelijk van uw adres.',

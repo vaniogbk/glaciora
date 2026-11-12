@@ -190,7 +190,6 @@ const lt: Messages = {
     new: 'Nauja',
     used: 'Naudota',
     sports: { SKI: 'Slidinėjimas', HOCKEY: 'Ledo ritulys' },
-    inStockShipping: 'Turime — išsiunčiama patikrinus pavedimą',
     outOfStock: 'Išparduota',
     deliveryTitle: 'Pristatymas ir apmokėjimas',
     deliveryText: 'Pristatymas Europoje: galimos šalys ir kainos rodomos užsakymo etape pagal jūsų adresą.',

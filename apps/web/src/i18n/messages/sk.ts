@@ -190,7 +190,6 @@ const sk: Messages = {
     new: 'Nové',
     used: 'Použité',
     sports: { SKI: 'Lyžovanie', HOCKEY: 'Ľadový hokej' },
-    inStockShipping: 'Skladom — odoslanie po overení prevodu',
     outOfStock: 'Vypredané',
     deliveryTitle: 'Doprava a platba',
     deliveryText: 'Doručenie v Európe: dostupné krajiny a poplatky sa zobrazia v kroku objednávky podľa vašej adresy.',

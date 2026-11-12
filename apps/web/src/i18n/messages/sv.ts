@@ -190,7 +190,6 @@ const sv: Messages = {
     new: 'Ny',
     used: 'Begagnad',
     sports: { SKI: 'Skidåkning', HOCKEY: 'Ishockey' },
-    inStockShipping: 'I lager — skickas när överföringen är kontrollerad',
     outOfStock: 'Slutsåld',
     deliveryTitle: 'Leverans och betalning',
     deliveryText: 'Leverans i Europa: tillgängliga länder och fraktkostnader visas i kassan utifrån din adress.',

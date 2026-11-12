@@ -190,7 +190,6 @@ const it: Messages = {
     new: 'Nuovo',
     used: 'Usato',
     sports: { SKI: 'Sci', HOCKEY: 'Hockey su ghiaccio' },
-    inStockShipping: 'Disponibile — spedizione dopo la verifica del bonifico',
     outOfStock: 'Esaurito',
     deliveryTitle: 'Consegna e pagamento',
     deliveryText: 'Consegna in Europa: i paesi e le spese disponibili vengono mostrati nella fase di ordine, in base al tuo indirizzo.',

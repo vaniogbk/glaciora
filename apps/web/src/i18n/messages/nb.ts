@@ -190,7 +190,6 @@ const nb: Messages = {
     new: 'Ny',
     used: 'Brukt',
     sports: { SKI: 'Alpint', HOCKEY: 'Ishockey' },
-    inStockShipping: 'På lager — sendes når overføringen er kontrollert',
     outOfStock: 'Utsolgt',
     deliveryTitle: 'Levering og betaling',
     deliveryText: 'Levering i Europa: tilgjengelige land og fraktkostnader vises i kassen ut fra adressen din.',

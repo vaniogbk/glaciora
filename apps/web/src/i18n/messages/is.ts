@@ -190,7 +190,6 @@ const is: Messages = {
     new: 'Nýtt',
     used: 'Notað',
     sports: { SKI: 'Skíði', HOCKEY: 'Íshokkí' },
-    inStockShipping: 'Til á lager — sent þegar millifærslan hefur verið staðfest',
     outOfStock: 'Uppselt',
     deliveryTitle: 'Afhending og greiðsla',
     deliveryText: 'Afhending í Evrópu: tiltæk lönd og sendingarkostnaður birtast í pöntunarferlinu miðað við heimilisfangið þitt.',

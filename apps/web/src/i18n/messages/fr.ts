@@ -224,7 +224,6 @@ const fr = {
     new: 'Neuf',
     used: 'Occasion',
     sports: { SKI: 'Ski', HOCKEY: 'Hockey sur glace' } as Record<'SKI' | 'HOCKEY', string>,
-    inStockShipping: 'En stock — expédition après vérification du virement',
     outOfStock: 'Rupture de stock',
     deliveryTitle: 'Livraison et paiement',
     deliveryText: 'Livraison en Europe : les pays et frais disponibles s’affichent à l’étape de commande, selon votre adresse.',

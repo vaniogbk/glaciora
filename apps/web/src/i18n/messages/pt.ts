@@ -190,7 +190,6 @@ const pt: Messages = {
     new: 'Novo',
     used: 'Usado',
     sports: { SKI: 'Esqui', HOCKEY: 'Hóquei no gelo' },
-    inStockShipping: 'Em stock — envio após verificação da transferência',
     outOfStock: 'Esgotado',
     deliveryTitle: 'Entrega e pagamento',
     deliveryText: 'Entrega na Europa: os países e custos disponíveis são apresentados na fase da encomenda, consoante a sua morada.',

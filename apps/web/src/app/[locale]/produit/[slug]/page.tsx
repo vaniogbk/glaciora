@@ -108,7 +108,7 @@ export default async function ProductPage({ params }: Props) {
           <div className="mt-5">
             <Price cents={product.priceFromCents} compareAtCents={product.compareAtPriceCents} from={new Set(prices).size > 1} size="lg" locale={locale} labels={m.price} />
             <p className={product.inStock ? 'mt-2 text-sm font-semibold text-success' : 'mt-2 text-sm font-semibold text-muted'}>
-              {product.inStock ? p.inStockShipping : p.outOfStock}
+              {product.inStock ? m.card.inStock : p.outOfStock}
             </p>
           </div>
           {product.shortDescription && <p className="mt-6 text-base leading-relaxed text-ink">{product.shortDescription}</p>}

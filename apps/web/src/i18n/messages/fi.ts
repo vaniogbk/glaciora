@@ -190,7 +190,6 @@ const fi: Messages = {
     new: 'Uusi',
     used: 'Käytetty',
     sports: { SKI: 'Laskettelu', HOCKEY: 'Jääkiekko' },
-    inStockShipping: 'Varastossa — lähetetään, kun tilisiirto on tarkistettu',
     outOfStock: 'Loppuunmyyty',
     deliveryTitle: 'Toimitus ja maksu',
     deliveryText: 'Toimitus Euroopassa: saatavilla olevat maat ja toimituskulut näytetään tilausvaiheessa osoitteesi mukaan.',
