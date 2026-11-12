@@ -79,14 +79,15 @@ export default async function HomePage({ params }: Params) {
         </div>
       </section>
 
+      {/* Tuiles : 1 colonne sous 375 px, 2 jusqu’à 1023 px, 4 au-delà — un nom long (géorgien « სათხილამურო », « Accessories ») ne se coupe jamais au milieu. */}
       {tiles.length > 0 && (
         <nav aria-label={h.categories} className="container -mt-8 relative z-10">
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-3 min-[375px]:grid-cols-2 lg:grid-cols-4">
             {tiles.map((c) => (
               <li key={c.id}>
                 <Reveal>
-                  <Link href={`/categorie/${c.slug}`} className="card flex h-full flex-col justify-between p-5 transition hover:-translate-y-1 hover:shadow-lift">
-                    <span className="text-lg font-extrabold text-marine">{c.name}</span>
+                  <Link href={`/categorie/${c.slug}`} className="card flex h-full flex-col justify-between p-4 transition hover:-translate-y-1 hover:shadow-lift sm:p-5">
+                    <span className="text-base font-extrabold text-marine sm:text-lg">{c.name}</span>
                     <span className="mt-2 text-sm text-muted">
                       {plural(locale, c.productCount, h.productCount)} <span aria-hidden="true">→</span>
                     </span>
