@@ -36,6 +36,7 @@ const loaders: Record<Exclude<Locale, 'fr'>, () => Promise<{ default: CatalogueT
   nb: () => import('./catalogue/nb'),
   is: () => import('./catalogue/is'),
   ro: () => import('./catalogue/ro'),
+  ka: () => import('./catalogue/ka'),
 };
 
 export interface CatalogueLocalizer {

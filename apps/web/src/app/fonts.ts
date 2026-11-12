@@ -24,4 +24,17 @@ export const montserratExt = localFont({
   declarations: [{ prop: 'unicode-range', value: 'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF' }],
 });
 
-export const fontVariables = `${montserrat.variable} ${montserratExt.variable}`;
+// Géorgien (ქართული, Mkhedruli + capitales Mtavruli) : Montserrat n'a pas cet alphabet. Noto Sans Georgian variable
+// (licence ./fonts/OFL-noto-sans-georgian.txt), téléchargée seulement sur les pages qui contiennent du géorgien.
+export const georgian = localFont({
+  src: './fonts/noto-sans-georgian-wght-normal.woff2',
+  weight: '100 900',
+  style: 'normal',
+  display: 'swap',
+  variable: '--font-georgian',
+  preload: false,
+  adjustFontFallback: false,
+  declarations: [{ prop: 'unicode-range', value: 'U+0589,U+10A0-10FF,U+1C90-1CBA,U+1CBD-1CBF,U+205A,U+2D00-2D2F,U+2E31' }],
+});
+
+export const fontVariables = `${montserrat.variable} ${montserratExt.variable} ${georgian.variable}`;

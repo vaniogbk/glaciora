@@ -442,6 +442,29 @@ const TEXTS: Record<SiteLocale, EmailTexts> = {
     ],
     status: { PENDING_PAYMENT_VERIFICATION: 'Plată în curs de verificare', PAID: 'Plătită', PREPARING: 'În pregătire', SHIPPED: 'Pe drum', DELIVERED: 'Livrată', CANCELLED: 'Anulată' },
   },
+  ka: {
+    receivedSubject: 'შეკვეთა {ref}: მზადდება',
+    receivedTitle: 'გმადლობთ, {name}!',
+    receivedBody: 'მივიღეთ თქვენი შეკვეთა {ref} თანხით {amount} და გადარიცხვის ქვითარი.',
+    trackButton: 'შეკვეთის თვალყურის დევნება',
+    statusSubject: 'შეკვეთა {ref}: {status}',
+    hello: 'გამარჯობა, {name},',
+    statusLine: 'შეკვეთა {ref}: {status}',
+    cancelled: 'თქვენი შეკვეთა გაუქმდა. კითხვების შემთხვევაში დაგვიკავშირდით.',
+    tracking: 'თვალყურის დევნება {carrier}:',
+    trackParcel: 'ამანათის თვალყურის დევნება',
+    resetSubject: 'GLACIORA-ს პაროლის აღდგენა',
+    resetTitle: 'პაროლის აღდგენა',
+    resetBody: 'თქვენ მოითხოვეთ პაროლის აღდგენა. ბმული მოქმედებს {minutes} წუთის განმავლობაში და მისი გამოყენება მხოლოდ ერთხელ შეიძლება.',
+    resetButton: 'ახალი პაროლის არჩევა',
+    resetIgnore: 'თუ ეს თქვენ არ მოგითხოვიათ, უგულებელყავით ეს წერილი: თქვენი პაროლი უცვლელი რჩება.',
+    steps: [
+      'თქვენი შეკვეთა მზადდება მომწოდებელთან. გმადლობთ მოთმინებისთვის!',
+      'თქვენი შეკვეთა უკვე გზაშია თქვენი მისამართისკენ.',
+      'თქვენი შეკვეთა მივიდა თქვენს მისამართზე. გმადლობთ შენაძენისთვის.',
+    ],
+    status: { PENDING_PAYMENT_VERIFICATION: 'გადახდა მოწმდება', PAID: 'გადახდილია', PREPARING: 'მზადდება', SHIPPED: 'გზაშია', DELIVERED: 'მიწოდებულია', CANCELLED: 'გაუქმებულია' },
+  },
 };
 
 export function emailTexts(locale: unknown): EmailTexts {

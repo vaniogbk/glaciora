@@ -37,7 +37,8 @@ export const productColorMulti = 'conic-gradient(#C62F2F, #E9C229, #2E7D4F, #1F5
 export const fonts = {
   // --font-montserrat est toujours défini (police locale chargée par next/font dans app/layout.tsx).
   // Latin étendu en premier : il ne couvre que č, ł, ő… (unicode-range), le reste du texte passe à Montserrat latin.
-  sans: ['var(--font-montserrat-ext)', 'var(--font-montserrat)', 'sans-serif'],
+  // Géorgien de même : unicode-range limité à l'alphabet géorgien, placé avant Montserrat (et ses polices de repli).
+  sans: ['var(--font-montserrat-ext)', 'var(--font-georgian)', 'var(--font-montserrat)', 'sans-serif'],
 } as const;
 
 export const radii = {

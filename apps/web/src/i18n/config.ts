@@ -31,11 +31,12 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   nb: 'Norsk',
   is: 'Íslenska',
   ro: 'Română',
+  ka: 'ქართული',
 };
 
 /** Étiquette complète pour les formats (prix, dates) et Open Graph. */
 const REGION: Record<Locale, string> = {
-  fr: 'FR', de: 'DE', en: 'GB', es: 'ES', it: 'IT', nl: 'NL', pt: 'PT', pl: 'PL', cs: 'CZ', sk: 'SK', sl: 'SI', et: 'EE', lt: 'LT', fi: 'FI', sv: 'SE', nb: 'NO', is: 'IS', ro: 'RO',
+  fr: 'FR', de: 'DE', en: 'GB', es: 'ES', it: 'IT', nl: 'NL', pt: 'PT', pl: 'PL', cs: 'CZ', sk: 'SK', sl: 'SI', et: 'EE', lt: 'LT', fi: 'FI', sv: 'SE', nb: 'NO', is: 'IS', ro: 'RO', ka: 'GE',
 };
 export const intlLocale = (locale: Locale) => `${locale}-${REGION[locale]}`;
 export const ogLocale = (locale: Locale) => `${locale}_${REGION[locale]}`;
@@ -62,7 +63,7 @@ export function stripLocale(pathname: string): string {
  * Langues que l'API en ligne ne connaît pas encore : ses schémas refusent une langue inconnue (400), donc le site
  * envoie la langue de repli pour les e-mails clients. Retirer l'entrée une fois l'API redéployée (railway up).
  */
-const API_FALLBACK: Partial<Record<Locale, Locale>> = { ro: 'en' };
+const API_FALLBACK: Partial<Record<Locale, Locale>> = { ro: 'en', ka: 'en' };
 /** Langue transmise à l'API (commande, inscription, mot de passe oublié). */
 export const apiLocale = (locale: Locale): Locale => API_FALLBACK[locale] ?? locale;
 
