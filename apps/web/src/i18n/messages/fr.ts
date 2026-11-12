@@ -102,6 +102,7 @@ const fr = {
     payTransfer: 'Paiement par virement bancaire',
     contact: 'Contact',
     call: 'Appeler le {phone}',
+    legalNotice: 'Mentions légales',
   },
 
   home: {
@@ -556,6 +557,23 @@ const fr = {
   },
 
   /** Conditions générales de vente. {brand}, {email}, {phone}, {address} : coordonnées ; [[…]] : mention à compléter. */
+  legal: {
+    title: 'Mentions légales',
+    description: 'Mentions légales de GLACIORA : éditeur du site, immatriculation, directeur de la publication et hébergeur.',
+    publisher: 'Éditeur du site',
+    companyName: 'Raison sociale',
+    legalForm: 'Forme juridique',
+    shareCapital: 'Capital social',
+    registration: 'Immatriculation (RCS / SIREN)',
+    vatNumber: 'N° de TVA intracommunautaire',
+    headOffice: 'Siège social',
+    publicationDirector: 'Directeur de la publication',
+    contact: 'Contact',
+    hosting: 'Hébergement',
+    hostName: 'Hébergeur',
+    hostAddress: 'Adresse de l’hébergeur',
+    toFill: 'À compléter',
+  },
   terms: {
     draft: 'Projet de conditions générales : les mentions surlignées sont à compléter par GLACIORA, et l’ensemble est à faire valider avant usage.',
     toFill: 'À compléter',

@@ -15,6 +15,7 @@ const NAV = [
   { href: '/admin/clients', label: 'Clients' },
   { href: '/admin/livraison', label: 'Livraison' },
   { href: '/admin/banque', label: 'Coordonnées bancaires' },
+  { href: '/admin/mentions-legales', label: 'Mentions légales' },
   { href: '/admin/import', label: 'Import catalogue' },
   { href: '/admin/journaux', label: 'Journaux & e-mails' },
 ];

@@ -526,3 +526,19 @@ model BankAccount {
   updatedAt     DateTime  @updatedAt
   payments      Payment[]
 }
+
+// Mentions légales : identité de l'éditeur (vendeur) et de l'hébergeur, une seule ligne (id « main »).
+// Saisie par le propriétaire de la boutique dans l'admin ; un champ vide s'affiche « À compléter » sur le site.
+model LegalNotice {
+  id                  String   @id @default("main")
+  companyName         String?
+  legalForm           String?
+  shareCapital        String?
+  registration        String?
+  vatNumber           String?
+  headOffice          String?
+  publicationDirector String?
+  hostName            String?
+  hostAddress         String?
+  updatedAt           DateTime @updatedAt
+}

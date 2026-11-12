@@ -56,12 +56,12 @@ describe('ProductCard', () => {
 });
 
 describe('Footer', () => {
-  it('affiche les coordonnées cliquables et aucun lien « Mentions légales »', () => {
+  it('affiche les coordonnées cliquables et le lien « Mentions légales »', () => {
     withI18n(<Footer locale="fr" m={fr} />);
     expect(screen.getByRole('link', { name: 'glaciora@outlook.com' })).toHaveAttribute('href', 'mailto:glaciora@outlook.com');
     expect(screen.getByRole('link', { name: /Appeler le \+33 7 56 97 38 64/ })).toHaveAttribute('href', 'tel:+33756973864');
     expect(screen.getByRole('link', { name: /WhatsApp/ })).toHaveAttribute('href', 'https://wa.me/33756973864');
     expect(screen.getByText('94 Bd Jean Jaurès, 92110 Clichy')).toBeInTheDocument();
-    expect(screen.queryByText(/mentions légales/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Mentions légales' })).toHaveAttribute('href', '/mentions-legales');
   });
 });

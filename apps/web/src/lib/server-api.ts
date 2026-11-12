@@ -1,3 +1,4 @@
+import type { LegalNoticeData } from '@glaciora/shared/legal';
 import type { Category, ProductCard, ProductDetail, ProductList } from './types';
 
 const API_URL = (process.env.API_URL ?? 'http://localhost:4000').replace(/\/$/, '');
@@ -26,6 +27,11 @@ async function get<T>(path: string, revalidate = 60): Promise<T | null> {
   } finally {
     clearTimeout(timer);
   }
+}
+
+/** Mentions légales saisies dans l'admin ; null si l'API ne répond pas (la page affiche alors « à compléter »). */
+export async function getLegalNotice(): Promise<LegalNoticeData | null> {
+  return (await get<{ notice: LegalNoticeData }>('/api/legal', 300))?.notice ?? null;
 }
 
 export async function getCategories(): Promise<Category[]> {

@@ -24,7 +24,7 @@ export async function resetDb() {
   const tables = [
     'EmailMessage', 'TransferProof', 'Payment', 'OrderItem', '"Order"', 'CartItem', 'Cart', 'StockMovement', 'Stock',
     'ProductImage', 'ProductVariant', 'Product', 'Size', 'Category', 'Address', 'RefreshToken', 'PasswordResetToken',
-    'ActivityLog', 'ImportRun', 'BankAccount', 'ShippingRate', 'ShippingCountry', 'ShippingZone', '"User"',
+    'ActivityLog', 'ImportRun', 'BankAccount', 'LegalNotice', 'ShippingRate', 'ShippingCountry', 'ShippingZone', '"User"',
   ];
   await prisma.$executeRawUnsafe(`TRUNCATE ${tables.map((t) => (t.startsWith('"') ? t : `"${t}"`)).join(', ')} CASCADE`);
 }

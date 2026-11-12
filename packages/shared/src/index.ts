@@ -8,3 +8,4 @@ export * from './upload';
 export * from './order';
 export * from './locales';
 export * from './schemas';
+export * from './legal';
