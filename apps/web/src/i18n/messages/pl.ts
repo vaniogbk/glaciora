@@ -476,7 +476,7 @@ const pl: Messages = {
     companyName: 'Nazwa firmy',
     legalForm: 'Forma prawna',
     shareCapital: 'Kapitał zakładowy',
-    registration: 'Rejestracja (RCS / SIREN)',
+    registration: 'Rejestracja',
     vatNumber: 'Numer VAT UE',
     headOffice: 'Siedziba',
     publicationDirector: 'Osoba odpowiedzialna za publikację',

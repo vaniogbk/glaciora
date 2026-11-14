@@ -476,7 +476,7 @@ const et: Messages = {
     companyName: 'Ärinimi',
     legalForm: 'Õiguslik vorm',
     shareCapital: 'Osakapital',
-    registration: 'Registreerimine (RCS / SIREN)',
+    registration: 'Registreerimine',
     vatNumber: 'KMKR number',
     headOffice: 'Asukoht',
     publicationDirector: 'Vastutav isik',

@@ -476,7 +476,7 @@ const nl: Messages = {
     companyName: 'Bedrijfsnaam',
     legalForm: 'Rechtsvorm',
     shareCapital: 'Maatschappelijk kapitaal',
-    registration: 'Inschrijving (RCS / SIREN)',
+    registration: 'Inschrijving',
     vatNumber: 'Btw-nummer',
     headOffice: 'Statutaire zetel',
     publicationDirector: 'Verantwoordelijke uitgever',

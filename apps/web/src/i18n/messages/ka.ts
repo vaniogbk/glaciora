@@ -477,7 +477,7 @@ const ka: Messages = {
     companyName: 'კომპანიის სახელწოდება',
     legalForm: 'სამართლებრივი ფორმა',
     shareCapital: 'საწესდებო კაპიტალი',
-    registration: 'რეგისტრაცია (RCS / SIREN)',
+    registration: 'რეგისტრაცია',
     vatNumber: 'დღგ-ს ნომერი',
     headOffice: 'იურიდიული მისამართი',
     publicationDirector: 'პასუხისმგებელი პირი',

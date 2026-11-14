@@ -476,7 +476,7 @@ const es: Messages = {
     companyName: 'Razón social',
     legalForm: 'Forma jurídica',
     shareCapital: 'Capital social',
-    registration: 'Registro (RCS / SIREN)',
+    registration: 'Registro',
     vatNumber: 'NIF-IVA intracomunitario',
     headOffice: 'Domicilio social',
     publicationDirector: 'Director de la publicación',

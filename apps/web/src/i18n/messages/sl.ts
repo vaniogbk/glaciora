@@ -476,7 +476,7 @@ const sl: Messages = {
     companyName: 'Firma',
     legalForm: 'Pravnoorganizacijska oblika',
     shareCapital: 'Osnovni kapital',
-    registration: 'Registracija (RCS / SIREN)',
+    registration: 'Registracija',
     vatNumber: 'Identifikacijska številka za DDV',
     headOffice: 'Sedež',
     publicationDirector: 'Odgovorna oseba',

@@ -564,7 +564,7 @@ const fr = {
     companyName: 'Raison sociale',
     legalForm: 'Forme juridique',
     shareCapital: 'Capital social',
-    registration: 'Immatriculation (RCS / SIREN)',
+    registration: 'Immatriculation',
     vatNumber: 'N° de TVA intracommunautaire',
     headOffice: 'Siège social',
     publicationDirector: 'Directeur de la publication',

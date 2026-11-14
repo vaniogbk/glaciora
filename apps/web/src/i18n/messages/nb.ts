@@ -476,7 +476,7 @@ const nb: Messages = {
     companyName: 'Firmanavn',
     legalForm: 'Selskapsform',
     shareCapital: 'Aksjekapital',
-    registration: 'Registrering (RCS / SIREN)',
+    registration: 'Registrering',
     vatNumber: 'MVA-nummer',
     headOffice: 'Forretningsadresse',
     publicationDirector: 'Ansvarlig redaktør',

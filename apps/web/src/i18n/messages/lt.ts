@@ -476,7 +476,7 @@ const lt: Messages = {
     companyName: 'Pavadinimas',
     legalForm: 'Teisinė forma',
     shareCapital: 'Įstatinis kapitalas',
-    registration: 'Registracija (RCS / SIREN)',
+    registration: 'Registracija',
     vatNumber: 'PVM mokėtojo kodas',
     headOffice: 'Buveinė',
     publicationDirector: 'Atsakingas asmuo',

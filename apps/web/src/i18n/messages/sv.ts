@@ -476,7 +476,7 @@ const sv: Messages = {
     companyName: 'Företagsnamn',
     legalForm: 'Bolagsform',
     shareCapital: 'Aktiekapital',
-    registration: 'Registrering (RCS / SIREN)',
+    registration: 'Registrering',
     vatNumber: 'Momsregistreringsnummer',
     headOffice: 'Säte',
     publicationDirector: 'Ansvarig utgivare',

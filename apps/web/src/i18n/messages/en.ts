@@ -476,7 +476,7 @@ const en: Messages = {
     companyName: 'Company name',
     legalForm: 'Legal form',
     shareCapital: 'Share capital',
-    registration: 'Registration (RCS / SIREN)',
+    registration: 'Registration',
     vatNumber: 'EU VAT number',
     headOffice: 'Registered office',
     publicationDirector: 'Publication director',

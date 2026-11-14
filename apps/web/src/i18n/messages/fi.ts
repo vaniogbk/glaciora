@@ -476,7 +476,7 @@ const fi: Messages = {
     companyName: 'Toiminimi',
     legalForm: 'Yhtiömuoto',
     shareCapital: 'Osakepääoma',
-    registration: 'Rekisteröinti (RCS / SIREN)',
+    registration: 'Rekisteröinti',
     vatNumber: 'ALV-tunniste',
     headOffice: 'Kotipaikka',
     publicationDirector: 'Vastaava julkaisija',

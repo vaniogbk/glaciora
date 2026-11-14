@@ -477,7 +477,7 @@ const ro: Messages = {
     companyName: 'Denumire',
     legalForm: 'Formă juridică',
     shareCapital: 'Capital social',
-    registration: 'Înregistrare (RCS / SIREN)',
+    registration: 'Înregistrare',
     vatNumber: 'Cod TVA intracomunitar',
     headOffice: 'Sediu social',
     publicationDirector: 'Director de publicație',

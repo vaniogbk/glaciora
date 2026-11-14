@@ -476,7 +476,7 @@ const is: Messages = {
     companyName: 'Heiti fyrirtækis',
     legalForm: 'Rekstrarform',
     shareCapital: 'Hlutafé',
-    registration: 'Skráning (RCS / SIREN)',
+    registration: 'Skráning',
     vatNumber: 'VSK-númer',
     headOffice: 'Lögheimili',
     publicationDirector: 'Ábyrgðarmaður',

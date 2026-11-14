@@ -476,7 +476,7 @@ const cs: Messages = {
     companyName: 'Obchodní firma',
     legalForm: 'Právní forma',
     shareCapital: 'Základní kapitál',
-    registration: 'Registrace (RCS / SIREN)',
+    registration: 'Registrace',
     vatNumber: 'DIČ (DPH v EU)',
     headOffice: 'Sídlo',
     publicationDirector: 'Odpovědná osoba',

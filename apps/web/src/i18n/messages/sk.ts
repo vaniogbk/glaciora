@@ -476,7 +476,7 @@ const sk: Messages = {
     companyName: 'Obchodné meno',
     legalForm: 'Právna forma',
     shareCapital: 'Základné imanie',
-    registration: 'Registrácia (RCS / SIREN)',
+    registration: 'Registrácia',
     vatNumber: 'IČ DPH',
     headOffice: 'Sídlo',
     publicationDirector: 'Zodpovedná osoba',
