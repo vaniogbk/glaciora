@@ -22,3 +22,8 @@ Identité graphique/
 
 # Archive source du pack de skills (installé dans .claude/skills/)
 /saas-60-claude-code-skills/
+
+# Images générées pour l’extension du catalogue (comme GLACIORA_CATALOGUE) ; les prompts restent versionnés.
+GLACIORA_EXTENSION/**/*.png
+GLACIORA_EXTENSION/**/*.jpg
+GLACIORA_EXTENSION/**/*.webp

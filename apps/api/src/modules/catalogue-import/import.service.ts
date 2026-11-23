@@ -17,6 +17,8 @@ import { slugify } from '../../lib/slug';
  *  - GLACIORA_CATALOGUE/04_SUIVI_PRODUITS/suivi_produits.csv (références, marques, dossiers, statut)
  *  - images PNG des dossiers 01_SKI / 02_HOCKEY (03_CATALOGUE_COMPLET = copies, ignoré)
  *  - apps/api/data/catalogue-complement.csv (prix marché relevés, tailles, descriptions)
+ *  - apps/api/data/catalogue-extension.csv (extension du catalogue : une ligne complète par référence,
+ *    images dans GLACIORA_EXTENSION/, à côté du dossier client, rangées comme dans CATEGORY_TREE)
  */
 
 export const CATEGORY_TREE = [
@@ -41,7 +43,13 @@ export const CATEGORY_TREE = [
     { slug: 'gants', name: 'Gants', folder: '01_SKI/07_Gants_Chauffants' },
   ] },
   { slug: 'vestes', name: 'Vestes', sport: null, position: 5, children: [] },
-  { slug: 'vetements', name: 'Vêtements', sport: null, position: 6, children: [] },
+  { slug: 'vetements', name: 'Vêtements de ski', sport: null, position: 6, children: [
+    { slug: 'vestes-de-ski', name: 'Vestes de ski', folder: '03_VETEMENTS/01_Vestes_Ski' },
+    { slug: 'pantalons-de-ski', name: 'Pantalons de ski', folder: '03_VETEMENTS/02_Pantalons_Ski' },
+    { slug: 'combinaisons-de-ski', name: 'Combinaisons de ski', folder: '03_VETEMENTS/03_Combinaisons_Ski' },
+    { slug: 'sous-vetements-thermiques', name: 'Sous-vêtements thermiques', folder: '03_VETEMENTS/04_Sous_Vetements_Thermiques' },
+    { slug: 'polaires', name: 'Polaires', folder: '03_VETEMENTS/05_Polaires' },
+  ] },
 ] as const;
 
 const SIZE_ORDER: Record<string, (label: string) => number> = {
@@ -52,6 +60,7 @@ const SIZE_ORDER: Record<string, (label: string) => number> = {
   HELMET: (l) => ['XS', 'S', 'M', 'L', 'XL'].findIndex((s) => l.startsWith(s)),
   STICK: (l) => (l.startsWith('Gauche') ? 0 : 100) + parseFloat(l.replace(/\D+/g, '') || '0'),
   ONE_SIZE: () => 0,
+  KIDS_AGE: (l) => parseFloat(l),
 };
 
 const sourceRowSchema = z.object({
@@ -74,7 +83,7 @@ const complementSchema = z.object({
   price_eur: z.string(),
   compare_at_eur: z.string(),
   price_source: z.string(),
-  size_system: z.enum(['SKI_LENGTH', 'BOOT_MONDO', 'SKATE', 'APPAREL', 'HELMET', 'STICK', 'ONE_SIZE']),
+  size_system: z.enum(['SKI_LENGTH', 'BOOT_MONDO', 'SKATE', 'APPAREL', 'HELMET', 'STICK', 'ONE_SIZE', 'KIDS_AGE']),
   sizes: z.string().min(1),
   stock: z.string(),
   condition: z.enum(['NEW', 'USED']),
@@ -83,11 +92,28 @@ const complementSchema = z.object({
   is_new: z.enum(['true', 'false']),
   short_description: z.string().max(300),
   specs: z.string(),
+  /** Date du relevé de prix (AAAA-MM-JJ) ; absente = relevé initial du 2026-10-26. */
+  price_checked_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+});
+
+/** Ligne de catalogue-extension.csv : source (marque, dossier, image, statut) et complément réunis. */
+const extensionSchema = z.object({
+  reference: z.string().regex(/^GLA-\d{3}$/),
+  folder: z.string().min(1),
+  brand: z.string().min(1),
+  model: z.string().min(1),
+  image_file: z.string().min(1),
+  status: z.enum(['à vérifier', 'terminé']),
+  price_source: z.string().url(),
 });
 
 export interface ImportOptions {
   catalogueDir: string;
   complementPath?: string;
+  /** CSV d'extension (défaut : data/catalogue-extension.csv) ; ignoré s'il n'existe pas. */
+  extensionPath?: string;
+  /** Images de l'extension (défaut : GLACIORA_EXTENSION à côté du dossier client). */
+  extensionDir?: string;
   /** Écrit les images optimisées dans le dossier public du site (poste de développement). */
   copyImages?: boolean;
   triggeredById?: string;
@@ -141,7 +167,8 @@ export async function ensureCategories(tx: Prisma.TransactionClient = prisma) {
     const parent = await tx.category.upsert({
       where: { slug: root.slug },
       create: { slug: root.slug, name: root.name, sport: root.sport, position: root.position, isVisible: root.children.length > 0 },
-      update: { name: root.name, position: root.position },
+      // Une rubrique créée vide (masquée) devient visible dès qu'elle reçoit des sous-catégories.
+      update: { name: root.name, position: root.position, ...(root.children.length > 0 ? { isVisible: true } : {}) },
     });
     let position = 0;
     for (const child of root.children) {
@@ -186,6 +213,32 @@ export async function runCatalogueImport(options: ImportOptions) {
 
   const sourceRows = readCsv(await readFile(csvPath, 'utf8'));
   const complementRows = new Map(readCsv(await readFile(complementPath, 'utf8')).map((r) => [r.reference ?? '', r]));
+  // Extension : chaque ligne fournit à la fois la source (comme suivi_produits.csv) et le complément.
+  const extensionPath = options.extensionPath ?? path.resolve(process.cwd(), 'data', 'catalogue-extension.csv');
+  const extensionDir = options.extensionDir ?? path.resolve(options.catalogueDir, '..', 'GLACIORA_EXTENSION');
+  const imageDirs = new Map<string, string>();
+  if (existsSync(extensionPath)) {
+    for (const row of readCsv(await readFile(extensionPath, 'utf8'))) {
+      const ext = extensionSchema.parse(row);
+      if (complementRows.has(ext.reference)) throw new Error(`${ext.reference} figure déjà dans catalogue-complement.csv`);
+      const imagePresent = existsSync(path.join(extensionDir, ...ext.folder.split('/'), ext.image_file));
+      sourceRows.push({
+        'Identifiant du produit': ext.reference,
+        Catégorie: ext.folder,
+        Marque: ext.brand,
+        Modèle: ext.model,
+        'Nom du fichier image': ext.image_file,
+        'Image officielle ou générée par IA': 'Générée par IA (Gemini)',
+        'Source de référence': ext.price_source,
+        Statut: ext.status,
+        'Modèle réel retenu / identifié': ext.model,
+        'Image présente dans le dossier': imagePresent ? 'Oui' : 'Non',
+        Dossier: ext.folder,
+      });
+      complementRows.set(ext.reference, row);
+      imageDirs.set(ext.reference, extensionDir);
+    }
+  }
   const categories = await ensureCategories();
 
   for (const raw of sourceRows) {
@@ -204,7 +257,8 @@ export async function runCatalogueImport(options: ImportOptions) {
         imagePresent: raw['Image présente dans le dossier'] ?? '',
         folder: raw['Dossier'],
       });
-      const imagePath = path.join(options.catalogueDir, ...source.folder.split('/'), source.imageFile);
+      const baseDir = imageDirs.get(reference) ?? options.catalogueDir;
+      const imagePath = path.join(baseDir, ...source.folder.split('/'), source.imageFile);
       if (source.imagePresent !== 'Oui' || !existsSync(imagePath)) {
         lines.push({ reference, action: 'skipped', message: 'Aucune image dans le dossier catalogue : référence non importée' });
         continue;
@@ -239,7 +293,7 @@ export async function runCatalogueImport(options: ImportOptions) {
 
       const images: { url: string; width: number; height: number; hash: string; sourceFile: string; alt: string }[] = [];
       for (const [index, file] of [source.imageFile, ...extraImages].entries()) {
-        const full = path.join(options.catalogueDir, ...source.folder.split('/'), file);
+        const full = path.join(baseDir, ...source.folder.split('/'), file);
         if (!existsSync(full)) continue;
         const optimised = await optimiseImage(full, slug, index, copyImages && !options.dryRun);
         images.push({
@@ -272,7 +326,7 @@ export async function runCatalogueImport(options: ImportOptions) {
         isNew: complement.is_new === 'true',
         sourceUrl: source.sourceUrl ?? null,
         priceSourceUrl: complement.price_source || null,
-        priceCheckedAt: sellable ? new Date('2026-10-26T00:00:00Z') : null,
+        priceCheckedAt: sellable ? new Date(`${complement.price_checked_at ?? '2026-10-26'}T00:00:00Z`) : null,
         imagesAreIllustrations: isIllustration,
         importChecksum: checksum,
       };
