@@ -6,11 +6,12 @@ afterAll(() => prisma.$disconnect());
 beforeEach(resetDb);
 
 describe('mentions légales', () => {
-  it('renvoie une fiche vide (tous les champs à compléter) tant que rien n’est saisi', async () => {
+  it('renvoie l’identité vérifiée par défaut, et « à compléter » pour REGON/TVA tant que rien n’est saisi', async () => {
     const res = await request(app).get('/api/legal');
     expect(res.status).toBe(200);
-    expect(res.body.notice.companyName).toBeNull();
-    expect(res.body.notice.hostAddress).toBeNull();
+    expect(res.body.notice.companyName).toBe('KATARZYNA OPANOWICZ');
+    expect(res.body.notice.registration).toContain('NIP 9580555988');
+    expect(res.body.notice.vatNumber).toBeNull();
     expect(res.body.notice.updatedAt).toBeNull();
   });
 
@@ -21,16 +22,16 @@ describe('mentions légales', () => {
     expect((await request(app).put('/api/admin/legal-notice').set(CSRF).send({ companyName: 'X' })).status).toBe(401);
   });
 
-  it('enregistre la saisie du propriétaire, efface un champ vidé et journalise', async () => {
+  it('enregistre la saisie du propriétaire, revient à la valeur vérifiée si le champ est vidé, et journalise', async () => {
     const { email, password } = await createUser('ADMIN');
     const admin = await loginAgent(email, password);
     const first = await admin.put('/api/admin/legal-notice').set(CSRF).send({ companyName: 'Exemple SAS', legalForm: 'SAS', headOffice: '1 rue Exemple\n75000 Paris' });
     expect(first.status).toBe(200);
-    expect(first.body.notice).toMatchObject({ companyName: 'Exemple SAS', legalForm: 'SAS', registration: null });
+    expect(first.body.notice).toMatchObject({ companyName: 'Exemple SAS', legalForm: 'SAS', vatNumber: null });
 
     const second = await admin.put('/api/admin/legal-notice').set(CSRF).send({ companyName: 'Exemple SAS', legalForm: '  ' });
-    expect(second.body.notice.legalForm).toBeNull();
-    expect(second.body.notice.headOffice).toBeNull();
+    expect(second.body.notice.legalForm).toBe('Jednoosobowa działalność gospodarcza (CEIDG)');
+    expect(second.body.notice.headOffice).toContain('84-230 Rumia');
 
     const pub = await request(app).get('/api/legal');
     expect(pub.body.notice.companyName).toBe('Exemple SAS');

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { BRAND } from '@glaciora/shared/contact';
-import { EMPTY_LEGAL_NOTICE, type LegalField } from '@glaciora/shared/legal';
+import { EMPTY_LEGAL_NOTICE, withLegalDefaults, type LegalField } from '@glaciora/shared/legal';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { alternates, getI18n } from '@/i18n/server';
 import { getLegalNotice } from '@/lib/server-api';
@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LegalNoticePage({ params }: Props) {
   const { locale, m } = await getI18n(params);
   const t = m.legal;
-  // API injoignable ou fiche jamais saisie : tous les champs restent « à compléter ».
-  const notice = (await getLegalNotice()) ?? EMPTY_LEGAL_NOTICE;
+  // API injoignable (ou pas encore à jour) : identité vérifiée par défaut ; un champ sans valeur reste « à compléter ».
+  const notice = withLegalDefaults((await getLegalNotice()) ?? EMPTY_LEGAL_NOTICE);
 
   const value = (field: LegalField): ReactNode =>
     notice[field] ? <span className="whitespace-pre-line">{notice[field]}</span> : <span className="italic text-muted">{t.toFill}</span>;

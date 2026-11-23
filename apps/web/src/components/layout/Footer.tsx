@@ -2,13 +2,14 @@ import Image from 'next/image';
 import { BRAND } from '@glaciora/shared/contact';
 import { Link } from '@/i18n/client';
 import type { Locale } from '@/i18n/config';
+import { countryName } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
 
 /** Passe à « true » (NEXT_PUBLIC_CARD_PAYMENT_ENABLED) quand le paiement par carte sera branché : la mention « bientôt disponible » disparaît. */
 const CARD_PAYMENT_ENABLED = process.env.NEXT_PUBLIC_CARD_PAYMENT_ENABLED === 'true';
 
 /** Pied de page rendu sur le serveur (aucun JavaScript envoyé au navigateur pour lui). */
-export function Footer({ m }: { locale: Locale; m: Messages }) {
+export function Footer({ locale, m }: { locale: Locale; m: Messages }) {
   const f = m.footer;
   const year = new Date().getFullYear();
   return (
@@ -64,7 +65,7 @@ export function Footer({ m }: { locale: Locale; m: Messages }) {
               </a>
             </li>
             <li>
-              {BRAND.streetAddress}, {BRAND.postalCode} {BRAND.addressLocality}
+              {BRAND.streetAddress}, {BRAND.postalCode} {BRAND.addressLocality}, {countryName(BRAND.addressCountry, locale)}
             </li>
           </ul>
         </address>
