@@ -229,7 +229,7 @@ const da: Messages = {
     otherViews: 'Andre billeder af {name}',
     showView: 'Vis billede {n}',
     visualSoon: 'Billede på vej',
-    sizeWords: { 'Taille unique': 'One size', Droite: 'Højre', Gauche: 'Venstre' },
+    sizeWords: { 'Taille unique': 'One size', Droite: 'Højre', Gauche: 'Venstre', ans: 'år' },
     colorWord: 'farve',
     otherColor: 'anden farve',
   },

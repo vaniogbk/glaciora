@@ -266,7 +266,7 @@ const fr = {
     showView: 'Afficher la vue {n}',
     visualSoon: 'Visuel à venir',
     /** Mots des tailles saisies dans l'admin (« Taille unique », crosse « Droite – Flex 77 »). */
-    sizeWords: { 'Taille unique': 'Taille unique', Droite: 'Droite', Gauche: 'Gauche' } as Record<string, string>,
+    sizeWords: { 'Taille unique': 'Taille unique', Droite: 'Droite', Gauche: 'Gauche', ans: 'ans' } as Record<string, string>,
     /** Textes alternatifs des photos : « Zag Slap 92 coloris Purple », « … — autre coloris ». */
     colorWord: 'coloris',
     otherColor: 'autre coloris',

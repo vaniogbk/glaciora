@@ -229,7 +229,7 @@ const sl: Messages = {
     otherViews: 'Drugi pogledi: {name}',
     showView: 'Prikaži pogled {n}',
     visualSoon: 'Slika kmalu',
-    sizeWords: { 'Taille unique': 'Univerzalna velikost', Droite: 'Desna', Gauche: 'Leva' },
+    sizeWords: { 'Taille unique': 'Univerzalna velikost', Droite: 'Desna', Gauche: 'Leva', ans: 'l.' },
     colorWord: 'barva',
     otherColor: 'druga barva',
   },

@@ -229,7 +229,7 @@ const de: Messages = {
     otherViews: 'Weitere Ansichten von {name}',
     showView: 'Ansicht {n} anzeigen',
     visualSoon: 'Bild folgt',
-    sizeWords: { 'Taille unique': 'Einheitsgröße', Droite: 'Rechts', Gauche: 'Links' },
+    sizeWords: { 'Taille unique': 'Einheitsgröße', Droite: 'Rechts', Gauche: 'Links', ans: 'J.' },
     colorWord: 'Farbe',
     otherColor: 'andere Farbe',
   },

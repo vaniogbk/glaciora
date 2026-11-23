@@ -229,7 +229,7 @@ const sv: Messages = {
     otherViews: 'Fler bilder av {name}',
     showView: 'Visa bild {n}',
     visualSoon: 'Bild kommer snart',
-    sizeWords: { 'Taille unique': 'One size', Droite: 'Höger', Gauche: 'Vänster' },
+    sizeWords: { 'Taille unique': 'One size', Droite: 'Höger', Gauche: 'Vänster', ans: 'år' },
     colorWord: 'färg',
     otherColor: 'annan färg',
   },

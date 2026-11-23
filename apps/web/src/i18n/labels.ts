@@ -6,6 +6,9 @@
 /** « Taille unique », « Droite – Flex 77 » : mots connus remplacés, chiffres et mesures conservés. */
 export function sizeLabel(label: string, words: Record<string, string>): string {
   if (words[label]) return words[label]!;
+  // Tailles enfant enregistrées « 3 ans » : âge suivi de l'abréviation de la langue (« 3 yrs », « 3 J. »).
+  const age = label.match(/^(\d+) ans$/);
+  if (age) return `${age[1]} ${words.ans ?? 'ans'}`;
   return label.replace(/^(Droite|Gauche)\b/, (word) => words[word] ?? word);
 }
 

@@ -229,7 +229,7 @@ const lt: Messages = {
     otherViews: 'Kiti vaizdai: {name}',
     showView: 'Rodyti vaizdą {n}',
     visualSoon: 'Nuotrauka netrukus',
-    sizeWords: { 'Taille unique': 'Universalus dydis', Droite: 'Dešinė', Gauche: 'Kairė' },
+    sizeWords: { 'Taille unique': 'Universalus dydis', Droite: 'Dešinė', Gauche: 'Kairė', ans: 'm.' },
     colorWord: 'spalva',
     otherColor: 'kita spalva',
   },

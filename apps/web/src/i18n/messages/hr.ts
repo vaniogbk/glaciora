@@ -230,7 +230,7 @@ const hr: Messages = {
     otherViews: 'Ostale slike: {name}',
     showView: 'Prikaži sliku {n}',
     visualSoon: 'Slika uskoro',
-    sizeWords: { 'Taille unique': 'Univerzalna veličina', Droite: 'Desna', Gauche: 'Lijeva' },
+    sizeWords: { 'Taille unique': 'Univerzalna veličina', Droite: 'Desna', Gauche: 'Lijeva', ans: 'g.' },
     colorWord: 'boja',
     otherColor: 'druga boja',
   },

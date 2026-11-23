@@ -230,7 +230,7 @@ const ka: Messages = {
     otherViews: '{name} — სხვა ხედები',
     showView: 'ხედის ჩვენება: {n}',
     visualSoon: 'სურათი მალე',
-    sizeWords: { 'Taille unique': 'უნივერსალური ზომა', Droite: 'მარჯვენა', Gauche: 'მარცხენა' },
+    sizeWords: { 'Taille unique': 'უნივერსალური ზომა', Droite: 'მარჯვენა', Gauche: 'მარცხენა', ans: 'წ.' },
     colorWord: 'ფერი',
     otherColor: 'სხვა ფერი',
   },

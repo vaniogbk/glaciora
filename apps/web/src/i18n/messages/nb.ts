@@ -229,7 +229,7 @@ const nb: Messages = {
     otherViews: 'Flere bilder av {name}',
     showView: 'Vis bilde {n}',
     visualSoon: 'Bilde kommer snart',
-    sizeWords: { 'Taille unique': 'Én størrelse', Droite: 'Høyre', Gauche: 'Venstre' },
+    sizeWords: { 'Taille unique': 'Én størrelse', Droite: 'Høyre', Gauche: 'Venstre', ans: 'år' },
     colorWord: 'farge',
     otherColor: 'annen farge',
   },

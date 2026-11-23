@@ -229,7 +229,7 @@ const is: Messages = {
     otherViews: 'Fleiri myndir af {name}',
     showView: 'Sýna mynd {n}',
     visualSoon: 'Mynd væntanleg',
-    sizeWords: { 'Taille unique': 'Ein stærð', Droite: 'Hægri', Gauche: 'Vinstri' },
+    sizeWords: { 'Taille unique': 'Ein stærð', Droite: 'Hægri', Gauche: 'Vinstri', ans: 'ára' },
     colorWord: 'litur',
     otherColor: 'annar litur',
   },

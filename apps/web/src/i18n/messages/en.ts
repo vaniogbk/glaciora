@@ -229,7 +229,7 @@ const en: Messages = {
     otherViews: 'Other views of {name}',
     showView: 'Show view {n}',
     visualSoon: 'Image coming soon',
-    sizeWords: { 'Taille unique': 'One size', Droite: 'Right', Gauche: 'Left' },
+    sizeWords: { 'Taille unique': 'One size', Droite: 'Right', Gauche: 'Left', ans: 'yrs' },
     colorWord: 'colour',
     otherColor: 'other colour',
   },

@@ -229,7 +229,7 @@ const es: Messages = {
     otherViews: 'Otras vistas de {name}',
     showView: 'Mostrar la vista {n}',
     visualSoon: 'Imagen próximamente',
-    sizeWords: { 'Taille unique': 'Talla única', Droite: 'Diestro', Gauche: 'Zurdo' },
+    sizeWords: { 'Taille unique': 'Talla única', Droite: 'Diestro', Gauche: 'Zurdo', ans: 'años' },
     colorWord: 'color',
     otherColor: 'otro color',
   },

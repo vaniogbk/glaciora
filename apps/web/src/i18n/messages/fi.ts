@@ -229,7 +229,7 @@ const fi: Messages = {
     otherViews: 'Muut kuvat: {name}',
     showView: 'Näytä kuva {n}',
     visualSoon: 'Kuva tulossa',
-    sizeWords: { 'Taille unique': 'Yksi koko', Droite: 'Oikea', Gauche: 'Vasen' },
+    sizeWords: { 'Taille unique': 'Yksi koko', Droite: 'Oikea', Gauche: 'Vasen', ans: 'v' },
     colorWord: 'väri',
     otherColor: 'toinen väri',
   },

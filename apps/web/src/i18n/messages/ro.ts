@@ -230,7 +230,7 @@ const ro: Messages = {
     otherViews: 'Alte imagini cu {name}',
     showView: 'Afișează imaginea {n}',
     visualSoon: 'Imagine în curând',
-    sizeWords: { 'Taille unique': 'Mărime unică', Droite: 'Dreapta', Gauche: 'Stânga' },
+    sizeWords: { 'Taille unique': 'Mărime unică', Droite: 'Dreapta', Gauche: 'Stânga', ans: 'ani' },
     colorWord: 'culoarea',
     otherColor: 'altă culoare',
   },

@@ -229,7 +229,7 @@ const et: Messages = {
     otherViews: 'Muud vaated: {name}',
     showView: 'Näita vaadet {n}',
     visualSoon: 'Pilt tuleb peagi',
-    sizeWords: { 'Taille unique': 'Universaalne suurus', Droite: 'Parem', Gauche: 'Vasak' },
+    sizeWords: { 'Taille unique': 'Universaalne suurus', Droite: 'Parem', Gauche: 'Vasak', ans: 'a' },
     colorWord: 'värv',
     otherColor: 'muu värv',
   },

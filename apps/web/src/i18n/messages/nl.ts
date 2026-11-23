@@ -229,7 +229,7 @@ const nl: Messages = {
     otherViews: 'Andere weergaven van {name}',
     showView: 'Toon weergave {n}',
     visualSoon: 'Afbeelding volgt',
-    sizeWords: { 'Taille unique': 'Eén maat', Droite: 'Rechts', Gauche: 'Links' },
+    sizeWords: { 'Taille unique': 'Eén maat', Droite: 'Rechts', Gauche: 'Links', ans: 'jr' },
     colorWord: 'kleur',
     otherColor: 'andere kleur',
   },

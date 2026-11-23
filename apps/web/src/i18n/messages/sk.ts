@@ -229,7 +229,7 @@ const sk: Messages = {
     otherViews: 'Ďalšie pohľady na {name}',
     showView: 'Zobraziť pohľad {n}',
     visualSoon: 'Obrázok čoskoro',
-    sizeWords: { 'Taille unique': 'Univerzálna veľkosť', Droite: 'Pravá', Gauche: 'Ľavá' },
+    sizeWords: { 'Taille unique': 'Univerzálna veľkosť', Droite: 'Pravá', Gauche: 'Ľavá', ans: 'r.' },
     colorWord: 'farba',
     otherColor: 'iná farba',
   },
