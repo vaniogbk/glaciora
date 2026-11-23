@@ -11,7 +11,7 @@ import { stripLocale } from '@/i18n/config';
 import { plural } from '@/i18n/format';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
-export function Header() {
+export function Header({ showPacks = false }: { showPacks?: boolean }) {
   const { locale, m } = useI18n();
   const pathname = stripLocale(usePathname());
   const router = useLocalizedRouter();
@@ -27,6 +27,7 @@ export function Header() {
     { href: '/categorie/bottes', label: m.nav.boots },
     { href: '/categorie/hockey', label: m.nav.hockey },
     { href: '/categorie/accessoires', label: m.nav.accessories },
+    ...(showPacks ? [{ href: '/packs', label: m.nav.packs }] : []),
     { href: '/catalogue', label: m.nav.all },
   ];
 

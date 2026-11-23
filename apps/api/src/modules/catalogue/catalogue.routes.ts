@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { productQuerySchema } from '@glaciora/shared';
 import { asyncHandler } from '../../lib/http';
 import * as service from './catalogue.service';
+import * as packs from './packs.service';
 
 export const catalogueRouter = Router();
 
@@ -31,6 +32,24 @@ catalogueRouter.get(
     const slug = slugSchema.parse(req.params.slug);
     res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=120');
     res.json({ product: await service.getProductBySlug(slug) });
+  }),
+);
+
+/** Packs en vente (tous leurs articles publiés et en stock), prix du pack remise déduite. */
+catalogueRouter.get(
+  '/packs',
+  asyncHandler(async (_req, res) => {
+    res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=120');
+    res.json({ packs: await packs.listPacks() });
+  }),
+);
+
+catalogueRouter.get(
+  '/packs/:slug',
+  asyncHandler(async (req, res) => {
+    const slug = slugSchema.parse(req.params.slug);
+    res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=120');
+    res.json({ pack: await packs.getPack(slug) });
   }),
 );
 

@@ -16,6 +16,8 @@ interface OrderView {
   createdAt: string;
   email: string;
   subtotalCents: number;
+  discountCents?: number;
+  discountLabel?: string | null;
   shippingCents: number;
   totalCents: number;
   shippingRateName: string;
@@ -111,6 +113,9 @@ export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
           ))}
         </ul>
         <dl className="mt-3 space-y-1 border-t border-line pt-3 text-sm">
+          {(order.discountCents ?? 0) > 0 && (
+            <div className="flex justify-between gap-3 font-semibold text-success"><dt>{m.common.packDiscount}</dt><dd>−{price(order.discountCents ?? 0)}</dd></div>
+          )}
           <div className="flex justify-between gap-3"><dt>{fmt(t.shippingLine, { rate: order.shippingRateName, city: order.shipCity, country: countryName(order.shipCountryCode, locale) })}</dt><dd>{price(order.shippingCents)}</dd></div>
           <div className="flex justify-between gap-3 text-lg font-extrabold"><dt>{t.totalPaid}</dt><dd>{price(order.totalCents)}</dd></div>
         </dl>

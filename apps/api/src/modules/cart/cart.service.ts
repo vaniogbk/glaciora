@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 import type { Prisma } from '@prisma/client';
-import { CART_ISSUE_MESSAGES, MAX_QUANTITY_PER_LINE, computeCartTotals, validateCartLines, type CartIssue } from '@glaciora/shared';
+import { CART_ISSUE_MESSAGES, MAX_QUANTITY_PER_LINE, applyPackDiscounts, computeCartTotals, validateCartLines, type CartIssue } from '@glaciora/shared';
 import { prisma } from '../../lib/prisma';
 import { COOKIE, setCartCookie } from '../../lib/cookies';
 import { generateOpaqueToken, hashToken } from '../../lib/tokens';
@@ -69,6 +69,15 @@ export function toCartView(items: CartItemRow[]) {
   const issues = validateCartLines(lines);
   const issueByVariant = new Map<string, CartIssue>(issues.map((i) => [i.variantId, i]));
   const { subtotalCents, itemCount } = computeCartTotals(lines);
+  // Packs complets du panier : remise calculée ici, seule source du montant à payer.
+  const { applied: packs, discountCents } = applyPackDiscounts(
+    items.map((item) => ({
+      productReference: item.variant.product.reference,
+      unitPriceCents: item.variant.priceCents,
+      quantity: item.quantity,
+      purchasable: isVariantPurchasable(item) && !issueByVariant.has(item.variantId),
+    })),
+  );
   return {
     items: items.map((item) => {
       const issue = issueByVariant.get(item.variantId);
@@ -90,6 +99,11 @@ export function toCartView(items: CartItemRow[]) {
       };
     }),
     subtotalCents,
+    /** Remise des packs complets (0 sans pack). */
+    discountCents,
+    packs,
+    /** Montant des articles après remise (hors livraison). */
+    totalCents: subtotalCents - discountCents,
     itemCount,
     currency: 'EUR',
     hasIssues: issues.length > 0,

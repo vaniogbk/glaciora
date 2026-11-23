@@ -96,9 +96,19 @@ export interface CartLine {
   issue: { code: string; message: string } | null;
 }
 
+export interface AppliedPack {
+  slug: string;
+  name: string;
+  count: number;
+  discountCents: number;
+}
+
 export interface Cart {
   items: CartLine[];
   subtotalCents: number;
+  /** Remise des packs complets (absente si l'API n'est pas encore à jour). */
+  discountCents?: number;
+  packs?: AppliedPack[];
   itemCount: number;
   currency: string;
   hasIssues: boolean;
@@ -110,4 +120,28 @@ export interface SessionUser {
   firstName: string | null;
   lastName: string | null;
   role: 'CLIENT' | 'ADMIN';
+}
+
+export interface PackItem {
+  reference: string;
+  slug: string;
+  name: string;
+  brand: string;
+  shortDescription: string | null;
+  category: { slug: string; name: string };
+  image: { url: string; alt: string; width: number | null; height: number | null } | null;
+  fromPriceCents: number;
+  variants: { id: string; sku: string; color: string | null; priceCents: number; size: string | null; available: number; inStock: boolean }[];
+}
+
+export interface Pack {
+  slug: string;
+  name: string;
+  sport: 'SKI' | 'HOCKEY';
+  discountPercent: number;
+  itemsTotalCents: number;
+  discountCents: number;
+  packPriceCents: number;
+  images: { url: string; alt: string; width: number | null; height: number | null }[];
+  items: PackItem[];
 }

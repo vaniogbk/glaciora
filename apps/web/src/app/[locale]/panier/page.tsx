@@ -108,6 +108,15 @@ export default function CartPage() {
                 <dt>{fmt(t.itemsCount, { count: cart.itemCount })}</dt>
                 <dd className="font-semibold">{price(cart.subtotalCents)}</dd>
               </div>
+              {(cart.discountCents ?? 0) > 0 && (
+                <div className="flex justify-between gap-4 font-semibold text-success" data-testid="pack-discount">
+                  <dt className="min-w-0">
+                    {m.common.packDiscount}
+                    {cart.packs?.length ? ` · ${cart.packs.map((p) => ((m.common.packNames as Record<string, string>)[p.slug] ?? p.name) + (p.count > 1 ? ` ×${p.count}` : '')).join(', ')}` : ''}
+                  </dt>
+                  <dd className="shrink-0">−{price(cart.discountCents ?? 0)}</dd>
+                </div>
+              )}
               <div className="flex justify-between gap-4 text-muted">
                 <dt>{m.common.shipping}</dt>
                 <dd className="text-right">{t.shippingNext}</dd>
@@ -115,7 +124,7 @@ export default function CartPage() {
             </dl>
             <p className="mt-4 flex justify-between gap-4 border-t border-line pt-4 text-lg font-extrabold">
               <span>{m.common.subtotal}</span>
-              <span>{price(cart.subtotalCents)}</span>
+              <span>{price(cart.subtotalCents - (cart.discountCents ?? 0))}</span>
             </p>
             {cart.hasIssues ? (
               <p className="mt-4 text-sm font-semibold text-danger">{t.fixIssues}</p>

@@ -9,7 +9,7 @@ import type { Messages } from '@/i18n/messages';
 const CARD_PAYMENT_ENABLED = process.env.NEXT_PUBLIC_CARD_PAYMENT_ENABLED === 'true';
 
 /** Pied de page rendu sur le serveur (aucun JavaScript envoyé au navigateur pour lui). */
-export function Footer({ locale, m }: { locale: Locale; m: Messages }) {
+export function Footer({ locale, m, showPacks = false }: { locale: Locale; m: Messages; showPacks?: boolean }) {
   const f = m.footer;
   const year = new Date().getFullYear();
   return (
@@ -29,6 +29,7 @@ export function Footer({ locale, m }: { locale: Locale; m: Messages }) {
             <li><Link className="hover:text-glacier" href="/categorie/bottes">{f.skiBoots}</Link></li>
             <li><Link className="hover:text-glacier" href="/categorie/hockey">{f.iceHockey}</Link></li>
             <li><Link className="hover:text-glacier" href="/categorie/accessoires">{m.nav.accessories}</Link></li>
+            {showPacks && <li><Link className="hover:text-glacier" href="/packs">{m.nav.packs}</Link></li>}
             <li><Link className="hover:text-glacier" href="/catalogue">{m.nav.all}</Link></li>
           </ul>
         </nav>

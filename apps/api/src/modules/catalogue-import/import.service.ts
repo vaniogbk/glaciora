@@ -35,12 +35,14 @@ export const CATEGORY_TREE = [
     { slug: 'casques-hockey', name: 'Casques de hockey', folder: '02_HOCKEY/03_Casques' },
     { slug: 'protections-hockey', name: 'Protections', folder: '02_HOCKEY/04_Protections' },
     { slug: 'entrainement-hockey', name: 'Entraînement', folder: '02_HOCKEY/05_Accessoires_Entrainement' },
+    { slug: 'vetements-hockey', name: 'Vêtements de hockey', folder: '02_HOCKEY/06_Vetements_Hockey' },
   ] },
   { slug: 'accessoires', name: 'Accessoires', sport: null, position: 4, children: [
     { slug: 'casques-de-ski', name: 'Casques de ski', folder: '01_SKI/04_Casques' },
     { slug: 'masques-de-ski', name: 'Masques de ski', folder: '01_SKI/05_Masques' },
     { slug: 'securite-avalanche', name: 'Sécurité avalanche', folder: '01_SKI/06_Securite_Avalanche' },
     { slug: 'gants', name: 'Gants', folder: '01_SKI/07_Gants_Chauffants' },
+    { slug: 'batons-de-ski', name: 'Bâtons de ski', folder: '01_SKI/08_Batons' },
   ] },
   { slug: 'vestes', name: 'Vestes', sport: null, position: 5, children: [] },
   { slug: 'vetements', name: 'Vêtements de ski', sport: null, position: 6, children: [
@@ -61,6 +63,7 @@ const SIZE_ORDER: Record<string, (label: string) => number> = {
   STICK: (l) => (l.startsWith('Gauche') ? 0 : 100) + parseFloat(l.replace(/\D+/g, '') || '0'),
   ONE_SIZE: () => 0,
   KIDS_AGE: (l) => parseFloat(l),
+  INCH: (l) => parseFloat(l),
 };
 
 const sourceRowSchema = z.object({
@@ -83,7 +86,7 @@ const complementSchema = z.object({
   price_eur: z.string(),
   compare_at_eur: z.string(),
   price_source: z.string(),
-  size_system: z.enum(['SKI_LENGTH', 'BOOT_MONDO', 'SKATE', 'APPAREL', 'HELMET', 'STICK', 'ONE_SIZE', 'KIDS_AGE']),
+  size_system: z.enum(['SKI_LENGTH', 'BOOT_MONDO', 'SKATE', 'APPAREL', 'HELMET', 'STICK', 'ONE_SIZE', 'KIDS_AGE', 'INCH']),
   sizes: z.string().min(1),
   stock: z.string(),
   condition: z.enum(['NEW', 'USED']),

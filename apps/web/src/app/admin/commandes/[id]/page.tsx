@@ -43,6 +43,8 @@ interface AdminOrder {
     shipCountryCode: string;
     shipPhone: string;
     subtotalCents: number;
+    discountCents?: number;
+    discountLabel?: string | null;
     shippingCents: number;
     totalCents: number;
     shippingRateName: string;
@@ -263,6 +265,12 @@ export default function AdminOrderPage() {
             ))}
           </tbody>
           <tfoot>
+            {(order.discountCents ?? 0) > 0 && (
+              <tr className="font-semibold text-success">
+                <td colSpan={4} className="pt-3 text-right">Remise {order.discountLabel ?? 'pack'}</td>
+                <td className="pt-3 text-right">−{formatPrice(order.discountCents ?? 0)}</td>
+              </tr>
+            )}
             <tr>
               <td colSpan={4} className="pt-3 text-right">Livraison</td>
               <td className="pt-3 text-right">{formatPrice(order.shippingCents)}</td>

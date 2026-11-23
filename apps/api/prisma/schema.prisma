@@ -329,6 +329,10 @@ model Order {
   shipCountryCode  String
   shipPhone        String
   subtotalCents    Int
+  /// Remise des packs complets (déjà déduite de totalCents).
+  discountCents    Int         @default(0)
+  /// Packs remisés, ex. « Pack hockey complet senior ».
+  discountLabel    String?
   shippingCents    Int
   totalCents       Int
   currency         String      @default("EUR")

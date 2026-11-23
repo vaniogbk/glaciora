@@ -380,7 +380,8 @@ export default function CheckoutPage() {
   }
 
   const err = (key: string) => errors[key]?.trim() || undefined;
-  const totalCents = (cart?.subtotalCents ?? 0) + (quote?.priceCents ?? 0);
+  const discountCents = cart?.discountCents ?? 0;
+  const totalCents = (cart?.subtotalCents ?? 0) - discountCents + (quote?.priceCents ?? 0);
   const onPayment = step === 2 && payment !== null;
 
   const rejectionMessage = (() => {
@@ -707,6 +708,12 @@ export default function CheckoutPage() {
               <dt>{m.common.subtotal}</dt>
               <dd>{price(cart?.subtotalCents ?? 0)}</dd>
             </div>
+            {discountCents > 0 && (
+              <div className="flex justify-between gap-4 font-semibold text-success" data-testid="pack-discount">
+                <dt>{m.common.packDiscount}</dt>
+                <dd>−{price(discountCents)}</dd>
+              </div>
+            )}
             <div className="flex justify-between gap-4">
               <dt>{m.common.shipping}</dt>
               <dd>{quote ? (quote.isFree ? m.common.free : price(quote.priceCents)) : '—'}</dd>

@@ -37,7 +37,7 @@ export async function quoteForCurrentCart(req: Request, countryCode: string) {
   const cart = await findCurrentCart(req);
   const view = toCartView(cart ? await loadCartItems(cart.id) : []);
   const zones = await loadShippingZones();
-  return { subtotalCents: view.subtotalCents, quotes: quoteShipping(zones, countryCode, view.subtotalCents) };
+  return { subtotalCents: view.subtotalCents, discountCents: view.discountCents, quotes: quoteShipping(zones, countryCode, view.totalCents) };
 }
 
 /** Étape « virement » : montant définitif, référence réservée, coordonnées et QR code SEPA. */
@@ -50,10 +50,10 @@ export async function preparePaymentDetails(req: Request, res: Response, country
   const view = toCartView(await loadCartItems(cart.id));
   if (view.items.length === 0) throw unprocessable('EMPTY_CART', 'Votre panier est vide');
   if (view.hasIssues) throw unprocessable('CART_ISSUES', 'Certains articles ne sont plus disponibles', view.items.filter((i) => i.issue));
-  const quote = selectShippingQuote(await loadShippingZones(), countryCode, view.subtotalCents, shippingRateId);
+  const quote = selectShippingQuote(await loadShippingZones(), countryCode, view.totalCents, shippingRateId);
   if (!quote) throw unprocessable('SHIPPING_UNAVAILABLE', 'Livraison indisponible pour ce pays');
 
-  const amountCents = view.subtotalCents + quote.priceCents;
+  const amountCents = view.totalCents + quote.priceCents;
   const reference = previous?.reference ?? newReference();
   const expiresAt = Date.now() + REFERENCE_TTL_MS;
   res.cookie(REFERENCE_COOKIE, encodeReference(reference, amountCents, expiresAt, accountKeyOf(account)), {
@@ -76,6 +76,8 @@ export async function preparePaymentDetails(req: Request, res: Response, country
     reference,
     amountCents,
     subtotalCents: view.subtotalCents,
+    discountCents: view.discountCents,
+    packs: view.packs,
     shippingCents: quote.priceCents,
     shippingRateName: quote.name,
     currency: 'EUR',
@@ -152,9 +154,9 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
       if (view.items.length === 0) throw unprocessable('EMPTY_CART', 'Votre panier est vide');
       if (view.hasIssues) throw unprocessable('CART_ISSUES', 'Certains articles ne sont plus disponibles', view.items.filter((i) => i.issue));
       const zones = await loadShippingZones(tx);
-      const quote = selectShippingQuote(zones, data.shippingAddress.countryCode, view.subtotalCents, data.shippingRateId);
+      const quote = selectShippingQuote(zones, data.shippingAddress.countryCode, view.totalCents, data.shippingRateId);
       if (!quote) throw unprocessable('SHIPPING_UNAVAILABLE', 'Livraison indisponible pour ce pays');
-      const totalCents = view.subtotalCents + quote.priceCents;
+      const totalCents = view.totalCents + quote.priceCents;
       // Le compte enregistré est celui affiché au client avec cette référence (répartition entre plusieurs comptes d'un pays).
       const account = signed.accountKey ? await findShownAccount(signed.accountKey) : await resolveReceivingAccount(data.shippingAddress.countryCode);
       if (!account) throw conflict('Les coordonnées bancaires ont changé : affichez-les à nouveau avant de valider', { code: 'BANK_ACCOUNT_CHANGED' });
@@ -193,6 +195,8 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
           shipCountryCode: a.countryCode,
           shipPhone: a.phone,
           subtotalCents: view.subtotalCents,
+          discountCents: view.discountCents,
+          discountLabel: view.packs.length ? view.packs.map((p) => (p.count > 1 ? `${p.name} ×${p.count}` : p.name)).join(', ') : null,
           shippingCents: quote.priceCents,
           totalCents,
           shippingRateName: quote.name,
@@ -329,6 +333,8 @@ export async function getOrderConfirmation(req: Request, reference: string, trac
     trackingUrl: order.trackingUrl,
     email: order.email,
     subtotalCents: order.subtotalCents,
+    discountCents: order.discountCents,
+    discountLabel: order.discountLabel,
     shippingCents: order.shippingCents,
     totalCents: order.totalCents,
     shippingRateName: order.shippingRateName,

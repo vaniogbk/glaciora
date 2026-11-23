@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { DEFAULT_LOCALE, LOCALES, localizePath } from '@/i18n/config';
-import { getSitemapEntries } from '@/lib/server-api';
+import { getPacks, getSitemapEntries } from '@/lib/server-api';
 import { absoluteUrl } from '@/lib/site';
 
 export const revalidate = 3600;
@@ -9,11 +9,12 @@ type Entry = { path: string; lastModified?: Date; changeFrequency: 'daily' | 'we
 
 /** Chaque page dans chaque langue, avec ses versions alternatives (hreflang) pour les moteurs de recherche. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const { products, categories } = await getSitemapEntries();
+  const [{ products, categories }, packs] = await Promise.all([getSitemapEntries(), getPacks()]);
   const pages: Entry[] = [
     { path: '/', changeFrequency: 'daily', priority: 1 },
     { path: '/catalogue', changeFrequency: 'daily', priority: 0.9 },
     { path: '/mentions-legales', changeFrequency: 'weekly', priority: 0.2 },
+    ...(packs.length ? [{ path: '/packs', changeFrequency: 'weekly' as const, priority: 0.8 }, ...packs.map((p) => ({ path: `/packs/${p.slug}`, changeFrequency: 'weekly' as const, priority: 0.7 }))] : []),
     ...categories.map((c) => ({ path: `/categorie/${c.slug}`, lastModified: new Date(c.updatedAt), changeFrequency: 'weekly' as const, priority: 0.8 })),
     ...products.map((p) => ({ path: `/produit/${p.slug}`, lastModified: new Date(p.updatedAt), changeFrequency: 'weekly' as const, priority: 0.7 })),
   ];

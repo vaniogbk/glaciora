@@ -16,6 +16,7 @@ interface OrderDetail {
   status: OrderStatus;
   createdAt: string;
   subtotalCents: number;
+  discountCents?: number;
   shippingCents: number;
   totalCents: number;
   shippingRateName: string;
@@ -100,6 +101,12 @@ export default function OrderDetailPage() {
               ))}
             </tbody>
             <tfoot className="border-t border-line">
+              {(order.discountCents ?? 0) > 0 && (
+                <tr className="font-semibold text-success">
+                  <td colSpan={2} className="pt-3 text-right">{m.common.packDiscount}</td>
+                  <td className="pt-3 text-right">−{price(order.discountCents ?? 0)}</td>
+                </tr>
+              )}
               <tr>
                 <td colSpan={2} className="pt-3 text-right">{fmt(t.shippingRate, { rate: order.shippingRateName })}</td>
                 <td className="pt-3 text-right">{price(order.shippingCents)}</td>

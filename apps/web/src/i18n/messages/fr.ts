@@ -62,6 +62,8 @@ const fr = {
     discoverCatalogue: 'Découvrir le catalogue',
     myOrders: 'Mes commandes',
     language: 'Langue',
+    packDiscount: 'Remise pack',
+    packNames: { 'pack-ski-complet-homme': 'Pack ski complet homme', 'pack-equipement-ski': 'Pack équipement ski', 'pack-hockey-complet-senior': 'Pack hockey complet senior' },
   },
 
   nav: {
@@ -70,6 +72,7 @@ const fr = {
     hockey: 'Hockey',
     accessories: 'Accessoires',
     all: 'Tout le catalogue',
+    packs: 'Packs',
   },
 
   header: {
@@ -557,6 +560,22 @@ const fr = {
   },
 
   /** Conditions générales de vente. {brand}, {email}, {phone}, {address} : coordonnées ; [[…]] : mention à compléter. */
+  packs: {
+    title: 'Packs ski et hockey',
+    intro: 'Tout l’équipement réuni, moins cher qu’à l’unité : la remise s’applique automatiquement dans le panier.',
+    regularPrice: 'Articles achetés séparément',
+    packPrice: 'Prix du pack',
+    save: 'Vous économisez {amount}',
+    includes: 'Dans ce pack',
+    size: 'Taille',
+    addPack: 'Ajouter le pack au panier',
+    adding: 'Ajout du pack…',
+    added: 'Pack ajouté au panier.',
+    addFailed: 'Le pack n’a pas pu être ajouté entièrement : vérifiez votre panier.',
+    viewPack: 'Voir le pack',
+    empty: 'Les packs arrivent bientôt.',
+    howItWorks: 'La remise de {percent} % s’applique automatiquement dès que tous les articles du pack sont dans le panier.',
+  },
   legal: {
     title: 'Mentions légales',
     description: 'Mentions légales de GLACIORA : éditeur du site, immatriculation, directeur de la publication et hébergeur.',
