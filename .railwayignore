@@ -1,0 +1,13 @@
+# Fichiers que `railway up` n'envoie pas (en plus de .gitignore) : l'API n'en a pas besoin,
+# et l'envoi est limité en taille (refus « 413 Payload Too Large » au-delà).
+video/
+GLACIORA_CATALOGUE/
+GLACIORA_EXTENSION/
+Identité graphique/
+node_modules/
+**/node_modules/
+apps/web/.next/
+test-results/
+playwright-report/
+*.mp4
+*.mov
