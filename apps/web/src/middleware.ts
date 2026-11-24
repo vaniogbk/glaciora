@@ -17,6 +17,8 @@ export function middleware(req: NextRequest) {
     const secret = process.env.PROXY_SECRET;
     if (!secret) return NextResponse.next();
     const headers = new Headers(req.headers);
+    // Repère du rendu serveur réservé aux serveurs du site : jamais transmis depuis un navigateur.
+    headers.delete('x-glaciora-ssr');
     headers.set('x-glaciora-proxy', secret);
     return NextResponse.next({ request: { headers } });
   }

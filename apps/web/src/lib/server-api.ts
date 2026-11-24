@@ -17,7 +17,11 @@ async function get<T>(path: string, revalidate = 60): Promise<T | null> {
   });
   const request = (async () => {
     const headers: Record<string, string> = { accept: 'application/json' };
-    if (process.env.PROXY_SECRET) headers['x-glaciora-proxy'] = process.env.PROXY_SECRET;
+    if (process.env.PROXY_SECRET) {
+      headers['x-glaciora-proxy'] = process.env.PROXY_SECRET;
+      // Rendu serveur : non compté dans la limite par adresse IP de l'API (toutes ces requêtes partent des serveurs de Vercel).
+      headers['x-glaciora-ssr'] = process.env.PROXY_SECRET;
+    }
     const res = await fetch(`${API_URL}${path}`, { next: { revalidate }, headers });
     if (!res.ok) return null;
     return (await res.json()) as T;

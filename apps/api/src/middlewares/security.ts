@@ -55,21 +55,35 @@ function refererOrigin(referer?: string): string | undefined {
 
 const isTest = env.NODE_ENV === 'test';
 
-function limiter(windowMs: number, limit: number, message: string) {
+/** Rendu serveur du site (Vercel) : porte le secret partagé, que les navigateurs ne connaissent jamais. */
+export const SSR_HEADER = 'x-glaciora-ssr';
+
+/**
+ * Requête du rendu serveur du site (pages préparées par Vercel), et non d'un visiteur. Sans ce repère, toutes ces requêtes
+ * viendraient de quelques adresses IP de Vercel et partageraient la même limite par IP : sous un fort trafic, l'API les
+ * refuserait et des fiches produit s'afficheraient « introuvables ». Le site retire cet en-tête des requêtes des navigateurs.
+ */
+export function isServerRender(header: string | undefined, secret: string | undefined = env.PROXY_SECRET): boolean {
+  return Boolean(secret && header && safeEqual(header, secret));
+}
+
+function limiter(windowMs: number, limit: number, message: string, options: { exemptServerRender?: boolean } = {}) {
   return rateLimit({
     windowMs,
     limit,
     standardHeaders: 'draft-7',
     legacyHeaders: false,
-    skip: () => isTest,
+    skip: (req) => isTest || (options.exemptServerRender === true && isServerRender(req.get(SSR_HEADER))),
     message: { error: { code: 'TOO_MANY_REQUESTS', message } },
   });
 }
 
-export const globalLimiter = limiter(15 * 60 * 1000, 600, 'Trop de requêtes, réessayez dans quelques minutes.');
+// Limite générale par adresse IP, large : sur mobile, des centaines d'abonnés partagent une même adresse (CGNAT des
+// opérateurs). Les écritures sensibles gardent leurs limites strictes ci-dessous. Le rendu serveur du site n'est pas compté.
+export const globalLimiter = limiter(15 * 60 * 1000, 3000, 'Trop de requêtes, réessayez dans quelques minutes.', { exemptServerRender: true });
 export const authLimiter = limiter(15 * 60 * 1000, 20, 'Trop de tentatives, réessayez dans 15 minutes.');
 export const passwordResetLimiter = limiter(60 * 60 * 1000, 5, 'Trop de demandes, réessayez plus tard.');
-export const checkoutLimiter = limiter(60 * 60 * 1000, 30, 'Trop de commandes en peu de temps, réessayez plus tard.');
+export const checkoutLimiter = limiter(60 * 60 * 1000, 60, 'Trop de commandes en peu de temps, réessayez plus tard.');
 /** Suivi de commande par référence (sans compte) : freine la recherche de références au hasard. */
 export const trackingLimiter = limiter(15 * 60 * 1000, 60, 'Trop de recherches de commande, réessayez dans quelques minutes.');
 export const uploadLimiter = limiter(60 * 60 * 1000, 20, "Trop d'envois de fichiers, réessayez plus tard.");

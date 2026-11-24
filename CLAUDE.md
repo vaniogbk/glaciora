@@ -59,6 +59,7 @@ GLACIORA_CATALOGUE/, Identité graphique/   Sources client : lecture seule, jama
 - Auth : JWT d'accès 15 min + refresh token rotatif (empreinte en base, détection de réutilisation), cookies `httpOnly`/`Secure`/`SameSite`. Argon2id. Verrouillage après 5 échecs. Réponses identiques (pas d'énumération).
 - Routes admin : `requireAuth` + `requireAdmin` qui revérifie le rôle **en base** à chaque requête.
 - CSRF : en-tête `x-glaciora-csrf: 1` obligatoire + contrôle `Origin` sur toute écriture.
+- Limites par IP (`middlewares/security.ts`) : générale large (3000 / 15 min, CGNAT mobile), strictes sur connexion, mot de passe, commande, envoi de fichiers et suivi. Le rendu serveur du site (Vercel) envoie `x-glaciora-ssr` = `PROXY_SECRET` et n'est pas compté dans la limite générale ; le middleware web retire cet en-tête des requêtes des navigateurs.
 - Journaux : jamais de cookie, jeton, mot de passe, e-mail, IBAN ni corps de requête.
 - Paiement carte : indisponible, **ne jamais simuler** un paiement réussi. Point d'extension : `CardPaymentProvider`.
 - E-mails : statut `SENT` uniquement après accusé du fournisseur (Brevo `messageId`). Mode `console` = `LOGGED`.
