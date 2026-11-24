@@ -11,3 +11,15 @@ test-results/
 playwright-report/
 *.mp4
 *.mov
+
+# Envoi minimal pour l'API (connexion lente : « operation timed out » au-delà de quelques Mo).
+# L'installation n'a besoin que de apps/web/package.json (espaces de travail npm) : ni les pages ni les images du site.
+.git/
+apps/web/src/
+apps/web/public/
+e2e/
+perf/
+docs/
+saas-60-claude-code-skills/
+playwright-report/
+apps/api/import-reports/
