@@ -9,8 +9,7 @@ import type { Locale } from '@/i18n/config';
 import { plural } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
 import { alternates, getI18n } from '@/i18n/server';
-import { getCategories, getHome, getPromotion } from '@/lib/server-api';
-import { BlackFridayBoard } from '@/components/promo/BlackFridayBoard';
+import { getCategories, getHome } from '@/lib/server-api';
 import type { ProductCard } from '@/lib/types';
 
 type Params = { params: Promise<{ locale: string }> };
@@ -52,7 +51,7 @@ const ADVANTAGE_ICONS = [
 export default async function HomePage({ params }: Params) {
   const { locale, m } = await getI18n(params);
   const h = m.home;
-  const [raw, rawCategories, l10n, promotion] = await Promise.all([getHome(), getCategories(), getCatalogueLocalizer(locale, m), getPromotion()]);
+  const [raw, rawCategories, l10n] = await Promise.all([getHome(), getCategories(), getCatalogueLocalizer(locale, m)]);
   const home = { featured: raw.featured.map(l10n.card), ski: raw.ski.map(l10n.card), hockey: raw.hockey.map(l10n.card), accessories: raw.accessories.map(l10n.card), newest: raw.newest.map(l10n.card) };
   const tiles = l10n.categories(rawCategories).filter((c) => !c.parentId && c.productCount > 0);
   const section = { locale, m };
@@ -99,8 +98,6 @@ export default async function HomePage({ params }: Params) {
           </ul>
         </nav>
       )}
-
-      {promotion && <BlackFridayBoard promotion={promotion} products={home.featured} locale={locale} m={m} />}
 
       <Section id="produits-phares" eyebrow={h.featuredEyebrow} title={h.featuredTitle} href="/catalogue" linkLabel={h.featuredLink} products={home.featured} {...section} />
 
