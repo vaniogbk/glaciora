@@ -15,14 +15,16 @@ const products_namespaceObject = /*#__PURE__*/JSON.parse('{"ZE":[{"slug":"giro-g
 ;// ./src/fonts.ts
 
 
-const FONT = "Montserrat, sans-serif";
+const FONT = "Montserrat, 'Noto Sans Georgian', sans-serif";
 const LATIN = "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD";
+const GEORGIAN = "U+0589,U+10A0-10FF,U+1C90-1CBA,U+1CBD-1CBF,U+205A,U+2D00-2D2F,U+2E31";
 const LATIN_EXT = "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF";
 if (typeof document !== "undefined") {
   const handle = (0,esm.delayRender)("Polices Montserrat");
   const faces = [
     new FontFace("Montserrat", `url(${(0,esm.staticFile)("fonts/montserrat-latin-wght-normal.woff2")}) format('woff2')`, { weight: "100 900", unicodeRange: LATIN }),
-    new FontFace("Montserrat", `url(${(0,esm.staticFile)("fonts/montserrat-latin-ext-wght-normal.woff2")}) format('woff2')`, { weight: "100 900", unicodeRange: LATIN_EXT })
+    new FontFace("Montserrat", `url(${(0,esm.staticFile)("fonts/montserrat-latin-ext-wght-normal.woff2")}) format('woff2')`, { weight: "100 900", unicodeRange: LATIN_EXT }),
+    new FontFace("Noto Sans Georgian", `url(${(0,esm.staticFile)("fonts/noto-sans-georgian-wght-normal.woff2")}) format('woff2')`, { weight: "100 900", unicodeRange: GEORGIAN })
   ];
   Promise.all(faces.map((f) => f.load())).then((loaded) => {
     loaded.forEach((f) => document.fonts.add(f));
@@ -35,7 +37,7 @@ if (typeof document !== "undefined") {
 
 ;// ./src/i18n.ts
 
-const LANGS = ["fr", "de", "sk", "it", "cs", "pl", "sv", "es", "fi", "nb", "lt", "pt", "sl"];
+const LANGS = ["fr", "de", "sk", "it", "cs", "pl", "sv", "es", "fi", "nb", "lt", "pt", "sl", "da", "hr", "ro", "ka"];
 const T = {
   fr: {
     locale: "fr-FR",
@@ -192,6 +194,54 @@ const T = {
     trust: ["Dostava v 23 evropskih dr\u017Eav", "Osebno svetovanje prek WhatsAppa", "Pla\u010Dilo z ban\u010Dnim nakazilom"],
     cta: "Naro\u010Di na",
     url: "glaciora.online/sl"
+  },
+  da: {
+    locale: "da-DK",
+    hook: ["Sneen", "er her."],
+    question: ["Og dit", "udstyr?"],
+    ski: "Ski",
+    hockey: "Ishockey",
+    brandsTitle: ["De store m\xE6rker", "inden for ski og hockey"],
+    sport: { SKI: "Ski", HOCKEY: "Ishockey" },
+    trust: ["Levering til 23 lande i Europa", "Personlig r\xE5dgivning p\xE5 WhatsApp", "Betaling med bankoverf\xF8rsel"],
+    cta: "Bestil p\xE5",
+    url: "glaciora.online/da"
+  },
+  hr: {
+    locale: "hr-HR",
+    hook: ["Snijeg", "je stigao."],
+    question: ["A tvoja", "oprema?"],
+    ski: "Skijanje",
+    hockey: "Hokej",
+    brandsTitle: ["Velike marke", "skijanja i hokeja"],
+    sport: { SKI: "Skijanje", HOCKEY: "Hokej" },
+    trust: ["Dostava u 23 europske zemlje", "Osobno savjetovanje na WhatsAppu", "Pla\u0107anje bankovnim prijenosom"],
+    cta: "Naru\u010Di na",
+    url: "glaciora.online/hr"
+  },
+  ro: {
+    locale: "ro-RO",
+    hook: ["Z\u0103pada", "a sosit."],
+    question: ["Echipamentul", "t\u0103u e gata?"],
+    ski: "Schi",
+    hockey: "Hochei",
+    brandsTitle: ["Marile m\u0103rci", "de schi \u0219i hochei"],
+    sport: { SKI: "Schi", HOCKEY: "Hochei" },
+    trust: ["Livrare \xEEn 23 de \u021B\u0103ri din Europa", "Consultan\u021B\u0103 personalizat\u0103 pe WhatsApp", "Plat\u0103 prin transfer bancar"],
+    cta: "Comand\u0103 pe",
+    url: "glaciora.online/ro"
+  },
+  ka: {
+    locale: "ka-GE",
+    hook: ["\u10D7\u10DD\u10D5\u10DA\u10D8", "\u10E3\u10D9\u10D5\u10D4 \u10D0\u10E5\u10D0\u10D0."],
+    question: ["\u10D3\u10D0 \u10E8\u10D4\u10DC\u10D8", "\u10D0\u10E6\u10ED\u10E3\u10E0\u10D5\u10D8\u10DA\u10DD\u10D1\u10D0?"],
+    ski: "\u10D7\u10EE\u10D8\u10DA\u10D0\u10DB\u10E3\u10E0\u10D8",
+    hockey: "\u10F0\u10DD\u10D9\u10D4\u10D8",
+    brandsTitle: ["\u10D7\u10EE\u10D8\u10DA\u10D0\u10DB\u10E3\u10E0\u10D8\u10E1\u10D0 \u10D3\u10D0 \u10F0\u10DD\u10D9\u10D4\u10D8\u10E1", "\u10EC\u10D0\u10DB\u10E7\u10D5\u10D0\u10DC\u10D8 \u10D1\u10E0\u10D4\u10DC\u10D3\u10D4\u10D1\u10D8"],
+    sport: { SKI: "\u10D7\u10EE\u10D8\u10DA\u10D0\u10DB\u10E3\u10E0\u10D8", HOCKEY: "\u10F0\u10DD\u10D9\u10D4\u10D8" },
+    trust: ["\u10DB\u10D8\u10EC\u10DD\u10D3\u10D4\u10D1\u10D0 \u10D4\u10D5\u10E0\u10DD\u10DE\u10D8\u10E1 23 \u10E5\u10D5\u10D4\u10E7\u10D0\u10DC\u10D0\u10E8\u10D8", "\u10DE\u10D4\u10E0\u10E1\u10DD\u10DC\u10D0\u10DA\u10E3\u10E0\u10D8 \u10D9\u10DD\u10DC\u10E1\u10E3\u10DA\u10E2\u10D0\u10EA\u10D8\u10D0 WhatsApp-\u10D6\u10D4", "\u10D2\u10D0\u10D3\u10D0\u10EE\u10D3\u10D0 \u10E1\u10D0\u10D1\u10D0\u10DC\u10D9\u10DD \u10D2\u10D0\u10D3\u10D0\u10E0\u10D8\u10EA\u10EE\u10D5\u10D8\u10D7"],
+    cta: "\u10E8\u10D4\u10E3\u10D9\u10D5\u10D4\u10D7\u10D4 \u10E1\u10D0\u10D8\u10E2\u10D6\u10D4",
+    url: "glaciora.online/ka"
   }
 };
 
@@ -40171,7 +40221,7 @@ var NoReactInternals = {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("d1e3e65fa55b4a5b")
+/******/ 		__webpack_require__.h = () => ("9f898184b9f0c660")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

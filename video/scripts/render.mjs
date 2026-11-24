@@ -5,7 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
-const ALL = ['fr', 'de', 'sk', 'it', 'cs', 'pl', 'sv', 'es', 'fi', 'nb', 'lt', 'pt', 'sl'];
+const ALL = ['fr', 'de', 'sk', 'it', 'cs', 'pl', 'sv', 'es', 'fi', 'nb', 'lt', 'pt', 'sl', 'da', 'hr', 'ro', 'ka'];
 const langs = process.argv.slice(2).length ? process.argv.slice(2) : ALL;
 const pw = path.join(process.env.LOCALAPPDATA ?? '', 'ms-playwright');
 const shell = existsSync(pw)

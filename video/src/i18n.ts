@@ -1,8 +1,8 @@
 // Textes de la vidéo. Aucune promesse absente de la boutique : pas de prix barré, pas de « livraison gratuite »,
 // pas d'avis clients. « 23 pays » = pays livrables sur le site le 2026-11-11 (GET /api/checkout/config) : à mettre à jour
 // si la liste change. Chaque langue renvoie vers sa version du site (glaciora.online/<langue>).
-export type Lang = 'fr' | 'de' | 'sk' | 'it' | 'cs' | 'pl' | 'sv' | 'es' | 'fi' | 'nb' | 'lt' | 'pt' | 'sl';
-export const LANGS: Lang[] = ['fr', 'de', 'sk', 'it', 'cs', 'pl', 'sv', 'es', 'fi', 'nb', 'lt', 'pt', 'sl'];
+export type Lang = 'fr' | 'de' | 'sk' | 'it' | 'cs' | 'pl' | 'sv' | 'es' | 'fi' | 'nb' | 'lt' | 'pt' | 'sl' | 'da' | 'hr' | 'ro' | 'ka';
+export const LANGS: Lang[] = ['fr', 'de', 'sk', 'it', 'cs', 'pl', 'sv', 'es', 'fi', 'nb', 'lt', 'pt', 'sl', 'da', 'hr', 'ro', 'ka'];
 
 export interface Copy {
   locale: string;
@@ -173,5 +173,53 @@ export const T: Record<Lang, Copy> = {
     trust: ['Dostava v 23 evropskih držav', 'Osebno svetovanje prek WhatsAppa', 'Plačilo z bančnim nakazilom'],
     cta: 'Naroči na',
     url: 'glaciora.online/sl',
+  },
+  da: {
+    locale: 'da-DK',
+    hook: ['Sneen', 'er her.'],
+    question: ['Og dit', 'udstyr?'],
+    ski: 'Ski',
+    hockey: 'Ishockey',
+    brandsTitle: ['De store mærker', 'inden for ski og hockey'],
+    sport: { SKI: 'Ski', HOCKEY: 'Ishockey' },
+    trust: ['Levering til 23 lande i Europa', 'Personlig rådgivning på WhatsApp', 'Betaling med bankoverførsel'],
+    cta: 'Bestil på',
+    url: 'glaciora.online/da',
+  },
+  hr: {
+    locale: 'hr-HR',
+    hook: ['Snijeg', 'je stigao.'],
+    question: ['A tvoja', 'oprema?'],
+    ski: 'Skijanje',
+    hockey: 'Hokej',
+    brandsTitle: ['Velike marke', 'skijanja i hokeja'],
+    sport: { SKI: 'Skijanje', HOCKEY: 'Hokej' },
+    trust: ['Dostava u 23 europske zemlje', 'Osobno savjetovanje na WhatsAppu', 'Plaćanje bankovnim prijenosom'],
+    cta: 'Naruči na',
+    url: 'glaciora.online/hr',
+  },
+  ro: {
+    locale: 'ro-RO',
+    hook: ['Zăpada', 'a sosit.'],
+    question: ['Echipamentul', 'tău e gata?'],
+    ski: 'Schi',
+    hockey: 'Hochei',
+    brandsTitle: ['Marile mărci', 'de schi și hochei'],
+    sport: { SKI: 'Schi', HOCKEY: 'Hochei' },
+    trust: ['Livrare în 23 de țări din Europa', 'Consultanță personalizată pe WhatsApp', 'Plată prin transfer bancar'],
+    cta: 'Comandă pe',
+    url: 'glaciora.online/ro',
+  },
+  ka: {
+    locale: 'ka-GE',
+    hook: ['თოვლი', 'უკვე აქაა.'],
+    question: ['და შენი', 'აღჭურვილობა?'],
+    ski: 'თხილამური',
+    hockey: 'ჰოკეი',
+    brandsTitle: ['თხილამურისა და ჰოკეის', 'წამყვანი ბრენდები'],
+    sport: { SKI: 'თხილამური', HOCKEY: 'ჰოკეი' },
+    trust: ['მიწოდება ევროპის 23 ქვეყანაში', 'პერსონალური კონსულტაცია WhatsApp-ზე', 'გადახდა საბანკო გადარიცხვით'],
+    cta: 'შეუკვეთე საიტზე',
+    url: 'glaciora.online/ka',
   },
 };
