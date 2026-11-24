@@ -14,7 +14,8 @@ const itemSelect = {
   sport: true,
   shortDescription: true,
   category: { select: { slug: true, name: true } },
-  images: { orderBy: { position: 'asc' as const }, take: 1, select: { url: true, alt: true, width: true, height: true } },
+  // Toutes les photos avec leur coloris : la page du pack montre la photo du coloris choisi.
+  images: { orderBy: { position: 'asc' as const }, select: { url: true, alt: true, width: true, height: true, color: true } },
   variants: {
     where: { isActive: true, priceCents: { gt: 0 } },
     orderBy: [{ position: 'asc' as const }],
@@ -47,6 +48,7 @@ async function buildPack(pack: PackDefinition) {
       shortDescription: p.shortDescription,
       category: p.category,
       image: p.images[0] ?? null,
+      images: p.images,
       fromPriceCents: Math.min(...inStock.map((v) => v.priceCents)),
       variants,
     });

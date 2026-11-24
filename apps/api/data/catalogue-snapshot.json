@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-11-24T03:32:28.722Z",
+  "exportedAt": "2026-11-24T08:40:40.539Z",
   "products": [
     {
       "reference": "GLA-001",
@@ -3384,7 +3384,9 @@
         "Déperlant": "DWR sans PFC"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Light Grey",
+        "Neon Red"
       ],
       "isFeatured": true,
       "isNew": true,
@@ -3392,7 +3394,7 @@
       "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/rossignol/hero-insulated-black88681515",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "63758cb9351da3a47fe30e5bb3f71dc8f44d721afc41e949ab6a4db49ddb42ed",
+      "importChecksum": "c87782e9cc69d9f8690f6c4b9f47834926d5097ab44a815c1a40adf82691a134",
       "variants": [
         {
           "sku": "GLA-040-S",
@@ -3441,6 +3443,90 @@
           "isActive": true,
           "position": 3,
           "stock": 30
+        },
+        {
+          "sku": "GLA-040-LIGHT-GREY-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Light Grey",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-LIGHT-GREY-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Light Grey",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-LIGHT-GREY-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Light Grey",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-LIGHT-GREY-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Light Grey",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-NEON-RED-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Neon Red",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-NEON-RED-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Neon Red",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-NEON-RED-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Neon Red",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
         }
       ],
       "images": [
@@ -3452,7 +3538,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/01_Vestes_Ski/rossignol-hero-insulated-veste-homme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/rossignol-hero-insulated-veste-homme-2-237c23e112.webp",
+          "alt": "Rossignol Hero Insulated (veste homme) coloris Light Grey",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/rossignol-hero-insulated-veste-homme-light-grey-01.png",
+          "color": "Light Grey"
+        },
+        {
+          "url": "/media/products/rossignol-hero-insulated-veste-homme-3-7450284918.webp",
+          "alt": "Rossignol Hero Insulated (veste homme) coloris Neon Red",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/rossignol-hero-insulated-veste-homme-neon-red-01.png",
+          "color": "Neon Red"
         }
       ]
     },
@@ -3481,7 +3587,9 @@
         "Déperlant": "Teflon EcoElite sans PFC"
       },
       "colors": [
-        "Vapor Grey"
+        "Vapor Grey",
+        "Pure Cashmere",
+        "Shitake"
       ],
       "isFeatured": false,
       "isNew": true,
@@ -3489,7 +3597,7 @@
       "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/picture-object-vapor-grey88645150",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "7bd322b2799e5886651c39a8dbcfcf9fdaa781828d5da2a87b38eab55cc929da",
+      "importChecksum": "cbba03c4e8e97198af1052135681b4eb973c99af9151b6a7a9c1a8bb2f165753",
       "variants": [
         {
           "sku": "GLA-041-S",
@@ -3538,6 +3646,102 @@
           "isActive": true,
           "position": 3,
           "stock": 30
+        },
+        {
+          "sku": "GLA-041-PURE-CASHMERE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Pure Cashmere",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-PURE-CASHMERE-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Pure Cashmere",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-PURE-CASHMERE-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Pure Cashmere",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-PURE-CASHMERE-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Pure Cashmere",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-SHITAKE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Shitake",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-SHITAKE-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Shitake",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-SHITAKE-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Shitake",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-SHITAKE-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Shitake",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 11,
+          "stock": 30
         }
       ],
       "images": [
@@ -3549,7 +3753,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-object-veste-homme-gris-01.png",
-          "color": null
+          "color": "Vapor Grey"
+        },
+        {
+          "url": "/media/products/picture-object-veste-homme-2-091fa620aa.webp",
+          "alt": "Picture Organic Clothing Object (veste homme) coloris Pure Cashmere",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-object-veste-homme-gris-pure-cashmere-01.png",
+          "color": "Pure Cashmere"
+        },
+        {
+          "url": "/media/products/picture-object-veste-homme-3-d7654e149f.webp",
+          "alt": "Picture Organic Clothing Object (veste homme) coloris Shitake",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-object-veste-homme-gris-shitake-01.png",
+          "color": "Shitake"
         }
       ]
     },
@@ -3579,7 +3803,9 @@
         "Aérations": "Zippées sous les bras"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Clover",
+        "Tobacco"
       ],
       "isFeatured": true,
       "isNew": true,
@@ -3587,7 +3813,7 @@
       "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/parker-black88681403",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "bd4b35279689817775907296793e777b690db29c82c8488637bbc0b0c67c69f2",
+      "importChecksum": "b333ad5d2e7effd36e78bc7300a1d96f497fecdb1f1a3c3e6eb362571b8a858a",
       "variants": [
         {
           "sku": "GLA-042-S",
@@ -3636,6 +3862,66 @@
           "isActive": true,
           "position": 3,
           "stock": 30
+        },
+        {
+          "sku": "GLA-042-CLOVER-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Clover",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-042-TOBACCO-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Tobacco",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-042-TOBACCO-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Tobacco",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-042-TOBACCO-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Tobacco",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-042-TOBACCO-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Tobacco",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
         }
       ],
       "images": [
@@ -3647,7 +3933,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-parker-veste-homme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/picture-parker-veste-homme-2-fe3ae4dab5.webp",
+          "alt": "Picture Organic Clothing Parker (veste homme) coloris Clover",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-parker-veste-homme-clover-01.png",
+          "color": "Clover"
+        },
+        {
+          "url": "/media/products/picture-parker-veste-homme-3-fd75cbbaeb.webp",
+          "alt": "Picture Organic Clothing Parker (veste homme) coloris Tobacco",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-parker-veste-homme-tobacco-01.png",
+          "color": "Tobacco"
         }
       ]
     },
@@ -3677,7 +3983,9 @@
         "Déperlant": "Teflon EcoElite sans PFC"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Beetroot Powder",
+        "Halogen Blue"
       ],
       "isFeatured": false,
       "isNew": true,
@@ -3685,7 +3993,7 @@
       "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/exa-black88644933",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "1ac02b74265ff4978ca2723a1e4d70da6181bc0a362364e222216dd849315939",
+      "importChecksum": "6a9d10745558699b00370cc46ce6bb6896b027cc99bbd74e5fc16077f076cd67",
       "variants": [
         {
           "sku": "GLA-043-S",
@@ -3722,6 +4030,102 @@
           "isActive": true,
           "position": 2,
           "stock": 30
+        },
+        {
+          "sku": "GLA-043-BEETROOT-POWDER-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Beetroot Powder",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-BEETROOT-POWDER-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Beetroot Powder",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-BEETROOT-POWDER-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Beetroot Powder",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-BEETROOT-POWDER-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Beetroot Powder",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-HALOGEN-BLUE-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Halogen Blue",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-HALOGEN-BLUE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Halogen Blue",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-HALOGEN-BLUE-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Halogen Blue",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-HALOGEN-BLUE-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Halogen Blue",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
         }
       ],
       "images": [
@@ -3733,7 +4137,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-exa-veste-femme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/picture-exa-veste-femme-2-2764c1a4fe.webp",
+          "alt": "Picture Organic Clothing Exa (veste femme) coloris Beetroot Powder",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-exa-veste-femme-beetroot-powder-01.png",
+          "color": "Beetroot Powder"
+        },
+        {
+          "url": "/media/products/picture-exa-veste-femme-3-7db2bd1dff.webp",
+          "alt": "Picture Organic Clothing Exa (veste femme) coloris Halogen Blue",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-exa-veste-femme-halogen-blue-01.png",
+          "color": "Halogen Blue"
         }
       ]
     },
@@ -3763,7 +4187,8 @@
         "Déperlant": "Sans PFC"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Silver Pearly"
       ],
       "isFeatured": true,
       "isNew": false,
@@ -3771,7 +4196,7 @@
       "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/rossignol/w-staci-insulated-jacket-black72466379",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "5753e84d4ddb1c6234caccee87fdd953f68c828b3380c89260d98304519910f6",
+      "importChecksum": "4946d6d4667fb942c9c991dbd8330f97f5ff144abb6adf64303868c205998d1b",
       "variants": [
         {
           "sku": "GLA-044-S",
@@ -3808,6 +4233,42 @@
           "isActive": true,
           "position": 2,
           "stock": 30
+        },
+        {
+          "sku": "GLA-044-SILVER-PEARLY-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Silver Pearly",
+          "priceCents": 25490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-044-SILVER-PEARLY-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Silver Pearly",
+          "priceCents": 25490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-044-SILVER-PEARLY-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Silver Pearly",
+          "priceCents": 25490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
         }
       ],
       "images": [
@@ -3819,7 +4280,17 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/01_Vestes_Ski/rossignol-staci-insulated-veste-femme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/rossignol-staci-insulated-veste-femme-2-ebad16f1e4.webp",
+          "alt": "Rossignol Staci Insulated (veste femme) coloris Silver Pearly",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/rossignol-staci-insulated-veste-femme-silver-pearly-01.png",
+          "color": "Silver Pearly"
         }
       ]
     },
@@ -3848,7 +4319,9 @@
         "Isolation": "PrimaLoft Black Eco 40 g"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Light Grey",
+        "Neon Red"
       ],
       "isFeatured": true,
       "isNew": true,
@@ -3856,7 +4329,7 @@
       "priceSourceUrl": "https://www.glisshop.com/vetement-ski-homme/rossignol/hero-insulated-black88680684",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "7b7e17247dfadd14f5ebfdc2c1648d8663283e9d6b569167cc78bd1b57d63e9c",
+      "importChecksum": "590f5dcb17e0cbaaabedd56cc8f17e14e7be5ab57b3d33e30447f53a5928bbb5",
       "variants": [
         {
           "sku": "GLA-045-S",
@@ -3917,6 +4390,102 @@
           "isActive": true,
           "position": 4,
           "stock": 30
+        },
+        {
+          "sku": "GLA-045-LIGHT-GREY-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Light Grey",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-LIGHT-GREY-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Light Grey",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-LIGHT-GREY-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Light Grey",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-LIGHT-GREY-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Light Grey",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-NEON-RED-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Neon Red",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-NEON-RED-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Neon Red",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-NEON-RED-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Neon Red",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 11,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-NEON-RED-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Neon Red",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 12,
+          "stock": 30
         }
       ],
       "images": [
@@ -3928,7 +4497,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-hero-insulated-pantalon-homme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/rossignol-hero-insulated-pantalon-homme-2-0bb40e152e.webp",
+          "alt": "Rossignol Hero Insulated (pantalon homme) coloris Light Grey",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-hero-insulated-pantalon-homme-light-grey-01.png",
+          "color": "Light Grey"
+        },
+        {
+          "url": "/media/products/rossignol-hero-insulated-pantalon-homme-3-08ea7f4a23.webp",
+          "alt": "Rossignol Hero Insulated (pantalon homme) coloris Neon Red",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-hero-insulated-pantalon-homme-neon-red-01.png",
+          "color": "Neon Red"
         }
       ]
     },
@@ -3945,7 +4534,7 @@
       "condition": "NEW",
       "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": 14990,
+      "priceFromCents": 8990,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -3957,7 +4546,15 @@
         "Déperlant": "DWR sans PFC"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Dark Navy",
+        "Golden Gate",
+        "Olive Shadow",
+        "Soft Grey",
+        "Sport Red",
+        "Tibetan Red",
+        "True Night Blue",
+        "Wild Lime"
       ],
       "isFeatured": false,
       "isNew": false,
@@ -3965,7 +4562,7 @@
       "priceSourceUrl": "https://www.glisshop.com/vetement-ski-homme/rossignol/insulated-ski-pant-black72167947",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "3e4f26e6f7edc1e8e927753aef95db526aa473e6c0ee4d448e5567e47981fdbf",
+      "importChecksum": "95f0e86e88d7a050217b2f711704821ec7d2a187770e45fc144c117b7898ebe3",
       "variants": [
         {
           "sku": "GLA-046-S",
@@ -4026,6 +4623,306 @@
           "isActive": true,
           "position": 4,
           "stock": 30
+        },
+        {
+          "sku": "GLA-046-DARK-NAVY-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Dark Navy",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-DARK-NAVY-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Dark Navy",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-DARK-NAVY-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Dark Navy",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-DARK-NAVY-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Dark Navy",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-DARK-NAVY-XXL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XXL",
+          "sizeSortOrder": 60,
+          "color": "Dark Navy",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-DARK-NAVY-XXXL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XXXL",
+          "sizeSortOrder": -10,
+          "color": "Dark Navy",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-GOLDEN-GATE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Golden Gate",
+          "priceCents": 9990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 11,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-OLIVE-SHADOW-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Olive Shadow",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 12,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-OLIVE-SHADOW-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Olive Shadow",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 13,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-OLIVE-SHADOW-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Olive Shadow",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 14,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-SOFT-GREY-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Soft Grey",
+          "priceCents": 8990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 15,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-SOFT-GREY-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Soft Grey",
+          "priceCents": 8990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 16,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-SPORT-RED-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Sport Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 17,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-SPORT-RED-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Sport Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 18,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-SPORT-RED-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Sport Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 19,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-SPORT-RED-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Sport Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 20,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-TIBETAN-RED-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Tibetan Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 21,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-TIBETAN-RED-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Tibetan Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 22,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-TIBETAN-RED-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Tibetan Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 23,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-TIBETAN-RED-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Tibetan Red",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 24,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-TRUE-NIGHT-BLUE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "True Night Blue",
+          "priceCents": 9990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 25,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-WILD-LIME-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Wild Lime",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 26,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-WILD-LIME-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Wild Lime",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 27,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-WILD-LIME-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Wild Lime",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 28,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-WILD-LIME-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Wild Lime",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 29,
+          "stock": 30
         }
       ],
       "images": [
@@ -4037,7 +4934,87 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-2-85633b1765.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Dark Navy",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-dark-navy-01.png",
+          "color": "Dark Navy"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-3-8d1469c189.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Golden Gate",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-golden-gate-01.png",
+          "color": "Golden Gate"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-4-f899e38934.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Olive Shadow",
+          "position": 3,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-olive-shadow-01.png",
+          "color": "Olive Shadow"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-5-61a3e8eafe.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Soft Grey",
+          "position": 4,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-soft-grey-01.png",
+          "color": "Soft Grey"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-6-b351dacdb0.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Sport Red",
+          "position": 5,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-sport-red-01.png",
+          "color": "Sport Red"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-7-26818a8aaa.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Tibetan Red",
+          "position": 6,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-tibetan-red-01.png",
+          "color": "Tibetan Red"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-8-c450eaea14.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris True Night Blue",
+          "position": 7,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-true-night-blue-01.png",
+          "color": "True Night Blue"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-9-3fb7da2fb7.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Wild Lime",
+          "position": 8,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-wild-lime-01.png",
+          "color": "Wild Lime"
         }
       ]
     },
@@ -4066,7 +5043,9 @@
         "Isolation": "PrimaLoft Black Eco 40 g"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Electric Fuchsia",
+        "Savage Black"
       ],
       "isFeatured": true,
       "isNew": true,
@@ -4074,7 +5053,7 @@
       "priceSourceUrl": "https://www.glisshop.com/vetement-ski-femme/rossignol/w-s-insulated-black88680725",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "3a444593a7519977c7727e5e69429036b752aedfedee44ccb939e57581290783",
+      "importChecksum": "ade8f5c219fb071976e427cdce393cb94d17da079d0b72811c7e8c8372999d10",
       "variants": [
         {
           "sku": "GLA-047-XS",
@@ -4135,6 +5114,90 @@
           "isActive": true,
           "position": 4,
           "stock": 30
+        },
+        {
+          "sku": "GLA-047-ELECTRIC-FUCHSIA-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Electric Fuchsia",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-ELECTRIC-FUCHSIA-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Electric Fuchsia",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-ELECTRIC-FUCHSIA-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Electric Fuchsia",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-SAVAGE-BLACK-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Savage Black",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-SAVAGE-BLACK-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Savage Black",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-SAVAGE-BLACK-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Savage Black",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-SAVAGE-BLACK-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Savage Black",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 11,
+          "stock": 30
         }
       ],
       "images": [
@@ -4146,7 +5209,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-pantalon-femme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-pantalon-femme-2-98f29ab8d7.webp",
+          "alt": "Rossignol Insulated (pantalon femme) coloris Electric Fuchsia",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-pantalon-femme-electric-fuchsia-01.png",
+          "color": "Electric Fuchsia"
+        },
+        {
+          "url": "/media/products/rossignol-insulated-pantalon-femme-3-bedb6f0a28.webp",
+          "alt": "Rossignol Insulated (pantalon femme) coloris Savage Black",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-pantalon-femme-savage-black-01.png",
+          "color": "Savage Black"
         }
       ]
     },
@@ -4163,7 +5246,7 @@
       "condition": "NEW",
       "status": "ACTIVE",
       "currency": "EUR",
-      "priceFromCents": 14990,
+      "priceFromCents": 10290,
       "compareAtPriceCents": null,
       "weightGrams": null,
       "dimensions": null,
@@ -4175,7 +5258,17 @@
         "Membrane": "Dryplay 20K/20K (20 000 mm / 20 000 g/m²/24 h)"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Beetroot Power",
+        "Emerald",
+        "Grape Royal",
+        "Halogen Blue",
+        "Pure Cashmere",
+        "Split Pea",
+        "Stonewash",
+        "Super Pink",
+        "Tobacco",
+        "Wood Ash"
       ],
       "isFeatured": false,
       "isNew": false,
@@ -4183,7 +5276,7 @@
       "priceSourceUrl": "https://www.glisshop.com/vetement-ski-femme/picture/exa-black72805952",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "45137694a95a68c326c444a1e6803d86498f4ef5a8a27de1244fa3422c022826",
+      "importChecksum": "222a5b6d3e1761a2991bb8c6414331bc44d0c3d7f86ac613db43303a6626b3e1",
       "variants": [
         {
           "sku": "GLA-048-S",
@@ -4232,6 +5325,330 @@
           "isActive": true,
           "position": 3,
           "stock": 30
+        },
+        {
+          "sku": "GLA-048-BEETROOT-POWER-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Beetroot Power",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-BEETROOT-POWER-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Beetroot Power",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-BEETROOT-POWER-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Beetroot Power",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-BEETROOT-POWER-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Beetroot Power",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-EMERALD-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Emerald",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-EMERALD-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Emerald",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-EMERALD-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Emerald",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-EMERALD-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Emerald",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 11,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-GRAPE-ROYAL-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Grape Royal",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 12,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-GRAPE-ROYAL-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Grape Royal",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 13,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-GRAPE-ROYAL-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Grape Royal",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 14,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-GRAPE-ROYAL-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Grape Royal",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 15,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-HALOGEN-BLUE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Halogen Blue",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 16,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-HALOGEN-BLUE-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Halogen Blue",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 17,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-HALOGEN-BLUE-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Halogen Blue",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 18,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-PURE-CASHMERE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Pure Cashmere",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 19,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-PURE-CASHMERE-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Pure Cashmere",
+          "priceCents": 19490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 20,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-SPLIT-PEA-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Split Pea",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 21,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-SPLIT-PEA-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Split Pea",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 22,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-SPLIT-PEA-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Split Pea",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 23,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-STONEWASH-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Stonewash",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 24,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-SUPER-PINK-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Super Pink",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 25,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-SUPER-PINK-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Super Pink",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 26,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-TOBACCO-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Tobacco",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 27,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-TOBACCO-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Tobacco",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 28,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-TOBACCO-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Tobacco",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 29,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-WOOD-ASH-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Wood Ash",
+          "priceCents": 10290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 30,
+          "stock": 30
         }
       ],
       "images": [
@@ -4243,7 +5660,107 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-2-48a4ed87f7.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Beetroot Power",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-beetroot-power-01.png",
+          "color": "Beetroot Power"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-3-9506a7fa64.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Emerald",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-emerald-01.png",
+          "color": "Emerald"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-4-163a17c1b1.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Grape Royal",
+          "position": 3,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-grape-royal-01.png",
+          "color": "Grape Royal"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-5-0bf7234050.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Halogen Blue",
+          "position": 4,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-halogen-blue-01.png",
+          "color": "Halogen Blue"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-6-311b8f4782.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Pure Cashmere",
+          "position": 5,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-pure-cashmere-01.png",
+          "color": "Pure Cashmere"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-7-af8c76ae76.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Split Pea",
+          "position": 6,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-split-pea-01.png",
+          "color": "Split Pea"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-8-547f24eec5.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Stonewash",
+          "position": 7,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-stonewash-01.png",
+          "color": "Stonewash"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-9-02cec66033.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Super Pink",
+          "position": 8,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-super-pink-01.png",
+          "color": "Super Pink"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-10-940d37491b.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Tobacco",
+          "position": 9,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-tobacco-01.png",
+          "color": "Tobacco"
+        },
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-11-004cf5e453.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Wood Ash",
+          "position": 10,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-wood-ash-01.png",
+          "color": "Wood Ash"
         }
       ]
     },
@@ -4357,7 +5874,8 @@
         "Jupe pare-neige": "Oui"
       },
       "colors": [
-        "Capri Breeze"
+        "Capri Breeze",
+        "Ridding Spot Print"
       ],
       "isFeatured": false,
       "isNew": true,
@@ -4365,7 +5883,7 @@
       "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/daumy-capri-breeze88681319",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "acb2a0c93420d6b80c565751d2d8c16fdb8f3978f805ae69593a54d3d92872f8",
+      "importChecksum": "e2243e1fd60130de70d45aa61b862196dea332b6b8a35b0f6f208a4cabefc6b5",
       "variants": [
         {
           "sku": "GLA-050-12-ANS",
@@ -4390,6 +5908,42 @@
           "isActive": true,
           "position": 1,
           "stock": 30
+        },
+        {
+          "sku": "GLA-050-RIDDING-SPOT-PRINT-10",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "10",
+          "sizeSortOrder": 100,
+          "color": "Ridding Spot Print",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-050-RIDDING-SPOT-PRINT-12",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "12",
+          "sizeSortOrder": 120,
+          "color": "Ridding Spot Print",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-050-RIDDING-SPOT-PRINT-14",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "14",
+          "sizeSortOrder": 140,
+          "color": "Ridding Spot Print",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
         }
       ],
       "images": [
@@ -4401,7 +5955,17 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-daumy-veste-enfant-bleu-01.png",
-          "color": null
+          "color": "Capri Breeze"
+        },
+        {
+          "url": "/media/products/picture-daumy-veste-enfant-2-b4caf45c5a.webp",
+          "alt": "Picture Organic Clothing Daumy (veste enfant) coloris Ridding Spot Print",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-daumy-veste-enfant-bleu-ridding-spot-print-01.png",
+          "color": "Ridding Spot Print"
         }
       ]
     },
@@ -4524,7 +6088,8 @@
         "Construction": "Organic Body Mapping"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Dark Sapphire"
       ],
       "isFeatured": false,
       "isNew": false,
@@ -4532,7 +6097,7 @@
       "priceSourceUrl": "https://www.glisshop.com/sous-vetements/odlo/active-warm-eco-bottom-long-black56442496",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "c44011e4bbe07be7da4d2390f7adfff81c6c77db10f6b5a8d39bf7f3d3a475ef",
+      "importChecksum": "b2410045878321b9c1957df8d2ef52c50d851179031f4b63cd9cd0005e8e18f3",
       "variants": [
         {
           "sku": "GLA-052-S",
@@ -4581,6 +6146,54 @@
           "isActive": true,
           "position": 3,
           "stock": 30
+        },
+        {
+          "sku": "GLA-052-DARK-SAPPHIRE-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Dark Sapphire",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-052-DARK-SAPPHIRE-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Dark Sapphire",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-052-DARK-SAPPHIRE-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Dark Sapphire",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-052-DARK-SAPPHIRE-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Dark Sapphire",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
         }
       ],
       "images": [
@@ -4592,7 +6205,17 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/04_Sous_Vetements_Thermiques/odlo-active-warm-eco-collant-thermique-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/odlo-active-warm-eco-collant-thermique-2-b204524028.webp",
+          "alt": "Odlo Active Warm Eco (collant thermique) coloris Dark Sapphire",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/04_Sous_Vetements_Thermiques/odlo-active-warm-eco-collant-thermique-dark-sapphire-01.png",
+          "color": "Dark Sapphire"
         }
       ]
     },
@@ -4621,7 +6244,9 @@
         "Certifications": "GRS, Oeko-Tex Standard 100"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Dress Blues",
+        "Vapor Grey"
       ],
       "isFeatured": false,
       "isNew": true,
@@ -4629,7 +6254,7 @@
       "priceSourceUrl": "https://www.glisshop.com/polaire/picture/park-zip-tech-black88645184",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "ac4fdbbd10955dcc153925556da2b4e7c7aa8f98631186844928d5242528a6e0",
+      "importChecksum": "41c3b250fcd4499af3c28a63f68e26b845680f1a0e8842a4c593508111fb5e0d",
       "variants": [
         {
           "sku": "GLA-053-S",
@@ -4678,6 +6303,90 @@
           "isActive": true,
           "position": 3,
           "stock": 30
+        },
+        {
+          "sku": "GLA-053-DRESS-BLUES-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Dress Blues",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-DRESS-BLUES-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Dress Blues",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-DRESS-BLUES-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Dress Blues",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-DRESS-BLUES-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Dress Blues",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-VAPOR-GREY-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Vapor Grey",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-VAPOR-GREY-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Vapor Grey",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-VAPOR-GREY-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Vapor Grey",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
         }
       ],
       "images": [
@@ -4689,7 +6398,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "03_VETEMENTS/05_Polaires/picture-park-zip-tech-polaire-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/picture-park-zip-tech-polaire-2-a31ddb33f5.webp",
+          "alt": "Picture Organic Clothing Park Zip Tech (polaire) coloris Dress Blues",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/05_Polaires/picture-park-zip-tech-polaire-dress-blues-01.png",
+          "color": "Dress Blues"
+        },
+        {
+          "url": "/media/products/picture-park-zip-tech-polaire-3-15141cda3f.webp",
+          "alt": "Picture Organic Clothing Park Zip Tech (polaire) coloris Vapor Grey",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/05_Polaires/picture-park-zip-tech-polaire-vapor-grey-01.png",
+          "color": "Vapor Grey"
         }
       ]
     },
@@ -5035,7 +6764,9 @@
         "Vendu par": "Paire"
       },
       "colors": [
-        "Noir"
+        "Noir",
+        "Bleu",
+        "Blanc"
       ],
       "isFeatured": false,
       "isNew": false,
@@ -5043,7 +6774,7 @@
       "priceSourceUrl": "https://www.glisshop.com/batons-de-ski/rossignol/electra-black57327196",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "543c862e76c924bcb9c69a2de38d5f56911999c6b0de6841265b58b54195a56f",
+      "importChecksum": "266ade7cbda9c922f92972474334b7cc3dfa52d71863bdf4ee0732a510ee6cd0",
       "variants": [
         {
           "sku": "GLA-057-105-CM",
@@ -5092,6 +6823,126 @@
           "isActive": true,
           "position": 3,
           "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLEU-105",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "105",
+          "sizeSortOrder": 1050,
+          "color": "Bleu",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLEU-110",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "110",
+          "sizeSortOrder": 1100,
+          "color": "Bleu",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLEU-115",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "115",
+          "sizeSortOrder": 1150,
+          "color": "Bleu",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLEU-120",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "120",
+          "sizeSortOrder": 1200,
+          "color": "Bleu",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLEU-125",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "125",
+          "sizeSortOrder": 1250,
+          "color": "Bleu",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 8,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLANC-105",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "105",
+          "sizeSortOrder": 1050,
+          "color": "Blanc",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 9,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLANC-110",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "110",
+          "sizeSortOrder": 1100,
+          "color": "Blanc",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 10,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLANC-115",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "115",
+          "sizeSortOrder": 1150,
+          "color": "Blanc",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 11,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLANC-120",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "120",
+          "sizeSortOrder": 1200,
+          "color": "Blanc",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 12,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-BLANC-125",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "125",
+          "sizeSortOrder": 1250,
+          "color": "Blanc",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 13,
+          "stock": 30
         }
       ],
       "images": [
@@ -5103,7 +6954,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "01_SKI/08_Batons/rossignol-electra-batons-ski-femme-noir-01.png",
-          "color": null
+          "color": "Noir"
+        },
+        {
+          "url": "/media/products/rossignol-electra-batons-de-ski-femme-2-fa11b6fa6a.webp",
+          "alt": "Rossignol Electra (bâtons de ski femme) coloris Bleu",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/08_Batons/rossignol-electra-batons-ski-femme-bleu-01.png",
+          "color": "Bleu"
+        },
+        {
+          "url": "/media/products/rossignol-electra-batons-de-ski-femme-3-2e4cbb3635.webp",
+          "alt": "Rossignol Electra (bâtons de ski femme) coloris Blanc",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/08_Batons/rossignol-electra-batons-ski-femme-blanc-01.png",
+          "color": "Blanc"
         }
       ]
     },
@@ -5132,7 +7003,10 @@
         "Catégorie": "Senior"
       },
       "colors": [
-        "Noir / Blanc"
+        "Noir / Blanc",
+        "Navy",
+        "Noir / Rouge",
+        "Bleu / Rouge / Blanc"
       ],
       "isFeatured": false,
       "isNew": true,
@@ -5140,7 +7014,7 @@
       "priceSourceUrl": "https://www.rollernco.com/fr/gants-hockey/17845-82191-gants-hockey-bauer-supreme-f40-senior.html",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "3235c06ca88e9dd776380f06649517fdeb7417c5670cf3074ef8bff7350991d2",
+      "importChecksum": "b29d3cbe7f8ab4c5d140d61386bff0c15624f9d981c70906c838d355c4c5b5ed",
       "variants": [
         {
           "sku": "GLA-058-13",
@@ -5165,6 +7039,78 @@
           "isActive": true,
           "position": 1,
           "stock": 30
+        },
+        {
+          "sku": "GLA-058-NAVY-13",
+          "sizeSystem": "INCH",
+          "sizeLabel": "13\"",
+          "sizeSortOrder": 130,
+          "color": "Navy",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-058-NAVY-14",
+          "sizeSystem": "INCH",
+          "sizeLabel": "14\"",
+          "sizeSortOrder": 140,
+          "color": "Navy",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-058-NOIR-ROUGE-13",
+          "sizeSystem": "INCH",
+          "sizeLabel": "13\"",
+          "sizeSortOrder": 130,
+          "color": "Noir / Rouge",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-058-NOIR-ROUGE-14",
+          "sizeSystem": "INCH",
+          "sizeLabel": "14\"",
+          "sizeSortOrder": 140,
+          "color": "Noir / Rouge",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-058-BLEU-ROUGE-BLANC-13",
+          "sizeSystem": "INCH",
+          "sizeLabel": "13\"",
+          "sizeSortOrder": 130,
+          "color": "Bleu / Rouge / Blanc",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-058-BLEU-ROUGE-BLANC-14",
+          "sizeSystem": "INCH",
+          "sizeLabel": "14\"",
+          "sizeSortOrder": 140,
+          "color": "Bleu / Rouge / Blanc",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 7,
+          "stock": 30
         }
       ],
       "images": [
@@ -5176,7 +7122,37 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-gants-hockey-noir-blanc-01.png",
-          "color": null
+          "color": "Noir / Blanc"
+        },
+        {
+          "url": "/media/products/bauer-supreme-f40-gants-de-hockey-senior-2-2e0455bbb8.webp",
+          "alt": "Bauer Supreme F40 (gants de hockey senior) coloris Navy",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-gants-hockey-navy-01.png",
+          "color": "Navy"
+        },
+        {
+          "url": "/media/products/bauer-supreme-f40-gants-de-hockey-senior-3-cd98815bff.webp",
+          "alt": "Bauer Supreme F40 (gants de hockey senior) coloris Noir / Rouge",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-gants-hockey-noir-rouge-01.png",
+          "color": "Noir / Rouge"
+        },
+        {
+          "url": "/media/products/bauer-supreme-f40-gants-de-hockey-senior-4-578c1ce6ec.webp",
+          "alt": "Bauer Supreme F40 (gants de hockey senior) coloris Bleu / Rouge / Blanc",
+          "position": 3,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-gants-hockey-bleu-rouge-blanc-01.png",
+          "color": "Bleu / Rouge / Blanc"
         }
       ]
     },
@@ -5204,7 +7180,8 @@
         "Protection": "Mousses PE avec renforts"
       },
       "colors": [
-        "Noir / Blanc"
+        "Noir / Blanc",
+        "Navy / Blanc"
       ],
       "isFeatured": true,
       "isNew": true,
@@ -5212,7 +7189,7 @@
       "priceSourceUrl": "https://www.rollernco.com/fr/gants-hockey/17962-82881-gants-hockey-ccm-tacks-xr80-senior.html",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "645a4107bb9f5f4ce19fe549d24015317f933dd845f9175edfc50229582a19d3",
+      "importChecksum": "2bf4f5c1a796294c93420af1e26a85614a35e2b170c8c9bb18262493774e8f4a",
       "variants": [
         {
           "sku": "GLA-059-13",
@@ -5237,6 +7214,30 @@
           "isActive": true,
           "position": 1,
           "stock": 30
+        },
+        {
+          "sku": "GLA-059-NAVY-BLANC-13",
+          "sizeSystem": "INCH",
+          "sizeLabel": "13\"",
+          "sizeSortOrder": 130,
+          "color": "Navy / Blanc",
+          "priceCents": 12700,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-059-NAVY-BLANC-14",
+          "sizeSystem": "INCH",
+          "sizeLabel": "14\"",
+          "sizeSortOrder": 140,
+          "color": "Navy / Blanc",
+          "priceCents": 12700,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
         }
       ],
       "images": [
@@ -5248,7 +7249,17 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "02_HOCKEY/04_Protections/ccm-tacks-xr80-gants-hockey-noir-blanc-01.png",
-          "color": null
+          "color": "Noir / Blanc"
+        },
+        {
+          "url": "/media/products/ccm-tacks-xr80-gants-de-hockey-senior-2-5852468100.webp",
+          "alt": "CCM Tacks XR80 (gants de hockey senior) coloris Navy / Blanc",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/ccm-tacks-xr80-gants-hockey-navy-blanc-01.png",
+          "color": "Navy / Blanc"
         }
       ]
     },
@@ -5753,7 +7764,9 @@
         "Catégorie": "Senior"
       },
       "colors": [
-        "Rouge"
+        "Rouge",
+        "Blanc",
+        "Noir"
       ],
       "isFeatured": true,
       "isNew": false,
@@ -5761,7 +7774,7 @@
       "priceSourceUrl": "https://www.rollernco.com/fr/casques-combo-hockey-roller-hockeyues-avec-grilles/14282-64988-casque-ccm-70-combo-senior.html",
       "priceCheckedAt": "2026-11-23T00:00:00.000Z",
       "imagesAreIllustrations": true,
-      "importChecksum": "005fb41b078c431835af3d3679a46b7926fc0be32b392e92b7c0ddfc2cee1042",
+      "importChecksum": "193e7d9c5ee824173eee16e91c3a112ff6c1a3e6454e8f58c8a7914892d9702c",
       "variants": [
         {
           "sku": "GLA-066-M",
@@ -5774,6 +7787,30 @@
           "isActive": true,
           "position": 0,
           "stock": 30
+        },
+        {
+          "sku": "GLA-066-BLANC-M",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "M",
+          "sizeSortOrder": 20,
+          "color": "Blanc",
+          "priceCents": 8295,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-066-NOIR-M",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "M",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 8295,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
         }
       ],
       "images": [
@@ -5785,7 +7822,27 @@
           "height": 1024,
           "isIllustration": true,
           "sourceFile": "02_HOCKEY/03_Casques/ccm-70-combo-casque-hockey-rouge-01.png",
-          "color": null
+          "color": "Rouge"
+        },
+        {
+          "url": "/media/products/ccm-70-combo-casque-de-hockey-avec-grille-2-098a1bc030.webp",
+          "alt": "CCM 70 Combo (casque de hockey avec grille) coloris Blanc",
+          "position": 1,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/03_Casques/ccm-70-combo-casque-hockey-blanc-01.png",
+          "color": "Blanc"
+        },
+        {
+          "url": "/media/products/ccm-70-combo-casque-de-hockey-avec-grille-3-311ec25c06.webp",
+          "alt": "CCM 70 Combo (casque de hockey avec grille) coloris Noir",
+          "position": 2,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/03_Casques/ccm-70-combo-casque-hockey-noir-01.png",
+          "color": "Noir"
         }
       ]
     },

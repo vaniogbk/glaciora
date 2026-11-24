@@ -65,6 +65,15 @@ Tailles : celles proposées sur la fiche du revendeur (il n'affiche pas le stock
 | Pack équipement ski | GLA-055, GLA-018, GLA-019, GLA-021 | tous publiés et en stock |
 | Pack hockey complet senior | GLA-067, GLA-069, GLA-066, GLA-059, GLA-063, GLA-061, GLA-060, GLA-065, GLA-071, GLA-037 | tous publiés et en stock |
 
+## Coloris (2026-11-24)
+
+Couleurs réellement vendues par la marque, relevées chez le revendeur source (une page par coloris : prix, tailles en stock, photo) dans `apps/api/data/catalogue-extension-colours.csv` ; sujets Gemini dans `GLACIORA_EXTENSION/subjects-colours.json`. Un coloris sans taille en stock n'est pas proposé.
+
+- 43 coloris ajoutés à 16 produits (GLA-040 à 048, 050, 052, 053, 057, 058, 059, 066), une image Gemini par coloris, comparée à la photo du revendeur pour ce coloris.
+- Non importé : GLA-066 Navy (le revendeur n'a pas de photo du casque navy : celle affichée est la noire).
+- Écarté : GLA-056 « Black » (même article que le Noir / Rouge déjà au catalogue).
+- Prix par coloris (ex. Exa pantalon : 102,90 € à 194,90 € selon le coloris) ; le prix « à partir de » est le plus bas.
+
 ## Lots suivants (à faire)
 
 3. Hockey sur gazon — 4. Lunettes et masques —

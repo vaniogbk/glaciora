@@ -3,7 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '../../lib/prisma';
-import { ensureCategories } from './import.service';
+import { CATALOGUE_TRANSACTION, ensureCategories } from './import.service';
 
 /**
  * Instantané du catalogue importé (data/catalogue-snapshot.json), versionné avec le code :
@@ -204,7 +204,7 @@ export async function installCatalogueSnapshot(options: { triggeredById?: string
           }
         }
         return product.status;
-      });
+      }, CATALOGUE_TRANSACTION);
       report.push({ reference: p.reference, action: existing ? 'updated' : 'created', status });
     } catch (err) {
       report.push({ reference: p.reference, action: 'error', message: (err as Error).message.slice(0, 200) });

@@ -61,5 +61,8 @@ describe('choix du coloris', () => {
     expect(swatchBackground('Noir / Bleu')).toContain('linear-gradient');
     expect(swatchBackground('Matte Black')).toBe('#15171A');
     expect(swatchBackground('Coloris inconnu')).toBe('#B9C3CD');
+    // Nom de fabricant : prioritaire sur le mot simple (« Halogen Blue » est un bleu glacier).
+    expect(swatchBackground('Halogen Blue')).toBe('#DCE9F5');
+    expect(swatchBackground('Golden Gate')).toBe('#FF4B1F');
   });
 });

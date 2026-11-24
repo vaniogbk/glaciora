@@ -130,6 +130,8 @@ export interface PackItem {
   shortDescription: string | null;
   category: { slug: string; name: string };
   image: { url: string; alt: string; width: number | null; height: number | null } | null;
+  /** Toutes les photos, avec leur coloris (vide = commune à tous les coloris). */
+  images?: { url: string; alt: string; width: number | null; height: number | null; color: string | null }[];
   fromPriceCents: number;
   variants: { id: string; sku: string; color: string | null; priceCents: number; size: string | null; available: number; inStock: boolean }[];
 }

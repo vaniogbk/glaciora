@@ -1,7 +1,9 @@
-import { productColorFallback, productColorMulti, productColorSwatches } from '@/theme/tokens';
+import { productColorFallback, productColorMulti, productColorNamed, productColorSwatches } from '@/theme/tokens';
 
 /** Fond CSS d'une pastille pour un libellé de coloris (« Matte Black », « Noir / Bleu », « Graffiti »…). */
 export function swatchBackground(label: string): string {
+  const named = productColorNamed[label.trim().toLowerCase()];
+  if (named) return named;
   const parts = label.split('/').map((part) => part.trim().toLowerCase()).filter(Boolean);
   if (parts.some((part) => /graffiti|multi|camo/.test(part))) return productColorMulti;
   const tones = parts.map((part) => {

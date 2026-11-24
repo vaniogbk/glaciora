@@ -19,6 +19,8 @@ import { slugify } from '../../lib/slug';
  *  - apps/api/data/catalogue-complement.csv (prix marché relevés, tailles, descriptions)
  *  - apps/api/data/catalogue-extension.csv (extension du catalogue : une ligne complète par référence,
  *    images dans GLACIORA_EXTENSION/, à côté du dossier client, rangées comme dans CATEGORY_TREE)
+ *  - apps/api/data/catalogue-extension-colours.csv (autres coloris réellement vendus par la marque : une ligne par
+ *    coloris avec ses tailles, son prix, sa page source et sa photo ; importée seulement au statut « terminé »)
  */
 
 export const CATEGORY_TREE = [
@@ -110,11 +112,29 @@ const extensionSchema = z.object({
   price_source: z.string().url(),
 });
 
+/** Ligne de catalogue-extension-colours.csv : un coloris supplémentaire d'une référence de l'extension. */
+const colourSchema = z.object({
+  reference: z.string().regex(/^GLA-\d{3}$/),
+  color: z.string().min(1),
+  sizes: z.string().min(1),
+  price_eur: z.string().regex(/^\d+(\.\d{1,2})?$/),
+  price_source: z.string().url(),
+  price_checked_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  image_file: z.string().min(1),
+  status: z.enum(['à vérifier', 'terminé']),
+});
+type ColourRow = z.infer<typeof colourSchema>;
+
+/** Un produit à plusieurs coloris compte des dizaines de variantes : 5 s (défaut Prisma) ne suffisent pas. */
+export const CATALOGUE_TRANSACTION = { timeout: 60_000, maxWait: 10_000 };
+
 export interface ImportOptions {
   catalogueDir: string;
   complementPath?: string;
   /** CSV d'extension (défaut : data/catalogue-extension.csv) ; ignoré s'il n'existe pas. */
   extensionPath?: string;
+  /** Coloris supplémentaires de l'extension (défaut : data/catalogue-extension-colours.csv) ; ignoré s'il n'existe pas. */
+  coloursPath?: string;
   /** Images de l'extension (défaut : GLACIORA_EXTENSION à côté du dossier client). */
   extensionDir?: string;
   /** Écrit les images optimisées dans le dossier public du site (poste de développement). */
@@ -244,6 +264,15 @@ export async function runCatalogueImport(options: ImportOptions) {
       imageDirs.set(ext.reference, extensionDir);
     }
   }
+  const coloursPath = options.coloursPath ?? path.resolve(process.cwd(), 'data', 'catalogue-extension-colours.csv');
+  const colourRows = new Map<string, ColourRow[]>();
+  if (existsSync(coloursPath)) {
+    for (const row of readCsv(await readFile(coloursPath, 'utf8'))) {
+      const colour = colourSchema.parse(row);
+      if (!imageDirs.has(colour.reference)) throw new Error(`${colour.reference} (coloris ${colour.color}) absente de catalogue-extension.csv`);
+      colourRows.set(colour.reference, [...(colourRows.get(colour.reference) ?? []), colour]);
+    }
+  }
   const categories = await ensureCategories();
 
   for (const raw of sourceRows) {
@@ -286,9 +315,21 @@ export async function runCatalogueImport(options: ImportOptions) {
       const slug = slugify(`${source.brand.split(' ')[0]} ${complement.name}`);
       const isIllustration = /IA/i.test(source.imageOrigin);
       const extraImages = reference === 'GLA-001' ? ['volkl_shine_72_variante_coloris.png'] : [];
+      // Autres coloris vérifiés (photo présente) : chacun a ses tailles, son prix et sa photo.
+      const colourDir = path.join(baseDir, ...source.folder.split('/'));
+      const extraColours = (colourRows.get(reference) ?? []).filter((c) => c.status === 'terminé' && existsSync(path.join(colourDir, c.image_file)));
+      const colourImageSizes = await Promise.all(extraColours.map(async (c) => (await readFile(path.join(colourDir, c.image_file))).length));
 
       const checksum = createHash('sha256')
-        .update(JSON.stringify({ raw, complementRaw, imageSize: (await readFile(imagePath)).length, extraImages }))
+        .update(
+          JSON.stringify({
+            raw,
+            complementRaw,
+            imageSize: (await readFile(imagePath)).length,
+            extraImages,
+            ...(extraColours.length ? { extraColours, colourImageSizes } : {}),
+          }),
+        )
         .digest('hex');
       const existing = await prisma.product.findUnique({ where: { reference }, select: { id: true, importChecksum: true, status: true } });
       if (existing && existing.importChecksum === checksum) {
@@ -296,7 +337,7 @@ export async function runCatalogueImport(options: ImportOptions) {
         continue;
       }
 
-      const images: { url: string; width: number; height: number; hash: string; sourceFile: string; alt: string }[] = [];
+      const images: { url: string; width: number; height: number; hash: string; sourceFile: string; alt: string; color: string | null }[] = [];
       for (const [index, file] of [source.imageFile, ...extraImages].entries()) {
         const full = path.join(baseDir, ...source.folder.split('/'), file);
         if (!existsSync(full)) continue;
@@ -308,8 +349,15 @@ export async function runCatalogueImport(options: ImportOptions) {
             index === 0
               ? `${source.brand} ${complement.name}${complement.color ? ` coloris ${complement.color}` : ''}`
               : `${source.brand} ${complement.name} — autre coloris`,
+          // Photo rattachée à son coloris dès qu'il y en a plusieurs (le site change de photo avec le coloris).
+          color: index === 0 && extraColours.length ? complement.color || null : null,
         });
       }
+      for (const colour of extraColours) {
+        const optimised = await optimiseImage(path.join(colourDir, colour.image_file), slug, images.length, copyImages && !options.dryRun);
+        images.push({ ...optimised, sourceFile: `${source.folder}/${colour.image_file}`, alt: `${source.brand} ${complement.name} coloris ${colour.color}`, color: colour.color });
+      }
+      const colourPrices = extraColours.map((c) => toCents(c.price_eur));
 
       const sellable = priceCents != null && priceCents > 0;
       const initialStatus = source.status === 'terminé' && sellable ? 'ACTIVE' : 'DRAFT';
@@ -323,10 +371,10 @@ export async function runCatalogueImport(options: ImportOptions) {
         sport,
         condition: complement.condition,
         currency: 'EUR',
-        priceFromCents: priceCents,
+        priceFromCents: priceCents != null && colourPrices.length ? Math.min(priceCents, ...colourPrices) : priceCents,
         compareAtPriceCents: compareAt && priceCents && compareAt > priceCents ? compareAt : null,
         specs: parseSpecs(complement.specs) ?? undefined,
-        colors: complement.color ? [complement.color] : [],
+        colors: [...(complement.color ? [complement.color] : []), ...extraColours.map((c) => c.color)],
         isFeatured: complement.featured === 'true',
         isNew: complement.is_new === 'true',
         sourceUrl: source.sourceUrl ?? null,
@@ -351,8 +399,8 @@ export async function runCatalogueImport(options: ImportOptions) {
           keepUrls.push(image.url);
           await tx.productImage.upsert({
             where: { productId_url: { productId: product.id, url: image.url } },
-            create: { productId: product.id, url: image.url, alt: image.alt, position, width: image.width, height: image.height, isIllustration: isIllustration, sourceFile: image.sourceFile },
-            update: { alt: image.alt, position, width: image.width, height: image.height, isIllustration: isIllustration },
+            create: { productId: product.id, url: image.url, alt: image.alt, position, width: image.width, height: image.height, isIllustration: isIllustration, sourceFile: image.sourceFile, color: image.color },
+            update: { alt: image.alt, position, width: image.width, height: image.height, isIllustration: isIllustration, color: image.color },
           });
         }
         await tx.productImage.deleteMany({ where: { productId: product.id, sourceFile: { not: null }, url: { notIn: keepUrls } } });
@@ -387,9 +435,42 @@ export async function runCatalogueImport(options: ImportOptions) {
             await tx.stockMovement.create({ data: { variantId: variant.id, type: 'IMPORT', delta: Number(complement.stock), reason: 'Import catalogue' } });
           }
         }
+        // Autres coloris : mêmes règles, SKU « référence-coloris-taille » (ceux du premier coloris ne changent pas).
+        let nextPosition = sizes.length;
+        for (const [i, colour] of extraColours.entries()) {
+          for (const label of splitSizes(colour.sizes)) {
+            const size = await tx.size.upsert({
+              where: { system_label: { system: complement.size_system, label } },
+              create: { system: complement.size_system, label, sortOrder: Math.round(sortKey(label) * 10) || 0 },
+              update: {},
+            });
+            const sku = `${reference}-${slugify(colour.color)}-${slugify(label) || 'unique'}`.toUpperCase();
+            keepSkus.push(sku);
+            const known = await tx.productVariant.findUnique({ where: { sku }, select: { id: true } });
+            const variant = await tx.productVariant.upsert({
+              where: { sku },
+              create: {
+                productId: product.id,
+                sku,
+                sizeId: size.id,
+                color: colour.color,
+                priceCents: colourPrices[i]!,
+                compareAtPriceCents: null,
+                isActive: sellable,
+                position: nextPosition,
+                stock: { create: { quantity: Number(complement.stock) || 0 } },
+              },
+              update: { sizeId: size.id, color: colour.color, priceCents: colourPrices[i]!, compareAtPriceCents: null, isActive: sellable, position: nextPosition },
+            });
+            nextPosition++;
+            if (!known && Number(complement.stock) > 0) {
+              await tx.stockMovement.create({ data: { variantId: variant.id, type: 'IMPORT', delta: Number(complement.stock), reason: 'Import catalogue' } });
+            }
+          }
+        }
         await tx.productVariant.updateMany({ where: { productId: product.id, sku: { notIn: keepSkus } }, data: { isActive: false } });
         lines.push({ reference, action: existing ? 'updated' : 'created', status: product.status, message: sellable ? undefined : 'Sans prix relevé en euros : reste en brouillon' });
-      });
+      }, CATALOGUE_TRANSACTION);
     } catch (err) {
       const message = err instanceof z.ZodError ? err.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(' ; ') : (err as Error).message;
       lines.push({ reference, action: 'error', message });

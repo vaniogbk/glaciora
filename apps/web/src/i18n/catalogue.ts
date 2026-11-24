@@ -52,6 +52,8 @@ export interface CatalogueLocalizer {
   list: (list: ProductList) => ProductList;
   categories: (categories: Category[]) => Category[];
   spec: (key: string, value: string) => [string, string];
+  /** Texte alternatif d'une photo (« … coloris Noir » → langue du site). */
+  alt: (alt: string) => string;
 }
 
 /** Texte alternatif des photos généré à l'import (« Zag Slap 92 coloris Purple », « … — autre coloris »). */
@@ -80,6 +82,7 @@ export async function getCatalogueLocalizer(locale: Locale, m: Messages): Promis
     name,
     card,
     spec,
+    alt: (alt) => (t ? altText(alt, m) : alt),
     categories: (list) => (t ? list.map((c) => ({ ...c, name: category(c.slug, c.name) })) : list),
     list: (list) => (t ? { ...list, items: list.items.map(card) } : list),
     detail: (p) => {

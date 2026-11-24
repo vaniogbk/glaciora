@@ -30,6 +30,19 @@ export const productColorSwatches: Record<string, string> = {
   rose: '#E0709A', pink: '#E0709A', violet: '#6E3FA8', purple: '#6E3FA8', orange: '#E8741E', jaune: '#E9C229', yellow: '#E9C229',
   or: '#C9A23A', gold: '#C9A23A', marron: '#7A4E2D', brown: '#7A4E2D', beige: '#D9C7A5',
 };
+/**
+ * Coloris de fabricant (libellé complet en minuscules) → pastille, d'après les photos des revendeurs.
+ * Prioritaire sur les mots simples ci-dessus (« Halogen Blue » est un bleu glacier, pas un bleu franc).
+ */
+export const productColorNamed: Record<string, string> = {
+  'light grey': '#C9CCCF', 'soft grey': '#E6E7E8', 'neon red': '#FF4A1A', 'tibetan red': '#A0142C', 'true night blue': '#5B6A8E',
+  'halogen blue': '#DCE9F5', 'golden gate': '#FF4B1F', 'olive shadow': '#4A4F35', 'wild lime': '#C6E03A', 'electric fuchsia': '#E8148C',
+  'beetroot powder': '#E8338A', 'beetroot power': '#F0468C', 'grape royal': '#663A86', 'split pea': '#C8D72A', stonewash: '#A9C6E8',
+  'wood ash': '#E3DAC0', 'pure cashmere': '#DDD6C8', shitake: '#C9A97E', clover: '#D63FCB', tobacco: '#76733F', emerald: '#2EC79A',
+  'dark sapphire': '#1E3048', 'dress blues': '#2E4A66', 'capri breeze': 'linear-gradient(135deg, #22C1C9 50%, #D63FB0 50%)',
+  'wild spot print': 'linear-gradient(135deg, #C9A16B 50%, #3B2A1E 50%)', 'ridding spot print': 'linear-gradient(135deg, #15171A 50%, #D9DBDD 50%)',
+  'savage black': 'linear-gradient(135deg, #15171A 50%, #F7F8FA 50%)',
+};
 export const productColorFallback = '#B9C3CD';
 /** Motif multicolore (coloris « Graffiti », « Multicolore »…). */
 export const productColorMulti = 'conic-gradient(#C62F2F, #E9C229, #2E7D4F, #1F5FBF, #6E3FA8, #C62F2F)';

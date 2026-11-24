@@ -12,6 +12,19 @@ export function sizeLabel(label: string, words: Record<string, string>): string 
   return label.replace(/^(Droite|Gauche)\b/, (word) => words[word] ?? word);
 }
 
+const APPAREL_ORDER = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+
+/** Tailles dans l'ordre naturel : XS → XXXL d'abord, puis valeurs numériques (« 13" », « 42 », « 5 ans »), puis le reste. */
+export function sortSizes(labels: string[]): string[] {
+  const rank = (label: string) => {
+    const apparel = APPAREL_ORDER.indexOf(label.trim().toUpperCase());
+    if (apparel >= 0) return apparel;
+    const n = Number.parseFloat(label.replace(',', '.'));
+    return Number.isFinite(n) ? 100 + n : Number.POSITIVE_INFINITY;
+  };
+  return labels.map((label, i) => ({ label, i, r: rank(label) })).sort((a, b) => a.r - b.r || a.i - b.i).map((x) => x.label);
+}
+
 /** « Noir / Bleu » → « Schwarz / Blau » ; les noms de fabricant (« Matte Black ») restent tels quels. */
 export function colorLabel(label: string, colors: Record<string, string>): string {
   return label

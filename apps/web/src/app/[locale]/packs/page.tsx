@@ -53,7 +53,13 @@ export default async function PacksPage({ params }: Props) {
                     </div>
                     <div className="flex flex-wrap justify-between gap-x-3 text-lg font-extrabold text-marine">
                       <dt>{t.packPrice}</dt>
-                      <dd>{money(pack.packPriceCents, locale)}</dd>
+                      <dd>
+                        {/* Prix calculé sur l'option la moins chère de chaque article : « À partir de » si le prix dépend du coloris ou de la taille. */}
+                        {pack.items.some((i) => new Set(i.variants.filter((v) => v.inStock).map((v) => v.priceCents)).size > 1) && (
+                          <span className="mr-1 text-sm font-semibold text-muted">{m.price.from}</span>
+                        )}
+                        {money(pack.packPriceCents, locale)}
+                      </dd>
                     </div>
                   </dl>
                   <p className="text-sm font-semibold text-success">{fmt(t.save, { amount: money(pack.discountCents, locale) })}</p>

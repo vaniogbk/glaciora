@@ -11,7 +11,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { getCatalogueLocalizer } from '@/i18n/catalogue';
 import { intlLocale, localizePath, type Locale } from '@/i18n/config';
 import { fmt } from '@/i18n/format';
-import { colorLabel } from '@/i18n/labels';
+import { colorLabel, sortSizes } from '@/i18n/labels';
 import type { Messages } from '@/i18n/messages';
 import { alternates, getI18n } from '@/i18n/server';
 import { getProduct } from '@/lib/server-api';
@@ -61,7 +61,8 @@ export default async function ProductPage({ params }: Props) {
     { label: product.name, href: `/produit/${product.slug}` },
   ];
   const specs = Object.entries(product.specs ?? {});
-  const sizes = product.variants.map((v) => v.size?.label).filter(Boolean);
+  // Une taille par ligne même si plusieurs coloris la proposent, dans l'ordre XS → XXL puis numérique.
+  const sizes = sortSizes([...new Set(product.variants.map((v) => v.size?.label).filter((s): s is string => Boolean(s)))]);
   const prices = product.variants.map((v) => v.priceCents).filter((c) => c > 0);
   const url = absoluteUrl(localizePath(locale, `/produit/${product.slug}`));
 

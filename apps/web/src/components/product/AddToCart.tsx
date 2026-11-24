@@ -28,6 +28,13 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
   const [message, setMessage] = useState('');
   const selected = variants.find((v) => v.id === selectedId);
   const anyInStock = allVariants.some((v) => v.inStock);
+  // Prix d'un coloris (le plus bas de ses tailles en stock) : affiché à côté du coloris quand les coloris n'ont pas tous le même prix.
+  const colorPrice = (c: string) => {
+    const inColor = allVariants.filter((v) => v.color === c);
+    const pool = inColor.some((v) => v.inStock) ? inColor.filter((v) => v.inStock) : inColor;
+    return Math.min(...pool.map((v) => v.priceCents));
+  };
+  const colorPricesVary = colors.length > 1 && new Set(colors.map(colorPrice)).size > 1;
 
   function chooseColor(next: string) {
     if (next === color) return;
@@ -71,7 +78,11 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
       {colors.length > 0 && (
         <fieldset>
           <legend className="field-label">
-            {t.color} <span className="font-normal text-muted">: {colorLabel(color ?? colors[0]!, m.colors)}</span>
+            {t.color}{' '}
+            <span className="font-normal text-muted">
+              : {colorLabel(color ?? colors[0]!, m.colors)}
+              {colorPricesVary && <span className="font-semibold text-marine"> · {money(colorPrice(color ?? colors[0]!), locale)}</span>}
+            </span>
           </legend>
           <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={t.chooseColor}>
             {colors.map((c) => {
@@ -124,7 +135,9 @@ export function AddToCart({ variants: allVariants, productName }: { variants: Pr
           </div>
         </fieldset>
       )}
-      {selected && selected.priceCents !== variants[0]?.priceCents && <p className="text-sm text-muted">{fmt(t.sizePrice, { price: money(selected.priceCents, locale) })}</p>}
+      {selected && selected.priceCents !== Math.min(...variants.map((v) => v.priceCents)) && (
+        <p className="text-sm text-muted">{fmt(t.sizePrice, { price: money(selected.priceCents, locale) })}</p>
+      )}
       <div className="flex flex-wrap items-end gap-3">
         <div>
           <label htmlFor="quantite" className="field-label">
