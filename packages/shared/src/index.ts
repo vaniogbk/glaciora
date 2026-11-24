@@ -10,3 +10,4 @@ export * from './locales';
 export * from './schemas';
 export * from './legal';
 export * from './packs';
+export * from './promotions';

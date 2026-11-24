@@ -22,6 +22,16 @@ export function Header({ showPacks = false }: { showPacks?: boolean }) {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // Téléphone et tablette : un toucher hors du menu (sur le voile, plus bas) ou la touche Échap le referme.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [open]);
+
   const nav = [
     { href: '/categorie/skis', label: m.nav.skis },
     { href: '/categorie/bottes', label: m.nav.boots },
@@ -46,6 +56,7 @@ export function Header({ showPacks = false }: { showPacks?: boolean }) {
   const count = cart?.itemCount ?? 0;
 
   return (
+    <>
     <header className="sticky top-0 z-40 bg-marine text-white shadow-lift">
       <div className="container flex h-16 items-center gap-2 sm:gap-4 lg:h-20">
         <button
@@ -158,5 +169,8 @@ export function Header({ showPacks = false }: { showPacks?: boolean }) {
         </nav>
       </div>
     </header>
+    {/* Voile sous le menu ouvert : le toucher referme le menu sans activer le lien situé dessous. */}
+    {open && <div className="fixed inset-0 z-30 bg-marine/40 xl:hidden" aria-hidden="true" onClick={() => setOpen(false)} data-testid="menu-backdrop" />}
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { BRAND } from '@glaciora/shared/contact';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { PromoStrip } from '@/components/promo/PromoStrip';
 import { CartProvider } from '@/components/providers/CartProvider';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -10,7 +11,7 @@ import { I18nProvider } from '@/i18n/client';
 import { LOCALES, ogLocale } from '@/i18n/config';
 import { CLIENT_NAMESPACES, pick } from '@/i18n/messages';
 import { getI18n } from '@/i18n/server';
-import { getPacks } from '@/lib/server-api';
+import { getPacks, getPromotion } from '@/lib/server-api';
 import { SITE_NAME, SITE_URL, absoluteUrl } from '@/lib/site';
 import { fontVariables } from '../fonts';
 
@@ -53,7 +54,7 @@ const organization = {
 };
 
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
-  const [{ locale, m }, packs] = await Promise.all([getI18n(params), getPacks()]);
+  const [{ locale, m }, packs, promotion] = await Promise.all([getI18n(params), getPacks(), getPromotion()]);
   return (
     <html lang={locale} className={fontVariables}>
       <body className="flex min-h-screen flex-col">
@@ -63,6 +64,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
         <I18nProvider locale={locale} messages={pick(m, CLIENT_NAMESPACES)}>
           <AuthProvider>
             <CartProvider>
+              {promotion && <PromoStrip promotion={promotion} locale={locale} m={m} />}
               <Header showPacks={packs.length > 0} />
               <main id="contenu" className="flex-1">
                 {children}

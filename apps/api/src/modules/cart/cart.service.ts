@@ -1,7 +1,8 @@
 import type { Request, Response } from 'express';
 import type { Prisma } from '@prisma/client';
-import { CART_ISSUE_MESSAGES, MAX_QUANTITY_PER_LINE, applyPackDiscounts, computeCartTotals, validateCartLines, type CartIssue } from '@glaciora/shared';
+import { CART_ISSUE_MESSAGES, MAX_QUANTITY_PER_LINE, applyPackDiscounts, computeCartTotals, promotionDiscountCents, validateCartLines, type CartIssue } from '@glaciora/shared';
 import { prisma } from '../../lib/prisma';
+import { currentPromotion } from '../../lib/promotions';
 import { COOKIE, setCartCookie } from '../../lib/cookies';
 import { generateOpaqueToken, hashToken } from '../../lib/tokens';
 import { notFound, unprocessable } from '../../lib/errors';
@@ -58,7 +59,7 @@ export function isVariantPurchasable(item: CartItemRow): boolean {
   return item.variant.isActive && item.variant.product.status === 'ACTIVE' && item.variant.priceCents > 0;
 }
 
-export function toCartView(items: CartItemRow[]) {
+export function toCartView(items: CartItemRow[], now: Date = new Date()) {
   const lines = items.map((item) => ({
     variantId: item.variantId,
     unitPriceCents: item.variant.priceCents,
@@ -70,7 +71,7 @@ export function toCartView(items: CartItemRow[]) {
   const issueByVariant = new Map<string, CartIssue>(issues.map((i) => [i.variantId, i]));
   const { subtotalCents, itemCount } = computeCartTotals(lines);
   // Packs complets du panier : remise calculée ici, seule source du montant à payer.
-  const { applied: packs, discountCents } = applyPackDiscounts(
+  const { applied: packs, discountCents: packDiscountCents } = applyPackDiscounts(
     items.map((item) => ({
       productReference: item.variant.product.reference,
       unitPriceCents: item.variant.priceCents,
@@ -78,6 +79,10 @@ export function toCartView(items: CartItemRow[]) {
       purchasable: isVariantPurchasable(item) && !issueByVariant.has(item.variantId),
     })),
   );
+  // Promotion saisonnière (Black Friday…) : sur les articles après remise des packs, jamais sur la livraison.
+  const promo = currentPromotion(now);
+  const promoDiscount = promo ? promotionDiscountCents(subtotalCents - packDiscountCents, promo.percent) : 0;
+  const discountCents = packDiscountCents + promoDiscount;
   return {
     items: items.map((item) => {
       const issue = issueByVariant.get(item.variantId);
@@ -99,9 +104,11 @@ export function toCartView(items: CartItemRow[]) {
       };
     }),
     subtotalCents,
-    /** Remise des packs complets (0 sans pack). */
+    /** Remise totale : packs complets + promotion en cours (0 sans l'un ni l'autre). */
     discountCents,
+    packDiscountCents,
     packs,
+    promotion: promo ? { code: promo.code, name: promo.name, percent: promo.percent, endsAt: promo.endsAt, discountCents: promoDiscount } : null,
     /** Montant des articles après remise (hors livraison). */
     totalCents: subtotalCents - discountCents,
     itemCount,

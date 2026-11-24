@@ -33,7 +33,7 @@ export async function getMessages(locale: Locale): Promise<Messages> {
 }
 
 /** Rubriques utilisées par les composants navigateur présents sur toutes les pages (en-tête, fiche, filtres, panier). */
-export const CLIENT_NAMESPACES = ['common', 'nav', 'header', 'filters', 'productClient', 'colors', 'validation', 'errors', 'card', 'price', 'notFound', 'errorPage'] as const;
+export const CLIENT_NAMESPACES = ['common', 'nav', 'header', 'promo', 'filters', 'productClient', 'colors', 'validation', 'errors', 'card', 'price', 'notFound', 'errorPage'] as const;
 
 export function pick<K extends keyof Messages>(messages: Messages, keys: readonly K[]): Pick<Messages, K> {
   return Object.fromEntries(keys.map((key) => [key, messages[key]])) as Pick<Messages, K>;

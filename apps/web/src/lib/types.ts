@@ -103,12 +103,25 @@ export interface AppliedPack {
   discountCents: number;
 }
 
+/** Promotion saisonnière renvoyée par l'API (seule à l'appliquer au panier). */
+export interface Promotion {
+  code: string;
+  name: string;
+  percent: number;
+  startsAt?: string;
+  endsAt: string;
+}
+
 export interface Cart {
   items: CartLine[];
   subtotalCents: number;
-  /** Remise des packs complets (absente si l'API n'est pas encore à jour). */
+  /** Remise totale : packs complets + promotion en cours (absente si l'API n'est pas encore à jour). */
   discountCents?: number;
+  /** Part des packs dans discountCents (le reste vient de la promotion en cours). */
+  packDiscountCents?: number;
   packs?: AppliedPack[];
+  /** Promotion en cours appliquée au panier (Black Friday…). */
+  promotion?: (Promotion & { discountCents: number }) | null;
   itemCount: number;
   currency: string;
   hasIssues: boolean;

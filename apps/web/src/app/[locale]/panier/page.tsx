@@ -8,6 +8,7 @@ import { Link, useI18n } from '@/i18n/client';
 import { apiErrorMessage } from '@/i18n/errors';
 import { fmt, money } from '@/i18n/format';
 import { sizeLabel } from '@/i18n/labels';
+import { discountParts } from '@/lib/cart-discounts';
 
 export default function CartPage() {
   const { cart, loading, update, remove } = useCart();
@@ -108,13 +109,19 @@ export default function CartPage() {
                 <dt>{fmt(t.itemsCount, { count: cart.itemCount })}</dt>
                 <dd className="font-semibold">{price(cart.subtotalCents)}</dd>
               </div>
-              {(cart.discountCents ?? 0) > 0 && (
+              {discountParts(cart).pack > 0 && (
                 <div className="flex justify-between gap-4 font-semibold text-success" data-testid="pack-discount">
                   <dt className="min-w-0">
                     {m.common.packDiscount}
                     {cart.packs?.length ? ` · ${cart.packs.map((p) => ((m.common.packNames as Record<string, string>)[p.slug] ?? p.name) + (p.count > 1 ? ` ×${p.count}` : '')).join(', ')}` : ''}
                   </dt>
-                  <dd className="shrink-0">−{price(cart.discountCents ?? 0)}</dd>
+                  <dd className="shrink-0">−{price(discountParts(cart).pack)}</dd>
+                </div>
+              )}
+              {cart.promotion && cart.promotion.discountCents > 0 && (
+                <div className="flex justify-between gap-4 font-semibold text-success" data-testid="promo-discount">
+                  <dt className="min-w-0">{fmt(m.promo.cartLine, { percent: cart.promotion.percent })}</dt>
+                  <dd className="shrink-0">−{price(cart.promotion.discountCents)}</dd>
                 </div>
               )}
               <div className="flex justify-between gap-4 text-muted">

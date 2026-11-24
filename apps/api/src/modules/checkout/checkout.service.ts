@@ -78,6 +78,7 @@ export async function preparePaymentDetails(req: Request, res: Response, country
     subtotalCents: view.subtotalCents,
     discountCents: view.discountCents,
     packs: view.packs,
+    promotion: view.promotion,
     shippingCents: quote.priceCents,
     shippingRateName: quote.name,
     currency: 'EUR',
@@ -196,7 +197,8 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
           shipPhone: a.phone,
           subtotalCents: view.subtotalCents,
           discountCents: view.discountCents,
-          discountLabel: view.packs.length ? view.packs.map((p) => (p.count > 1 ? `${p.name} ×${p.count}` : p.name)).join(', ') : null,
+          discountLabel:
+            [...view.packs.map((p) => (p.count > 1 ? `${p.name} ×${p.count}` : p.name)), ...(view.promotion ? [`${view.promotion.name} -${view.promotion.percent} %`] : [])].join(', ') || null,
           shippingCents: quote.priceCents,
           totalCents,
           shippingRateName: quote.name,

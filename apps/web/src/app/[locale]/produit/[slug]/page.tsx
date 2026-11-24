@@ -10,11 +10,12 @@ import { ProductGrid } from '@/components/product/ProductGrid';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { getCatalogueLocalizer } from '@/i18n/catalogue';
 import { intlLocale, localizePath, type Locale } from '@/i18n/config';
-import { fmt } from '@/i18n/format';
+import { fmt, money, promoLastDay } from '@/i18n/format';
 import { colorLabel, sortSizes } from '@/i18n/labels';
 import type { Messages } from '@/i18n/messages';
 import { alternates, getI18n } from '@/i18n/server';
-import { getProduct } from '@/lib/server-api';
+import { getProduct, getPromotion } from '@/lib/server-api';
+import { promotionDiscountCents } from '@glaciora/shared/promotions';
 import { absoluteUrl } from '@/lib/site';
 
 export const revalidate = 60;
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductPage({ params }: Props) {
   const { locale, m } = await getI18n(params);
-  const product = await load((await params).slug, locale, m);
+  const [product, promotion] = await Promise.all([load((await params).slug, locale, m), getPromotion()]);
   if (!product) notFound();
   const p = m.product;
 
@@ -108,6 +109,18 @@ export default async function ProductPage({ params }: Props) {
           </p>
           <div className="mt-5">
             <Price cents={product.priceFromCents} compareAtCents={product.compareAtPriceCents} from={new Set(prices).size > 1} size="lg" locale={locale} labels={m.price} />
+            {/* Promotion en cours : prix au panier calculé comme l'API, sur le prix de référence (le plus bas des 30 derniers jours). */}
+            {promotion && product.priceFromCents ? (
+              <p className="mt-3 rounded-md bg-note px-3 py-2 text-sm font-semibold text-marine" data-testid="promo-price">
+                {fmt(m.promo.productNote, { percent: promotion.percent, date: promoLastDay(promotion.endsAt, locale) })}
+                {' — '}
+                {fmt(new Set(prices).size > 1 ? m.promo.productPriceFrom : m.promo.productPrice, {
+                  price: money(product.priceFromCents - promotionDiscountCents(product.priceFromCents, promotion.percent), locale),
+                  reference: money(product.priceFromCents, locale),
+                })}
+                <span className="mt-0.5 block text-xs font-normal">{m.promo.productReference}</span>
+              </p>
+            ) : null}
             <p className={product.inStock ? 'mt-2 text-sm font-semibold text-success' : 'mt-2 text-sm font-semibold text-muted'}>
               {product.inStock ? m.card.inStock : p.outOfStock}
             </p>

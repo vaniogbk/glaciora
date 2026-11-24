@@ -17,6 +17,9 @@ export const colors = {
   success: '#0F7B4D',
   warning: '#8A5300',
   danger: '#B42318',
+  // Tableau d'enquête du Black Friday : fiches papier et notes adhésives (texte marine dessus, contraste > 12:1).
+  paper: '#FBF7EE',
+  note: '#FFE48A',
 } as const;
 
 /**

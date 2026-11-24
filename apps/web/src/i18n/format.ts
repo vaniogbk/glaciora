@@ -28,3 +28,8 @@ export function countryName(code: string, locale: Locale, fallback?: string): st
     return fallback ?? code;
   }
 }
+
+/** Dernier jour d'une promotion (fin exclue, heure de Varsovie) : « 30 novembre ». */
+export function promoLastDay(endsAt: string, locale: Locale): string {
+  return new Intl.DateTimeFormat(intlLocale(locale), { day: 'numeric', month: 'long', timeZone: 'Europe/Warsaw' }).format(new Date(Date.parse(endsAt) - 1));
+}

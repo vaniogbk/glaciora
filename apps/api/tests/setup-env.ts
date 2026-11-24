@@ -13,3 +13,5 @@ process.env.EMAIL_PROVIDER = 'console';
 process.env.STORAGE_DRIVER = 'local';
 process.env.STORAGE_LOCAL_DIR = './storage/test-private';
 process.env.LOG_LEVEL = 'silent';
+// Montants vérifiés hors promotion saisonnière (tests/promotions.test.ts les teste à part).
+process.env.GLACIORA_PROMOTIONS = 'off';

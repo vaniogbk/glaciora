@@ -13,6 +13,7 @@ import { Link, useI18n, useLocalizedRouter } from '@/i18n/client';
 import { apiErrorMessage, translateFieldErrors } from '@/i18n/errors';
 import { countryName, fmt, money } from '@/i18n/format';
 import { sizeLabel } from '@/i18n/labels';
+import { discountParts } from '@/lib/cart-discounts';
 
 interface CheckoutConfig {
   countries: { code: string; name: string }[];
@@ -714,10 +715,16 @@ export default function CheckoutPage() {
               <dt>{m.common.subtotal}</dt>
               <dd>{price(cart?.subtotalCents ?? 0)}</dd>
             </div>
-            {discountCents > 0 && (
+            {discountParts(cart).pack > 0 && (
               <div className="flex justify-between gap-4 font-semibold text-success" data-testid="pack-discount">
                 <dt>{m.common.packDiscount}</dt>
-                <dd>−{price(discountCents)}</dd>
+                <dd>−{price(discountParts(cart).pack)}</dd>
+              </div>
+            )}
+            {cart?.promotion && cart.promotion.discountCents > 0 && (
+              <div className="flex justify-between gap-4 font-semibold text-success" data-testid="promo-discount">
+                <dt>{fmt(m.promo.cartLine, { percent: cart.promotion.percent })}</dt>
+                <dd>−{price(cart.promotion.discountCents)}</dd>
               </div>
             )}
             <div className="flex justify-between gap-4">

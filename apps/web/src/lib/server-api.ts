@@ -1,5 +1,5 @@
 import type { LegalNoticeData } from '@glaciora/shared/legal';
-import type { Category, Pack, ProductCard, ProductDetail, ProductList } from './types';
+import type { Category, Pack, ProductCard, ProductDetail, ProductList, Promotion } from './types';
 
 const API_URL = (process.env.API_URL ?? 'http://localhost:4000').replace(/\/$/, '');
 
@@ -27,6 +27,11 @@ async function get<T>(path: string, revalidate = 60): Promise<T | null> {
   } finally {
     clearTimeout(timer);
   }
+}
+
+/** Promotion en cours (Black Friday…) ; null si aucune ou si l'API ne répond pas : rien n'est alors annoncé. */
+export async function getPromotion(): Promise<Promotion | null> {
+  return (await get<{ promotion: Promotion | null }>('/api/catalogue/promotion', 60))?.promotion ?? null;
 }
 
 /** Mentions légales saisies dans l'admin ; null si l'API ne répond pas (la page affiche alors « à compléter »). */
