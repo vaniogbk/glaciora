@@ -86,7 +86,6 @@ const en: Messages = {
     payCardSoon: 'Card payment (coming soon)',
     payTransfer: 'Bank transfer payment',
     contact: 'Contact',
-    call: 'Call {phone}',
     legalNotice: 'Legal notice',
   },
   home: {

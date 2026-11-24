@@ -37,7 +37,7 @@ const nextConfig = {
     // Variantes optimisées gardées 30 jours (les sources /media ont une empreinte dans leur nom).
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
-  // En production, les adresses *.vercel.app (ex. glaciora-chi.vercel.app) renvoient vers le domaine du site : l'API n'accepte
+  // En production, les adresses *.vercel.app (ancienne adresse du projet, supprimée) renvoient vers le domaine du site : l'API n'accepte
   // que ses origines (WEB_ORIGIN), donc connexion, admin et commande y échouaient (« Origine non autorisée »).
   // Les déploiements de prévisualisation (VERCEL_ENV=preview) ne sont pas concernés.
   async redirects() {

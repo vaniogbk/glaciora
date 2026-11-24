@@ -34,7 +34,7 @@ Le navigateur ne parle qu'au domaine du site : cookies first-party, aucune confi
 
 ## 2. Frontend sur Vercel
 
-1. *Add New Project* → dépôt GitHub → **Root Directory : `apps/web`** → nom du projet **`glaciora`** (Vercel attribue `glaciora-chi.vercel.app`, `glaciora.vercel.app` étant pris).
+1. *Add New Project* → dépôt GitHub → **Root Directory : `apps/web`** → nom du projet **`glaciora`**, puis domaine **`www.glaciora.online`** (*Settings → Domains*, apex `glaciora.online` redirigé vers www). L'ancienne adresse en `.vercel.app` a été retirée : en production, toute adresse `*.vercel.app` redirige vers www (`next.config.mjs`), car l'API refuse les origines hors `WEB_ORIGIN`.
 2. `apps/web/vercel.json` gère l'installation (racine du monorepo) et le build.
 3. Variables : `API_URL=https://<api>.up.railway.app`, `NEXT_PUBLIC_SITE_URL=https://www.glaciora.online` (Production) ; mêmes clés avec les URL de préproduction pour *Preview*.
 4. Le proxy `/api/*` est défini dans `next.config.mjs` (évalué au build : redéployer après tout changement d'`API_URL`).

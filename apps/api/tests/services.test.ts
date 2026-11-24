@@ -12,7 +12,7 @@ afterAll(() => prisma.$disconnect());
 beforeEach(resetDb);
 afterEach(() => setEmailProvider(undefined));
 
-const payload = { orderReference: 'GLA-261026-ABCDE', customerName: 'Léa <b>Martin</b>', amountCents: 45980, countryCode: 'FR', adminOrderUrl: 'https://glaciora.vercel.app/admin/commandes/1', proofCount: 1 };
+const payload = { orderReference: 'GLA-261026-ABCDE', customerName: 'Léa <b>Martin</b>', amountCents: 45980, countryCode: 'FR', adminOrderUrl: 'https://www.glaciora.online/admin/commandes/1', proofCount: 1 };
 
 describe('e-mails transactionnels', () => {
   it('échappe le HTML et ne contient aucune donnée bancaire', () => {

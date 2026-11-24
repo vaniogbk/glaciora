@@ -1,6 +1,6 @@
 import { safeReturn } from '@/lib/safe-return';
 
-const ORIGIN = 'https://glaciora-chi.vercel.app';
+const ORIGIN = 'https://www.glaciora.online';
 
 describe('adresse de retour après connexion', () => {
   it('accepte les pages du site', () => {

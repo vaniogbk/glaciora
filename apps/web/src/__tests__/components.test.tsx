@@ -56,11 +56,12 @@ describe('ProductCard', () => {
 });
 
 describe('Footer', () => {
-  it('affiche les coordonnées cliquables et le lien « Mentions légales »', () => {
+  it('propose WhatsApp et l’e-mail en boutons, sans afficher l’adresse e-mail ni le numéro, et le lien « Mentions légales »', () => {
     withI18n(<Footer locale="fr" m={fr} />);
-    expect(screen.getByRole('link', { name: 'glaciora@outlook.com' })).toHaveAttribute('href', 'mailto:glaciora@outlook.com');
-    expect(screen.getByRole('link', { name: /Appeler le \+33 7 56 97 38 64/ })).toHaveAttribute('href', 'tel:+33756973864');
+    expect(screen.getByRole('link', { name: 'E-mail' })).toHaveAttribute('href', 'mailto:glaciora@outlook.com');
     expect(screen.getByRole('link', { name: /WhatsApp/ })).toHaveAttribute('href', 'https://wa.me/33756973864');
+    expect(screen.queryByText(/glaciora@outlook\.com|\+33/)).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /Appeler/ })).not.toBeInTheDocument();
     expect(screen.getByText('Różana 70, 84-230 Rumia, Pologne')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Mentions légales' })).toHaveAttribute('href', '/mentions-legales');
   });

@@ -104,7 +104,6 @@ const fr = {
     payCardSoon: 'Paiement par carte bancaire (bientôt disponible)',
     payTransfer: 'Paiement par virement bancaire',
     contact: 'Contact',
-    call: 'Appeler le {phone}',
     legalNotice: 'Mentions légales',
   },
 

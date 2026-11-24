@@ -45,19 +45,10 @@ export function Footer({ locale, m, showPacks = false }: { locale: Locale; m: Me
         </nav>
         <address className="not-italic">
           <h3 className="text-sm font-bold uppercase tracking-brand text-glacier">{f.contact}</h3>
-          <ul className="mt-4 space-y-3 text-sm">
+          {/* Ni adresse e-mail ni numéro affichés : deux boutons qui ouvrent WhatsApp et la messagerie du visiteur. */}
+          <ul className="mt-4 flex flex-wrap gap-3 text-sm">
             <li>
-              <a className="hover:text-glacier" href={`mailto:${BRAND.email}`}>
-                {BRAND.email}
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-glacier" href={`tel:${BRAND.phoneE164}`} aria-label={f.call.replace('{phone}', BRAND.phoneDisplay)}>
-                {BRAND.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <a className="inline-flex items-center gap-2 hover:text-glacier" href={BRAND.whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <a className="btn-accent gap-2" href={BRAND.whatsappUrl} target="_blank" rel="noopener noreferrer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z" />
                 </svg>
@@ -66,9 +57,18 @@ export function Footer({ locale, m, showPacks = false }: { locale: Locale; m: Me
               </a>
             </li>
             <li>
-              {BRAND.streetAddress}, {BRAND.postalCode} {BRAND.addressLocality}, {countryName(BRAND.addressCountry, locale)}
+              <a className="btn-ghost-light gap-2" href={`mailto:${BRAND.email}`}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m3 7 9 6 9-6" />
+                </svg>
+                {m.common.email}
+              </a>
             </li>
           </ul>
+          <p className="mt-4 text-sm">
+            {BRAND.streetAddress}, {BRAND.postalCode} {BRAND.addressLocality}, {countryName(BRAND.addressCountry, locale)}
+          </p>
         </address>
       </div>
       <div className="border-t border-white/10">

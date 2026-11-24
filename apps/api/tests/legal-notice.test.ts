@@ -6,11 +6,12 @@ afterAll(() => prisma.$disconnect());
 beforeEach(resetDb);
 
 describe('mentions légales', () => {
-  it('renvoie l’identité vérifiée par défaut, et « à compléter » pour REGON/TVA tant que rien n’est saisi', async () => {
+  it('renvoie l’identité vérifiée par défaut, REGON compris, et « à compléter » pour la TVA tant que rien n’est saisi', async () => {
     const res = await request(app).get('/api/legal');
     expect(res.status).toBe(200);
     expect(res.body.notice.companyName).toBe('KATARZYNA OPANOWICZ');
     expect(res.body.notice.registration).toContain('NIP 9580555988');
+    expect(res.body.notice.registration).toContain('REGON 546232503');
     expect(res.body.notice.vatNumber).toBeNull();
     expect(res.body.notice.updatedAt).toBeNull();
   });

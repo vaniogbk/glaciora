@@ -87,7 +87,6 @@ const ro: Messages = {
     payCardSoon: 'Plată cu cardul (în curând)',
     payTransfer: 'Plată prin transfer bancar',
     contact: 'Contact',
-    call: 'Sună la {phone}',
     legalNotice: 'Informații legale',
   },
   home: {

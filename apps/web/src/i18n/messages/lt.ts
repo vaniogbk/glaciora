@@ -86,7 +86,6 @@ const lt: Messages = {
     payCardSoon: 'Mokėjimas kortele (netrukus)',
     payTransfer: 'Mokėjimas banko pavedimu',
     contact: 'Kontaktai',
-    call: 'Skambinti {phone}',
     legalNotice: 'Teisinė informacija',
   },
   home: {

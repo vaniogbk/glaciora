@@ -86,7 +86,6 @@ const fi: Messages = {
     payCardSoon: 'Korttimaksu (tulossa pian)',
     payTransfer: 'Maksu tilisiirrolla',
     contact: 'Yhteystiedot',
-    call: 'Soita numeroon {phone}',
     legalNotice: 'Oikeudelliset tiedot',
   },
   home: {

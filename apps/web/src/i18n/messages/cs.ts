@@ -86,7 +86,6 @@ const cs: Messages = {
     payCardSoon: 'Platba kartou (brzy)',
     payTransfer: 'Platba bankovním převodem',
     contact: 'Kontakt',
-    call: 'Zavolat na {phone}',
     legalNotice: 'Právní informace',
   },
   home: {

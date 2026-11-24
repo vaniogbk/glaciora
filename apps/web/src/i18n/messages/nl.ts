@@ -86,7 +86,6 @@ const nl: Messages = {
     payCardSoon: 'Betalen met kaart (binnenkort beschikbaar)',
     payTransfer: 'Betalen per bankoverschrijving',
     contact: 'Contact',
-    call: '{phone} bellen',
     legalNotice: 'Juridische informatie',
   },
   home: {

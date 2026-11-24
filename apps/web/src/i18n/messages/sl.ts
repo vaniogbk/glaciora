@@ -86,7 +86,6 @@ const sl: Messages = {
     payCardSoon: 'Plačilo s kartico (kmalu)',
     payTransfer: 'Plačilo z bančnim nakazilom',
     contact: 'Kontakt',
-    call: 'Pokliči {phone}',
     legalNotice: 'Pravno obvestilo',
   },
   home: {

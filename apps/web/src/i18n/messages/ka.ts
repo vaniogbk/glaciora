@@ -87,7 +87,6 @@ const ka: Messages = {
     payCardSoon: 'ბარათით გადახდა (მალე)',
     payTransfer: 'გადახდა საბანკო გადარიცხვით',
     contact: 'კონტაქტი',
-    call: 'დარეკეთ: {phone}',
     legalNotice: 'სამართლებრივი ინფორმაცია',
   },
   home: {

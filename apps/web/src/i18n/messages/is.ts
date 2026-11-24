@@ -86,7 +86,6 @@ const is: Messages = {
     payCardSoon: 'Greiðsla með korti (væntanlegt)',
     payTransfer: 'Greiðsla með millifærslu',
     contact: 'Hafa samband',
-    call: 'Hringja í {phone}',
     legalNotice: 'Lagalegar upplýsingar',
   },
   home: {

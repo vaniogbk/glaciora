@@ -86,7 +86,6 @@ const nb: Messages = {
     payCardSoon: 'Kortbetaling (kommer snart)',
     payTransfer: 'Betaling med bankoverføring',
     contact: 'Kontakt',
-    call: 'Ring {phone}',
     legalNotice: 'Juridisk informasjon',
   },
   home: {

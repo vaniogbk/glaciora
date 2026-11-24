@@ -86,7 +86,6 @@ const pl: Messages = {
     payCardSoon: 'Płatność kartą (wkrótce)',
     payTransfer: 'Płatność przelewem bankowym',
     contact: 'Kontakt',
-    call: 'Zadzwoń pod numer {phone}',
     legalNotice: 'Informacje prawne',
   },
   home: {

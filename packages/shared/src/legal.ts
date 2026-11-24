@@ -19,15 +19,16 @@ export type LegalNoticeData = Record<LegalField, string | null> & { updatedAt: s
 
 /**
  * Identité du vendeur vérifiée le 2026-11-23 dans le registre public polonais CEIDG (statut « Aktywny »,
- * début d'activité le 2026-11-23, PKD 47.63.Z vente au détail d'articles de sport). REGON pas encore attribué,
- * pas d'inscription TVA sur la liste blanche du ministère des Finances à cette date : ces champs restent à compléter.
+ * début d'activité le 2026-11-23, PKD 47.63.Z vente au détail d'articles de sport). REGON 546232503 vérifié le 2026-11-24
+ * dans la base REGON du GUS (même nom et même adresse, non radié). Pas d'inscription TVA sur la liste blanche du
+ * ministère des Finances à cette date : ce champ reste à compléter.
  * Hébergeur : adresse publiée sur vercel.com/legal. Une saisie dans l'admin remplace ces valeurs champ par champ.
  */
 export const LEGAL_NOTICE_DEFAULTS: Partial<Record<LegalField, string>> = {
   companyName: 'KATARZYNA OPANOWICZ',
   legalForm: 'Jednoosobowa działalność gospodarcza (CEIDG)',
   shareCapital: '—',
-  registration: 'CEIDG · NIP 9580555988',
+  registration: 'CEIDG · NIP 9580555988 · REGON 546232503',
   headOffice: 'Różana 70\n84-230 Rumia\nPolska',
   publicationDirector: 'Katarzyna Opanowicz',
   hostName: 'Vercel Inc.',

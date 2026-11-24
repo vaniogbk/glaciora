@@ -86,7 +86,6 @@ const sk: Messages = {
     payCardSoon: 'Platba kartou (čoskoro)',
     payTransfer: 'Platba bankovým prevodom',
     contact: 'Kontakt',
-    call: 'Zavolať na {phone}',
     legalNotice: 'Právne informácie',
   },
   home: {

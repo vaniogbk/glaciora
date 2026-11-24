@@ -86,7 +86,6 @@ const pt: Messages = {
     payCardSoon: 'Pagamento com cartão (em breve)',
     payTransfer: 'Pagamento por transferência bancária',
     contact: 'Contacto',
-    call: 'Ligar para {phone}',
     legalNotice: 'Informação legal',
   },
   home: {

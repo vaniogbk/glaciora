@@ -86,7 +86,6 @@ const et: Messages = {
     payCardSoon: 'Kaardimakse (peagi saadaval)',
     payTransfer: 'Makse pangaülekandega',
     contact: 'Kontakt',
-    call: 'Helista numbril {phone}',
     legalNotice: 'Õiguslik teave',
   },
   home: {

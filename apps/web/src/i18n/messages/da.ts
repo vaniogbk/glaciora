@@ -86,7 +86,6 @@ const da: Messages = {
     payCardSoon: 'Kortbetaling (kommer snart)',
     payTransfer: 'Betaling via bankoverførsel',
     contact: 'Kontakt',
-    call: 'Ring til {phone}',
     legalNotice: 'Juridisk information',
   },
   home: {

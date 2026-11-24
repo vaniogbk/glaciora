@@ -87,7 +87,6 @@ const hr: Messages = {
     payCardSoon: 'Plaćanje karticom (uskoro)',
     payTransfer: 'Plaćanje bankovnim prijenosom',
     contact: 'Kontakt',
-    call: 'Nazovite {phone}',
     legalNotice: 'Pravne informacije',
   },
   home: {

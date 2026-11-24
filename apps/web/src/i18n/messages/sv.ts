@@ -86,7 +86,6 @@ const sv: Messages = {
     payCardSoon: 'Kortbetalning (kommer snart)',
     payTransfer: 'Betalning med banköverföring',
     contact: 'Kontakt',
-    call: 'Ring {phone}',
     legalNotice: 'Juridisk information',
   },
   home: {
