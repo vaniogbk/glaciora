@@ -42,6 +42,23 @@ describe('suivi de commande sans compte', () => {
     expect(api).not.toHaveBeenCalled();
   });
 
+  it('arrive depuis l’e-mail avec la référence déjà remplie : un clic sur « Suivre » affiche le suivi complet', () => {
+    search = new URLSearchParams('prefill=GLA-261124-7KQ4M&t=jeton-signe');
+    renderTracking();
+    expect(screen.getByLabelText('Référence de commande')).toHaveValue('GLA-261124-7KQ4M');
+    expect(api).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: 'Suivre' }));
+    expect(push.mock.calls[0]?.[0]).toBe('/commande/suivi?ref=GLA-261124-7KQ4M&t=jeton-signe');
+  });
+
+  it('n’envoie pas le jeton de l’e-mail pour une autre référence saisie à la place', () => {
+    search = new URLSearchParams('prefill=GLA-261124-7KQ4M&t=jeton-signe');
+    renderTracking();
+    fireEvent.change(screen.getByLabelText('Référence de commande'), { target: { value: 'GLA-261124-AAAAA' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Suivre' }));
+    expect(push.mock.calls[0]?.[0]).toBe('/commande/suivi?ref=GLA-261124-AAAAA');
+  });
+
   it('refuse une référence mal formée sans appeler le serveur', () => {
     renderTracking();
     fireEvent.change(screen.getByLabelText('Référence de commande'), { target: { value: '12345' } });
@@ -80,6 +97,8 @@ describe('suivi de commande sans compte', () => {
     renderTracking('confirmation');
     await waitFor(() => expect(screen.getByTestId('order-reference')).toHaveTextContent('GLA-261124-7KQ4M'));
     expect(screen.getByRole('button', { name: 'Copier' })).toBeInTheDocument();
+    // Bouton « Suivre ma commande » sur la page de fin de commande : formulaire de suivi pré-rempli.
+    expect(screen.getByTestId('track-order-button')).toHaveAttribute('href', '/commande/suivi?prefill=GLA-261124-7KQ4M');
     expect(screen.getByText('Remise · Black Friday -15 %')).toBeInTheDocument();
     expect(screen.getByText('Total payé')).toBeInTheDocument();
   });

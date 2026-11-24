@@ -97,7 +97,7 @@ describe('checkout par virement', () => {
     // Les preuves sont jointes à l'e-mail de la boutique (lues dans le stockage privé à l'envoi).
     expect((adminMail.payload as { attachments: unknown[] }).attachments).toHaveLength(2);
     const customerMail = order.emails.find((e) => e.template === 'order-received')!;
-    expect((customerMail.payload as { orderUrl: string }).orderUrl).toBe(`http://localhost:3000/commande/suivi?ref=${order.reference}&t=${orderTrackingToken(order.id)}`);
+    expect((customerMail.payload as { orderUrl: string }).orderUrl).toBe(`http://localhost:3000/commande/suivi?prefill=${order.reference}&t=${orderTrackingToken(order.id)}`);
     expect((await prisma.stock.findUniqueOrThrow({ where: { variantId: variant.id } })).quantity).toBe(1);
 
     const confirmation = await agent.get(`/api/checkout/orders/${order.reference}`);

@@ -48,7 +48,7 @@ export function normalizeReference(input: string): string {
 }
 
 /** Formulaire « Suivre ma commande » : la référence suffit, aucun compte n'est nécessaire. */
-function TrackingForm({ initial, notFound }: { initial: string; notFound: boolean }) {
+function TrackingForm({ initial, notFound, token }: { initial: string; notFound: boolean; token?: string | null }) {
   const { m } = useI18n();
   const t = m.followUp;
   const router = useLocalizedRouter();
@@ -63,7 +63,9 @@ function TrackingForm({ initial, notFound }: { initial: string; notFound: boolea
       return;
     }
     setInvalid(false);
-    router.push(`/commande/suivi?ref=${encodeURIComponent(reference)}`);
+    // Lien des e-mails : le jeton signé accompagne la référence pré-remplie (récapitulatif complet) tant qu'elle n'est pas modifiée.
+    const signed = token && reference === normalizeReference(initial) ? `&t=${encodeURIComponent(token)}` : '';
+    router.push(`/commande/suivi?ref=${encodeURIComponent(reference)}${signed}`);
   }
 
   const error = invalid ? t.invalidReference : notFound ? t.notFoundRef : '';
@@ -131,6 +133,9 @@ function KeepReference({ reference }: { reference: string }) {
         </button>
       </p>
       <p className="mt-2 text-sm">{t.keepReference}</p>
+      <Link href={`/commande/suivi?prefill=${encodeURIComponent(reference)}`} className="btn-primary mt-4" data-testid="track-order-button">
+        {t.formTitle} <span aria-hidden="true">→</span>
+      </Link>
     </section>
   );
 }
@@ -145,6 +150,8 @@ export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
   const t = m.followUp;
   const price = (cents: number) => money(cents, locale);
   const reference = params.get('ref') ?? '';
+  // « prefill » : bouton « Suivre ma commande » des e-mails et de la fin de commande, champ rempli, le client clique sur « Suivre ».
+  const prefill = normalizeReference(params.get('prefill') ?? '');
   const token = params.get('t');
   const [order, setOrder] = useState<OrderView | null>(null);
   const [error, setError] = useState(false);
@@ -152,6 +159,11 @@ export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
   useEffect(() => {
     setOrder(null);
     setError(false);
+    // Sans référence : formulaire de suivi (rien à charger) ; page de confirmation sans référence : introuvable.
+    if (!reference) {
+      if (mode === 'confirmation') setError(true);
+      return;
+    }
     if (!REFERENCE.test(reference)) {
       setError(true);
       return;
@@ -160,10 +172,12 @@ export function OrderFollowUp({ mode }: { mode: 'confirmation' | 'suivi' }) {
     api<{ order: OrderView }>(`/api/checkout/orders/${reference}${query}`)
       .then((d) => setOrder(d.order))
       .catch(() => setError(true));
-  }, [reference, token]);
+  }, [reference, token, mode]);
 
   // Page « Suivre ma commande » sans référence, ou référence introuvable : formulaire de recherche.
-  if (mode === 'suivi' && (!reference || error)) return <TrackingForm initial={reference} notFound={Boolean(reference) && error} />;
+  if (mode === 'suivi' && (!reference || error)) {
+    return <TrackingForm key={reference || prefill} initial={reference || prefill} notFound={Boolean(reference) && error} token={reference ? null : token} />;
+  }
   if (error) {
     return (
       <div className="mx-auto max-w-xl text-center">

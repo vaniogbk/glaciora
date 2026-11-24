@@ -15,7 +15,10 @@ export function isValidTrackingToken(orderId: string, token: unknown): boolean {
   return typeof token === 'string' && token.length > 0 && token.length <= 100 && safeEqual(token, orderTrackingToken(orderId));
 }
 
-/** Lien vers la page de suivi dans la langue de la commande (français sans préfixe). */
+/**
+ * Bouton « Suivre ma commande » des e-mails : page de suivi dans la langue de la commande (français sans préfixe), champ
+ * de référence déjà rempli (« prefill ») ; le client clique sur « Suivre ». Le jeton signé garde le récapitulatif complet.
+ */
 export function orderTrackingUrl(order: { id: string; reference: string; locale?: string | null }): string {
-  return `${env.PUBLIC_SITE_URL}${localizedPath(order.locale, '/commande/suivi')}?ref=${encodeURIComponent(order.reference)}&t=${orderTrackingToken(order.id)}`;
+  return `${env.PUBLIC_SITE_URL}${localizedPath(order.locale, '/commande/suivi')}?prefill=${encodeURIComponent(order.reference)}&t=${orderTrackingToken(order.id)}`;
 }

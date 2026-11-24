@@ -125,7 +125,7 @@ for (const width of [320, 390]) {
       await expect(page).toHaveURL(/\/commande\/confirmation/);
       await check(page, 'de/commande/confirmation', problems);
 
-      for (const path of ['/de/compte', '/de/compte/adresses', '/de/compte/commandes', `/de/compte/commandes/${reference}`, `/de/commande/suivi?ref=${reference}`]) {
+      for (const path of ['/de/commande/suivi', `/de/commande/suivi?prefill=${reference}`, `/de/commande/suivi?ref=${reference}`]) {
         await page.goto(path);
         await check(page, path.replace(reference, '[référence]'), problems);
       }

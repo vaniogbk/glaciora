@@ -20,7 +20,7 @@ describe('e-mails clients dans la langue de la commande', () => {
 
   it('envoie le suivi « En route » en allemand avec le lien de la version allemande', () => {
     const orderUrl = orderTrackingUrl({ id: 'o1', reference: 'GLA-261105-ABCDE', locale: 'de' });
-    expect(orderUrl).toContain('/de/commande/suivi?ref=GLA-261105-ABCDE');
+    expect(orderUrl).toContain('/de/commande/suivi?prefill=GLA-261105-ABCDE&t=');
     const mail = renderTemplate('order-status', { orderReference: 'GLA-261105-ABCDE', firstName: 'Anna', status: 'SHIPPED', locale: 'de', orderUrl });
     expect(mail.subject).toBe('Bestellung GLA-261105-ABCDE: unterwegs');
     expect(mail.text).toContain('Ihre Bestellung ist bereits auf dem Weg zu Ihrer Adresse.');
