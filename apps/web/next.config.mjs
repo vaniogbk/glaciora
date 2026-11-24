@@ -37,6 +37,20 @@ const nextConfig = {
     // Variantes optimisées gardées 30 jours (les sources /media ont une empreinte dans leur nom).
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
+  // En production, les adresses *.vercel.app (ex. glaciora-chi.vercel.app) renvoient vers le domaine du site : l'API n'accepte
+  // que ses origines (WEB_ORIGIN), donc connexion, admin et commande y échouaient (« Origine non autorisée »).
+  // Les déploiements de prévisualisation (VERCEL_ENV=preview) ne sont pas concernés.
+  async redirects() {
+    if (process.env.VERCEL_ENV !== 'production' || !process.env.NEXT_PUBLIC_SITE_URL) return [];
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: '(?<vercelHost>.+)\\.vercel\\.app' }],
+        destination: `${process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '')}/:path*`,
+        permanent: true,
+      },
+    ];
+  },
   // L'API Railway est servie sous le même domaine que le site : cookies first-party, pas de CORS.
   async rewrites() {
     return [{ source: '/api/:path*', destination: `${apiUrl}/api/:path*` }];
