@@ -141,7 +141,7 @@ export default function AdminShippingPage() {
             <form onSubmit={(e) => onAddRate(e, zone.id)} className="mt-3 grid grid-cols-2 items-end gap-x-3 gap-y-2 text-sm xl:grid-cols-[minmax(0,1fr)_100px_120px_90px_90px_auto]" aria-label={`Nouveau tarif pour ${zone.name}`}>
               <label className="col-span-2 xl:col-span-1">
                 <span className="field-label text-xs">Nouveau tarif</span>
-                <input name="name" required placeholder="Ex. Colissimo suivi" className="field-input" />
+                <input name="name" required placeholder="Ex. Poczta Polska" className="field-input" />
               </label>
               <label>
                 <span className="field-label text-xs">Prix (€)</span>
