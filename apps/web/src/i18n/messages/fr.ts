@@ -39,6 +39,7 @@ const fr = {
   },
 
   common: {
+    discount: 'Remise',
     skipToContent: 'Aller au contenu',
     home: 'Accueil',
     catalogue: 'Catalogue',
@@ -82,6 +83,7 @@ const fr = {
   },
 
   header: {
+    trackOrder: 'Suivre ma commande',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
     logoHome: 'GLACIORA, retour à l’accueil',
@@ -417,7 +419,7 @@ const fr = {
   followUp: {
     loading: 'Chargement de votre commande…',
     notFoundTitle: 'Commande introuvable',
-    notFoundText: 'Ouvrez le lien « Suivre ma commande » reçu par e-mail, ou retrouvez la commande dans votre compte.',
+    notFoundText: 'Saisissez la référence de votre commande, ou ouvrez le lien « Suivre ma commande » de l’e-mail de confirmation.',
     thanks: 'Merci pour votre commande',
     trackingEyebrow: 'Suivi de commande',
     orderTitle: 'Commande {reference}',
@@ -427,7 +429,19 @@ const fr = {
     trackParcel: 'suivre le colis',
     emailNotice: 'Chaque étape vous est aussi annoncée par e-mail à {email}.',
     shippingLine: 'Livraison ({rate}) — {city}, {country}',
-    totalPaid: 'Total payé par virement',
+    totalPaid: 'Total payé',
+    formTitle: 'Suivre ma commande',
+    formIntro: 'Saisissez la référence de votre commande : elle s’affiche à la fin de la commande et figure dans l’e-mail de confirmation. Aucun compte n’est nécessaire.',
+    referenceLabel: 'Référence de commande',
+    submit: 'Suivre',
+    invalidReference: 'Vérifiez la référence : elle a la forme GLA-261124-7KQ4M.',
+    notFoundRef: 'Aucune commande ne correspond à cette référence. Vérifiez-la dans votre e-mail de confirmation.',
+    keepReferenceTitle: 'Votre référence de commande',
+    keepReference: 'Gardez-la : elle permet de suivre votre commande à tout moment sur la page « Suivre ma commande », sans compte. Elle figure aussi dans l’e-mail de confirmation.',
+    copy: 'Copier',
+    copied: 'Copiée',
+    otherOrder: 'Suivre une autre commande',
+    limitedNotice: 'Pour protéger vos données, cette page n’affiche ni nom, ni adresse, ni montant. Le récapitulatif complet figure dans l’e-mail de confirmation.',
   },
 
   account: {
@@ -627,7 +641,7 @@ const fr = {
     hostAddress: 'Adresse de l’hébergeur',
     toFill: 'À compléter',
     docsFallback: 'Ce texte est rédigé en français, en anglais et en polonais ; la version anglaise est affichée ci-dessous.',
-    privacyNoticeBefore: 'Vos données servent à traiter votre commande et votre compte, comme l’explique notre',
+    privacyNoticeBefore: 'Vos données servent à traiter et livrer votre commande, comme l’explique notre',
     privacyNoticeLink: 'politique de confidentialité',
     privacyNoticeAfter: '.',
   },

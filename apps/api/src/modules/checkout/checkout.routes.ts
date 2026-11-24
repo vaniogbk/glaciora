@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { PROOF_MIME_TYPES } from '@glaciora/shared';
 import { env } from '../../config/env';
 import { asyncHandler } from '../../lib/http';
-import { checkoutLimiter, uploadLimiter } from '../../middlewares/security';
+import { checkoutLimiter, trackingLimiter, uploadLimiter } from '../../middlewares/security';
 import { listShippableCountries } from '../shipping/shipping.repository';
 import { bankTransferCountries, listPaymentMethods } from '../payments/payment-methods';
 import * as checkout from './checkout.service';
@@ -66,6 +66,7 @@ checkoutRouter.post(
 
 checkoutRouter.get(
   '/orders/:reference',
+  trackingLimiter,
   asyncHandler(async (req, res) => {
     const reference = z.string().regex(/^GLA-\d{6}-[A-Z0-9]{5}$/).parse(req.params.reference);
     res.json({ order: await checkout.getOrderConfirmation(req, reference, req.query.t) });

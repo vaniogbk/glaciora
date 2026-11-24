@@ -407,11 +407,6 @@ export default function CheckoutPage() {
           {t.stepPayment}
         </li>
       </ol>
-      {!user && !onPayment && (
-        <p className="mt-3 text-sm text-muted">
-          {t.alreadyCustomer} <Link href={`/compte/connexion?retour=${encodeURIComponent(router.to('/commande'))}`} className="font-semibold text-deep underline">{t.loginLink}</Link> {t.loginToFind}
-        </p>
-      )}
 
       <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_380px]">
         <div className="min-w-0">

@@ -10,15 +10,12 @@ afterAll(() => prisma.$disconnect());
 beforeEach(resetDb);
 
 describe('authentification', () => {
-  it('ne révèle pas si une adresse est déjà inscrite', async () => {
+  it('ne crée plus de compte client : le suivi se fait avec la référence de commande', async () => {
     const body = { email: 'lea@glaciora.test', password: 'Motdepasse-Solide-1', firstName: 'Léa', lastName: 'Martin' };
-    const first = await request(app).post('/api/auth/register').set(CSRF).send(body);
-    const second = await request(app).post('/api/auth/register').set(CSRF).send({ ...body, password: 'Autre-Motdepasse-2' });
-    expect(first.status).toBe(202);
-    expect(second.status).toBe(202);
-    expect(second.body).toEqual(first.body);
-    const user = await prisma.user.findUniqueOrThrow({ where: { email: body.email } });
-    expect(user.passwordHash).toMatch(/^\$argon2id\$/);
+    const res = await request(app).post('/api/auth/register').set(CSRF).send(body);
+    expect(res.status).toBe(410);
+    expect(res.body.error.code).toBe('REGISTRATION_CLOSED');
+    expect(await prisma.user.count({ where: { email: body.email } })).toBe(0);
   });
 
   it('renvoie le même message pour un compte inconnu ou un mauvais mot de passe', async () => {

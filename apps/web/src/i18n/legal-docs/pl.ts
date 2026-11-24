@@ -48,7 +48,7 @@ const pl: LegalDocs = {
           'akceptacja Warunków i złożenie zamówienia, co oznacza obowiązek zapłaty.',
         ],
         after: [
-          'Przed złożeniem zamówienia klient może wrócić do poprzednich kroków, aby sprawdzić i poprawić wprowadzone dane. Zamówienie można złożyć z kontem klienta lub bez niego.',
+          'Przed złożeniem zamówienia klient może wrócić do poprzednich kroków, aby sprawdzić i poprawić wprowadzone dane. Zamówienie składa się bez zakładania konta klienta.',
           'Umowa sprzedaży zostaje zawarta z chwilą wysłania przez Sprzedawcę e-maila potwierdzającego zamówienie, który zawiera podsumowanie zamówienia i link do śledzenia.',
           'Sprzedawca może odmówić realizacji zamówienia nietypowego lub zamówienia, którego dowód zapłaty jest nieprawidłowy; klient zostaje o tym poinformowany, a wpłacone kwoty zostają mu zwrócone.',
         ],
@@ -70,7 +70,7 @@ const pl: LegalDocs = {
         paragraphs: [
           'Towary są dostarczane do krajów europejskich dostępnych przy składaniu zamówienia, na adres podany przez klienta. Dostępne sposoby dostawy i ich ceny są wyświetlane przed złożeniem zamówienia.',
           'O ile przy zamówieniu nie wskazano krótszego terminu, towary są dostarczane najpóźniej w ciągu 30 dni od potwierdzenia płatności. W przeciwnym razie klient może wyznaczyć Sprzedawcy dodatkowy odpowiedni termin; jeżeli dostawa nie nastąpi w tym terminie, klient może odstąpić od umowy i otrzymać zwrot wszystkich wpłaconych kwot.',
-          'Klient może śledzić zamówienie na swoim koncie lub za pomocą linku do śledzenia: „W przygotowaniu”, „W drodze”, a następnie „Dostarczone”; o każdym etapie informuje e-mail.',
+          'Klient śledzi zamówienie bez konta, na stronie „Śledź zamówienie”, za pomocą numeru wyświetlonego na końcu zamówienia i podanego w e-mailu z potwierdzeniem, albo za pomocą linku do śledzenia z tego e-maila: „W przygotowaniu”, „W drodze”, a następnie „Dostarczone”; o każdym etapie informuje e-mail.',
           'Ryzyko utraty lub uszkodzenia towarów przechodzi na klienta z chwilą, gdy klient lub wskazana przez niego osoba trzecia inna niż przewoźnik wejdzie w ich fizyczne posiadanie.',
           'Zachęcamy klienta do sprawdzenia przesyłki przy odbiorze i zgłoszenia wszelkich nieprawidłowości (uszkodzona paczka, brakujący towar) przewoźnikowi oraz Sprzedawcy pod adresem {email}. Sprawdzenie przesyłki nie ogranicza żadnych ustawowych praw klienta.',
         ],
@@ -141,7 +141,7 @@ const pl: LegalDocs = {
       {
         title: '2. Przetwarzane dane',
         list: [
-          'Konto klienta: imię, nazwisko, adres e-mail, hasło (przechowywane wyłącznie jako skrót Argon2id, nigdy jawnym tekstem), numer telefonu, jeżeli został podany, preferowany język.',
+          'Śledzenie zamówienia: sklep nie zakłada kont klientów; numer wpisany na stronie „Śledź zamówienie” służy wyłącznie do wyświetlenia stanu zamówienia, bez imienia i nazwiska, adresu ani kwot.',
           'Zamówienie: imię i nazwisko, adres e-mail, numer telefonu, adres dostawy, zamówione towary, kwoty, sposób dostawy i płatności, numer zamówienia i historia jego realizacji.',
           'Płatność przelewem: przesłane przez Ciebie potwierdzenie przelewu (PDF lub obraz), które może zawierać imię i nazwisko posiadacza oraz dane rachunku bankowego.',
           'Płatność kartą: dane karty wprowadzasz u Mollie; otrzymujemy wyłącznie wynik płatności i identyfikator transakcji, nigdy numer karty.',
@@ -152,9 +152,9 @@ const pl: LegalDocs = {
       {
         title: '3. Cele i podstawy prawne',
         list: [
-          'Założenie i prowadzenie konta, realizacja i dostawa zamówień, weryfikacja płatności, wysyłka e-maili związanych z zamówieniem (potwierdzenie, śledzenie), obsługa odstąpień, reklamacji i zwrotów: wykonanie umowy (art. 6 ust. 1 lit. b RODO).',
+          'Realizacja i dostawa zamówień, weryfikacja płatności, udostępnienie śledzenia zamówienia, wysyłka e-maili związanych z zamówieniem (potwierdzenie, śledzenie), obsługa odstąpień, reklamacji i zwrotów: wykonanie umowy (art. 6 ust. 1 lit. b RODO).',
           'Prowadzenie rachunkowości i przechowywanie dokumentów: wypełnienie obowiązku prawnego (art. 6 ust. 1 lit. c RODO).',
-          'Zabezpieczenie serwisu i kont (ograniczenie prób logowania, zapobieganie oszustwom i fałszywym potwierdzeniom płatności), ustalenie i obrona roszczeń: prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO).',
+          'Zabezpieczenie serwisu i jego administracji (ograniczenie prób logowania, zapobieganie oszustwom i fałszywym potwierdzeniom płatności), ustalenie i obrona roszczeń: prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO).',
           'Odpowiadanie na wiadomości: działania przed zawarciem umowy lub wykonanie umowy, gdy wiadomość dotyczy zamówienia, w pozostałych przypadkach prawnie uzasadniony interes.',
         ],
         after: [
@@ -176,7 +176,7 @@ const pl: LegalDocs = {
           'Vercel Inc. (Stany Zjednoczone): hosting serwisu internetowego;',
           'Railway Corporation (Stany Zjednoczone): hosting aplikacji i bazy danych;',
           'Cloudflare, Inc. (Stany Zjednoczone): prywatne, szyfrowane przechowywanie potwierdzeń przelewu (usługa R2);',
-          'Sendinblue SAS, marka Brevo (Francja): wysyłka e-maili dotyczących zamówień i konta;',
+          'Sendinblue SAS, marka Brevo (Francja): wysyłka e-maili dotyczących zamówień;',
           'Microsoft (Outlook.com): skrzynka e-mail obsługi klienta;',
           'Mollie B.V. (Holandia): obsługa płatności kartą; w zakresie własnych obowiązków (przeciwdziałanie oszustwom i praniu pieniędzy) Mollie działa jako odrębny administrator, zgodnie z własną polityką prywatności;',
           'przewoźnik realizujący dostawę: imię i nazwisko, adres dostawy, numer telefonu i e-mail, w celu doręczenia przesyłki;',
@@ -193,7 +193,7 @@ const pl: LegalDocs = {
       {
         title: '7. Okres przechowywania',
         list: [
-          'Konto: do jego usunięcia, o które możesz poprosić w każdej chwili pod adresem {email}. Powiązane zamówienia są przechowywane przez okres wymagany przepisami, wskazany poniżej.',
+          'Zamówienia w toku: przez czas potrzebny do ich realizacji, dostawy oraz obsługi ewentualnych odstąpień, reklamacji i zwrotów.',
           'Zamówienia i dokumenty księgowe: przez okres wymagany przez polskie przepisy podatkowe i o rachunkowości, co do zasady 5 lat od końca danego roku.',
           'Potwierdzenia przelewu: usuwane automatycznie po 400 dniach od przesłania.',
           'Wiadomości do obsługi klienta: przez czas potrzebny do obsługi zgłoszenia, a w razie potrzeby do upływu terminów przedawnienia roszczeń.',
@@ -208,7 +208,7 @@ const pl: LegalDocs = {
         list: [
           'glaciora_lang: wybrany język (1 rok);',
           'glaciora_cart: zawartość koszyka (30 dni);',
-          'glaciora_at i glaciora_rt: logowanie do konta (15 minut i 30 dni);',
+          'glaciora_at i glaciora_rt: logowanie wyłącznie administratorów sklepu (15 minut i 30 dni);',
           'glaciora_ref: numer referencyjny przelewu podczas składania zamówienia (3 godziny);',
           'glaciora_order: dostęp do śledzenia właśnie złożonego zamówienia (30 dni).',
         ],
@@ -219,7 +219,7 @@ const pl: LegalDocs = {
       {
         title: '9. Bezpieczeństwo',
         paragraphs: [
-          'Komunikacja z serwisem jest szyfrowana (HTTPS). Hasła są przechowywane jako skróty Argon2id, pliki cookie logowania są niedostępne dla skryptów strony, a konto jest czasowo blokowane po 5 nieudanych próbach logowania. Potwierdzenia przelewu są przechowywane prywatnie i mogą je przeglądać wyłącznie administratorzy sklepu.',
+          'Komunikacja z serwisem jest szyfrowana (HTTPS). Strona śledzenia pokazuje wyłącznie stan zamówienia i ogranicza liczbę wyszukiwań. Hasła administratorów są przechowywane jako skróty Argon2id, ich pliki cookie logowania są niedostępne dla skryptów strony, a ich konto jest czasowo blokowane po 5 nieudanych próbach logowania. Potwierdzenia przelewu są przechowywane prywatnie i mogą je przeglądać wyłącznie administratorzy sklepu.',
         ],
       },
       {

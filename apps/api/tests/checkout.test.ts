@@ -103,12 +103,22 @@ describe('checkout par virement', () => {
     const confirmation = await agent.get(`/api/checkout/orders/${order.reference}`);
     expect(confirmation.status).toBe(200);
     expect(confirmation.body.order.proofReceived).toBe(true);
-    // Un autre visiteur ne peut pas lire la commande, sauf avec le lien de suivi signé des e-mails.
-    expect((await request(app).get(`/api/checkout/orders/${order.reference}`)).status).toBe(404);
-    expect((await request(app).get(`/api/checkout/orders/${order.reference}?t=faux-jeton`)).status).toBe(404);
+    expect(confirmation.body.order.limited).toBe(false);
+    // Suivi sans compte : la référence seule donne l'état de la commande, jamais le nom, l'e-mail, l'adresse ni les montants.
+    for (const url of [`/api/checkout/orders/${order.reference}`, `/api/checkout/orders/${order.reference}?t=faux-jeton`]) {
+      const publicView = await request(app).get(url);
+      expect(publicView.status).toBe(200);
+      expect(publicView.body.order).toMatchObject({ limited: true, reference: order.reference, status: 'PREPARING' });
+      expect(publicView.body.order.items[0]).toEqual(expect.objectContaining({ quantity: expect.any(Number), productName: expect.any(String) }));
+      const json = JSON.stringify(publicView.body);
+      for (const secret of [order.email, order.shipLastName, order.shipLine1, order.shipCity]) expect(json).not.toContain(secret);
+      expect(publicView.body.order.totalCents).toBeUndefined();
+    }
+    expect((await request(app).get('/api/checkout/orders/GLA-261124-ZZZZZ')).status).toBe(404);
+    // Le lien signé des e-mails donne le récapitulatif complet.
     const tracked = await request(app).get(`/api/checkout/orders/${order.reference}?t=${orderTrackingToken(order.id)}`);
     expect(tracked.status).toBe(200);
-    expect(tracked.body.order.status).toBe('PREPARING');
+    expect(tracked.body.order).toMatchObject({ limited: false, status: 'PREPARING' });
   });
 
   it('exige un justificatif valide', async () => {

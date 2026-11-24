@@ -312,7 +312,10 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
   }
 }
 
-/** Récapitulatif et suivi de commande : propriétaire connecté, cookie invité ou lien de suivi signé (e-mails). */
+/**
+ * Récapitulatif et suivi de commande. Complet pour le client qui vient de commander (cookie), le lien signé des e-mails
+ * ou le compte propriétaire ; réduit à l'état de la commande pour toute personne qui saisit la référence.
+ */
 export async function getOrderConfirmation(req: Request, reference: string, trackingToken?: unknown) {
   const order = await prisma.order.findUnique({
     where: { reference },
@@ -323,8 +326,23 @@ export async function getOrderConfirmation(req: Request, reference: string, trac
   const [cookieRef, token] = cookie?.split('.') ?? [];
   const ownsByToken = cookieRef === reference && token && order.accessTokenHash && safeEqual(hashToken(token), order.accessTokenHash);
   const ownsByAccount = req.user && order.userId === req.user.id;
-  if (!ownsByToken && !ownsByAccount && !isValidTrackingToken(order.id, trackingToken)) throw notFound('Commande introuvable');
+  if (!ownsByToken && !ownsByAccount && !isValidTrackingToken(order.id, trackingToken)) {
+    // Suivi public par la seule référence (sans compte) : l'état et les articles, jamais le nom, l'e-mail, l'adresse ni les montants.
+    return {
+      limited: true as const,
+      reference: order.reference,
+      status: order.status,
+      createdAt: order.createdAt,
+      shippedAt: order.shippedAt,
+      deliveredAt: order.deliveredAt,
+      trackingCarrier: order.trackingCarrier,
+      trackingNumber: order.trackingNumber,
+      trackingUrl: order.trackingUrl,
+      items: order.items.map((i) => ({ productName: i.productName, productSlug: i.productSlug, sizeLabel: i.sizeLabel, quantity: i.quantity })),
+    };
+  }
   return {
+    limited: false as const,
     reference: order.reference,
     status: order.status,
     createdAt: order.createdAt,

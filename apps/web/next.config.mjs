@@ -41,7 +41,17 @@ const nextConfig = {
   // que ses origines (WEB_ORIGIN), donc connexion, admin et commande y échouaient (« Origine non autorisée »).
   // Les déploiements de prévisualisation (VERCEL_ENV=preview) ne sont pas concernés.
   async redirects() {
-    if (process.env.VERCEL_ENV !== 'production' || !process.env.NEXT_PUBLIC_SITE_URL) return [];
+    // Plus de comptes clients (2026-11-24) : les anciennes pages du compte mènent au suivi de commande par référence,
+    // en gardant la langue (/de/compte/commandes → /de/commande/suivi). Connexion et mot de passe restent pour l'admin.
+    const accountRedirects = [
+      { source: '/compte/commandes/:reference', destination: '/commande/suivi?ref=:reference', permanent: true },
+      { source: '/:locale([a-z]{2})/compte/commandes/:reference', destination: '/:locale/commande/suivi?ref=:reference', permanent: true },
+      ...['', '/commandes', '/adresses', '/inscription'].flatMap((page) => [
+        { source: `/compte${page}`, destination: '/commande/suivi', permanent: true },
+        { source: `/:locale([a-z]{2})/compte${page}`, destination: '/:locale/commande/suivi', permanent: true },
+      ]),
+    ];
+    if (process.env.VERCEL_ENV !== 'production' || !process.env.NEXT_PUBLIC_SITE_URL) return accountRedirects;
     return [
       {
         source: '/:path*',
@@ -49,6 +59,7 @@ const nextConfig = {
         destination: `${process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '')}/:path*`,
         permanent: true,
       },
+      ...accountRedirects,
     ];
   },
   // L'API Railway est servie sous le même domaine que le site : cookies first-party, pas de CORS.

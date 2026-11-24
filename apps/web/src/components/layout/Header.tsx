@@ -104,12 +104,23 @@ export function Header({ showPacks = false }: { showPacks?: boolean }) {
         </form>
         <div className="ml-auto flex items-center sm:gap-1 md:ml-2">
           <LanguageSwitcher className="hidden sm:block" />
-          <Link href={user ? (user.role === 'ADMIN' ? '/admin' : '/compte') : '/compte/connexion'} className="inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md px-2.5 text-sm font-semibold hover:text-glacier sm:px-3">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" />
+          {/* Pas de compte client : suivi de commande avec la référence. L'administration garde son accès. */}
+          {user?.role === 'ADMIN' && (
+            <Link href="/admin" className="inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md px-2.5 text-sm font-semibold hover:text-glacier sm:px-3">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" />
+              </svg>
+              <span className="hidden sm:inline">{user.firstName ?? 'Admin'}</span>
+            </Link>
+          )}
+          <Link href="/commande/suivi" aria-label={m.header.trackOrder} className="inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md px-2.5 text-sm font-semibold hover:text-glacier sm:px-3">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true">
+              <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z" />
+              <path d="m3 7.5 9 4.5 9-4.5M12 12v9" />
             </svg>
-            <span className="hidden sm:inline">{user ? user.firstName ?? m.header.myAccount : m.header.login}</span>
+            {/* Libellé masqué quand la recherche occupe l'en-tête (langues longues : pas de débordement), toujours dans le menu mobile. */}
+            <span className="hidden sm:inline md:hidden 2xl:inline" aria-hidden="true">{m.header.trackOrder}</span>
           </Link>
           <Link href="/panier" className="relative inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md px-2.5 text-sm font-semibold hover:text-glacier sm:px-3" aria-label={plural(locale, count, m.header.cartLabel)}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -157,7 +168,7 @@ export function Header({ showPacks = false }: { showPacks?: boolean }) {
         </form>
         <nav aria-label={m.header.mobileNav} className="container py-4">
           <ul className="grid gap-1 text-base font-semibold">
-            {nav.map((item) => (
+            {[...nav, { href: '/commande/suivi', label: m.header.trackOrder }].map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="block rounded-md px-2 py-3 hover:bg-white/10">
                   {item.label}

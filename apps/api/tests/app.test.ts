@@ -40,7 +40,7 @@ describe('protection CSRF', () => {
 
 describe('validation et gestion des erreurs', () => {
   it('détaille les champs invalides sans planter', async () => {
-    const res = await request(app).post('/api/auth/register').set(CSRF).send({ email: 'pas-un-email', password: 'court' });
+    const res = await request(app).post('/api/auth/login').set(CSRF).send({ email: 'pas-un-email', password: '' });
     expect(res.status).toBe(400);
     expect(res.body.error.code).toBe('VALIDATION_ERROR');
     expect(res.body.error.fields.map((f: { path: string }) => f.path)).toEqual(expect.arrayContaining(['email', 'password']));

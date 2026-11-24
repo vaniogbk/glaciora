@@ -39,8 +39,7 @@ export function Footer({ locale, m, showPacks = false }: { locale: Locale; m: Me
         <nav aria-label={f.customerService}>
           <h3 className="text-sm font-bold uppercase tracking-brand text-glacier">{f.customerService}</h3>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link className="hover:text-glacier" href="/compte">{f.myAccount}</Link></li>
-            <li><Link className="hover:text-glacier" href="/compte/commandes">{f.trackOrder}</Link></li>
+            <li><Link className="hover:text-glacier" href="/commande/suivi">{f.trackOrder}</Link></li>
             <li><Link className="hover:text-glacier" href="/conditions-de-vente">{m.meta.termsTitle}</Link></li>
             <li><Link className="hover:text-glacier" href="/confidentialite">{m.meta.privacyTitle}</Link></li>
             <li><Link className="hover:text-glacier" href="/mentions-legales">{f.legalNotice}</Link></li>

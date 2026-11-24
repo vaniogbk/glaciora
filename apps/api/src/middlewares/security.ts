@@ -70,4 +70,6 @@ export const globalLimiter = limiter(15 * 60 * 1000, 600, 'Trop de requêtes, r�
 export const authLimiter = limiter(15 * 60 * 1000, 20, 'Trop de tentatives, réessayez dans 15 minutes.');
 export const passwordResetLimiter = limiter(60 * 60 * 1000, 5, 'Trop de demandes, réessayez plus tard.');
 export const checkoutLimiter = limiter(60 * 60 * 1000, 30, 'Trop de commandes en peu de temps, réessayez plus tard.');
+/** Suivi de commande par référence (sans compte) : freine la recherche de références au hasard. */
+export const trackingLimiter = limiter(15 * 60 * 1000, 60, 'Trop de recherches de commande, réessayez dans quelques minutes.');
 export const uploadLimiter = limiter(60 * 60 * 1000, 20, "Trop d'envois de fichiers, réessayez plus tard.");

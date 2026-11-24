@@ -31,7 +31,8 @@ function LoginForm() {
       const user = await login(String(data.get('email') ?? ''), String(data.get('password') ?? ''));
       await refresh();
       // « retour » est déjà dans la bonne langue (chemin complet de la page d'origine).
-      router.push(safeReturn(params.get('retour')) ?? (user.role === 'ADMIN' ? '/admin' : localizePath(locale, '/compte')));
+      // Plus de comptes clients : cette page ne sert qu'à l'administration de la boutique.
+      router.push(safeReturn(params.get('retour')) ?? (user.role === 'ADMIN' ? '/admin' : localizePath(locale, '/commande/suivi')));
     } catch (err) {
       const badLogin = err instanceof ApiError && err.status === 401;
       setError(badLogin && locale !== 'fr' ? m.errors.codes.INVALID_CREDENTIALS! : apiErrorMessage(err, locale, m, t.loginFailed));
@@ -60,12 +61,6 @@ function LoginForm() {
         <Link href="/compte/mot-de-passe-oublie" className="font-semibold text-deep underline">
           {t.forgotLink}
         </Link>
-        <p>
-          {t.noAccount}{' '}
-          <Link href="/compte/inscription" className="font-semibold text-deep underline">
-            {t.createAccount}
-          </Link>
-        </p>
       </div>
     </div>
   );

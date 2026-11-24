@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { loginSchema, registerSchema, resetConfirmSchema, resetRequestSchema } from '@glaciora/shared';
+import { loginSchema, resetConfirmSchema, resetRequestSchema } from '@glaciora/shared';
+import { AppError } from '../../lib/errors';
 import { asyncHandler } from '../../lib/http';
 import { COOKIE, clearAuthCookies, setAuthCookies } from '../../lib/cookies';
 import { prisma } from '../../lib/prisma';
@@ -14,15 +15,11 @@ authRouter.use((_req, res, next) => {
   next();
 });
 
-authRouter.post(
-  '/register',
-  authLimiter,
-  asyncHandler(async (req, res) => {
-    const input = registerSchema.parse(req.body);
-    await auth.register(input);
-    res.status(202).json({ message: 'Si cette adresse est valide, votre compte est prêt : vous pouvez vous connecter.' });
-  }),
-);
+// Plus de comptes clients (décision de la boutique, 2026-11-24) : la commande et son suivi se font avec la référence
+// de commande. Seuls les comptes administrateurs existants se connectent encore.
+authRouter.post('/register', authLimiter, (_req, _res, next) => {
+  next(new AppError(410, 'REGISTRATION_CLOSED', 'Aucun compte n’est nécessaire : suivez votre commande avec sa référence.'));
+});
 
 authRouter.post(
   '/login',

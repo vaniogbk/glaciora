@@ -48,7 +48,7 @@ const en: LegalDocs = {
           'accept these Terms and confirm the order, which entails an obligation to pay.',
         ],
         after: [
-          'Before confirming, the customer can go back to the previous steps to check and correct the information entered. Orders can be placed with or without a customer account.',
+          'Before confirming, the customer can go back to the previous steps to check and correct the information entered. Orders are placed without creating a customer account.',
           'The sales contract is concluded when the Seller sends the order confirmation email, which summarises the order and contains a tracking link.',
           'The Seller may refuse an abnormal order or an order whose proof of payment is inaccurate; the customer is informed and any amount paid is refunded.',
         ],
@@ -70,7 +70,7 @@ const en: LegalDocs = {
         paragraphs: [
           'Items are delivered to the European countries offered when ordering, at the address given by the customer. The available shipping methods and their prices are shown before the order is confirmed.',
           'Unless a shorter time is stated when ordering, items are delivered no later than 30 days after the payment is confirmed. If not, the customer may set the Seller an additional reasonable period; if delivery does not take place within that period, the customer may terminate the contract and obtain a refund of all amounts paid.',
-          'The customer can follow the order from their account or from the tracking link: “Being prepared”, “On its way”, then “Delivered”, each step being announced by email.',
+          'The customer follows the order without an account, on the site’s “Track my order” page, with the reference shown at the end of checkout and repeated in the confirmation email, or with the tracking link in that email: “Being prepared”, “On its way”, then “Delivered”, each step being announced by email.',
           'The risk of loss of or damage to the items passes to the customer when the customer, or a third party indicated by the customer other than the carrier, takes physical possession of them.',
           'The customer is invited to check the parcel on delivery and to report any problem (damaged parcel, missing item) to the carrier and to the Seller at {email}. This check does not affect any of the customer’s statutory rights.',
         ],
@@ -141,7 +141,7 @@ const en: LegalDocs = {
       {
         title: '2. Data processed',
         list: [
-          'Customer account: first name, last name, email address, password (stored only as an Argon2id hash, never in plain text), phone number if provided, preferred language.',
+          'Order tracking: the shop does not create customer accounts; the reference entered on the “Track my order” page is only used to show the order status, without name, address or amount.',
           'Order: name, email address, phone number, delivery address, items ordered, amounts, shipping and payment methods, order reference and tracking history.',
           'Bank transfer payment: the proof of transfer you upload (PDF receipt or image), which may show the account holder’s name and bank account details.',
           'Card payment: the card is entered at Mollie; we only receive the payment result and a transaction reference, never the card number.',
@@ -152,9 +152,9 @@ const en: LegalDocs = {
       {
         title: '3. Purposes and legal bases',
         list: [
-          'Creating and managing your account, processing and delivering your orders, verifying your payment, sending order-related emails (confirmation, tracking), handling withdrawals, complaints and refunds: performance of the contract (Article 6(1)(b) GDPR).',
+          'Processing and delivering your orders, verifying your payment, showing their tracking, sending order-related emails (confirmation, tracking), handling withdrawals, complaints and refunds: performance of the contract (Article 6(1)(b) GDPR).',
           'Keeping accounts and supporting documents: compliance with a legal obligation (Article 6(1)(c)).',
-          'Securing the website and accounts (limiting login attempts, preventing fraud and fake proofs of payment), establishing and defending our rights: legitimate interest (Article 6(1)(f)).',
+          'Securing the website and its administration (limiting login attempts, preventing fraud and fake proofs of payment), establishing and defending our rights: legitimate interest (Article 6(1)(f)).',
           'Answering your messages: pre-contractual steps or performance of the contract when the message concerns an order, legitimate interest otherwise.',
         ],
         after: [
@@ -176,7 +176,7 @@ const en: LegalDocs = {
           'Vercel Inc. (United States): website hosting;',
           'Railway Corporation (United States): hosting of the application and database;',
           'Cloudflare, Inc. (United States): private, encrypted storage of proofs of transfer (R2 service);',
-          'Sendinblue SAS, Brevo brand (France): sending order and account emails;',
+          'Sendinblue SAS, Brevo brand (France): sending order emails;',
           'Microsoft (Outlook.com): customer service mailbox;',
           'Mollie B.V. (Netherlands): processing card payments; for its own obligations (fraud and money-laundering prevention), Mollie acts as an independent controller under its own privacy policy;',
           'the carrier handling the delivery: name, delivery address, phone number and email, to deliver the parcel;',
@@ -193,7 +193,7 @@ const en: LegalDocs = {
       {
         title: '7. Retention periods',
         list: [
-          'Account: until it is deleted, which you can request at any time at {email}. Related orders are kept for the legal period below.',
+          'Orders in progress: for as long as needed to fulfil and deliver them and to handle any withdrawals, complaints and refunds.',
           'Orders and accounting records: for the period required by Polish tax and accounting law, as a rule 5 years from the end of the year concerned.',
           'Proofs of transfer: deleted automatically 400 days after being uploaded.',
           'Messages to customer service: as long as needed to handle the request and then, where applicable, until the limitation periods expire.',
@@ -208,7 +208,7 @@ const en: LegalDocs = {
         list: [
           'glaciora_lang: chosen language (1 year);',
           'glaciora_cart: cart contents (30 days);',
-          'glaciora_at and glaciora_rt: signing in to your account (15 minutes and 30 days);',
+          'glaciora_at and glaciora_rt: sign-in of the shop’s administrators only (15 minutes and 30 days);',
           'glaciora_ref: transfer reference during checkout (3 hours);',
           'glaciora_order: access to tracking for the order you have just placed (30 days).',
         ],
@@ -219,7 +219,7 @@ const en: LegalDocs = {
       {
         title: '9. Security',
         paragraphs: [
-          'Communications with the website are encrypted (HTTPS). Passwords are stored as Argon2id hashes, sign-in cookies cannot be read by page scripts, and an account is temporarily locked after 5 failed login attempts. Proofs of transfer are stored privately and can only be viewed by the shop’s administrators.',
+          'Communications with the website are encrypted (HTTPS). The tracking page only shows the order status and limits the number of searches. Administrators’ passwords are stored as Argon2id hashes, their sign-in cookies cannot be read by page scripts, and their account is temporarily locked after 5 failed login attempts. Proofs of transfer are stored privately and can only be viewed by the shop’s administrators.',
         ],
       },
       {

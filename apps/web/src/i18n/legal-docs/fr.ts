@@ -48,7 +48,7 @@ const fr: LegalDocs = {
           'acceptation des Conditions et validation de la commande, qui entraîne une obligation de paiement.',
         ],
         after: [
-          'Avant de valider, le client peut revenir aux étapes précédentes pour vérifier et corriger les informations saisies. La commande peut être passée avec ou sans compte client.',
+          'Avant de valider, le client peut revenir aux étapes précédentes pour vérifier et corriger les informations saisies. La commande se passe sans créer de compte client.',
           'Le contrat de vente est conclu à l’envoi par le Vendeur de l’e-mail de confirmation de commande, qui récapitule la commande et contient un lien de suivi.',
           'Le Vendeur peut refuser une commande anormale ou une commande dont la preuve de paiement est inexacte ; le client en est informé et toute somme versée lui est remboursée.',
         ],
@@ -70,7 +70,7 @@ const fr: LegalDocs = {
         paragraphs: [
           'Les articles sont livrés dans les pays européens proposés lors de la commande, à l’adresse indiquée par le client. Les modes de livraison disponibles et leurs tarifs sont affichés avant la validation.',
           'Sauf délai plus court indiqué lors de la commande, les articles sont livrés au plus tard 30 jours après la confirmation du paiement. À défaut, le client peut fixer au Vendeur un délai supplémentaire raisonnable ; si la livraison n’intervient pas dans ce délai, il peut résoudre le contrat et obtenir le remboursement de toutes les sommes versées.',
-          'Le client suit sa commande depuis son espace client ou depuis le lien de suivi : « En préparation », « En route » puis « Livrée », chaque étape étant annoncée par e-mail.',
+          'Le client suit sa commande sans compte, sur la page « Suivre ma commande » du site, avec la référence affichée à la fin de la commande et rappelée dans l’e-mail de confirmation, ou avec le lien de suivi de cet e-mail : « En préparation », « En route » puis « Livrée », chaque étape étant annoncée par e-mail.',
           'Le risque de perte ou d’endommagement des articles est transféré au client lorsque celui-ci, ou un tiers qu’il a désigné autre que le transporteur, en prend physiquement possession.',
           'Le client est invité à vérifier le colis à la livraison et à signaler toute anomalie (colis endommagé, article manquant) au transporteur et au Vendeur à {email}. Cette vérification ne le prive d’aucun de ses droits légaux.',
         ],
@@ -141,7 +141,7 @@ const fr: LegalDocs = {
       {
         title: '2. Données traitées',
         list: [
-          'Compte client : prénom, nom, adresse e-mail, mot de passe (enregistré uniquement sous forme d’empreinte Argon2id, jamais en clair), téléphone s’il est renseigné, langue préférée.',
+          'Suivi de commande : la boutique ne crée pas de compte client ; la référence saisie sur la page « Suivre ma commande » sert uniquement à afficher l’état de la commande, sans nom, adresse ni montant.',
           'Commande : nom, adresse e-mail, téléphone, adresse de livraison, articles commandés, montants, modes de livraison et de paiement, référence de commande et historique de suivi.',
           'Paiement par virement : la preuve de virement que vous déposez (reçu PDF ou image), qui peut faire apparaître le nom du titulaire et des éléments du compte bancaire.',
           'Paiement par carte : la carte est saisie chez Mollie ; nous recevons seulement le résultat du paiement et une référence de transaction, jamais le numéro de la carte.',
@@ -152,9 +152,9 @@ const fr: LegalDocs = {
       {
         title: '3. Finalités et bases légales',
         list: [
-          'Créer et gérer votre compte, traiter et livrer vos commandes, vérifier votre paiement, vous envoyer les e-mails liés à la commande (confirmation, suivi), traiter rétractations, réclamations et remboursements : exécution du contrat (article 6, paragraphe 1, point b) du RGPD).',
+          'Traiter et livrer vos commandes, vérifier votre paiement, en afficher le suivi, vous envoyer les e-mails liés à la commande (confirmation, suivi), traiter rétractations, réclamations et remboursements : exécution du contrat (article 6, paragraphe 1, point b) du RGPD).',
           'Tenir la comptabilité et conserver les pièces justificatives : respect d’une obligation légale (article 6, paragraphe 1, point c)).',
-          'Sécuriser le site et les comptes (limitation des tentatives de connexion, prévention de la fraude et des fausses preuves de paiement), constater et défendre nos droits : intérêt légitime (article 6, paragraphe 1, point f)).',
+          'Sécuriser le site et son administration (limitation des tentatives de connexion, prévention de la fraude et des fausses preuves de paiement), constater et défendre nos droits : intérêt légitime (article 6, paragraphe 1, point f)).',
           'Répondre à vos messages : mesures précontractuelles ou exécution du contrat lorsque le message concerne une commande, intérêt légitime dans les autres cas.',
         ],
         after: [
@@ -176,7 +176,7 @@ const fr: LegalDocs = {
           'Vercel Inc. (États-Unis) : hébergement du site web ;',
           'Railway Corporation (États-Unis) : hébergement de l’application et de la base de données ;',
           'Cloudflare, Inc. (États-Unis) : stockage privé et chiffré des preuves de virement (service R2) ;',
-          'Sendinblue SAS, marque Brevo (France) : envoi des e-mails de commande et de compte ;',
+          'Sendinblue SAS, marque Brevo (France) : envoi des e-mails liés aux commandes ;',
           'Microsoft (Outlook.com) : messagerie du service client ;',
           'Mollie B.V. (Pays-Bas) : traitement des paiements par carte ; pour ses propres obligations (lutte contre la fraude et le blanchiment), Mollie agit en tant que responsable de traitement indépendant, selon sa propre politique de confidentialité ;',
           'le transporteur chargé de la livraison : nom, adresse de livraison, téléphone et e-mail, pour acheminer le colis ;',
@@ -193,7 +193,7 @@ const fr: LegalDocs = {
       {
         title: '7. Durées de conservation',
         list: [
-          'Compte : jusqu’à sa suppression, que vous pouvez demander à tout moment à {email}. Les commandes associées restent conservées pendant la durée légale indiquée ci-dessous.',
+          'Commandes en cours : le temps de leur exécution, de la livraison et du traitement des éventuels rétractations, réclamations et remboursements.',
           'Commandes et pièces comptables : pendant la durée imposée par la législation fiscale et comptable polonaise, en principe 5 ans à compter de la fin de l’année concernée.',
           'Preuves de virement : supprimées automatiquement 400 jours après leur dépôt.',
           'Messages au service client : le temps nécessaire au traitement de la demande puis, le cas échéant, jusqu’à l’expiration des délais de prescription.',
@@ -208,7 +208,7 @@ const fr: LegalDocs = {
         list: [
           'glaciora_lang : langue choisie (1 an) ;',
           'glaciora_cart : contenu du panier (30 jours) ;',
-          'glaciora_at et glaciora_rt : connexion à votre compte (15 minutes et 30 jours) ;',
+          'glaciora_at et glaciora_rt : connexion des administrateurs de la boutique uniquement (15 minutes et 30 jours) ;',
           'glaciora_ref : référence de virement pendant la commande (3 heures) ;',
           'glaciora_order : accès au suivi de la commande que vous venez de passer (30 jours).',
         ],
@@ -219,7 +219,7 @@ const fr: LegalDocs = {
       {
         title: '9. Sécurité',
         paragraphs: [
-          'Les échanges avec le site sont chiffrés (HTTPS). Les mots de passe sont stockés sous forme d’empreinte Argon2id, les cookies de connexion sont inaccessibles aux scripts de la page, et un compte est verrouillé temporairement après 5 tentatives de connexion infructueuses. Les preuves de virement sont stockées de façon privée et ne sont consultables que par les administrateurs de la boutique.',
+          'Les échanges avec le site sont chiffrés (HTTPS). La page de suivi n’affiche que l’état de la commande et limite le nombre de recherches. Les mots de passe des administrateurs sont stockés sous forme d’empreinte Argon2id, leurs cookies de connexion sont inaccessibles aux scripts de la page, et leur compte est verrouillé temporairement après 5 tentatives de connexion infructueuses. Les preuves de virement sont stockées de façon privée et ne sont consultables que par les administrateurs de la boutique.',
         ],
       },
       {
