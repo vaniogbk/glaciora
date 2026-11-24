@@ -27,7 +27,7 @@ export default async function PackPage({ params }: Props) {
   if (!pack) notFound();
   const t = m.packs;
   const name = (m.common.packNames as Record<string, string>)[pack.slug] ?? pack.name;
-  const items = pack.items.map((item) => ({ ...item, category: { ...item.category, name: l10n.category(item.category.slug, item.category.name) } }));
+  const items = pack.items.map((item) => ({ ...item, name: l10n.name(item.slug, item.name), category: { ...item.category, name: l10n.category(item.category.slug, item.category.name) } }));
   return (
     <div className="container py-10">
       <Breadcrumbs items={[{ label: m.nav.packs, href: '/packs' }, { label: name, href: `/packs/${pack.slug}` }]} locale={locale} m={m} />

@@ -61,13 +61,6 @@ export function stripLocale(pathname: string): string {
   return pathname || '/';
 }
 
-/**
- * Langues que l'API en ligne ne connaît pas encore : ses schémas refusent une langue inconnue (400), donc le site
- * envoie la langue de repli pour les e-mails clients. Retirer l'entrée une fois l'API redéployée (railway up).
- */
-const API_FALLBACK: Partial<Record<Locale, Locale>> = { ro: 'en', ka: 'en', da: 'en', hr: 'en' };
-/** Langue transmise à l'API (commande, inscription, mot de passe oublié). */
-export const apiLocale = (locale: Locale): Locale => API_FALLBACK[locale] ?? locale;
 
 /** Codes de langue du navigateur rattachés à une langue du site (norvégien : no / nn → bokmål). */
 const ALIASES: Record<string, Locale> = { no: 'nb', nn: 'nb' };

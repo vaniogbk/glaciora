@@ -238,7 +238,9 @@ export async function runCatalogueImport(options: ImportOptions) {
         'Image présente dans le dossier': imagePresent ? 'Oui' : 'Non',
         Dossier: ext.folder,
       });
-      complementRows.set(ext.reference, row);
+      // Extension : pas de prix barré (le prix conseillé msrp_eur reste une information du CSV, jamais affichée) ;
+      // articles neufs uniquement (pas de colonne condition).
+      complementRows.set(ext.reference, { ...row, compare_at_eur: '', condition: row.condition || 'NEW' });
       imageDirs.set(ext.reference, extensionDir);
     }
   }

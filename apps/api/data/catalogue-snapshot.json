@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-27T00:45:33.790Z",
+  "exportedAt": "2026-11-24T03:32:28.722Z",
   "products": [
     {
       "reference": "GLA-001",
@@ -44,7 +44,7 @@
           "compareAtPriceCents": null,
           "isActive": true,
           "position": 0,
-          "stock": 30
+          "stock": 29
         },
         {
           "sku": "GLA-001-144-CM",
@@ -103,7 +103,8 @@
           "width": 1200,
           "height": 1200,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_72.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_72.png",
+          "color": null
         },
         {
           "url": "/media/products/volkl-shine-72-vmotion-10-gw-2-822b896a2f.webp",
@@ -112,7 +113,8 @@
           "width": 1200,
           "height": 1200,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_72_variante_coloris.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_72_variante_coloris.png",
+          "color": null
         }
       ]
     },
@@ -205,7 +207,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_76.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_76.png",
+          "color": null
         }
       ]
     },
@@ -286,7 +289,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_78.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_shine_78.png",
+          "color": null
         }
       ]
     },
@@ -369,7 +373,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_92.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_92.png",
+          "color": null
         }
       ]
     },
@@ -448,7 +453,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_98.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_98.png",
+          "color": null
         }
       ]
     },
@@ -540,7 +546,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_104.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_slap_104.png",
+          "color": null
         }
       ]
     },
@@ -633,7 +640,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_95.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_95.png",
+          "color": null
         }
       ]
     },
@@ -738,7 +746,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_102.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_102.png",
+          "color": null
         }
       ]
     },
@@ -819,7 +828,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_108.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/zag_ubac_108.png",
+          "color": null
         }
       ]
     },
@@ -898,7 +908,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_v_werks_100.png"
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/volkl_v_werks_100.png",
+          "color": null
         }
       ]
     },
@@ -977,7 +988,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/02_Skis_Junior/volkl_shine_jr.png"
+          "sourceFile": "01_SKI/02_Skis_Junior/volkl_shine_jr.png",
+          "color": null
         }
       ]
     },
@@ -1057,7 +1069,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/02_Skis_Junior/zag_slap_junior.png"
+          "sourceFile": "01_SKI/02_Skis_Junior/zag_slap_junior.png",
+          "color": null
         }
       ]
     },
@@ -1175,7 +1188,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/03_Chaussures_Ski/salomon_chaussure_ski_performance.png"
+          "sourceFile": "01_SKI/03_Chaussures_Ski/salomon_chaussure_ski_performance.png",
+          "color": null
         }
       ]
     },
@@ -1291,7 +1305,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/03_Chaussures_Ski/salomon_chaussure_ski_confort.png"
+          "sourceFile": "01_SKI/03_Chaussures_Ski/salomon_chaussure_ski_confort.png",
+          "color": null
         }
       ]
     },
@@ -1407,7 +1422,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/03_Chaussures_Ski/nordica_chaussure_ski_performance.png"
+          "sourceFile": "01_SKI/03_Chaussures_Ski/nordica_chaussure_ski_performance.png",
+          "color": null
         }
       ]
     },
@@ -1510,7 +1526,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/03_Chaussures_Ski/nordica_chaussure_ski_confort.png"
+          "sourceFile": "01_SKI/03_Chaussures_Ski/nordica_chaussure_ski_confort.png",
+          "color": null
         }
       ]
     },
@@ -1626,7 +1643,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/03_Chaussures_Ski/lange_chaussure_ski_performance.png"
+          "sourceFile": "01_SKI/03_Chaussures_Ski/lange_chaussure_ski_performance.png",
+          "color": null
         }
       ]
     },
@@ -1743,7 +1761,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/03_Chaussures_Ski/lange_chaussure_ski_confort.png"
+          "sourceFile": "01_SKI/03_Chaussures_Ski/lange_chaussure_ski_confort.png",
+          "color": null
         }
       ]
     },
@@ -1825,7 +1844,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/04_Casques/poc_casque_ski.png"
+          "sourceFile": "01_SKI/04_Casques/poc_casque_ski.png",
+          "color": null
         }
       ]
     },
@@ -1862,9 +1882,9 @@
       "importChecksum": "5068a1850fd9b1a32d5ab21800c2f9d0e6e897995cbbeb65f4b6fe39412a7e8b",
       "variants": [
         {
-          "sku": "GLA-020-S-52-55-5-CM",
+          "sku": "GLA-020-S-52-55",
           "sizeSystem": "HELMET",
-          "sizeLabel": "S (52-55,5 cm)",
+          "sizeLabel": "S (52-55",
           "sizeSortOrder": 10,
           "color": "Matte Black",
           "priceCents": 22495,
@@ -1874,27 +1894,51 @@
           "stock": 30
         },
         {
-          "sku": "GLA-020-M-55-5-59-CM",
+          "sku": "GLA-020-M-55",
           "sizeSystem": "HELMET",
-          "sizeLabel": "M (55,5-59 cm)",
+          "sizeLabel": "M (55",
           "sizeSortOrder": 20,
           "color": "Matte Black",
           "priceCents": 22495,
           "compareAtPriceCents": 24995,
           "isActive": true,
-          "position": 1,
+          "position": 2,
           "stock": 30
         },
         {
-          "sku": "GLA-020-L-59-62-5-CM",
+          "sku": "GLA-020-5-59-CM",
           "sizeSystem": "HELMET",
-          "sizeLabel": "L (59-62,5 cm)",
+          "sizeLabel": "5-59 cm)",
+          "sizeSortOrder": -10,
+          "color": "Matte Black",
+          "priceCents": 22495,
+          "compareAtPriceCents": 24995,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-020-L-59-62",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "L (59-62",
           "sizeSortOrder": 30,
           "color": "Matte Black",
           "priceCents": 22495,
           "compareAtPriceCents": 24995,
           "isActive": true,
-          "position": 2,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-020-5-CM",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "5 cm)",
+          "sizeSortOrder": -10,
+          "color": "Matte Black",
+          "priceCents": 22495,
+          "compareAtPriceCents": 24995,
+          "isActive": true,
+          "position": 5,
           "stock": 30
         }
       ],
@@ -1906,7 +1950,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/04_Casques/giro_casque_ski.png"
+          "sourceFile": "01_SKI/04_Casques/giro_casque_ski.png",
+          "color": null
         }
       ]
     },
@@ -1963,7 +2008,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/05_Masques/oakley_masque_ski.png"
+          "sourceFile": "01_SKI/05_Masques/oakley_masque_ski.png",
+          "color": null
         }
       ]
     },
@@ -2019,7 +2065,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/05_Masques/julbo_masque_ski.png"
+          "sourceFile": "01_SKI/05_Masques/julbo_masque_ski.png",
+          "color": null
         }
       ]
     },
@@ -2074,7 +2121,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/06_Securite_Avalanche/ortovox_dva.png"
+          "sourceFile": "01_SKI/06_Securite_Avalanche/ortovox_dva.png",
+          "color": null
         }
       ]
     },
@@ -2130,7 +2178,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/06_Securite_Avalanche/mammut_dva.png"
+          "sourceFile": "01_SKI/06_Securite_Avalanche/mammut_dva.png",
+          "color": null
         }
       ]
     },
@@ -2235,7 +2284,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/07_Gants_Chauffants/black_diamond_gants_chauffants.png"
+          "sourceFile": "01_SKI/07_Gants_Chauffants/black_diamond_gants_chauffants.png",
+          "color": null
         }
       ]
     },
@@ -2327,7 +2377,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "01_SKI/07_Gants_Chauffants/kebada_t2_gants.png"
+          "sourceFile": "01_SKI/07_Gants_Chauffants/kebada_t2_gants.png",
+          "color": null
         }
       ]
     },
@@ -2477,7 +2528,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/01_Patins/warrior_alpha_pro_patins.png"
+          "sourceFile": "02_HOCKEY/01_Patins/warrior_alpha_pro_patins.png",
+          "color": null
         }
       ]
     },
@@ -2627,7 +2679,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/01_Patins/bauer_vapor_hyperlite2_patins.png"
+          "sourceFile": "02_HOCKEY/01_Patins/bauer_vapor_hyperlite2_patins.png",
+          "color": null
         }
       ]
     },
@@ -2779,7 +2832,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/01_Patins/ccm_tacks_xf_pro_patins.png"
+          "sourceFile": "02_HOCKEY/01_Patins/ccm_tacks_xf_pro_patins.png",
+          "color": null
         }
       ]
     },
@@ -2870,7 +2924,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/02_Batons/bauer_twitch_baton.png"
+          "sourceFile": "02_HOCKEY/02_Batons/bauer_twitch_baton.png",
+          "color": null
         }
       ]
     },
@@ -2937,7 +2992,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/02_Batons/bauer_nexus_2n_pro_xl_baton.png"
+          "sourceFile": "02_HOCKEY/02_Batons/bauer_nexus_2n_pro_xl_baton.png",
+          "color": null
         }
       ]
     },
@@ -2991,7 +3047,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/02_Batons/easton_synergy_baton_vintage.png"
+          "sourceFile": "02_HOCKEY/02_Batons/easton_synergy_baton_vintage.png",
+          "color": null
         }
       ]
     },
@@ -3067,7 +3124,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/03_Casques/bauer_4500_casque_hockey.png"
+          "sourceFile": "02_HOCKEY/03_Casques/bauer_4500_casque_hockey.png",
+          "color": null
         }
       ]
     },
@@ -3121,7 +3179,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/03_Casques/jofa_casque_hockey_vintage.png"
+          "sourceFile": "02_HOCKEY/03_Casques/jofa_casque_hockey_vintage.png",
+          "color": null
         }
       ]
     },
@@ -3179,7 +3238,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/franklin_sports_palet.png"
+          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/franklin_sports_palet.png",
+          "color": null
         }
       ]
     },
@@ -3236,7 +3296,8 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/vevor_dalles_dryland.png"
+          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/vevor_dalles_dryland.png",
+          "color": null
         }
       ]
     },
@@ -3292,7 +3353,2876 @@
           "width": 1024,
           "height": 1024,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/franklin_sports_mini_hockey_set.png"
+          "sourceFile": "02_HOCKEY/05_Accessoires_Entrainement/franklin_sports_mini_hockey_set.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-040",
+      "slug": "rossignol-hero-insulated-veste-homme",
+      "name": "Hero Insulated (veste homme)",
+      "brand": "Rossignol",
+      "model": "Hero Insulated Jacket",
+      "shortDescription": "Veste de ski homme isolée : membrane 20K/20K, coutures étanches, isolation PrimaLoft Black Eco 100 g.",
+      "description": null,
+      "categorySlug": "vestes-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 34490,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Homme",
+        "Saison": "2026/2027",
+        "Coutures": "Entièrement étanches",
+        "Membrane": "20K/20K",
+        "Isolation": "PrimaLoft Black Eco 100 g",
+        "Déperlant": "DWR sans PFC"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/veste-de-ski/rossignol/hero-insulated-black88681515",
+      "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/rossignol/hero-insulated-black88681515",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "63758cb9351da3a47fe30e5bb3f71dc8f44d721afc41e949ab6a4db49ddb42ed",
+      "variants": [
+        {
+          "sku": "GLA-040-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-040-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 34490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-hero-insulated-veste-homme-cf6bd23c7b.webp",
+          "alt": "Rossignol Hero Insulated (veste homme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/rossignol-hero-insulated-veste-homme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-041",
+      "slug": "picture-object-veste-homme",
+      "name": "Object (veste homme)",
+      "brand": "Picture Organic Clothing",
+      "model": "Object Jacket",
+      "shortDescription": "Veste de ski homme freeride en polyester circulaire recyclé, membrane Dryplay 20K/20K.",
+      "description": null,
+      "categorySlug": "vestes-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 29690,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Homme",
+        "Saison": "2026/2027",
+        "Matière": "Polyester circulaire recyclé",
+        "Membrane": "Dryplay 20K/20K",
+        "Déperlant": "Teflon EcoElite sans PFC"
+      },
+      "colors": [
+        "Vapor Grey"
+      ],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/veste-de-ski/picture/picture-object-vapor-grey88645150",
+      "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/picture-object-vapor-grey88645150",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "7bd322b2799e5886651c39a8dbcfcf9fdaa781828d5da2a87b38eab55cc929da",
+      "variants": [
+        {
+          "sku": "GLA-041-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Vapor Grey",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Vapor Grey",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Vapor Grey",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-041-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Vapor Grey",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/picture-object-veste-homme-e755367193.webp",
+          "alt": "Picture Organic Clothing Object (veste homme) coloris Vapor Grey",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-object-veste-homme-gris-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-042",
+      "slug": "picture-parker-veste-homme",
+      "name": "Parker (veste homme)",
+      "brand": "Picture Organic Clothing",
+      "model": "Parker Jacket",
+      "shortDescription": "Veste de ski homme polyvalente en tissu 3L Bonded Fleece, membrane Dryplay 10K/10K, aérations sous les bras.",
+      "description": null,
+      "categorySlug": "vestes-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 15690,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Tissu": "3L Bonded Fleece",
+        "Public": "Homme",
+        "Saison": "2026/2027",
+        "Matière": "Polyester 100 % recyclé",
+        "Membrane": "Dryplay 10K/10K",
+        "Aérations": "Zippées sous les bras"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/veste-de-ski/picture/parker-black88681403",
+      "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/parker-black88681403",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "bd4b35279689817775907296793e777b690db29c82c8488637bbc0b0c67c69f2",
+      "variants": [
+        {
+          "sku": "GLA-042-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-042-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-042-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-042-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 15690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/picture-parker-veste-homme-b0bb5160a4.webp",
+          "alt": "Picture Organic Clothing Parker (veste homme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-parker-veste-homme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-043",
+      "slug": "picture-exa-veste-femme",
+      "name": "Exa (veste femme)",
+      "brand": "Picture Organic Clothing",
+      "model": "Exa Jacket",
+      "shortDescription": "Veste de ski femme hors-piste et station, membrane Dryplay 20K/20K, isolation 60 g/m².",
+      "description": null,
+      "categorySlug": "vestes-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 29690,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Femme",
+        "Saison": "2026/2027",
+        "Matière": "Polyester circulaire recyclé",
+        "Membrane": "Dryplay 20K/20K",
+        "Isolation": "Polyester 60 g/m²",
+        "Déperlant": "Teflon EcoElite sans PFC"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/veste-de-ski/picture/exa-black88644933",
+      "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/exa-black88644933",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "1ac02b74265ff4978ca2723a1e4d70da6181bc0a362364e222216dd849315939",
+      "variants": [
+        {
+          "sku": "GLA-043-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-043-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 29690,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/picture-exa-veste-femme-052d9f1d65.webp",
+          "alt": "Picture Organic Clothing Exa (veste femme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-exa-veste-femme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-044",
+      "slug": "rossignol-staci-insulated-veste-femme",
+      "name": "Staci Insulated (veste femme)",
+      "brand": "Rossignol",
+      "model": "Staci Insulated Jacket",
+      "shortDescription": "Veste de ski femme en Oxford deux couches, membrane 20K/15K, isolation Polydown recyclée 60 g/m².",
+      "description": null,
+      "categorySlug": "vestes-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 25490,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Femme",
+        "Saison": "2025/2026",
+        "Matière": "Polyester recyclé",
+        "Membrane": "20K/15K",
+        "Isolation": "Polydown recyclée 60 g/m²",
+        "Déperlant": "Sans PFC"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/veste-de-ski/rossignol/w-staci-insulated-jacket-black72466379",
+      "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/rossignol/w-staci-insulated-jacket-black72466379",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "5753e84d4ddb1c6234caccee87fdd953f68c828b3380c89260d98304519910f6",
+      "variants": [
+        {
+          "sku": "GLA-044-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 25490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-044-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 25490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-044-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 25490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-staci-insulated-veste-femme-ca4554f778.webp",
+          "alt": "Rossignol Staci Insulated (veste femme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/rossignol-staci-insulated-veste-femme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-045",
+      "slug": "rossignol-hero-insulated-pantalon-homme",
+      "name": "Hero Insulated (pantalon homme)",
+      "brand": "Rossignol",
+      "model": "Hero Insulated Pant",
+      "shortDescription": "Pantalon de ski homme stretch, membrane 20K/20K, isolation PrimaLoft Black Eco 40 g.",
+      "description": null,
+      "categorySlug": "pantalons-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 19090,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Tissu": "Recycled Mechanical Stretch",
+        "Public": "Homme",
+        "Saison": "2026/2027",
+        "Membrane": "20K/20K",
+        "Isolation": "PrimaLoft Black Eco 40 g"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/vetement-ski-homme/rossignol/hero-insulated-black88680684",
+      "priceSourceUrl": "https://www.glisshop.com/vetement-ski-homme/rossignol/hero-insulated-black88680684",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "7b7e17247dfadd14f5ebfdc2c1648d8663283e9d6b569167cc78bd1b57d63e9c",
+      "variants": [
+        {
+          "sku": "GLA-045-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-045-XXL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XXL",
+          "sizeSortOrder": 60,
+          "color": "Noir",
+          "priceCents": 19090,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-hero-insulated-pantalon-homme-b485cbd34d.webp",
+          "alt": "Rossignol Hero Insulated (pantalon homme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-hero-insulated-pantalon-homme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-046",
+      "slug": "rossignol-insulated-ski-pant-pantalon-homme",
+      "name": "Insulated Ski Pant (pantalon homme)",
+      "brand": "Rossignol",
+      "model": "Insulated Ski Pant",
+      "shortDescription": "Pantalon de ski homme renforcé, nylon et polyester recyclé, membrane 20K/20K.",
+      "description": null,
+      "categorySlug": "pantalons-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 14990,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Homme",
+        "Saison": "2025/2026",
+        "Matière": "Nylon et polyester recyclé",
+        "Membrane": "20K/20K",
+        "Déperlant": "DWR sans PFC"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/vetement-ski-homme/rossignol/insulated-ski-pant-black72167947",
+      "priceSourceUrl": "https://www.glisshop.com/vetement-ski-homme/rossignol/insulated-ski-pant-black72167947",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "3e4f26e6f7edc1e8e927753aef95db526aa473e6c0ee4d448e5567e47981fdbf",
+      "variants": [
+        {
+          "sku": "GLA-046-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-046-XXL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XXL",
+          "sizeSortOrder": 60,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-insulated-ski-pant-pantalon-homme-7cb9f8e555.webp",
+          "alt": "Rossignol Insulated Ski Pant (pantalon homme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-ski-pant-pantalon-homme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-047",
+      "slug": "rossignol-insulated-pantalon-femme",
+      "name": "Insulated (pantalon femme)",
+      "brand": "Rossignol",
+      "model": "W's Insulated Pant",
+      "shortDescription": "Pantalon de ski femme stretch, membrane 20K/20K, isolation PrimaLoft Black Eco 40 g.",
+      "description": null,
+      "categorySlug": "pantalons-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 14990,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Femme",
+        "Saison": "2026/2027",
+        "Coutures": "Entièrement étanches",
+        "Membrane": "20K/20K",
+        "Isolation": "PrimaLoft Black Eco 40 g"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/vetement-ski-femme/rossignol/w-s-insulated-black88680725",
+      "priceSourceUrl": "https://www.glisshop.com/vetement-ski-femme/rossignol/w-s-insulated-black88680725",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "3a444593a7519977c7727e5e69429036b752aedfedee44ccb939e57581290783",
+      "variants": [
+        {
+          "sku": "GLA-047-XS",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XS",
+          "sizeSortOrder": 10,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-047-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-insulated-pantalon-femme-5a2626d15f.webp",
+          "alt": "Rossignol Insulated (pantalon femme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/rossignol-insulated-pantalon-femme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-048",
+      "slug": "picture-exa-pantalon-femme",
+      "name": "Exa (pantalon femme)",
+      "brand": "Picture Organic Clothing",
+      "model": "Exa Pant",
+      "shortDescription": "Pantalon de ski femme hors-piste en polyester circulaire, membrane Dryplay 20K/20K.",
+      "description": null,
+      "categorySlug": "pantalons-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 14990,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Femme",
+        "Saison": "2025/2026",
+        "Coutures": "Entièrement étanches",
+        "Matière": "Polyester circulaire 100 % recyclé",
+        "Membrane": "Dryplay 20K/20K (20 000 mm / 20 000 g/m²/24 h)"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/vetement-ski-femme/picture/exa-black72805952",
+      "priceSourceUrl": "https://www.glisshop.com/vetement-ski-femme/picture/exa-black72805952",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "45137694a95a68c326c444a1e6803d86498f4ef5a8a27de1244fa3422c022826",
+      "variants": [
+        {
+          "sku": "GLA-048-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-048-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 14990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/picture-exa-pantalon-femme-8a0e3e897d.webp",
+          "alt": "Picture Organic Clothing Exa (pantalon femme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/02_Pantalons_Ski/picture-exa-pantalon-femme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-049",
+      "slug": "picture-snowy-toddler-combinaison-enfant",
+      "name": "Snowy Toddler (combinaison enfant)",
+      "brand": "Picture Organic Clothing",
+      "model": "Snowy Toddler Suit",
+      "shortDescription": "Combinaison de ski enfant doublée sherpa, membrane Dryplay 10K/10K, système I-fit qui s'allonge avec l'enfant.",
+      "description": null,
+      "categorySlug": "combinaisons-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 11890,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Enfant (3 à 5 ans)",
+        "Saison": "2026/2027",
+        "Doublure": "Sherpa",
+        "Membrane": "Dryplay 10K/10K",
+        "Ajustement": "Système I-fit"
+      },
+      "colors": [
+        "Wild Spot Print"
+      ],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/vetement-ski-enfant/picture/snowy-toddler-suit-wild-spot-print88478874",
+      "priceSourceUrl": "https://www.glisshop.com/vetement-ski-enfant/picture/snowy-toddler-suit-wild-spot-print88478874",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "e8c1e7a193e2e4addb6c6f4435d6ac8952070ef4f90328a179cd6652d5b497e5",
+      "variants": [
+        {
+          "sku": "GLA-049-3-ANS",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "3 ans",
+          "sizeSortOrder": 30,
+          "color": "Wild Spot Print",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-049-4-ANS",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "4 ans",
+          "sizeSortOrder": 40,
+          "color": "Wild Spot Print",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-049-5-ANS",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "5 ans",
+          "sizeSortOrder": 50,
+          "color": "Wild Spot Print",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/picture-snowy-toddler-combinaison-enfant-27ba443e09.webp",
+          "alt": "Picture Organic Clothing Snowy Toddler (combinaison enfant) coloris Wild Spot Print",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/03_Combinaisons_Ski/picture-snowy-toddler-combinaison-enfant-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-050",
+      "slug": "picture-daumy-veste-enfant",
+      "name": "Daumy (veste enfant)",
+      "brand": "Picture Organic Clothing",
+      "model": "Daumy Jacket",
+      "shortDescription": "Veste de ski garçon, membrane Dryplay 20K/20K, jupe pare-neige et système grow-with-me.",
+      "description": null,
+      "categorySlug": "vestes-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 11890,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Enfant (garçon)",
+        "Saison": "2026/2027",
+        "Matière": "Polyester dont 52 % recyclé",
+        "Membrane": "Dryplay 20K/20K",
+        "Jupe pare-neige": "Oui"
+      },
+      "colors": [
+        "Capri Breeze"
+      ],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/veste-de-ski/picture/daumy-capri-breeze88681319",
+      "priceSourceUrl": "https://www.glisshop.com/veste-de-ski/picture/daumy-capri-breeze88681319",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "acb2a0c93420d6b80c565751d2d8c16fdb8f3978f805ae69593a54d3d92872f8",
+      "variants": [
+        {
+          "sku": "GLA-050-12-ANS",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "12 ans",
+          "sizeSortOrder": 120,
+          "color": "Capri Breeze",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-050-14-ANS",
+          "sizeSystem": "KIDS_AGE",
+          "sizeLabel": "14 ans",
+          "sizeSortOrder": 140,
+          "color": "Capri Breeze",
+          "priceCents": 11890,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/picture-daumy-veste-enfant-ea741d54c1.webp",
+          "alt": "Picture Organic Clothing Daumy (veste enfant) coloris Capri Breeze",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/01_Vestes_Ski/picture-daumy-veste-enfant-bleu-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-051",
+      "slug": "odlo-active-warm-eco-haut-thermique",
+      "name": "Active Warm Eco (haut thermique)",
+      "brand": "Odlo",
+      "model": "Active Warm Eco Top Halfzip",
+      "shortDescription": "Haut thermique manches longues col demi-zip en polyester recyclé, construction body mapping.",
+      "description": null,
+      "categorySlug": "sous-vetements-thermiques",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 4850,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Col": "Demi-zip",
+        "Public": "Homme",
+        "Matière": "Polyester recyclé",
+        "Construction": "Body mapping"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/sous-vetements/odlo/active-warm-eco-top-ls-halfzip-black-black56442480",
+      "priceSourceUrl": "https://www.glisshop.com/sous-vetements/odlo/active-warm-eco-top-ls-halfzip-black-black56442480",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "d894d65a4eb9f3537b5277781fbfffdf35d27d847f0ed40765d7aa72b83f2a7d",
+      "variants": [
+        {
+          "sku": "GLA-051-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 4850,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-051-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 4850,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-051-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 4850,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-051-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 4850,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/odlo-active-warm-eco-haut-thermique-58cad66d75.webp",
+          "alt": "Odlo Active Warm Eco (haut thermique) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/04_Sous_Vetements_Thermiques/odlo-active-warm-eco-haut-thermique-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-052",
+      "slug": "odlo-active-warm-eco-collant-thermique",
+      "name": "Active Warm Eco (collant thermique)",
+      "brand": "Odlo",
+      "model": "Active Warm Eco Bottom Long",
+      "shortDescription": "Collant thermique long en polyester recyclé, construction body mapping, à porter sous le pantalon de ski.",
+      "description": null,
+      "categorySlug": "sous-vetements-thermiques",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 4490,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Homme",
+        "Matière": "Polyester recyclé",
+        "Construction": "Organic Body Mapping"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/sous-vetements/odlo/active-warm-eco-bottom-long-black56442496",
+      "priceSourceUrl": "https://www.glisshop.com/sous-vetements/odlo/active-warm-eco-bottom-long-black56442496",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "c44011e4bbe07be7da4d2390f7adfff81c6c77db10f6b5a8d39bf7f3d3a475ef",
+      "variants": [
+        {
+          "sku": "GLA-052-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-052-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-052-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-052-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 4490,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/odlo-active-warm-eco-collant-thermique-c5f1f6462b.webp",
+          "alt": "Odlo Active Warm Eco (collant thermique) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/04_Sous_Vetements_Thermiques/odlo-active-warm-eco-collant-thermique-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-053",
+      "slug": "picture-park-zip-tech-polaire",
+      "name": "Park Zip Tech (polaire)",
+      "brand": "Picture Organic Clothing",
+      "model": "Park Zip Tech",
+      "shortDescription": "Polaire zippée en polyester 100 % recyclé, certifiée GRS et Oeko-Tex Standard 100, zip YKK.",
+      "description": null,
+      "categorySlug": "polaires",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 10590,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Public": "Homme",
+        "Saison": "2026/2027",
+        "Matière": "Polyester 100 % recyclé",
+        "Fermeture": "Zip YKK intégral",
+        "Certifications": "GRS, Oeko-Tex Standard 100"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/polaire/picture/park-zip-tech-black88645184",
+      "priceSourceUrl": "https://www.glisshop.com/polaire/picture/park-zip-tech-black88645184",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "ac4fdbbd10955dcc153925556da2b4e7c7aa8f98631186844928d5242528a6e0",
+      "variants": [
+        {
+          "sku": "GLA-053-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": "Noir",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-053-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": "Noir",
+          "priceCents": 10590,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/picture-park-zip-tech-polaire-a295c2e1f9.webp",
+          "alt": "Picture Organic Clothing Park Zip Tech (polaire) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "03_VETEMENTS/05_Polaires/picture-park-zip-tech-polaire-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-054",
+      "slug": "rossignol-arcade-82-xpress-11-gw-ski-homme-avec-fixations",
+      "name": "Arcade 82 + Xpress 11 GW (ski homme avec fixations)",
+      "brand": "Rossignol",
+      "model": "Arcade 82 Xpress + Look Xpress 11 GW",
+      "shortDescription": "Ski all-mountain homme livré avec fixations Look Xpress 11 GW, montage compris.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 36990,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Usage": "All-mountain",
+        "Public": "Homme",
+        "Saison": "2026/2027",
+        "Fixations": "Look Xpress 11 GW B83"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.glisshop.com/pack-ski-fixations/rossignol/pack-ski-alpin-arcade-82-xpress-fix71529419",
+      "priceSourceUrl": "https://www.glisshop.com/pack-ski-fixations/rossignol/pack-ski-alpin-arcade-82-xpress-fix71529419",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "43dcf699837a4c842b7b90ebfe6af2f2dded0c47f385364006d1b2292495d049",
+      "variants": [
+        {
+          "sku": "GLA-054-152-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "152 cm",
+          "sizeSortOrder": 1520,
+          "color": null,
+          "priceCents": 36990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-054-160-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "160 cm",
+          "sizeSortOrder": 1600,
+          "color": null,
+          "priceCents": 36990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-054-168-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "168 cm",
+          "sizeSortOrder": 1680,
+          "color": null,
+          "priceCents": 36990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-054-176-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "176 cm",
+          "sizeSortOrder": 1760,
+          "color": null,
+          "priceCents": 36990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-054-184-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "184 cm",
+          "sizeSortOrder": 1840,
+          "color": null,
+          "priceCents": 36990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-arcade-82-xpress-11-gw-ski-homme-avec-fixations-ba0e047541.webp",
+          "alt": "Rossignol Arcade 82 + Xpress 11 GW (ski homme avec fixations)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/rossignol-arcade-82-ski-homme-fixations-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-055",
+      "slug": "head-shape-e-v5-pr-10-gw-ski-avec-fixations",
+      "name": "Shape e-V5 + PR 10 GW (ski avec fixations)",
+      "brand": "Head",
+      "model": "Shape e-V5 + PR 10 GW",
+      "shortDescription": "Ski de piste livré avec fixations Head PR 10 GW, montage compris.",
+      "description": null,
+      "categorySlug": "skis-all-mountain-freeride",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 31990,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Usage": "Piste",
+        "Saison": "2025/2026",
+        "Fixations": "Head PR 10 GW Br. 85"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/pack-ski-fixations/head/pack-ski-alpin-shape-e-v5-fix71997413",
+      "priceSourceUrl": "https://www.glisshop.com/pack-ski-fixations/head/pack-ski-alpin-shape-e-v5-fix71997413",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "12bef435d8d3e9c892294122ecc27a78ec6f132beeab5efcb0e12e23c975db5b",
+      "variants": [
+        {
+          "sku": "GLA-055-156-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "156 cm",
+          "sizeSortOrder": 1560,
+          "color": null,
+          "priceCents": 31990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-055-163-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "163 cm",
+          "sizeSortOrder": 1630,
+          "color": null,
+          "priceCents": 31990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-055-170-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "170 cm",
+          "sizeSortOrder": 1700,
+          "color": null,
+          "priceCents": 31990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-055-177-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "177 cm",
+          "sizeSortOrder": 1770,
+          "color": null,
+          "priceCents": 31990,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/head-shape-e-v5-pr-10-gw-ski-avec-fixations-122ca88d91.webp",
+          "alt": "Head Shape e-V5 + PR 10 GW (ski avec fixations)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/01_Skis_All_Mountain_Freeride/head-shape-ev5-ski-fixations-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-056",
+      "slug": "rossignol-tactic-batons-de-ski",
+      "name": "Tactic (bâtons de ski)",
+      "brand": "Rossignol",
+      "model": "Tactic",
+      "shortDescription": "Paire de bâtons de ski de piste en aluminium, dragonne réglable.",
+      "description": null,
+      "categorySlug": "batons-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 2290,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Usage": "Piste",
+        "Saison": "2024/2025",
+        "Vendu par": "Paire"
+      },
+      "colors": [
+        "Noir / Rouge"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/batons-de-ski/rossignol/tactic-black-red58540970",
+      "priceSourceUrl": "https://www.glisshop.com/batons-de-ski/rossignol/tactic-black-red58540970",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "4358d7f6a87b9ee7adbd13b1495db0d482ab819b7e1cc95d368345d48187b50f",
+      "variants": [
+        {
+          "sku": "GLA-056-110-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "110 cm",
+          "sizeSortOrder": 1100,
+          "color": "Noir / Rouge",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-056-115-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "115 cm",
+          "sizeSortOrder": 1150,
+          "color": "Noir / Rouge",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-056-120-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "120 cm",
+          "sizeSortOrder": 1200,
+          "color": "Noir / Rouge",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-056-125-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "125 cm",
+          "sizeSortOrder": 1250,
+          "color": "Noir / Rouge",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-056-130-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "130 cm",
+          "sizeSortOrder": 1300,
+          "color": "Noir / Rouge",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-056-135-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "135 cm",
+          "sizeSortOrder": 1350,
+          "color": "Noir / Rouge",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-tactic-batons-de-ski-70c1cc208d.webp",
+          "alt": "Rossignol Tactic (bâtons de ski) coloris Noir / Rouge",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/08_Batons/rossignol-tactic-batons-ski-noir-rouge-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-057",
+      "slug": "rossignol-electra-batons-de-ski-femme",
+      "name": "Electra (bâtons de ski femme)",
+      "brand": "Rossignol",
+      "model": "Electra",
+      "shortDescription": "Paire de bâtons de ski de piste pour femme, dragonne réglable.",
+      "description": null,
+      "categorySlug": "batons-de-ski",
+      "sport": "SKI",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 2290,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Usage": "Piste",
+        "Public": "Femme",
+        "Saison": "2024/2025",
+        "Vendu par": "Paire"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.glisshop.com/batons-de-ski/rossignol/electra-black57327196",
+      "priceSourceUrl": "https://www.glisshop.com/batons-de-ski/rossignol/electra-black57327196",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "543c862e76c924bcb9c69a2de38d5f56911999c6b0de6841265b58b54195a56f",
+      "variants": [
+        {
+          "sku": "GLA-057-105-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "105 cm",
+          "sizeSortOrder": 1050,
+          "color": "Noir",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-110-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "110 cm",
+          "sizeSortOrder": 1100,
+          "color": "Noir",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-115-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "115 cm",
+          "sizeSortOrder": 1150,
+          "color": "Noir",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-057-120-CM",
+          "sizeSystem": "SKI_LENGTH",
+          "sizeLabel": "120 cm",
+          "sizeSortOrder": 1200,
+          "color": "Noir",
+          "priceCents": 2290,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/rossignol-electra-batons-de-ski-femme-3b288d86bb.webp",
+          "alt": "Rossignol Electra (bâtons de ski femme) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "01_SKI/08_Batons/rossignol-electra-batons-ski-femme-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-058",
+      "slug": "bauer-supreme-f40-gants-de-hockey-senior",
+      "name": "Supreme F40 (gants de hockey senior)",
+      "brand": "Bauer",
+      "model": "Supreme F40 Senior",
+      "shortDescription": "Gants de hockey senior : paume CONNEKT, doigts SHOTBOOST, pouce FLEX LOCK, doublure THERMO MAX.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 13995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Paume": "CONNEKT",
+        "Pouce": "FLEX LOCK",
+        "Saison": "2025/2026",
+        "Doublure": "THERMO MAX",
+        "Catégorie": "Senior"
+      },
+      "colors": [
+        "Noir / Blanc"
+      ],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/gants-hockey/17845-82191-gants-hockey-bauer-supreme-f40-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/gants-hockey/17845-82191-gants-hockey-bauer-supreme-f40-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "3235c06ca88e9dd776380f06649517fdeb7417c5670cf3074ef8bff7350991d2",
+      "variants": [
+        {
+          "sku": "GLA-058-13",
+          "sizeSystem": "INCH",
+          "sizeLabel": "13\"",
+          "sizeSortOrder": 130,
+          "color": "Noir / Blanc",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-058-14",
+          "sizeSystem": "INCH",
+          "sizeLabel": "14\"",
+          "sizeSortOrder": 140,
+          "color": "Noir / Blanc",
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-supreme-f40-gants-de-hockey-senior-7e7ae1577d.webp",
+          "alt": "Bauer Supreme F40 (gants de hockey senior) coloris Noir / Blanc",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-gants-hockey-noir-blanc-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-059",
+      "slug": "ccm-tacks-xr80-gants-de-hockey-senior",
+      "name": "Tacks XR80 (gants de hockey senior)",
+      "brand": "CCM",
+      "model": "Tacks XR80 Senior",
+      "shortDescription": "Gants de hockey senior en mousses PE renforcées, paume renforcée, pouce articulé, manchette ouverte.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 12700,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Pouce": "Articulé",
+        "Saison": "2025/2026",
+        "Catégorie": "Senior",
+        "Protection": "Mousses PE avec renforts"
+      },
+      "colors": [
+        "Noir / Blanc"
+      ],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/gants-hockey/17962-82881-gants-hockey-ccm-tacks-xr80-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/gants-hockey/17962-82881-gants-hockey-ccm-tacks-xr80-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "645a4107bb9f5f4ce19fe549d24015317f933dd845f9175edfc50229582a19d3",
+      "variants": [
+        {
+          "sku": "GLA-059-13",
+          "sizeSystem": "INCH",
+          "sizeLabel": "13\"",
+          "sizeSortOrder": 130,
+          "color": "Noir / Blanc",
+          "priceCents": 12700,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-059-14",
+          "sizeSystem": "INCH",
+          "sizeLabel": "14\"",
+          "sizeSortOrder": 140,
+          "color": "Noir / Blanc",
+          "priceCents": 12700,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-tacks-xr80-gants-de-hockey-senior-fa0143e637.webp",
+          "alt": "CCM Tacks XR80 (gants de hockey senior) coloris Noir / Blanc",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/ccm-tacks-xr80-gants-hockey-noir-blanc-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-060",
+      "slug": "bauer-supreme-f40-jambieres-senior",
+      "name": "Supreme F40 (jambières senior)",
+      "brand": "Bauer",
+      "model": "Supreme F40 Senior",
+      "shortDescription": "Jambières de hockey senior : protège-tibia X-FLEX Shield articulé, genouillère ErgoDynamic.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 10995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Saison": "2025/2026",
+        "Catégorie": "Senior",
+        "Genouillère": "ErgoDynamic",
+        "Protège-tibia": "X-FLEX Shield"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/jambieres-hockey/17944-82726-jambieres-hockey-bauer-supreme-f40-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/jambieres-hockey/17944-82726-jambieres-hockey-bauer-supreme-f40-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "4b2cdd051d3195aae248082015fc1a3cf8b8ad496bf382b38c14bb327fcc3b3a",
+      "variants": [
+        {
+          "sku": "GLA-060-15",
+          "sizeSystem": "INCH",
+          "sizeLabel": "15\"",
+          "sizeSortOrder": 150,
+          "color": null,
+          "priceCents": 10995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-060-16",
+          "sizeSystem": "INCH",
+          "sizeLabel": "16\"",
+          "sizeSortOrder": 160,
+          "color": null,
+          "priceCents": 10995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-supreme-f40-jambieres-senior-1f7f66e98e.webp",
+          "alt": "Bauer Supreme F40 (jambières senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-jambieres-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-061",
+      "slug": "ccm-next26-coudieres-senior",
+      "name": "Next26 (coudières senior)",
+      "brand": "CCM",
+      "model": "Next26 Senior",
+      "shortDescription": "Coudières de hockey senior légères, coquille JDP, mousse PE et inserts plastique, construction articulée.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 4795,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Saison": "2025/2026",
+        "Coquille": "JDP",
+        "Catégorie": "Senior",
+        "Protection": "Mousse PE et inserts PE"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/coudieres-hockey/17986-83006-coudieres-ccm-next26-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/coudieres-hockey/17986-83006-coudieres-ccm-next26-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "67de348d4b9f09346e4c36dd63cbaf58d8edc534bd6cec7f10690a864c2852c8",
+      "variants": [
+        {
+          "sku": "GLA-061-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": null,
+          "priceCents": 4795,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-061-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": null,
+          "priceCents": 4795,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-061-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": null,
+          "priceCents": 4795,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-061-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": null,
+          "priceCents": 4795,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-next26-coudieres-senior-be0ad6ab38.webp",
+          "alt": "CCM Next26 (coudières senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/ccm-next26-coudieres-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-062",
+      "slug": "bauer-supreme-f40-coudieres-senior",
+      "name": "Supreme F40 (coudières senior)",
+      "brand": "Bauer",
+      "model": "Supreme F40 Senior",
+      "shortDescription": "Coudières de hockey senior à coque profil bas, avant-bras moulé à 180°, biceps intégré.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 8495,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Coque": "Profil bas",
+        "Saison": "2025/2026",
+        "Avant-bras": "Moulé 180°",
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/coudieres-hockey/17938-82707-coudieres-hockey-bauer-supreme-f40-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/coudieres-hockey/17938-82707-coudieres-hockey-bauer-supreme-f40-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "534d489010e3b92a6c3fe18f43e8f8ba93b1a90ced28b0212f1c92cbd1e387b9",
+      "variants": [
+        {
+          "sku": "GLA-062-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": null,
+          "priceCents": 8495,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-062-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": null,
+          "priceCents": 8495,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-supreme-f40-coudieres-senior-8549fc39ea.webp",
+          "alt": "Bauer Supreme F40 (coudières senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-coudieres-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-063",
+      "slug": "ccm-tacks-xr80-epaulieres-senior",
+      "name": "Tacks XR80 (épaulières senior)",
+      "brand": "CCM",
+      "model": "Tacks XR80 Senior",
+      "shortDescription": "Épaulières de hockey senior : coques d’épaules JDP, panneaux moulés, biceps réglables en hauteur.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 11195,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Biceps": "Réglables",
+        "Coques": "JDP",
+        "Saison": "2025/2026",
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/epaulieres-de-hockey-sur-glace/17968-82929-epaulieres-hockey-ccm-tacks-xr80-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/epaulieres-de-hockey-sur-glace/17968-82929-epaulieres-hockey-ccm-tacks-xr80-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "0417fc3706dd66ee40c8f4c001c8b8b3a023195d05bbadcdd9d580f01329d17e",
+      "variants": [
+        {
+          "sku": "GLA-063-S",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "S",
+          "sizeSortOrder": 20,
+          "color": null,
+          "priceCents": 11195,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-063-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": null,
+          "priceCents": 11195,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-063-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": null,
+          "priceCents": 11195,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-063-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": null,
+          "priceCents": 11195,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-tacks-xr80-epaulieres-senior-c53ddd33ec.webp",
+          "alt": "CCM Tacks XR80 (épaulières senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/ccm-tacks-xr80-epaulieres-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-064",
+      "slug": "bauer-supreme-f40-epaulieres-senior",
+      "name": "Supreme F40 (épaulières senior)",
+      "brand": "Bauer",
+      "model": "Supreme F40 Senior",
+      "shortDescription": "Épaulières de hockey senior : protection thoracique moulée, sternum et colonne protégés, biceps réglables.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 13995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Biceps": "Réglables",
+        "Saison": "2025/2026",
+        "Catégorie": "Senior",
+        "Protection": "Thorax moulé, sternum, colonne"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/epaulieres-de-hockey-sur-glace/17758-81540-epaulieres-bauer-supreme-f40-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/epaulieres-de-hockey-sur-glace/17758-81540-epaulieres-bauer-supreme-f40-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "29a3c1a15aefac2a76e3a0734a68dfaed7018b1eb61a545d97d6d003495ce31b",
+      "variants": [
+        {
+          "sku": "GLA-064-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-064-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-064-XL",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "XL",
+          "sizeSortOrder": 50,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-supreme-f40-epaulieres-senior-a752e0192f.webp",
+          "alt": "Bauer Supreme F40 (épaulières senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-supreme-f40-epaulieres-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-065",
+      "slug": "bauer-performance-culotte-de-hockey-senior",
+      "name": "Performance (culotte de hockey senior)",
+      "brand": "Bauer",
+      "model": "Performance Senior",
+      "shortDescription": "Culotte de hockey sur glace senior Bauer Performance.",
+      "description": null,
+      "categorySlug": "protections-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 11995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Catégorie": "Senior"
+      },
+      "colors": [
+        "Noir"
+      ],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://www.rollernco.com/fr/culottes-hockey-bauer/15844-72162-culotte-bauer-performance-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/culottes-hockey-bauer/15844-72162-culotte-bauer-performance-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "2b03dbf7373a7fb645cfd76e56d08a3618346c93cafa799f2c862cd85805fae9",
+      "variants": [
+        {
+          "sku": "GLA-065-M",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "M",
+          "sizeSortOrder": 30,
+          "color": "Noir",
+          "priceCents": 11995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-065-L",
+          "sizeSystem": "APPAREL",
+          "sizeLabel": "L",
+          "sizeSortOrder": 40,
+          "color": "Noir",
+          "priceCents": 11995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-performance-culotte-de-hockey-senior-754fa8106b.webp",
+          "alt": "Bauer Performance (culotte de hockey senior) coloris Noir",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/04_Protections/bauer-performance-culotte-hockey-noir-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-066",
+      "slug": "ccm-70-combo-casque-de-hockey-avec-grille",
+      "name": "70 Combo (casque de hockey avec grille)",
+      "brand": "CCM",
+      "model": "70 Combo Senior",
+      "shortDescription": "Casque de hockey senior livré avec grille de protection (combo).",
+      "description": null,
+      "categorySlug": "casques-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 6719,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Grille": "Incluse (combo)",
+        "Catégorie": "Senior"
+      },
+      "colors": [
+        "Rouge"
+      ],
+      "isFeatured": true,
+      "isNew": false,
+      "sourceUrl": "https://www.rollernco.com/fr/casques-combo-hockey-roller-hockeyues-avec-grilles/14282-64988-casque-ccm-70-combo-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/casques-combo-hockey-roller-hockeyues-avec-grilles/14282-64988-casque-ccm-70-combo-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "005fb41b078c431835af3d3679a46b7926fc0be32b392e92b7c0ddfc2cee1042",
+      "variants": [
+        {
+          "sku": "GLA-066-M",
+          "sizeSystem": "HELMET",
+          "sizeLabel": "M",
+          "sizeSortOrder": 20,
+          "color": "Rouge",
+          "priceCents": 6719,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-70-combo-casque-de-hockey-avec-grille-b8f52419e2.webp",
+          "alt": "CCM 70 Combo (casque de hockey avec grille) coloris Rouge",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/03_Casques/ccm-70-combo-casque-hockey-rouge-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-067",
+      "slug": "bauer-x-lp-2-0-patins-senior",
+      "name": "X-LP 2.0 (patins senior)",
+      "brand": "Bauer",
+      "model": "X-LP 2.0 Senior",
+      "shortDescription": "Patins de hockey senior pour débuter ou progresser : quartier 3D en polycarbonate, languette en feutre.",
+      "description": null,
+      "categorySlug": "patins-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 13995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Saison": "2025/2026",
+        "Largeur": "R (regular)",
+        "Quartier": "3D polycarbonate",
+        "Pointures": "US 7 à 10 (EU 42 à 45,5)",
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/patins-hockey-complets/17946-82744-patins-hockey-bauer-x-lp-20-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/patins-hockey-complets/17946-82744-patins-hockey-bauer-x-lp-20-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "db2fbd0657ffc33aa33de1479bb878881e02c49c3b24d6ea4a06dbff01f5aeb0",
+      "variants": [
+        {
+          "sku": "GLA-067-7",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7",
+          "sizeSortOrder": 700,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-067-8",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8",
+          "sizeSortOrder": 800,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-067-9",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9",
+          "sizeSortOrder": 900,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-067-10",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10",
+          "sizeSortOrder": 1000,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-x-lp-2-0-patins-senior-ef472dbceb.webp",
+          "alt": "Bauer X-LP 2.0 (patins senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/01_Patins/bauer-x-lp-20-patins-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-068",
+      "slug": "bauer-supreme-f30-patins-senior",
+      "name": "Supreme F30 (patins senior)",
+      "brand": "Bauer",
+      "model": "Supreme F30 Senior",
+      "shortDescription": "Patins de hockey senior : construction DIGI COMP légère, bord de cheville COMFORT EDGE, languette Pro Stock.",
+      "description": null,
+      "categorySlug": "patins-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 34995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Saison": "2025/2026",
+        "Largeur": "D",
+        "Pointures": "US 7 à 10 (EU 42 à 45,5)",
+        "Catégorie": "Senior",
+        "Construction": "DIGI COMP"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/patins-hockey-complets/17932-82630-patins-hockey-bauer-supreme-f30-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/patins-hockey-complets/17932-82630-patins-hockey-bauer-supreme-f30-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "38adc6a98e86e7fcc0c04c1a0d06b3eefbf303eedf393a4db0546b807d96b89a",
+      "variants": [
+        {
+          "sku": "GLA-068-7",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7",
+          "sizeSortOrder": 700,
+          "color": null,
+          "priceCents": 34995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-068-7-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "7.5",
+          "sizeSortOrder": 750,
+          "color": null,
+          "priceCents": 34995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-068-8",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8",
+          "sizeSortOrder": 800,
+          "color": null,
+          "priceCents": 34995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-068-8-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "8.5",
+          "sizeSortOrder": 850,
+          "color": null,
+          "priceCents": 34995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-068-9",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9",
+          "sizeSortOrder": 900,
+          "color": null,
+          "priceCents": 34995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 4,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-068-9-5",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "9.5",
+          "sizeSortOrder": 950,
+          "color": null,
+          "priceCents": 34995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 5,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-068-10",
+          "sizeSystem": "SKATE",
+          "sizeLabel": "10",
+          "sizeSortOrder": 1000,
+          "color": null,
+          "priceCents": 34995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 6,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-supreme-f30-patins-senior-2af70097cd.webp",
+          "alt": "Bauer Supreme F30 (patins senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/01_Patins/bauer-supreme-f30-patins-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-069",
+      "slug": "ccm-ribcor-trigger-60-crosse-senior",
+      "name": "Ribcor Trigger 60 (crosse senior)",
+      "brand": "CCM",
+      "model": "Ribcor Trigger 60 Senior",
+      "shortDescription": "Crosse de hockey senior monobloc à point de flexion bas, manche R aux côtés concaves.",
+      "description": null,
+      "categorySlug": "crosses-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 10995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Courbe": "P29",
+        "Saison": "2025/2026",
+        "Flexion": "Basse",
+        "Catégorie": "Senior"
+      },
+      "colors": [],
+      "isFeatured": true,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/crosses-monobloc/17998-83095-ccm-ribcor-trigger-60-senior-hockey.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/crosses-monobloc/17998-83095-ccm-ribcor-trigger-60-senior-hockey.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "b1a00f113306f1ae8d82b5adee4646a141bee326eef52902afdf4d36df84496a",
+      "variants": [
+        {
+          "sku": "GLA-069-GAUCHE-FLEX-75",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Gauche – Flex 75",
+          "sizeSortOrder": 750,
+          "color": null,
+          "priceCents": 10995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-ribcor-trigger-60-crosse-senior-8371e1a66c.webp",
+          "alt": "CCM Ribcor Trigger 60 (crosse senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/02_Batons/ccm-ribcor-trigger-60-crosse-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-070",
+      "slug": "bauer-supreme-f40-grip-crosse-senior",
+      "name": "Supreme F40 Grip (crosse senior)",
+      "brand": "Bauer",
+      "model": "Supreme F40 Senior Grip",
+      "shortDescription": "Crosse de hockey senior en carbone UD, point de flexion Mid-Kick, palette CELLCORE, finition Grip.",
+      "description": null,
+      "categorySlug": "crosses-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 13995,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Saison": "2025/2026",
+        "Flexion": "Mid-Kick",
+        "Palette": "CELLCORE",
+        "Catégorie": "Senior",
+        "Construction": "Carbone UD"
+      },
+      "colors": [],
+      "isFeatured": false,
+      "isNew": true,
+      "sourceUrl": "https://www.rollernco.com/fr/crosses-monobloc/17839-81861-crosse-hockey-bauer-supreme-f40-senior-grip.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/crosses-monobloc/17839-81861-crosse-hockey-bauer-supreme-f40-senior-grip.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "ff47f4231571789d3a5d02828115d8aeb1c15a9371ed25147a4d22495112df28",
+      "variants": [
+        {
+          "sku": "GLA-070-GAUCHE-FLEX-70-P28",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Gauche – Flex 70 (P28)",
+          "sizeSortOrder": 70280,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-070-GAUCHE-FLEX-70-P92",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Gauche – Flex 70 (P92)",
+          "sizeSortOrder": 70920,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 1,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-070-DROITE-FLEX-70-P28",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Droite – Flex 70 (P28)",
+          "sizeSortOrder": 71280,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 2,
+          "stock": 30
+        },
+        {
+          "sku": "GLA-070-DROITE-FLEX-70-P92",
+          "sizeSystem": "STICK",
+          "sizeLabel": "Droite – Flex 70 (P92)",
+          "sizeSortOrder": 71920,
+          "color": null,
+          "priceCents": 13995,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 3,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/bauer-supreme-f40-grip-crosse-senior-1ecd13d19e.webp",
+          "alt": "Bauer Supreme F40 Grip (crosse senior)",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/02_Batons/bauer-supreme-f40-grip-crosse-hockey-01.png",
+          "color": null
+        }
+      ]
+    },
+    {
+      "reference": "GLA-071",
+      "slug": "ccm-sx6000-bas-de-hockey-senior",
+      "name": "SX6000 (bas de hockey senior)",
+      "brand": "CCM",
+      "model": "SX6000 Senior",
+      "shortDescription": "Bas de hockey senior avec deux attaches velcro qui les maintiennent en place.",
+      "description": null,
+      "categorySlug": "vetements-hockey",
+      "sport": "HOCKEY",
+      "condition": "NEW",
+      "status": "ACTIVE",
+      "currency": "EUR",
+      "priceFromCents": 3295,
+      "compareAtPriceCents": null,
+      "weightGrams": null,
+      "dimensions": null,
+      "specs": {
+        "Maintien": "2 attaches velcro",
+        "Catégorie": "Senior"
+      },
+      "colors": [
+        "Navy"
+      ],
+      "isFeatured": false,
+      "isNew": false,
+      "sourceUrl": "https://www.rollernco.com/fr/bas-de-hockey/14585-65716-bas-de-hockey-ccm-sx6000-senior.html",
+      "priceSourceUrl": "https://www.rollernco.com/fr/bas-de-hockey/14585-65716-bas-de-hockey-ccm-sx6000-senior.html",
+      "priceCheckedAt": "2026-11-23T00:00:00.000Z",
+      "imagesAreIllustrations": true,
+      "importChecksum": "5cf2c5f1398eb5d4bc7e025b225ce5b43c854d5cfcd8498993bcfede342f91a7",
+      "variants": [
+        {
+          "sku": "GLA-071-TAILLE-UNIQUE",
+          "sizeSystem": "ONE_SIZE",
+          "sizeLabel": "Taille unique",
+          "sizeSortOrder": 0,
+          "color": "Navy",
+          "priceCents": 3295,
+          "compareAtPriceCents": null,
+          "isActive": true,
+          "position": 0,
+          "stock": 30
+        }
+      ],
+      "images": [
+        {
+          "url": "/media/products/ccm-sx6000-bas-de-hockey-senior-08f5f6e349.webp",
+          "alt": "CCM SX6000 (bas de hockey senior) coloris Navy",
+          "position": 0,
+          "width": 1024,
+          "height": 1024,
+          "isIllustration": true,
+          "sourceFile": "02_HOCKEY/06_Vetements_Hockey/ccm-sx6000-bas-hockey-navy-01.png",
+          "color": null
         }
       ]
     },
@@ -3370,7 +6300,8 @@
           "width": 1200,
           "height": 1200,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/03_Casques/ccm_casque_hockey.png"
+          "sourceFile": "02_HOCKEY/03_Casques/ccm_casque_hockey.png",
+          "color": null
         }
       ]
     },
@@ -3520,7 +6451,8 @@
           "width": 1200,
           "height": 1200,
           "isIllustration": true,
-          "sourceFile": "02_HOCKEY/01_Patins/bauer_vapor_x5_patins_image_recue.png"
+          "sourceFile": "02_HOCKEY/01_Patins/bauer_vapor_x5_patins_image_recue.png",
+          "color": null
         }
       ]
     }

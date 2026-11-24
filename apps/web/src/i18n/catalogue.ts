@@ -12,6 +12,8 @@ export interface CatalogueTranslation {
   categories: Record<string, string>;
   /** Description courte, par slug de produit. */
   products: Record<string, string>;
+  /** Nom du produit, par slug, quand il contient un mot français (« Exa (veste femme) ») ; sinon le nom reste tel quel. */
+  names?: Record<string, string>;
   /** Noms des caractéristiques (clé française → traduction). */
   specKeys: Record<string, string>;
   /** Valeurs textuelles des caractéristiques (valeur française → traduction) ; les mesures restent telles quelles. */
@@ -43,6 +45,8 @@ const loaders: Record<Exclude<Locale, 'fr'>, () => Promise<{ default: CatalogueT
 
 export interface CatalogueLocalizer {
   category: (slug: string, name: string) => string;
+  /** Nom du produit traduit (par slug), ou le nom d'origine. */
+  name: (slug: string, name: string) => string;
   card: (card: ProductCard) => ProductCard;
   detail: (product: ProductDetail) => ProductDetail;
   list: (list: ProductList) => ProductList;
@@ -59,13 +63,21 @@ export async function getCatalogueLocalizer(locale: Locale, m: Messages): Promis
   const t: CatalogueTranslation | null = locale === 'fr' ? null : (await loaders[locale]()).default;
   const words = m.productClient.sizeWords;
   const category = (slug: string, name: string) => t?.categories[slug] ?? name;
+  const name = (slug: string, original: string) => t?.names?.[slug] ?? original;
   const card = (c: ProductCard): ProductCard =>
     t
-      ? { ...c, category: { ...c.category, name: category(c.category.slug, c.category.name) }, sizes: c.sizes.map((s) => sizeLabel(s, words)), image: c.image ? { ...c.image, alt: altText(c.image.alt, m) } : null }
+      ? {
+          ...c,
+          name: name(c.slug, c.name),
+          category: { ...c.category, name: category(c.category.slug, c.category.name) },
+          sizes: c.sizes.map((s) => sizeLabel(s, words)),
+          image: c.image ? { ...c.image, alt: altText(c.image.alt, m) } : null,
+        }
       : c;
   const spec = (key: string, value: string): [string, string] => (t ? [t.specKeys[key] ?? key, t.specValues[value] ?? value] : [key, value]);
   return {
     category,
+    name,
     card,
     spec,
     categories: (list) => (t ? list.map((c) => ({ ...c, name: category(c.slug, c.name) })) : list),
@@ -75,6 +87,7 @@ export async function getCatalogueLocalizer(locale: Locale, m: Messages): Promis
       if (!t) return { ...p, variants };
       return {
         ...p,
+        name: name(p.slug, p.name),
         shortDescription: t.products[p.slug] ?? p.shortDescription,
         category: {
           ...p.category,
