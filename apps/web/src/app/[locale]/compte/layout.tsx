@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Layout({ children, params }: Props & { children: React.ReactNode }) {
   const { m } = await getI18n(params);
   return (
-    <I18nProvider messages={pick(m, ['account', 'tracking', 'orderStatus', 'paymentStatus'])}>
+    <I18nProvider messages={pick(m, ['account', 'tracking', 'orderStatus', 'paymentStatus', 'legal'])}>
       <div className="container py-10">{children}</div>
     </I18nProvider>
   );

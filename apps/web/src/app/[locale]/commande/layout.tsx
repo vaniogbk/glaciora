@@ -13,5 +13,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /** Textes de la commande, de la confirmation et du suivi : envoyés seulement sur ces pages. */
 export default async function Layout({ children, params }: Props & { children: React.ReactNode }) {
   const { m } = await getI18n(params);
-  return <I18nProvider messages={pick(m, ['checkout', 'tracking', 'orderStatus', 'paymentStatus', 'followUp'])}>{children}</I18nProvider>;
+  return <I18nProvider messages={pick(m, ['checkout', 'tracking', 'orderStatus', 'paymentStatus', 'followUp', 'legal'])}>{children}</I18nProvider>;
 }
