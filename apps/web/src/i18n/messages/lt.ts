@@ -26,7 +26,9 @@ const lt: Messages = {
     checkoutTitle: 'Užsakymas',
     accountTitle: 'Mano paskyra',
     termsTitle: 'Bendrosios pardavimo sąlygos',
-    termsDescription: 'GLACIORA bendrosios pardavimo sąlygos: užsakymas, apmokėjimas banko pavedimu, pristatymas Europoje, atsisakymas ir garantijos.',
+    termsDescription: 'GLACIORA bendrosios pardavimo sąlygos: užsakymas, apmokėjimas banko pavedimu arba kortele, pristatymas Europoje, 14 dienų teisė atsisakyti sutarties ir garantijos.',
+    privacyTitle: 'Privatumo politika',
+    privacyDescription: 'GLACIORA privatumo politika: renkami duomenys, tikslai, paslaugų teikėjai, slapukai, saugojimo terminai ir jūsų teisės (BDAR).',
   },
   common: {
     skipToContent: 'Pereiti prie turinio',
@@ -57,7 +59,7 @@ const lt: Messages = {
     packDiscount: 'Rinkinio nuolaida',
     packNames: { 'pack-ski-complet-homme': 'Pilnas vyriškas slidinėjimo rinkinys', 'pack-equipement-ski': 'Slidinėjimo įrangos rinkinys', 'pack-hockey-complet-senior': 'Pilnas suaugusiojo ledo ritulio rinkinys' },
   },
-  nav: { skis: 'Slidės', boots: 'Batai', hockey: 'Ledo ritulys', accessories: 'Priedai', all: 'Visas katalogas', packs: 'Rinkiniai' },
+  nav: { men: 'Vyrams', women: 'Moterims', kids: 'Vaikams', audienceNav: 'Vyrams, moterims ir vaikams', skis: 'Slidės', boots: 'Batai', hockey: 'Ledo ritulys', accessories: 'Priedai', all: 'Visas katalogas', packs: 'Rinkiniai' },
   header: {
     openMenu: 'Atidaryti meniu',
     closeMenu: 'Uždaryti meniu',
@@ -136,6 +138,11 @@ const lt: Messages = {
     searchButton: 'Ieškoti',
     subcategories: 'Subkategorijos',
     comingSoon: 'Ši kolekcija netrukus pasirodys.',
+    audienceIntros: {
+      hommes: 'Vyriškos slidinėjimo striukės ir kelnės, termo apatiniai, slidinėjimo batai ir slidės bei unisex prekės (šalmai, akiniai, pirštinės, ledo ritulys).',
+      femmes: 'Moteriškos slidinėjimo striukės ir kelnės, slidės ir lazdos bei unisex prekės (šalmai, akiniai, pirštinės, ledo ritulys).',
+      enfants: 'Jaunimo slidės, vaikiški slidinėjimo drabužiai ir ledo ritulio rinkinys vaikams.',
+    },
     intros: {
       skis: '„Völkl“ ir „Zag“ all-mountain, freeride, turistinės ir vaikiškos slidės.',
       bottes: 'Patogūs ir sportiniai „Salomon“, „Nordica“ ir „Lange“ slidinėjimo batai Mondopoint dydžiais.',
@@ -502,85 +509,10 @@ const lt: Messages = {
     hostName: 'Prieglobos paslaugų teikėjas',
     hostAddress: 'Prieglobos paslaugų teikėjo adresas',
     toFill: 'Bus papildyta',
-  },
-  terms: {
-    draft: 'Bendrųjų sąlygų projektas: pažymėtus duomenis užpildo GLACIORA, o visą tekstą prieš naudojant reikia patikrinti.',
-    toFill: 'Užpildyti',
-    translationNotice: 'Šis vertimas yra informacinio pobūdžio; esant neatitikimų, galioja prancūziška versija.',
-    sections: [
-      {
-        title: '1. Pardavėjas ir taikymo sritis',
-        paragraphs: [
-          'Šios sąlygos reglamentuoja šioje svetainėje tarp {brand} ir vartotojo sudaromus pardavimus. Pardavėjas: [[įmonės pavadinimas arba verslininko vardas]], [[teisinė forma]], SIRET [[numeris]], [[ES PVM mokėtojo kodas arba nuoroda „TVA non applicable, art. 293 B du CGI“]], {address}. Kontaktai: {email} · {phone} (telefonas ir WhatsApp).',
-          'Kiekvienas užsakymas reiškia užsakymo dieną galiojančių sąlygų priėmimą; klientas jas priima prieš patvirtindamas pažymėdamas tam skirtą langelį.',
-        ],
-      },
-      {
-        title: '2. Prekės',
-        paragraphs: [
-          'Pagrindinės savybės (modelis, dydis, nauja ar naudota būklė, techniniai duomenys) nurodytos kiekvienos prekės puslapyje. Nuotraukos parodo prekes ir jų spalvas orientaciniais tikslais ir nėra sutartinės; galioja tik rašytiniai prekės puslapio duomenys. Pasiūlymai galioja, kol yra nurodytų atsargų.',
-        ],
-      },
-      {
-        title: '3. Kainos',
-        paragraphs: [
-          'Kainos nurodytos eurais su visais taikomais mokesčiais, be pristatymo išlaidų. Pasirinktos šalies pristatymo išlaidos rodomos prieš patvirtinant užsakymą. Taikoma užsakymo metu rodyta kaina.',
-        ],
-      },
-      {
-        title: '4. Užsakymas ir sekimas',
-        paragraphs: [
-          'Klientas pasirenka prekes, nurodo adresą ir pristatymo būdą, parodo banko rekvizitus ir pavedimo paskirtį, atlieka pavedimą ir prieš patvirtindamas įkelia pavedimo patvirtinimą (PDF arba nuotrauką). Tada užsakymas užregistruojamas ir patvirtinamas el. laišku su sekimo nuoroda.',
-          'Sekimas trimis etapais, apie kiekvieną pranešama el. paštu: „Ruošiama“ nuo patvirtinimo, „Pakeliui“ gavus pavedimą ir išsiuntus siuntinį, „Pristatyta“ gavus.',
-        ],
-      },
-      {
-        title: '5. Apmokėjimas',
-        paragraphs: [
-          'Apmokama SEPA banko pavedimu tikslia suma ir su nurodyta užsakymo paskirtimi. Mokėjimas kortele šiuo metu negalimas. Užsakymas išsiunčiamas tik faktiškai gavus pavedimą. Negavus pavedimo per [[terminas, pavyzdžiui, 7 dienos]], užsakymas gali būti atšauktas, o prekės vėl pasiūlytos parduoti. Pateikus neteisingą pavedimo patvirtinimą, užsakymas atšaukiamas.',
-        ],
-      },
-      {
-        title: '6. Pristatymas',
-        paragraphs: [
-          'Aptarnaujamos šalys, vežėjai, kainos ir orientaciniai terminai nurodomi užsakant. Prekės pristatomos ne vėliau kaip per [[ilgiausias terminas, pavyzdžiui, 30 dienų]] nuo mokėjimo gavimo. Praradimo ar sugadinimo rizika klientui pereina, kai jis fiziškai perima prekes (Prancūzijos vartotojų kodekso L216-4 straipsnis). Vėlavimo atveju klientas, po nesėkmingo raginimo, gali nutraukti sutartį L216-6 ir paskesnių straipsnių sąlygomis.',
-          'Klientas gavęs patikrina siuntinį ir apie bet kokį trūkumą (pažeistas siuntinys, trūkstamos prekės) praneša vežėjui ir {email}.',
-        ],
-      },
-      {
-        title: '7. Teisė atsisakyti sutarties',
-        paragraphs: [
-          'Klientas per keturiolika dienų nuo prekių gavimo gali atsisakyti sutarties nenurodydamas priežasties (Prancūzijos vartotojų kodekso L221-18 ir paskesni straipsniai), išsiųsdamas {email} aiškų pareiškimą arba toliau pateiktą formą. Prekes jis grąžina ne vėliau kaip per keturiolika dienų nuo sprendimo pranešimo adresu [[grąžinimo adresas]], visas, pradinės būklės ir pakuotėje, leidžiančioje saugiai transportuoti. Grąžinimo išlaidas apmoka klientas [[patvirtinti arba apmoka GLACIORA]].',
-          'GLACIORA grąžina visas sumokėtas sumas, įskaitant pradines pristatymo išlaidas (pagal pigiausią siūlytą pristatymo būdą), ne vėliau kaip per keturiolika dienų nuo pranešimo apie atsisakymą, pavedimu į kliento sąskaitą. Grąžinimas gali būti atidėtas, kol bus gautos prekės ar įrodymas, kad jos išsiųstos. Klientas atsako už prekių vertės sumažėjimą dėl naudojimo, viršijančio būtiną jų pobūdžiui ir savybėms nustatyti (pavyzdžiui, sumontuotos ar naudotos slidės).',
-        ],
-      },
-      {
-        title: '8. Įstatyminės garantijos',
-        paragraphs: [
-          'Visoms prekėms taikoma įstatyminė atitikties garantija (Prancūzijos vartotojų kodekso L217-3 ir paskesni straipsniai) ir garantija dėl paslėptų trūkumų (Prancūzijos civilinio kodekso 1641 ir paskesni straipsniai). Jei per dvejus metus nuo pristatymo išryškėja neatitiktis, klientas gali reikalauti prekę sutaisyti ar pakeisti, o jei to padaryti negalima — sumažinti kainą arba nutraukti sutartį; laikoma, kad trūkumas egzistavo pristatymo metu. Naudotoms prekėms atitikties garantija galioja [[12 arba 24 mėnesius, patikslinti]]. Paslėpto trūkumo atveju klientas veikia per dvejus metus nuo jo nustatymo.',
-          'Visos garantinės užklausos: {email}, nurodant užsakymo numerį ir nustatytą trūkumą.',
-        ],
-      },
-      {
-        title: '9. Asmens duomenys',
-        paragraphs: [
-          'Užsakant įvesti duomenys (tapatybė, kontaktai, adresas, pavedimo patvirtinimas) naudojami užsakymui vykdyti, mokėjimui patikrinti, pristatyti ir klientų santykiams palaikyti. Jie neparduodami ir neperduodami. Pavedimų patvirtinimai saugomi konfidencialiai, prieinami tik administratoriams ir automatiškai ištrinami po 400 dienų. Klientas gali pasinaudoti teise susipažinti su duomenimis, juos ištaisyti, ištrinti ir nesutikti, rašydamas {email}, ir kreiptis į CNIL (cnil.fr), jei mano, kad jo teisės pažeistos.',
-        ],
-      },
-      {
-        title: '10. Tarpininkavimas ir taikytina teisė',
-        paragraphs: [
-          'Kilus ginčui, klientas pirmiausia kreipiasi {email}. Nepavykus susitarti taikiai, jis gali nemokamai kreiptis į vartotojų ginčų tarpininką: [[tarpininko, prie kurio prisijungusi GLACIORA, pavadinimas, svetainė ir adresas]] (Prancūzijos vartotojų kodekso L612-1 ir paskesni straipsniai). Šioms sąlygoms taikoma Prancūzijos teisė, neatimant iš kitoje ES šalyje gyvenančio kliento jo gyvenamosios šalies imperatyvių apsaugos nuostatų.',
-        ],
-      },
-    ],
-    annexTitle: 'Priedas — Sutarties atsisakymo forma',
-    annex: [
-      'Kam: {brand}, {address}, {email}:',
-      'Pranešu, kad atsisakau šių prekių pirkimo–pardavimo sutarties:',
-      'Užsakyta / gauta: … · Užsakymo numeris: … · Prekės: …',
-      'Kliento vardas, pavardė ir adresas: … · Data: … · Parašas (tik siunčiant popieriuje): …',
-    ],
+    docsFallback: 'Šis tekstas parengtas prancūzų, anglų ir lenkų kalbomis; žemiau pateikiama versija anglų kalba.',
+    privacyNoticeBefore: 'Jūsų duomenys naudojami užsakymui ir paskyrai tvarkyti, kaip paaiškinta mūsų',
+    privacyNoticeLink: 'privatumo politikoje',
+    privacyNoticeAfter: '.',
   },
 };
 

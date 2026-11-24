@@ -26,7 +26,9 @@ const et: Messages = {
     checkoutTitle: 'Tellimus',
     accountTitle: 'Minu konto',
     termsTitle: 'Üldised müügitingimused',
-    termsDescription: 'GLACIORA üldised müügitingimused: tellimine, makse pangaülekandega, tarne Euroopas, taganemine ja garantiid.',
+    termsDescription: 'GLACIORA üldised müügitingimused: tellimine, makse pangaülekande või kaardiga, tarne Euroopas, 14-päevane taganemisõigus ja garantiid.',
+    privacyTitle: 'Privaatsuspoliitika',
+    privacyDescription: 'GLACIORA privaatsuspoliitika: kogutavad andmed, eesmärgid, teenusepakkujad, küpsised, säilitamise ajad ja sinu õigused (GDPR).',
   },
   common: {
     skipToContent: 'Sisu juurde',
@@ -57,7 +59,7 @@ const et: Messages = {
     packDiscount: 'Komplekti allahindlus',
     packNames: { 'pack-ski-complet-homme': 'Meeste täielik suusakomplekt', 'pack-equipement-ski': 'Suusavarustuse komplekt', 'pack-hockey-complet-senior': 'Täiskasvanu täielik hokikomplekt' },
   },
-  nav: { skis: 'Suusad', boots: 'Saapad', hockey: 'Hoki', accessories: 'Tarvikud', all: 'Kogu kataloog', packs: 'Komplektid' },
+  nav: { men: 'Mehed', women: 'Naised', kids: 'Lapsed', audienceNav: 'Mehed, naised ja lapsed', skis: 'Suusad', boots: 'Saapad', hockey: 'Hoki', accessories: 'Tarvikud', all: 'Kogu kataloog', packs: 'Komplektid' },
   header: {
     openMenu: 'Ava menüü',
     closeMenu: 'Sulge menüü',
@@ -136,6 +138,11 @@ const et: Messages = {
     searchButton: 'Otsi',
     subcategories: 'Alamkategooriad',
     comingSoon: 'See kollektsioon tuleb peagi.',
+    audienceIntros: {
+      hommes: 'Meeste suusajoped ja -püksid, termopesu, suusasaapad ja suusad ning uniseks-tooted (kiivrid, suusaprillid, kindad, hoki).',
+      femmes: 'Naiste suusajoped ja -püksid, suusad ja kepid ning uniseks-tooted (kiivrid, suusaprillid, kindad, hoki).',
+      enfants: 'Juuniorite suusad, laste suusariided ja hokikomplekt lastele.',
+    },
     intros: {
       skis: 'Völkli ja Zagi all-mountain-, freeride-, matka- ja lastesuusad.',
       bottes: 'Mugavad ja sportlikud Salomoni, Nordica ja Lange suusasaapad Mondopoint-suurustes.',
@@ -502,85 +509,10 @@ const et: Messages = {
     hostName: 'Majutusteenuse pakkuja',
     hostAddress: 'Majutusteenuse pakkuja aadress',
     toFill: 'Täitmata',
-  },
-  terms: {
-    draft: 'Üldtingimuste kavand: esiletõstetud andmed täiendab GLACIORA ja kogu tekst tuleb enne kasutamist üle vaadata.',
-    toFill: 'Täiendada',
-    translationNotice: 'See tõlge on informatiivne; lahknevuse korral kehtib prantsuskeelne versioon.',
-    sections: [
-      {
-        title: '1. Müüja ja kohaldamisala',
-        paragraphs: [
-          'Käesolevad tingimused reguleerivad sellel veebisaidil {brand} ja tarbijast kliendi vahel sõlmitud müüke. Müüja: [[ärinimi või ettevõtja nimi]], [[õiguslik vorm]], SIRET [[number]], [[ELi käibemaksukohustuslase number või märge „TVA non applicable, art. 293 B du CGI“]], {address}. Kontakt: {email} · {phone} (telefon ja WhatsApp).',
-          'Iga tellimus tähendab tellimuse päeval kehtivate tingimustega nõustumist, mille klient kinnitab enne tellimuse kinnitamist vastava kasti märkimisega.',
-        ],
-      },
-      {
-        title: '2. Tooted',
-        paragraphs: [
-          'Põhiomadused (mudel, suurus, uus või kasutatud seisukord, tehnilised andmed) on toodud iga toote lehel. Fotod näitavad tooteid ja nende värve suunavalt ega ole lepinguliselt siduvad; kehtivad ainult tootelehe kirjalikud andmed. Pakkumised kehtivad kuni näidatud laovaru lõppemiseni.',
-        ],
-      },
-      {
-        title: '3. Hinnad',
-        paragraphs: [
-          'Hinnad on eurodes koos kõigi kohalduvate maksudega, ilma tarnekuludeta. Valitud riigi tarnekulud kuvatakse enne tellimuse kinnitamist. Arveldatakse tellimise hetkel kuvatud hinnaga.',
-        ],
-      },
-      {
-        title: '4. Tellimine ja jälgimine',
-        paragraphs: [
-          'Klient valib tooted, sisestab aadressi ja tarneviisi, kuvab pangaandmed ja ülekande viite, teeb ülekande ja laadib enne kinnitamist üles ülekande tõendi (PDF või foto). Seejärel tellimus registreeritakse ja kinnitatakse e-kirjaga, mis sisaldab jälgimislinki.',
-          'Jälgimine kolmes etapis, millest igaüks teatatakse e-kirjaga: „Ettevalmistamisel“ alates kinnitamisest, „Teel“ pärast ülekande laekumist ja paki saatmist, „Kohale toimetatud“ kättesaamisel.',
-        ],
-      },
-      {
-        title: '5. Makse',
-        paragraphs: [
-          'Makse tehakse SEPA-pangaülekandega täpses summas ja näidatud tellimuse viitega. Kaardimakse pole praegu saadaval. Tellimus saadetakse alles pärast ülekande tegelikku laekumist. Kui ülekannet ei laeku [[tähtaeg, näiteks 7 päeva]] jooksul, võib tellimuse tühistada ja tooted uuesti müüki panna. Ebaõige ülekande tõend toob kaasa tellimuse tühistamise.',
-        ],
-      },
-      {
-        title: '6. Tarne',
-        paragraphs: [
-          'Teenindatavad riigid, vedajad, hinnad ja ligikaudsed tähtajad on toodud tellimisel. Tarne toimub hiljemalt [[maksimaalne tähtaeg, näiteks 30 päeva]] jooksul pärast makse laekumist. Kaotsimineku või kahjustumise risk läheb kliendile üle siis, kui ta tooted füüsiliselt valdusesse võtab (Prantsuse tarbijaseadustiku artikkel L216-4). Viivituse korral võib klient pärast tulemusetut nõuet lepingu lõpetada artiklite L216-6 jj tingimustel.',
-          'Klient kontrollib pakki kättesaamisel ja teatab vedajale ning aadressil {email} igast puudusest (kahjustatud pakk, puuduvad tooted).',
-        ],
-      },
-      {
-        title: '7. Taganemisõigus',
-        paragraphs: [
-          'Kliendil on toodete kättesaamisest arvates neliteist päeva aega lepingust taganeda ilma põhjust esitamata (Prantsuse tarbijaseadustiku artiklid L221-18 jj), saates aadressile {email} ühemõttelise avalduse või alloleva vormi. Ta tagastab tooted hiljemalt neliteist päeva pärast oma otsusest teatamist aadressile [[tagastusaadress]], komplektsena, algses seisukorras ja kahjustusteta transporti võimaldavas pakendis. Tagastuskulud kannab klient [[kinnitada või kannab GLACIORA]].',
-          'GLACIORA tagastab kõik makstud summad, sealhulgas esialgsed tarnekulud (odavaima pakutud tarneviisi alusel), hiljemalt neliteist päeva pärast taganemisest teada saamist, ülekandega kliendi kontole. Tagasimakse võib edasi lükata kuni toodete kättesaamiseni või nende tagastamise tõendi esitamiseni. Klient vastutab toodete väärtuse vähenemise eest, mis tuleneb nende kasutamisest viisil, mis ületab nende olemuse ja omaduste kindlakstegemiseks vajaliku (näiteks paigaldatud või kasutatud suusad).',
-        ],
-      },
-      {
-        title: '8. Seadusjärgsed garantiid',
-        paragraphs: [
-          'Kõigile toodetele kehtib seadusjärgne vastavusgarantii (Prantsuse tarbijaseadustiku artiklid L217-3 jj) ja varjatud puuduste garantii (Prantsuse tsiviilseadustiku artiklid 1641 jj). Kui kahe aasta jooksul pärast tarnet ilmneb mittevastavus, võib klient nõuda toote parandamist või asendamist, muul juhul hinna alandamist või lepingu lõpetamist; eeldatakse, et puudus esines juba tarne ajal. Kasutatud toodetele kehtib vastavusgarantii [[12 või 24 kuud, täpsustada]]. Varjatud puuduse korral tegutseb klient kahe aasta jooksul selle avastamisest.',
-          'Kõik garantiipäringud: {email}, märkides tellimuse numbri ja tuvastatud puuduse.',
-        ],
-      },
-      {
-        title: '9. Isikuandmed',
-        paragraphs: [
-          'Tellimisel sisestatud andmeid (isik, kontaktandmed, aadress, ülekande tõend) kasutatakse tellimuse töötlemiseks, makse kontrollimiseks, tarnimiseks ja kliendisuhte haldamiseks. Neid ei müüda ega anta edasi. Ülekande tõendeid hoitakse konfidentsiaalselt, need on kättesaadavad ainult administraatoritele ja kustutatakse automaatselt 400 päeva möödudes. Klient võib kasutada oma õigusi andmetega tutvumiseks, nende parandamiseks, kustutamiseks ja vastuväite esitamiseks, kirjutades aadressil {email}, ning pöörduda CNIL-i (cnil.fr) poole, kui leiab, et tema õigusi ei ole austatud.',
-        ],
-      },
-      {
-        title: '10. Lepitus ja kohaldatav õigus',
-        paragraphs: [
-          'Vaidluse korral pöördub klient esmalt aadressil {email}. Kui kokkulepet ei saavutata, võib ta tasuta pöörduda tarbijavaidluste lepitaja poole: [[lepitaja nimi, veebisait ja aadress, kellega GLACIORA on liitunud]] (Prantsuse tarbijaseadustiku artiklid L612-1 jj). Käesolevatele tingimustele kohaldatakse Prantsuse õigust, võtmata teises ELi riigis elavalt kliendilt tema elukohariigi kohustuslike kaitsesätete kaitset.',
-        ],
-      },
-    ],
-    annexTitle: 'Lisa — Taganemisavalduse vorm',
-    annex: [
-      'Saaja: {brand}, {address}, {email}:',
-      'Teatan, et taganen järgmiste toodete müügilepingust:',
-      'Tellitud / kätte saadud: … · Tellimuse number: … · Tooted: …',
-      'Kliendi nimi ja aadress: … · Kuupäev: … · Allkiri (ainult paberil saatmisel): …',
-    ],
+    docsFallback: 'See tekst on saadaval prantsuse, inglise ja poola keeles; allpool on näidatud ingliskeelne versioon.',
+    privacyNoticeBefore: 'Sinu andmeid kasutatakse tellimuse ja konto haldamiseks, nagu on selgitatud meie',
+    privacyNoticeLink: 'privaatsuspoliitikas',
+    privacyNoticeAfter: '.',
   },
 };
 

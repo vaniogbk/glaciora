@@ -26,7 +26,9 @@ const is: Messages = {
     checkoutTitle: 'Pöntun',
     accountTitle: 'Aðgangurinn minn',
     termsTitle: 'Almennir söluskilmálar',
-    termsDescription: 'Almennir söluskilmálar GLACIORA: pöntun, greiðsla með millifærslu, afhending í Evrópu, réttur til að falla frá kaupum og ábyrgð.',
+    termsDescription: 'Almennir söluskilmálar GLACIORA: pöntun, greiðsla með millifærslu eða korti, afhending í Evrópu, 14 daga réttur til að falla frá samningi og ábyrgð.',
+    privacyTitle: 'Persónuverndarstefna',
+    privacyDescription: 'Persónuverndarstefna GLACIORA: gögn sem safnað er, tilgangur, þjónustuaðilar, vafrakökur, varðveislutími og réttindi þín (GDPR).',
   },
   common: {
     skipToContent: 'Fara í efni',
@@ -57,7 +59,7 @@ const is: Messages = {
     packDiscount: 'Pakkaafsláttur',
     packNames: { 'pack-ski-complet-homme': 'Heill skíðapakki fyrir karla', 'pack-equipement-ski': 'Skíðabúnaðarpakki', 'pack-hockey-complet-senior': 'Heill íshokkípakki fyrir fullorðna' },
   },
-  nav: { skis: 'Skíði', boots: 'Skór', hockey: 'Hokkí', accessories: 'Aukahlutir', all: 'Allur vörulistinn', packs: 'Pakkar' },
+  nav: { men: 'Karlar', women: 'Konur', kids: 'Börn', audienceNav: 'Karlar, konur og börn', skis: 'Skíði', boots: 'Skór', hockey: 'Hokkí', accessories: 'Aukahlutir', all: 'Allur vörulistinn', packs: 'Pakkar' },
   header: {
     openMenu: 'Opna valmynd',
     closeMenu: 'Loka valmynd',
@@ -136,6 +138,11 @@ const is: Messages = {
     searchButton: 'Leita',
     subcategories: 'Undirflokkar',
     comingSoon: 'Þessi lína kemur bráðum.',
+    audienceIntros: {
+      hommes: 'Skíðajakkar og skíðabuxur, hitanærföt, skíðaskór og skíði fyrir karla, auk vara fyrir bæði kyn (hjálmar, skíðagleraugu, hanskar, íshokkí).',
+      femmes: 'Skíðajakkar og skíðabuxur, skíði og stafir fyrir konur, auk vara fyrir bæði kyn (hjálmar, skíðagleraugu, hanskar, íshokkí).',
+      enfants: 'Unglingaskíði, skíðafatnaður og íshokkísett fyrir börn.',
+    },
     intros: {
       skis: 'All-mountain-, utanbrautar-, fjallaskíða- og barnaskíði frá Völkl og Zag.',
       bottes: 'Þægilegir og sportlegir skíðaskór frá Salomon, Nordica og Lange í Mondopoint-stærðum.',
@@ -502,85 +509,10 @@ const is: Messages = {
     hostName: 'Hýsingaraðili',
     hostAddress: 'Heimilisfang hýsingaraðila',
     toFill: 'Á eftir að fylla út',
-  },
-  terms: {
-    draft: 'Drög að almennum skilmálum: GLACIORA fyllir út merktu atriðin og fara þarf yfir allan textann fyrir notkun.',
-    toFill: 'Á eftir að fylla út',
-    translationNotice: 'Þessi þýðing er til upplýsingar; ef misræmi er gildir franska útgáfan.',
-    sections: [
-      {
-        title: '1. Seljandi og gildissvið',
-        paragraphs: [
-          'Þessir skilmálar gilda um kaup sem gerð eru á þessum vef milli {brand} og neytenda. Seljandi: [[heiti fyrirtækis eða nafn rekstraraðila]], [[rekstrarform]], SIRET [[númer]], [[VSK-númer innan ESB eða athugasemdin „TVA non applicable, art. 293 B du CGI“]], {address}. Samband: {email} · {phone} (sími og WhatsApp).',
-          'Hver pöntun felur í sér samþykki á þeim skilmálum sem gilda á pöntunardegi; viðskiptavinurinn samþykkir þá með því að haka í reitinn áður en hann staðfestir.',
-        ],
-      },
-      {
-        title: '2. Vörur',
-        paragraphs: [
-          'Helstu eiginleikar (gerð, stærð, nýtt eða notað ástand, tæknilýsing) koma fram á síðu hverrar vöru. Myndirnar sýna vörurnar og liti þeirra til viðmiðunar og eru ekki hluti af samningnum; aðeins skriflegar upplýsingar á vörusíðunni gilda. Tilboð gilda á meðan birgðir endast.',
-        ],
-      },
-      {
-        title: '3. Verð',
-        paragraphs: [
-          'Verð eru gefin upp í evrum með öllum viðeigandi sköttum, án sendingarkostnaðar. Sendingarkostnaður til valins lands birtist áður en pöntun er staðfest. Innheimt verð er það sem birtist við pöntun.',
-        ],
-      },
-      {
-        title: '4. Pöntun og rakning',
-        paragraphs: [
-          'Viðskiptavinurinn velur vörur, gefur upp heimilisfang og sendingarmáta, birtir bankaupplýsingar og tilvísun, framkvæmir millifærsluna og hleður upp staðfestingu á henni (PDF-kvittun eða mynd) áður en hann staðfestir. Pöntunin er þá skráð og staðfest í tölvupósti með rakningartengli.',
-          'Rakning í þremur skrefum, hvert tilkynnt í tölvupósti: „Í undirbúningi“ frá staðfestingu, „Á leiðinni“ þegar millifærslan hefur borist og pakkinn verið sendur, „Afhent“ við móttöku.',
-        ],
-      },
-      {
-        title: '5. Greiðsla',
-        paragraphs: [
-          'Greitt er með SEPA-millifærslu nákvæmrar upphæðar og með uppgefinni pöntunartilvísun. Greiðsla með korti er ekki í boði eins og er. Pöntunin er aðeins send eftir að millifærslan hefur raunverulega borist. Berist millifærsla ekki innan [[frestur, til dæmis 7 dagar]] getur pöntunin verið felld niður og vörurnar settar aftur í sölu. Röng staðfesting á millifærslu leiðir til þess að pöntunin er felld niður.',
-        ],
-      },
-      {
-        title: '6. Afhending',
-        paragraphs: [
-          'Afhendingarlönd, flutningsaðilar, verð og áætlaður afhendingartími koma fram við pöntun. Afhending fer fram í síðasta lagi innan [[hámarksfrestur, til dæmis 30 dagar]] frá móttöku greiðslu. Áhætta á tjóni eða skemmdum færist yfir á viðskiptavininn þegar hann tekur vörurnar í sína vörslu (grein L216-4 frönsku neytendalaganna). Ef afhending tefst getur viðskiptavinurinn, eftir árangurslausa áminningu, rift samningnum samkvæmt greinum L216-6 o.áfr.',
-          'Viðskiptavinurinn yfirfer pakkann við móttöku og tilkynnir flutningsaðila og {email} um frávik (skemmdur pakki, vörur vantar).',
-        ],
-      },
-      {
-        title: '7. Réttur til að falla frá samningi',
-        paragraphs: [
-          'Viðskiptavinurinn hefur fjórtán daga frá móttöku varanna til að falla frá samningnum án þess að tilgreina ástæðu (greinar L221-18 o.áfr. frönsku neytendalaganna) með því að senda ótvíræða yfirlýsingu eða eyðublaðið hér að neðan á {email}. Hann skilar vörunum í síðasta lagi fjórtán dögum eftir að hann tilkynnti ákvörðun sína, á heimilisfangið [[skilaheimilisfang]], heilum, í upprunalegu ástandi og í umbúðum sem þola flutning án skemmda. Viðskiptavinurinn greiðir skilakostnað [[á eftir að staðfesta, eða GLACIORA greiðir]].',
-          'GLACIORA endurgreiðir allar greiddar upphæðir, þar með talinn upphaflegan sendingarkostnað (miðað við ódýrasta sendingarmátann sem boðið var upp á), í síðasta lagi fjórtán dögum eftir að hafa fengið tilkynningu um að fallið sé frá samningnum, með millifærslu á reikning viðskiptavinar. Endurgreiðslu má fresta þar til vörurnar hafa borist eða sönnun um sendingu þeirra liggur fyrir. Viðskiptavinurinn getur borið ábyrgð á verðrýrnun varanna vegna meðhöndlunar umfram það sem þarf til að kanna eðli þeirra og eiginleika (til dæmis skíði sem hafa verið sett saman eða notuð).',
-        ],
-      },
-      {
-        title: '8. Lögbundin ábyrgð',
-        paragraphs: [
-          'Allar vörur njóta lögbundinnar ábyrgðar á samræmi (greinar L217-3 o.áfr. frönsku neytendalaganna) og ábyrgðar á leyndum göllum (greinar 1641 o.áfr. frönsku einkamálalaganna). Komi galli í ljós innan tveggja ára frá afhendingu getur viðskiptavinurinn krafist viðgerðar eða nýrrar vöru, eða ella afsláttar eða riftunar samnings; gert er ráð fyrir að gallinn hafi verið til staðar við afhendingu. Fyrir notaðar vörur gildir ábyrgð á samræmi í [[12 eða 24 mánuði, á eftir að tilgreina]]. Ef um leyndan galla er að ræða þarf viðskiptavinurinn að bregðast við innan tveggja ára frá því að hann uppgötvaðist.',
-          'Allar ábyrgðarfyrirspurnir: {email}, með pöntunarnúmeri og lýsingu á gallanum.',
-        ],
-      },
-      {
-        title: '9. Persónuupplýsingar',
-        paragraphs: [
-          'Upplýsingar sem gefnar eru upp við pöntun (auðkenni, samskiptaupplýsingar, heimilisfang, staðfesting á millifærslu) eru notaðar til að afgreiða pöntunina, staðfesta greiðslu, afhenda og sinna viðskiptasambandinu. Þær eru hvorki seldar né afhentar öðrum. Staðfestingar á millifærslum eru geymdar í trúnaði, aðeins aðgengilegar stjórnendum og eytt sjálfkrafa eftir 400 daga. Viðskiptavinurinn getur nýtt rétt sinn til aðgangs, leiðréttingar, eyðingar og andmæla með því að skrifa á {email} og leitað til CNIL (cnil.fr) ef hann telur að réttur sinn hafi ekki verið virtur.',
-        ],
-      },
-      {
-        title: '10. Sáttamiðlun og gildandi lög',
-        paragraphs: [
-          'Komi upp ágreiningur snýr viðskiptavinurinn sér fyrst til {email}. Náist ekki sátt getur hann leitað endurgjaldslaust til sáttamiðlara í neytendamálum: [[nafn, vefsíða og heimilisfang sáttamiðlarans sem GLACIORA á aðild að]] (greinar L612-1 o.áfr. frönsku neytendalaganna). Um þessa skilmála gilda frönsk lög, án þess að viðskiptavinur búsettur í öðru EES-ríki missi vernd ófrávíkjanlegra neytendaverndarákvæða búsetulands síns.',
-        ],
-      },
-    ],
-    annexTitle: 'Viðauki — Eyðublað til að falla frá samningi',
-    annex: [
-      'Til: {brand}, {address}, {email}:',
-      'Ég tilkynni hér með að ég fell frá samningi um kaup á eftirfarandi vörum:',
-      'Pantað þann / móttekið þann: … · Pöntunarnúmer: … · Vörur: …',
-      'Nafn og heimilisfang viðskiptavinar: … · Dagsetning: … · Undirskrift (aðeins á pappír): …',
-    ],
+    docsFallback: 'Þessi texti er til á frönsku, ensku og pólsku; enska útgáfan birtist hér fyrir neðan.',
+    privacyNoticeBefore: 'Gögnin þín eru notuð til að afgreiða pöntunina og reikninginn þinn, eins og útskýrt er í',
+    privacyNoticeLink: 'persónuverndarstefnu okkar',
+    privacyNoticeAfter: '.',
   },
 };
 

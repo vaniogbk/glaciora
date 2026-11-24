@@ -33,7 +33,9 @@ const fr = {
     checkoutTitle: 'Commande',
     accountTitle: 'Mon compte',
     termsTitle: 'Conditions générales de vente',
-    termsDescription: 'Conditions générales de vente GLACIORA : commande, paiement par virement bancaire, livraison en Europe, rétractation et garanties.',
+    termsDescription: 'Conditions générales de vente GLACIORA : commande, paiement par virement bancaire ou par carte, livraison en Europe, droit de rétractation de 14 jours et garanties.',
+    privacyTitle: 'Politique de confidentialité',
+    privacyDescription: 'Politique de confidentialité GLACIORA : données collectées, finalités, prestataires, cookies, durées de conservation et vos droits (RGPD).',
   },
 
   common: {
@@ -67,6 +69,10 @@ const fr = {
   },
 
   nav: {
+    men: 'Hommes',
+    women: 'Femmes',
+    kids: 'Enfants',
+    audienceNav: 'Rayons hommes, femmes et enfants',
     skis: 'Skis',
     boots: 'Bottes',
     hockey: 'Hockey',
@@ -156,6 +162,11 @@ const fr = {
     searchButton: 'Rechercher',
     subcategories: 'Sous-catégories',
     comingSoon: 'Cette collection arrive bientôt.',
+    audienceIntros: {
+      hommes: 'Vestes et pantalons de ski, sous-vêtements thermiques, chaussures et skis pour homme, avec les articles mixtes (casques, masques, gants, hockey).',
+      femmes: 'Vestes et pantalons de ski, skis et bâtons pour femme, avec les articles mixtes (casques, masques, gants, hockey).',
+      enfants: 'Skis junior, vêtements de ski et set de hockey pour enfant.',
+    },
     intros: {
       skis: 'Skis all-mountain, freeride, randonnée et junior des marques Völkl et Zag.',
       bottes: 'Chaussures de ski confort et performance Salomon, Nordica et Lange, en pointures Mondopoint.',
@@ -591,85 +602,10 @@ const fr = {
     hostName: 'Hébergeur',
     hostAddress: 'Adresse de l’hébergeur',
     toFill: 'À compléter',
-  },
-  terms: {
-    draft: 'Projet de conditions générales : les mentions surlignées sont à compléter par GLACIORA, et l’ensemble est à faire valider avant usage.',
-    toFill: 'À compléter',
-    translationNotice: '',
-    sections: [
-      {
-        title: '1. Vendeur et champ d’application',
-        paragraphs: [
-          'Les présentes conditions régissent les ventes conclues sur ce site entre {brand} et tout client consommateur. Vendeur : [[raison sociale ou nom de l’entrepreneur]], [[forme juridique]], SIRET [[numéro]], [[n° de TVA intracommunautaire ou mention « TVA non applicable, art. 293 B du CGI »]], {address}. Contact : {email} · {phone} (téléphone et WhatsApp).',
-          'Toute commande vaut acceptation des conditions en vigueur au jour de la commande, que le client accepte en cochant la case prévue avant de valider.',
-        ],
-      },
-      {
-        title: '2. Produits',
-        paragraphs: [
-          'Les caractéristiques essentielles (modèle, taille, état neuf ou d’occasion, spécifications) figurent sur chaque fiche produit. Les photos présentent les articles et leurs coloris à titre indicatif et n’ont pas de valeur contractuelle ; seules les caractéristiques écrites de la fiche font foi. Les offres valent dans la limite des stocks affichés.',
-        ],
-      },
-      {
-        title: '3. Prix',
-        paragraphs: [
-          'Les prix sont indiqués en euros, toutes taxes applicables comprises, hors frais de livraison. Les frais de livraison du pays choisi sont affichés avant la validation de la commande. Le prix facturé est celui affiché au moment de la commande.',
-        ],
-      },
-      {
-        title: '4. Commande et suivi',
-        paragraphs: [
-          'Le client choisit ses articles, indique son adresse et son mode de livraison, affiche les coordonnées bancaires et la référence de virement, effectue le virement puis dépose sa preuve de virement (reçu PDF ou photo) avant de valider. La commande est alors enregistrée et confirmée par e-mail, avec un lien de suivi.',
-          'Suivi en trois étapes, chacune annoncée par e-mail : « En préparation » dès la validation, « En route » une fois le virement crédité et le colis expédié, « Livrée » à la réception.',
-        ],
-      },
-      {
-        title: '5. Paiement',
-        paragraphs: [
-          'Le paiement s’effectue par virement bancaire SEPA, du montant exact et avec la référence de commande indiquée. Le paiement par carte bancaire est indisponible pour le moment. La commande n’est expédiée qu’après réception effective du virement. À défaut de virement reçu sous [[délai, par exemple 7 jours]], la commande peut être annulée et les articles remis en vente. Une preuve de virement inexacte entraîne l’annulation de la commande.',
-        ],
-      },
-      {
-        title: '6. Livraison',
-        paragraphs: [
-          'Les pays desservis, transporteurs, tarifs et délais indicatifs sont indiqués lors de la commande. La livraison intervient au plus tard dans un délai de [[délai maximal, par exemple 30 jours]] après réception du paiement. Le risque de perte ou d’endommagement est transféré au client lorsqu’il prend physiquement possession des articles (article L216-4 du Code de la consommation). En cas de retard, le client peut, après mise en demeure restée sans effet, résoudre le contrat dans les conditions des articles L216-6 et suivants.',
-          'Le client vérifie le colis à réception et signale au transporteur et à {email} toute anomalie (colis endommagé, articles manquants).',
-        ],
-      },
-      {
-        title: '7. Droit de rétractation',
-        paragraphs: [
-          'Le client dispose de quatorze jours à compter de la réception des articles pour se rétracter, sans avoir à se justifier (articles L221-18 et suivants du Code de la consommation), en adressant à {email} une déclaration dénuée d’ambiguïté ou le formulaire ci-dessous. Il renvoie les articles au plus tard quatorze jours après avoir communiqué sa décision, à l’adresse [[adresse de retour]], complets, dans leur état d’origine et dans un emballage permettant un transport sans dommage. Les frais de retour sont à la charge du client [[à confirmer, ou pris en charge par GLACIORA]].',
-          'GLACIORA rembourse la totalité des sommes versées, frais de livraison initiaux compris (sur la base du mode de livraison le moins coûteux proposé), au plus tard quatorze jours après avoir été informé de la rétractation, par virement sur le compte du client. Le remboursement peut être différé jusqu’à la récupération des articles ou la preuve de leur expédition. La responsabilité du client peut être engagée en cas de dépréciation des articles résultant de manipulations autres que celles nécessaires pour établir leur nature et leurs caractéristiques (par exemple des skis montés ou utilisés).',
-        ],
-      },
-      {
-        title: '8. Garanties légales',
-        paragraphs: [
-          'Tous les articles bénéficient de la garantie légale de conformité (articles L217-3 et suivants du Code de la consommation) et de la garantie contre les vices cachés (articles 1641 et suivants du Code civil). En cas de défaut de conformité apparu dans les deux ans suivant la livraison, le client peut obtenir la réparation ou le remplacement de l’article, ou à défaut une réduction du prix ou la résolution du contrat ; ce défaut est présumé exister au moment de la livraison. Pour les articles d’occasion, la durée de la garantie de conformité est de [[12 ou 24 mois, à préciser]]. En cas de vice caché, le client agit dans les deux ans de la découverte du vice.',
-          'Pour toute demande au titre des garanties : {email}, en précisant la référence de commande et le défaut constaté.',
-        ],
-      },
-      {
-        title: '9. Données personnelles',
-        paragraphs: [
-          'Les données saisies lors de la commande (identité, coordonnées, adresse, preuve de virement) servent à traiter la commande, à vérifier le paiement, à livrer et à suivre la relation client. Elles ne sont ni vendues ni cédées. Les preuves de virement sont stockées de façon privée, accessibles aux seuls administrateurs, et supprimées automatiquement après 400 jours. Le client peut exercer ses droits d’accès, de rectification, d’effacement et d’opposition en écrivant à {email}, et saisir la CNIL (cnil.fr) s’il estime ses droits non respectés.',
-        ],
-      },
-      {
-        title: '10. Médiation et droit applicable',
-        paragraphs: [
-          'En cas de litige, le client s’adresse d’abord à {email}. À défaut de solution amiable, il peut recourir gratuitement au médiateur de la consommation : [[nom, site internet et adresse du médiateur auquel GLACIORA adhère]] (articles L612-1 et suivants du Code de la consommation). Les présentes conditions sont soumises au droit français, sans priver le client résidant dans un autre pays de l’Union européenne des dispositions impératives protectrices de son pays de résidence.',
-        ],
-      },
-    ],
-    annexTitle: 'Annexe — Formulaire de rétractation',
-    annex: [
-      'À l’attention de {brand}, {address}, {email} :',
-      'Je vous notifie par la présente ma rétractation du contrat portant sur la vente des articles ci-dessous :',
-      'Commandé le / reçu le : … · Référence de commande : … · Articles : …',
-      'Nom et adresse du client : … · Date : … · Signature (en cas d’envoi papier) : …',
-    ],
+    docsFallback: 'Ce texte est rédigé en français, en anglais et en polonais ; la version anglaise est affichée ci-dessous.',
+    privacyNoticeBefore: 'Vos données servent à traiter votre commande et votre compte, comme l’explique notre',
+    privacyNoticeLink: 'politique de confidentialité',
+    privacyNoticeAfter: '.',
   },
 };
 

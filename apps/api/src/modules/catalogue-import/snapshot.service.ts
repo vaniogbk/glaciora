@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '../../lib/prisma';
+import { applyCatalogueAudience } from './audience';
 import { CATALOGUE_TRANSACTION, ensureCategories } from './import.service';
 
 /**
@@ -210,6 +211,9 @@ export async function installCatalogueSnapshot(options: { triggeredById?: string
       report.push({ reference: p.reference, action: 'error', message: (err as Error).message.slice(0, 200) });
     }
   }
+
+  // Rayons Hommes / Femmes / Enfants, réappliqués même aux articles inchangés.
+  await applyCatalogueAudience();
 
   const summary = {
     created: report.filter((r) => r.action === 'created').length,

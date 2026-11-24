@@ -26,7 +26,9 @@ const pl: Messages = {
     checkoutTitle: 'Zamówienie',
     accountTitle: 'Moje konto',
     termsTitle: 'Ogólne warunki sprzedaży',
-    termsDescription: 'Ogólne warunki sprzedaży GLACIORA: zamówienie, płatność przelewem bankowym, dostawa w Europie, odstąpienie od umowy i gwarancje.',
+    termsDescription: 'Ogólne warunki sprzedaży GLACIORA: zamówienie, płatność przelewem bankowym lub kartą, dostawa w Europie, 14-dniowe prawo odstąpienia od umowy i reklamacje.',
+    privacyTitle: 'Polityka prywatności',
+    privacyDescription: 'Polityka prywatności GLACIORA: zbierane dane, cele, dostawcy usług, pliki cookie, okresy przechowywania i Twoje prawa (RODO).',
   },
   common: {
     skipToContent: 'Przejdź do treści',
@@ -57,7 +59,7 @@ const pl: Messages = {
     packDiscount: 'Rabat za zestaw',
     packNames: { 'pack-ski-complet-homme': 'Kompletny zestaw narciarski męski', 'pack-equipement-ski': 'Zestaw sprzętu narciarskiego', 'pack-hockey-complet-senior': 'Kompletny zestaw hokejowy senior' },
   },
-  nav: { skis: 'Narty', boots: 'Buty', hockey: 'Hokej', accessories: 'Akcesoria', all: 'Cały katalog', packs: 'Zestawy' },
+  nav: { men: 'Mężczyźni', women: 'Kobiety', kids: 'Dzieci', audienceNav: 'Mężczyźni, kobiety i dzieci', skis: 'Narty', boots: 'Buty', hockey: 'Hokej', accessories: 'Akcesoria', all: 'Cały katalog', packs: 'Zestawy' },
   header: {
     openMenu: 'Otwórz menu',
     closeMenu: 'Zamknij menu',
@@ -136,6 +138,11 @@ const pl: Messages = {
     searchButton: 'Szukaj',
     subcategories: 'Podkategorie',
     comingSoon: 'Ta kolekcja pojawi się wkrótce.',
+    audienceIntros: {
+      hommes: 'Kurtki i spodnie narciarskie, bielizna termoaktywna, buty narciarskie i narty męskie oraz artykuły unisex (kaski, gogle, rękawice, hokej).',
+      femmes: 'Kurtki i spodnie narciarskie, narty i kijki damskie oraz artykuły unisex (kaski, gogle, rękawice, hokej).',
+      enfants: 'Narty juniorskie, odzież narciarska i zestaw hokejowy dla dzieci.',
+    },
     intros: {
       skis: 'Narty all-mountain, freeride, skiturowe i juniorskie marek Völkl i Zag.',
       bottes: 'Komfortowe i sportowe buty narciarskie Salomon, Nordica i Lange w rozmiarach Mondopoint.',
@@ -502,85 +509,10 @@ const pl: Messages = {
     hostName: 'Dostawca hostingu',
     hostAddress: 'Adres dostawcy hostingu',
     toFill: 'Do uzupełnienia',
-  },
-  terms: {
-    draft: 'Projekt warunków ogólnych: wyróżnione informacje uzupełnia GLACIORA, a całość należy zweryfikować przed użyciem.',
-    toFill: 'Do uzupełnienia',
-    translationNotice: 'To tłumaczenie ma charakter informacyjny; w razie rozbieżności rozstrzyga wersja francuska.',
-    sections: [
-      {
-        title: '1. Sprzedawca i zakres stosowania',
-        paragraphs: [
-          'Niniejsze warunki regulują sprzedaż zawieraną w tym serwisie między {brand} a każdym klientem będącym konsumentem. Sprzedawca: [[nazwa firmy lub imię i nazwisko przedsiębiorcy]], [[forma prawna]], SIRET [[numer]], [[numer VAT UE lub wzmianka „TVA non applicable, art. 293 B du CGI”]], {address}. Kontakt: {email} · {phone} (telefon i WhatsApp).',
-          'Każde zamówienie oznacza akceptację warunków obowiązujących w dniu zamówienia, które klient akceptuje, zaznaczając przewidziane pole przed potwierdzeniem.',
-        ],
-      },
-      {
-        title: '2. Produkty',
-        paragraphs: [
-          'Główne cechy (model, rozmiar, stan nowy lub używany, specyfikacja) są podane na stronie każdego produktu. Zdjęcia przedstawiają produkty i ich kolory poglądowo i nie mają wartości umownej; wiążące są wyłącznie pisemne informacje na stronie produktu. Oferty obowiązują do wyczerpania wskazanych zapasów.',
-        ],
-      },
-      {
-        title: '3. Ceny',
-        paragraphs: [
-          'Ceny podane są w euro, z uwzględnieniem wszystkich należnych podatków, bez kosztów dostawy. Koszty dostawy do wybranego kraju są wyświetlane przed potwierdzeniem zamówienia. Obowiązuje cena wyświetlona w chwili zamówienia.',
-        ],
-      },
-      {
-        title: '4. Zamówienie i śledzenie',
-        paragraphs: [
-          'Klient wybiera produkty, podaje adres i sposób dostawy, wyświetla dane do przelewu i jego tytuł, wykonuje przelew i przed potwierdzeniem przesyła jego potwierdzenie (PDF lub zdjęcie). Zamówienie zostaje wtedy zarejestrowane i potwierdzone e-mailem z linkiem do śledzenia.',
-          'Śledzenie w trzech etapach, każdy ogłaszany e-mailem: „W przygotowaniu” od potwierdzenia, „W drodze” po zaksięgowaniu przelewu i wysłaniu paczki, „Dostarczone” przy odbiorze.',
-        ],
-      },
-      {
-        title: '5. Płatność',
-        paragraphs: [
-          'Płatność odbywa się przelewem bankowym SEPA na dokładną kwotę i ze wskazanym tytułem zamówienia. Płatność kartą jest obecnie niedostępna. Zamówienie jest wysyłane dopiero po faktycznym otrzymaniu przelewu. W przypadku braku przelewu w terminie [[termin, na przykład 7 dni]] zamówienie może zostać anulowane, a produkty ponownie wystawione na sprzedaż. Nieprawdziwe potwierdzenie przelewu skutkuje anulowaniem zamówienia.',
-        ],
-      },
-      {
-        title: '6. Dostawa',
-        paragraphs: [
-          'Obsługiwane kraje, przewoźnicy, stawki i orientacyjne terminy są podane przy zamówieniu. Dostawa następuje najpóźniej w terminie [[termin maksymalny, na przykład 30 dni]] od otrzymania płatności. Ryzyko utraty lub uszkodzenia przechodzi na klienta z chwilą fizycznego objęcia produktów w posiadanie (art. L216-4 francuskiego Kodeksu konsumenckiego). W razie opóźnienia klient może, po bezskutecznym wezwaniu, rozwiązać umowę na warunkach art. L216-6 i nast.',
-          'Klient sprawdza paczkę przy odbiorze i zgłasza przewoźnikowi oraz na adres {email} wszelkie nieprawidłowości (uszkodzona paczka, brakujące produkty).',
-        ],
-      },
-      {
-        title: '7. Prawo odstąpienia od umowy',
-        paragraphs: [
-          'Klient ma czternaście dni od otrzymania produktów na odstąpienie od umowy bez podawania przyczyny (art. L221-18 i nast. francuskiego Kodeksu konsumenckiego), wysyłając na adres {email} jednoznaczne oświadczenie lub poniższy formularz. Odsyła produkty najpóźniej czternaście dni po poinformowaniu o swojej decyzji na adres [[adres zwrotu]], kompletne, w stanie oryginalnym i w opakowaniu umożliwiającym bezpieczny transport. Koszty zwrotu ponosi klient [[do potwierdzenia lub pokrywane przez GLACIORA]].',
-          'GLACIORA zwraca wszystkie otrzymane płatności, w tym pierwotne koszty dostawy (według najtańszego oferowanego sposobu dostawy), najpóźniej czternaście dni od otrzymania informacji o odstąpieniu, przelewem na konto klienta. Zwrot może zostać wstrzymany do czasu otrzymania produktów lub dowodu ich odesłania. Klient może odpowiadać za zmniejszenie wartości produktów wynikające z korzystania z nich w sposób wykraczający poza konieczny do stwierdzenia ich charakteru i cech (np. zamontowane lub używane narty).',
-        ],
-      },
-      {
-        title: '8. Gwarancje ustawowe',
-        paragraphs: [
-          'Wszystkie produkty objęte są ustawową gwarancją zgodności (art. L217-3 i nast. francuskiego Kodeksu konsumenckiego) oraz gwarancją z tytułu wad ukrytych (art. 1641 i nast. francuskiego Kodeksu cywilnego). W razie niezgodności ujawnionej w ciągu dwóch lat od dostawy klient może żądać naprawy lub wymiany produktu, a w przeciwnym razie obniżenia ceny lub rozwiązania umowy; domniemywa się, że wada istniała w chwili dostawy. W przypadku produktów używanych gwarancja zgodności trwa [[12 lub 24 miesiące, do doprecyzowania]]. W przypadku wady ukrytej klient działa w ciągu dwóch lat od jej wykrycia.',
-          'Wszelkie zgłoszenia gwarancyjne: {email}, z podaniem numeru zamówienia i stwierdzonej wady.',
-        ],
-      },
-      {
-        title: '9. Dane osobowe',
-        paragraphs: [
-          'Dane podane przy zamówieniu (tożsamość, dane kontaktowe, adres, potwierdzenie przelewu) służą do realizacji zamówienia, weryfikacji płatności, dostawy i obsługi klienta. Nie są sprzedawane ani udostępniane. Potwierdzenia przelewu są przechowywane poufnie, dostępne wyłącznie dla administratorów i automatycznie usuwane po 400 dniach. Klient może korzystać z prawa dostępu, sprostowania, usunięcia i sprzeciwu, pisząc na adres {email}, oraz zwrócić się do CNIL (cnil.fr), jeśli uzna, że jego prawa nie są przestrzegane.',
-        ],
-      },
-      {
-        title: '10. Mediacja i prawo właściwe',
-        paragraphs: [
-          'W razie sporu klient zwraca się najpierw na adres {email}. W braku polubownego rozwiązania może bezpłatnie skorzystać z mediatora konsumenckiego: [[nazwa, strona internetowa i adres mediatora, do którego należy GLACIORA]] (art. L612-1 i nast. francuskiego Kodeksu konsumenckiego). Niniejsze warunki podlegają prawu francuskiemu, co nie pozbawia klienta mieszkającego w innym kraju Unii Europejskiej ochrony bezwzględnie obowiązujących przepisów jego kraju zamieszkania.',
-        ],
-      },
-    ],
-    annexTitle: 'Załącznik — Formularz odstąpienia od umowy',
-    annex: [
-      'Do: {brand}, {address}, {email}:',
-      'Niniejszym informuję o moim odstąpieniu od umowy sprzedaży następujących produktów:',
-      'Data zamówienia / odbioru: … · Numer zamówienia: … · Produkty: …',
-      'Imię, nazwisko i adres klienta: … · Data: … · Podpis (tylko w wersji papierowej): …',
-    ],
+    docsFallback: 'Ten tekst jest dostępny w języku francuskim, angielskim i polskim; poniżej wyświetlana jest wersja angielska.',
+    privacyNoticeBefore: 'Twoje dane są wykorzystywane do realizacji zamówienia i obsługi konta, zgodnie z naszą',
+    privacyNoticeLink: 'polityką prywatności',
+    privacyNoticeAfter: '.',
   },
 };
 

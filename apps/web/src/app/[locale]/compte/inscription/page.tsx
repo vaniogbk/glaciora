@@ -51,6 +51,13 @@ export default function RegisterPage() {
         </div>
         <Field label={m.common.email} name="email" type="email" autoComplete="email" required error={errors.email} />
         <Field label={m.common.password} name="password" type="password" autoComplete="new-password" required hint={t.passwordHint} error={errors.password} />
+        <p className="text-xs text-muted">
+          {m.legal.privacyNoticeBefore}{' '}
+          <Link href="/confidentialite" className="font-semibold text-deep underline">
+            {m.legal.privacyNoticeLink}
+          </Link>
+          {m.legal.privacyNoticeAfter}
+        </p>
         <button type="submit" className="btn-primary w-full" disabled={pending}>
           {pending ? t.creating : t.createMyAccount}
         </button>

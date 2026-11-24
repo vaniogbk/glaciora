@@ -27,6 +27,7 @@ export function pickParams(searchParams: SearchParams, overrides: Record<string,
 function pageHref(base: string, params: Record<string, string>, page: number) {
   const qs = new URLSearchParams({ ...params, page: String(page) });
   if (page === 1) qs.delete('page');
+  qs.delete('audience'); // porté par l'adresse du rayon (/rayon/femmes)
   qs.delete('category');
   if (params.category && !base.startsWith('/categorie/')) qs.set('category', params.category);
   return `${base}${qs.toString() ? `?${qs}` : ''}`;

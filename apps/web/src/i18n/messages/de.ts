@@ -26,7 +26,9 @@ const de: Messages = {
     checkoutTitle: 'Bestellung',
     accountTitle: 'Mein Konto',
     termsTitle: 'Allgemeine Geschäftsbedingungen',
-    termsDescription: 'Allgemeine Geschäftsbedingungen von GLACIORA: Bestellung, Zahlung per Banküberweisung, Lieferung in Europa, Widerruf und Gewährleistung.',
+    termsDescription: 'Allgemeine Geschäftsbedingungen von GLACIORA: Bestellung, Zahlung per Banküberweisung oder Karte, Lieferung in Europa, 14-tägiges Widerrufsrecht und Gewährleistung.',
+    privacyTitle: 'Datenschutzerklärung',
+    privacyDescription: 'Datenschutzerklärung von GLACIORA: erhobene Daten, Zwecke, Dienstleister, Cookies, Speicherdauer und Ihre Rechte (DSGVO).',
   },
   common: {
     skipToContent: 'Zum Inhalt springen',
@@ -57,7 +59,7 @@ const de: Messages = {
     packDiscount: 'Paketrabatt',
     packNames: { 'pack-ski-complet-homme': 'Komplettpaket Ski Herren', 'pack-equipement-ski': 'Ski-Ausrüstungspaket', 'pack-hockey-complet-senior': 'Komplettpaket Eishockey Senior' },
   },
-  nav: { skis: 'Ski', boots: 'Skischuhe', hockey: 'Eishockey', accessories: 'Zubehör', all: 'Gesamter Katalog', packs: 'Pakete' },
+  nav: { men: 'Herren', women: 'Damen', kids: 'Kinder', audienceNav: 'Herren, Damen und Kinder', skis: 'Ski', boots: 'Skischuhe', hockey: 'Eishockey', accessories: 'Zubehör', all: 'Gesamter Katalog', packs: 'Pakete' },
   header: {
     openMenu: 'Menü öffnen',
     closeMenu: 'Menü schließen',
@@ -136,6 +138,11 @@ const de: Messages = {
     searchButton: 'Suchen',
     subcategories: 'Unterkategorien',
     comingSoon: 'Diese Kollektion folgt in Kürze.',
+    audienceIntros: {
+      hommes: 'Skijacken und Skihosen, Funktionsunterwäsche, Skischuhe und Ski für Herren, dazu Unisex-Artikel (Helme, Brillen, Handschuhe, Hockey).',
+      femmes: 'Skijacken und Skihosen, Ski und Stöcke für Damen, dazu Unisex-Artikel (Helme, Brillen, Handschuhe, Hockey).',
+      enfants: 'Juniorski, Skibekleidung und ein Hockey-Set für Kinder.',
+    },
     intros: {
       skis: 'All-Mountain-, Freeride-, Touren- und Juniorski der Marken Völkl und Zag.',
       bottes: 'Komfort- und Performance-Skischuhe von Salomon, Nordica und Lange in Mondopoint-Größen.',
@@ -502,85 +509,10 @@ const de: Messages = {
     hostName: 'Hosting-Anbieter',
     hostAddress: 'Anschrift des Hosting-Anbieters',
     toFill: 'Noch zu ergänzen',
-  },
-  terms: {
-    draft: 'Entwurf der Geschäftsbedingungen: Die markierten Angaben sind von GLACIORA zu ergänzen, und der gesamte Text ist vor der Verwendung prüfen zu lassen.',
-    toFill: 'Zu ergänzen',
-    translationNotice: 'Diese Übersetzung dient der Information; bei Abweichungen ist die französische Fassung maßgeblich.',
-    sections: [
-      {
-        title: '1. Verkäufer und Geltungsbereich',
-        paragraphs: [
-          'Diese Bedingungen gelten für alle Verkäufe auf dieser Website zwischen {brand} und Verbrauchern. Verkäufer: [[Firmenname oder Name des Unternehmers]], [[Rechtsform]], SIRET [[Nummer]], [[USt-IdNr. oder Hinweis „TVA non applicable, art. 293 B du CGI“]], {address}. Kontakt: {email} · {phone} (Telefon und WhatsApp).',
-          'Mit jeder Bestellung werden die am Bestelltag gültigen Bedingungen akzeptiert, die der Kunde vor dem Abschluss durch Ankreuzen des vorgesehenen Kästchens annimmt.',
-        ],
-      },
-      {
-        title: '2. Produkte',
-        paragraphs: [
-          'Die wesentlichen Merkmale (Modell, Größe, Neu- oder Gebrauchtzustand, technische Daten) stehen auf jeder Produktseite. Die Fotos zeigen die Artikel und ihre Farben zur Orientierung und sind nicht vertraglich verbindlich; maßgeblich sind allein die schriftlichen Angaben der Produktseite. Die Angebote gelten im Rahmen des angezeigten Bestands.',
-        ],
-      },
-      {
-        title: '3. Preise',
-        paragraphs: [
-          'Die Preise sind in Euro inklusive aller anwendbaren Steuern und zuzüglich Versandkosten angegeben. Die Versandkosten für das gewählte Land werden vor Abschluss der Bestellung angezeigt. Berechnet wird der zum Zeitpunkt der Bestellung angezeigte Preis.',
-        ],
-      },
-      {
-        title: '4. Bestellung und Sendungsverfolgung',
-        paragraphs: [
-          'Der Kunde wählt seine Artikel, gibt seine Adresse und Versandart an, lässt sich die Bankverbindung und den Verwendungszweck anzeigen, führt die Überweisung aus und lädt vor dem Abschluss seinen Überweisungsnachweis (PDF-Beleg oder Foto) hoch. Die Bestellung wird dann gespeichert und per E-Mail mit einem Link zur Sendungsverfolgung bestätigt.',
-          'Verfolgung in drei Schritten, jeweils per E-Mail mitgeteilt: „In Vorbereitung“ ab dem Abschluss, „Unterwegs“ nach Gutschrift der Überweisung und Versand des Pakets, „Zugestellt“ bei Erhalt.',
-        ],
-      },
-      {
-        title: '5. Zahlung',
-        paragraphs: [
-          'Die Zahlung erfolgt per SEPA-Banküberweisung über den genauen Betrag und mit dem angegebenen Verwendungszweck. Die Zahlung per Kreditkarte ist derzeit nicht verfügbar. Die Bestellung wird erst nach tatsächlichem Eingang der Überweisung versandt. Geht die Überweisung nicht innerhalb von [[Frist, zum Beispiel 7 Tage]] ein, kann die Bestellung storniert und die Ware wieder zum Verkauf angeboten werden. Ein unzutreffender Überweisungsnachweis führt zur Stornierung der Bestellung.',
-        ],
-      },
-      {
-        title: '6. Lieferung',
-        paragraphs: [
-          'Die belieferten Länder, Versanddienstleister, Tarife und voraussichtlichen Lieferzeiten werden bei der Bestellung angezeigt. Die Lieferung erfolgt spätestens [[maximale Frist, zum Beispiel 30 Tage]] nach Zahlungseingang. Die Gefahr des Verlusts oder der Beschädigung geht auf den Kunden über, sobald er die Ware physisch in Besitz nimmt (Artikel L216-4 des französischen Verbrauchergesetzbuchs). Bei Verzug kann der Kunde nach erfolgloser Mahnung unter den Bedingungen der Artikel L216-6 ff. vom Vertrag zurücktreten.',
-          'Der Kunde prüft das Paket bei Erhalt und meldet jede Unregelmäßigkeit (beschädigtes Paket, fehlende Artikel) dem Versanddienstleister und an {email}.',
-        ],
-      },
-      {
-        title: '7. Widerrufsrecht',
-        paragraphs: [
-          'Der Kunde kann innerhalb von vierzehn Tagen ab Erhalt der Ware ohne Angabe von Gründen widerrufen (Artikel L221-18 ff. des französischen Verbrauchergesetzbuchs), indem er an {email} eine eindeutige Erklärung oder das unten stehende Formular sendet. Er sendet die Ware spätestens vierzehn Tage nach Mitteilung seiner Entscheidung an die Adresse [[Rücksendeadresse]] zurück, vollständig, im Originalzustand und in einer Verpackung, die einen schadensfreien Transport ermöglicht. Die Rücksendekosten trägt der Kunde [[zu bestätigen, oder von GLACIORA übernommen]].',
-          'GLACIORA erstattet alle geleisteten Zahlungen einschließlich der ursprünglichen Versandkosten (auf Grundlage der günstigsten angebotenen Versandart) spätestens vierzehn Tage nach Kenntnis des Widerrufs per Überweisung auf das Konto des Kunden. Die Erstattung kann bis zum Erhalt der Ware oder bis zum Nachweis ihrer Rücksendung zurückgehalten werden. Der Kunde haftet für einen Wertverlust der Ware, der auf einen Umgang zurückzuführen ist, der zur Prüfung ihrer Beschaffenheit und Eigenschaften nicht notwendig war (zum Beispiel montierte oder benutzte Ski).',
-        ],
-      },
-      {
-        title: '8. Gesetzliche Gewährleistung',
-        paragraphs: [
-          'Für alle Artikel gelten die gesetzliche Konformitätsgewährleistung (Artikel L217-3 ff. des französischen Verbrauchergesetzbuchs) und die Gewährleistung für versteckte Mängel (Artikel 1641 ff. des französischen Zivilgesetzbuchs). Tritt innerhalb von zwei Jahren nach der Lieferung eine Vertragswidrigkeit auf, kann der Kunde Reparatur oder Ersatz des Artikels verlangen, andernfalls eine Preisminderung oder die Auflösung des Vertrags; es wird vermutet, dass der Mangel bereits bei der Lieferung bestand. Für Gebrauchtartikel beträgt die Dauer der Konformitätsgewährleistung [[12 oder 24 Monate, anzugeben]]. Bei einem versteckten Mangel handelt der Kunde innerhalb von zwei Jahren nach dessen Entdeckung.',
-          'Für alle Gewährleistungsanfragen: {email}, unter Angabe der Bestellnummer und des festgestellten Mangels.',
-        ],
-      },
-      {
-        title: '9. Personenbezogene Daten',
-        paragraphs: [
-          'Die bei der Bestellung erfassten Daten (Identität, Kontaktdaten, Adresse, Überweisungsnachweis) dienen der Bearbeitung der Bestellung, der Zahlungsprüfung, der Lieferung und der Kundenbetreuung. Sie werden weder verkauft noch weitergegeben. Die Überweisungsnachweise werden vertraulich gespeichert, sind nur für Administratoren zugänglich und werden nach 400 Tagen automatisch gelöscht. Der Kunde kann seine Rechte auf Auskunft, Berichtigung, Löschung und Widerspruch per E-Mail an {email} ausüben und sich bei der CNIL (cnil.fr) beschweren, wenn er seine Rechte verletzt sieht.',
-        ],
-      },
-      {
-        title: '10. Schlichtung und anwendbares Recht',
-        paragraphs: [
-          'Bei Streitigkeiten wendet sich der Kunde zunächst an {email}. Kommt keine gütliche Lösung zustande, kann er kostenlos die Verbraucherschlichtungsstelle anrufen: [[Name, Website und Adresse der Schlichtungsstelle, der GLACIORA angehört]] (Artikel L612-1 ff. des französischen Verbrauchergesetzbuchs). Diese Bedingungen unterliegen französischem Recht, ohne dem in einem anderen EU-Land wohnhaften Kunden den Schutz der zwingenden Bestimmungen seines Wohnsitzlandes zu entziehen.',
-        ],
-      },
-    ],
-    annexTitle: 'Anhang — Widerrufsformular',
-    annex: [
-      'An {brand}, {address}, {email}:',
-      'Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über den Kauf der folgenden Waren:',
-      'Bestellt am / erhalten am: … · Bestellnummer: … · Artikel: …',
-      'Name und Anschrift des Kunden: … · Datum: … · Unterschrift (nur bei Mitteilung auf Papier): …',
-    ],
+    docsFallback: 'Dieser Text liegt auf Französisch, Englisch und Polnisch vor; unten wird die englische Fassung angezeigt.',
+    privacyNoticeBefore: 'Ihre Daten werden zur Bearbeitung Ihrer Bestellung und Ihres Kontos verwendet, wie in unserer',
+    privacyNoticeLink: 'Datenschutzerklärung',
+    privacyNoticeAfter: ' beschrieben.',
   },
 };
 

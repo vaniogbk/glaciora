@@ -18,6 +18,14 @@ enum Sport {
   HOCKEY
 }
 
+/// Public visé : MEN, WOMEN, KIDS, ou UNISEX (article adulte sans version homme/femme, affiché dans les deux rayons).
+enum Audience {
+  MEN
+  WOMEN
+  KIDS
+  UNISEX
+}
+
 enum ProductCondition {
   NEW
   USED
@@ -150,6 +158,8 @@ model Product {
   categoryId             String
   category               Category         @relation(fields: [categoryId], references: [id])
   sport                  Sport
+  /// Rayon Hommes / Femmes / Enfants (data/catalogue-audience.csv, appliqué à chaque import).
+  audience               Audience         @default(UNISEX)
   condition              ProductCondition @default(NEW)
   status                 ProductStatus    @default(DRAFT)
   currency               String           @default("EUR")
@@ -177,6 +187,7 @@ model Product {
 
   @@index([categoryId, status])
   @@index([sport, status])
+  @@index([audience, status])
   @@index([brand])
   // Tris du catalogue (prix, nouveautés) sur les produits publiés.
   @@index([status, priceFromCents])

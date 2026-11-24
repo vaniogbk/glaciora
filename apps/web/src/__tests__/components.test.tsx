@@ -64,5 +64,10 @@ describe('Footer', () => {
     expect(screen.queryByRole('link', { name: /Appeler/ })).not.toBeInTheDocument();
     expect(screen.getByText('Różana 70, 84-230 Rumia, Pologne')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Mentions légales' })).toHaveAttribute('href', '/mentions-legales');
+    expect(screen.getByRole('link', { name: 'Conditions générales de vente' })).toHaveAttribute('href', '/conditions-de-vente');
+    expect(screen.getByRole('link', { name: 'Politique de confidentialité' })).toHaveAttribute('href', '/confidentialite');
+    for (const [name, slug] of [['Hommes', 'hommes'], ['Femmes', 'femmes'], ['Enfants', 'enfants']]) {
+      expect(screen.getByRole('link', { name })).toHaveAttribute('href', `/rayon/${slug}`);
+    }
   });
 });

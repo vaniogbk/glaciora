@@ -10,6 +10,7 @@ import { toCents } from '@glaciora/shared';
 import { env } from '../../config/env';
 import { prisma } from '../../lib/prisma';
 import { slugify } from '../../lib/slug';
+import { applyCatalogueAudience } from './audience';
 
 /**
  * Import idempotent du catalogue client.
@@ -476,6 +477,9 @@ export async function runCatalogueImport(options: ImportOptions) {
       lines.push({ reference, action: 'error', message });
     }
   }
+
+  // Rayons Hommes / Femmes / Enfants, réappliqués même aux articles inchangés.
+  if (!options.dryRun) await applyCatalogueAudience();
 
   const summary = {
     created: lines.filter((l) => l.action === 'created').length,

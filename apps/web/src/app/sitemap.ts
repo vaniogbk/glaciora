@@ -13,7 +13,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages: Entry[] = [
     { path: '/', changeFrequency: 'daily', priority: 1 },
     { path: '/catalogue', changeFrequency: 'daily', priority: 0.9 },
+    ...['hommes', 'femmes', 'enfants'].map((slug) => ({ path: `/rayon/${slug}`, changeFrequency: 'daily' as const, priority: 0.9 })),
     { path: '/mentions-legales', changeFrequency: 'weekly', priority: 0.2 },
+    { path: '/conditions-de-vente', changeFrequency: 'weekly', priority: 0.2 },
+    { path: '/confidentialite', changeFrequency: 'weekly', priority: 0.2 },
     ...(packs.length ? [{ path: '/packs', changeFrequency: 'weekly' as const, priority: 0.8 }, ...packs.map((p) => ({ path: `/packs/${p.slug}`, changeFrequency: 'weekly' as const, priority: 0.7 }))] : []),
     ...categories.map((c) => ({ path: `/categorie/${c.slug}`, lastModified: new Date(c.updatedAt), changeFrequency: 'weekly' as const, priority: 0.8 })),
     ...products.map((p) => ({ path: `/produit/${p.slug}`, lastModified: new Date(p.updatedAt), changeFrequency: 'weekly' as const, priority: 0.7 })),

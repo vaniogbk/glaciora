@@ -26,7 +26,9 @@ const it: Messages = {
     checkoutTitle: 'Ordine',
     accountTitle: 'Il mio account',
     termsTitle: 'Condizioni generali di vendita',
-    termsDescription: 'Condizioni generali di vendita GLACIORA: ordine, pagamento con bonifico bancario, consegna in Europa, recesso e garanzie.',
+    termsDescription: 'Condizioni generali di vendita GLACIORA: ordine, pagamento con bonifico bancario o carta, consegna in Europa, diritto di recesso di 14 giorni e garanzie.',
+    privacyTitle: 'Informativa sulla privacy',
+    privacyDescription: 'Informativa sulla privacy di GLACIORA: dati raccolti, finalità, fornitori, cookie, tempi di conservazione e i tuoi diritti (GDPR).',
   },
   common: {
     skipToContent: 'Vai al contenuto',
@@ -57,7 +59,7 @@ const it: Messages = {
     packDiscount: 'Sconto pack',
     packNames: { 'pack-ski-complet-homme': 'Pack sci completo uomo', 'pack-equipement-ski': 'Pack attrezzatura sci', 'pack-hockey-complet-senior': 'Pack hockey completo senior' },
   },
-  nav: { skis: 'Sci', boots: 'Scarponi', hockey: 'Hockey', accessories: 'Accessori', all: 'Tutto il catalogo', packs: 'Pack' },
+  nav: { men: 'Uomo', women: 'Donna', kids: 'Bambini', audienceNav: 'Uomo, donna e bambini', skis: 'Sci', boots: 'Scarponi', hockey: 'Hockey', accessories: 'Accessori', all: 'Tutto il catalogo', packs: 'Pack' },
   header: {
     openMenu: 'Apri il menu',
     closeMenu: 'Chiudi il menu',
@@ -136,6 +138,11 @@ const it: Messages = {
     searchButton: 'Cerca',
     subcategories: 'Sottocategorie',
     comingSoon: 'Questa collezione arriverà presto.',
+    audienceIntros: {
+      hommes: 'Giacche e pantaloni da sci, intimo termico, scarponi e sci da uomo, oltre agli articoli unisex (caschi, maschere, guanti, hockey).',
+      femmes: 'Giacche e pantaloni da sci, sci e bastoncini da donna, oltre agli articoli unisex (caschi, maschere, guanti, hockey).',
+      enfants: 'Sci junior, abbigliamento da sci e un set da hockey per bambini.',
+    },
     intros: {
       skis: 'Sci all-mountain, freeride, da scialpinismo e junior dei marchi Völkl e Zag.',
       bottes: 'Scarponi da sci comfort e performance Salomon, Nordica e Lange, in misure Mondopoint.',
@@ -502,85 +509,10 @@ const it: Messages = {
     hostName: 'Fornitore di hosting',
     hostAddress: 'Indirizzo del fornitore di hosting',
     toFill: 'Da completare',
-  },
-  terms: {
-    draft: 'Bozza di condizioni generali: le indicazioni evidenziate devono essere completate da GLACIORA e l’intero testo va fatto verificare prima dell’uso.',
-    toFill: 'Da completare',
-    translationNotice: 'Questa traduzione è fornita a titolo informativo; in caso di divergenza prevale la versione francese.',
-    sections: [
-      {
-        title: '1. Venditore e ambito di applicazione',
-        paragraphs: [
-          'Le presenti condizioni regolano le vendite concluse su questo sito tra {brand} e qualsiasi cliente consumatore. Venditore: [[ragione sociale o nome dell’imprenditore]], [[forma giuridica]], SIRET [[numero]], [[partita IVA intracomunitaria o dicitura «TVA non applicable, art. 293 B du CGI»]], {address}. Contatti: {email} · {phone} (telefono e WhatsApp).',
-          'Ogni ordine comporta l’accettazione delle condizioni in vigore alla data dell’ordine, che il cliente accetta selezionando l’apposita casella prima della conferma.',
-        ],
-      },
-      {
-        title: '2. Prodotti',
-        paragraphs: [
-          'Le caratteristiche essenziali (modello, taglia, stato nuovo o usato, specifiche) sono indicate su ogni scheda prodotto. Le foto presentano gli articoli e i loro colori a titolo indicativo e non hanno valore contrattuale; fanno fede solo le caratteristiche scritte nella scheda. Le offerte sono valide nei limiti delle scorte indicate.',
-        ],
-      },
-      {
-        title: '3. Prezzi',
-        paragraphs: [
-          'I prezzi sono indicati in euro, comprensivi di tutte le imposte applicabili, escluse le spese di consegna. Le spese di consegna per il paese scelto sono mostrate prima della conferma dell’ordine. Il prezzo fatturato è quello indicato al momento dell’ordine.',
-        ],
-      },
-      {
-        title: '4. Ordine e tracciamento',
-        paragraphs: [
-          'Il cliente sceglie gli articoli, indica l’indirizzo e il metodo di spedizione, visualizza le coordinate bancarie e la causale, esegue il bonifico e carica la prova del bonifico (ricevuta PDF o foto) prima di confermare. L’ordine viene quindi registrato e confermato via e-mail, con un link per seguirlo.',
-          'Tracciamento in tre fasi, ognuna comunicata via e-mail: «In preparazione» dalla conferma, «In viaggio» una volta accreditato il bonifico e spedito il pacco, «Consegnato» alla ricezione.',
-        ],
-      },
-      {
-        title: '5. Pagamento',
-        paragraphs: [
-          'Il pagamento avviene con bonifico bancario SEPA, per l’importo esatto e con la causale indicata. Il pagamento con carta non è al momento disponibile. L’ordine viene spedito solo dopo l’effettiva ricezione del bonifico. In mancanza di bonifico ricevuto entro [[termine, ad esempio 7 giorni]], l’ordine può essere annullato e gli articoli rimessi in vendita. Una prova di bonifico non veritiera comporta l’annullamento dell’ordine.',
-        ],
-      },
-      {
-        title: '6. Consegna',
-        paragraphs: [
-          'I paesi serviti, i corrieri, le tariffe e i tempi indicativi sono indicati al momento dell’ordine. La consegna avviene al più tardi entro [[termine massimo, ad esempio 30 giorni]] dalla ricezione del pagamento. Il rischio di perdita o danneggiamento passa al cliente quando prende fisicamente possesso degli articoli (articolo L216-4 del Codice del consumo francese). In caso di ritardo, il cliente può, dopo una diffida rimasta senza effetto, risolvere il contratto alle condizioni degli articoli L216-6 e seguenti.',
-          'Il cliente controlla il pacco alla ricezione e segnala al corriere e a {email} qualsiasi anomalia (pacco danneggiato, articoli mancanti).',
-        ],
-      },
-      {
-        title: '7. Diritto di recesso',
-        paragraphs: [
-          'Il cliente dispone di quattordici giorni dalla ricezione degli articoli per recedere, senza doverne indicare il motivo (articoli L221-18 e seguenti del Codice del consumo francese), inviando a {email} una dichiarazione esplicita o il modulo riportato sotto. Restituisce gli articoli al più tardi quattordici giorni dopo aver comunicato la propria decisione, all’indirizzo [[indirizzo di reso]], completi, nello stato originale e in un imballaggio che ne permetta il trasporto senza danni. Le spese di reso sono a carico del cliente [[da confermare, oppure a carico di GLACIORA]].',
-          'GLACIORA rimborsa la totalità delle somme versate, comprese le spese di consegna iniziali (sulla base del metodo di consegna meno costoso proposto), al più tardi quattordici giorni dopo essere stata informata del recesso, con bonifico sul conto del cliente. Il rimborso può essere sospeso fino al ricevimento degli articoli o alla prova della loro spedizione. Il cliente può essere ritenuto responsabile della diminuzione di valore degli articoli derivante da una manipolazione diversa da quella necessaria per stabilirne la natura e le caratteristiche (ad esempio sci montati o utilizzati).',
-        ],
-      },
-      {
-        title: '8. Garanzie legali',
-        paragraphs: [
-          'Tutti gli articoli beneficiano della garanzia legale di conformità (articoli L217-3 e seguenti del Codice del consumo francese) e della garanzia per vizi occulti (articoli 1641 e seguenti del Codice civile francese). In caso di difetto di conformità emerso entro due anni dalla consegna, il cliente può ottenere la riparazione o la sostituzione dell’articolo oppure, in mancanza, una riduzione del prezzo o la risoluzione del contratto; il difetto si presume esistente al momento della consegna. Per gli articoli usati, la durata della garanzia di conformità è di [[12 o 24 mesi, da precisare]]. In caso di vizio occulto, il cliente agisce entro due anni dalla scoperta del vizio.',
-          'Per qualsiasi richiesta in garanzia: {email}, indicando il riferimento dell’ordine e il difetto riscontrato.',
-        ],
-      },
-      {
-        title: '9. Dati personali',
-        paragraphs: [
-          'I dati inseriti durante l’ordine (identità, recapiti, indirizzo, prova del bonifico) servono a gestire l’ordine, verificare il pagamento, consegnare e seguire il rapporto con il cliente. Non vengono venduti né ceduti. Le prove di bonifico sono conservate in modo riservato, accessibili ai soli amministratori, e cancellate automaticamente dopo 400 giorni. Il cliente può esercitare i diritti di accesso, rettifica, cancellazione e opposizione scrivendo a {email} e rivolgersi alla CNIL (cnil.fr) se ritiene che i suoi diritti non siano rispettati.',
-        ],
-      },
-      {
-        title: '10. Mediazione e legge applicabile',
-        paragraphs: [
-          'In caso di controversia, il cliente si rivolge prima a {email}. In mancanza di una soluzione amichevole, può ricorrere gratuitamente al mediatore dei consumatori: [[nome, sito internet e indirizzo del mediatore a cui aderisce GLACIORA]] (articoli L612-1 e seguenti del Codice del consumo francese). Le presenti condizioni sono soggette alla legge francese, senza privare il cliente residente in un altro paese dell’Unione europea delle disposizioni imperative di tutela del suo paese di residenza.',
-        ],
-      },
-    ],
-    annexTitle: 'Allegato — Modulo di recesso',
-    annex: [
-      'All’attenzione di {brand}, {address}, {email}:',
-      'Con la presente comunico il mio recesso dal contratto di vendita degli articoli seguenti:',
-      'Ordinato il / ricevuto il: … · Riferimento dell’ordine: … · Articoli: …',
-      'Nome e indirizzo del cliente: … · Data: … · Firma (in caso di invio cartaceo): …',
-    ],
+    docsFallback: 'Questo testo è redatto in francese, inglese e polacco; di seguito è riportata la versione inglese.',
+    privacyNoticeBefore: 'I tuoi dati sono utilizzati per gestire il tuo ordine e il tuo account, come spiegato nella nostra',
+    privacyNoticeLink: 'informativa sulla privacy',
+    privacyNoticeAfter: '.',
   },
 };
 

@@ -1,5 +1,5 @@
 import type { Prisma } from '@prisma/client';
-import type { ProductQuery } from '@glaciora/shared';
+import { AUDIENCE_GROUPS, type ProductQuery } from '@glaciora/shared';
 import { prisma } from '../../lib/prisma';
 
 export const productCardSelect = {
@@ -40,6 +40,7 @@ export async function categoryIdsWithDescendants(slug: string): Promise<string[]
 export function buildProductWhere(query: ProductQuery, categoryIds?: string[]): Prisma.ProductWhereInput {
   const and: Prisma.ProductWhereInput[] = [{ status: 'ACTIVE' }];
   if (categoryIds) and.push({ categoryId: { in: categoryIds } });
+  if (query.audience) and.push({ audience: { in: AUDIENCE_GROUPS[query.audience] } });
   if (query.sport) and.push({ sport: query.sport });
   if (query.brand) and.push({ brand: { equals: query.brand, mode: 'insensitive' } });
   if (query.condition) and.push({ condition: query.condition });

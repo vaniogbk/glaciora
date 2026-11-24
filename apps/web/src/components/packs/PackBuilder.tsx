@@ -136,7 +136,7 @@ export function PackBuilder({ items, discountPercent, labels }: { items: PackIte
           </p>
         </div>
       </div>
-      <aside className="card h-fit p-5 lg:sticky lg:top-24">
+      <aside className="card h-fit p-5 lg:sticky lg:top-36">
         <dl className="space-y-1 text-sm">
           <div className="flex flex-wrap justify-between gap-x-3 text-muted">
             <dt>{labels.regularPrice}</dt>

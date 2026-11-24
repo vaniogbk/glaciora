@@ -26,7 +26,9 @@ const sk: Messages = {
     checkoutTitle: 'Objednávka',
     accountTitle: 'Môj účet',
     termsTitle: 'Všeobecné obchodné podmienky',
-    termsDescription: 'Všeobecné obchodné podmienky GLACIORA: objednávka, platba bankovým prevodom, doručenie v Európe, odstúpenie od zmluvy a záruky.',
+    termsDescription: 'Všeobecné obchodné podmienky GLACIORA: objednávka, platba bankovým prevodom alebo kartou, doručenie po Európe, 14-dňová lehota na odstúpenie od zmluvy a záruky.',
+    privacyTitle: 'Zásady ochrany osobných údajov',
+    privacyDescription: 'Zásady ochrany osobných údajov GLACIORA: zhromažďované údaje, účely, poskytovatelia služieb, cookies, doba uchovávania a vaše práva (GDPR).',
   },
   common: {
     skipToContent: 'Preskočiť na obsah',
@@ -57,7 +59,7 @@ const sk: Messages = {
     packDiscount: 'Zľava za set',
     packNames: { 'pack-ski-complet-homme': 'Kompletný lyžiarsky set pánsky', 'pack-equipement-ski': 'Set lyžiarskeho vybavenia', 'pack-hockey-complet-senior': 'Kompletný hokejový set senior' },
   },
-  nav: { skis: 'Lyže', boots: 'Lyžiarky', hockey: 'Hokej', accessories: 'Doplnky', all: 'Celý katalóg', packs: 'Sety' },
+  nav: { men: 'Muži', women: 'Ženy', kids: 'Deti', audienceNav: 'Muži, ženy a deti', skis: 'Lyže', boots: 'Lyžiarky', hockey: 'Hokej', accessories: 'Doplnky', all: 'Celý katalóg', packs: 'Sety' },
   header: {
     openMenu: 'Otvoriť menu',
     closeMenu: 'Zavrieť menu',
@@ -136,6 +138,11 @@ const sk: Messages = {
     searchButton: 'Hľadať',
     subcategories: 'Podkategórie',
     comingSoon: 'Táto kolekcia čoskoro pribudne.',
+    audienceIntros: {
+      hommes: 'Lyžiarske bundy a nohavice, termobielizeň, lyžiarky a lyže pre mužov a k tomu unisex tovar (prilby, okuliare, rukavice, hokej).',
+      femmes: 'Lyžiarske bundy a nohavice, lyže a palice pre ženy a k tomu unisex tovar (prilby, okuliare, rukavice, hokej).',
+      enfants: 'Juniorské lyže, lyžiarske oblečenie a hokejová súprava pre deti.',
+    },
     intros: {
       skis: 'Lyže all-mountain, freeride, skialpinistické a juniorské značiek Völkl a Zag.',
       bottes: 'Komfortné a výkonnostné lyžiarky Salomon, Nordica a Lange vo veľkostiach Mondopoint.',
@@ -502,85 +509,10 @@ const sk: Messages = {
     hostName: 'Poskytovateľ hostingu',
     hostAddress: 'Adresa poskytovateľa hostingu',
     toFill: 'Doplní sa',
-  },
-  terms: {
-    draft: 'Návrh obchodných podmienok: označené údaje doplní GLACIORA a celý text je pred použitím potrebné nechať overiť.',
-    toFill: 'Doplniť',
-    translationNotice: 'Tento preklad má informatívny charakter; v prípade rozporu je rozhodujúce francúzske znenie.',
-    sections: [
-      {
-        title: '1. Predávajúci a rozsah pôsobnosti',
-        paragraphs: [
-          'Tieto podmienky upravujú predaje uzavreté na tejto stránke medzi {brand} a spotrebiteľom. Predávajúci: [[obchodné meno alebo meno podnikateľa]], [[právna forma]], SIRET [[číslo]], [[IČ DPH alebo údaj „TVA non applicable, art. 293 B du CGI“]], {address}. Kontakt: {email} · {phone} (telefón a WhatsApp).',
-          'Každá objednávka znamená súhlas s podmienkami platnými v deň objednávky, ktoré zákazník prijme zaškrtnutím príslušného políčka pred potvrdením.',
-        ],
-      },
-      {
-        title: '2. Produkty',
-        paragraphs: [
-          'Hlavné vlastnosti (model, veľkosť, nový alebo použitý stav, technické údaje) sú uvedené na stránke každého produktu. Fotografie zobrazujú tovar a jeho farby orientačne a nie sú zmluvne záväzné; rozhodujúce sú iba písomné údaje na stránke produktu. Ponuky platia do vyčerpania zobrazených zásob.',
-        ],
-      },
-      {
-        title: '3. Ceny',
-        paragraphs: [
-          'Ceny sú uvedené v eurách vrátane všetkých príslušných daní, bez nákladov na doručenie. Náklady na doručenie do zvolenej krajiny sa zobrazia pred potvrdením objednávky. Účtuje sa cena zobrazená v čase objednávky.',
-        ],
-      },
-      {
-        title: '4. Objednávka a sledovanie',
-        paragraphs: [
-          'Zákazník vyberie tovar, zadá adresu a spôsob doručenia, zobrazí si bankové údaje a referenciu prevodu, uskutoční prevod a pred potvrdením nahrá potvrdenie o prevode (PDF alebo fotografiu). Objednávka sa potom zaregistruje a potvrdí e-mailom s odkazom na sledovanie.',
-          'Sledovanie v troch krokoch, každý oznámený e-mailom: „Pripravuje sa“ po potvrdení, „Na ceste“ po pripísaní prevodu a odoslaní balíka, „Doručené“ pri prevzatí.',
-        ],
-      },
-      {
-        title: '5. Platba',
-        paragraphs: [
-          'Platba sa uskutočňuje bankovým prevodom SEPA v presnej sume a s uvedenou referenciou objednávky. Platba kartou momentálne nie je dostupná. Objednávka sa odošle až po skutočnom prijatí prevodu. Ak prevod nedorazí do [[lehota, napríklad 7 dní]], objednávka môže byť zrušená a tovar opäť ponúknutý na predaj. Nepravdivé potvrdenie o prevode vedie k zrušeniu objednávky.',
-        ],
-      },
-      {
-        title: '6. Doručenie',
-        paragraphs: [
-          'Krajiny doručenia, dopravcovia, ceny a orientačné lehoty sú uvedené pri objednávke. Doručenie prebehne najneskôr do [[maximálna lehota, napríklad 30 dní]] od prijatia platby. Riziko straty alebo poškodenia prechádza na zákazníka, keď tovar fyzicky prevezme (článok L216-4 francúzskeho Spotrebiteľského zákonníka). V prípade omeškania môže zákazník po bezvýslednej výzve odstúpiť od zmluvy za podmienok článkov L216-6 a nasl.',
-          'Zákazník pri prevzatí skontroluje balík a akúkoľvek nezrovnalosť (poškodený balík, chýbajúci tovar) oznámi dopravcovi a na {email}.',
-        ],
-      },
-      {
-        title: '7. Právo na odstúpenie od zmluvy',
-        paragraphs: [
-          'Zákazník môže do štrnástich dní od prevzatia tovaru odstúpiť od zmluvy bez uvedenia dôvodu (články L221-18 a nasl. francúzskeho Spotrebiteľského zákonníka) zaslaním jednoznačného vyhlásenia alebo nižšie uvedeného formulára na {email}. Tovar vráti najneskôr štrnásť dní po oznámení svojho rozhodnutia na adresu [[adresa pre vrátenie]], kompletný, v pôvodnom stave a v obale umožňujúcom prepravu bez poškodenia. Náklady na vrátenie znáša zákazník [[potvrdiť, alebo ich hradí GLACIORA]].',
-          'GLACIORA vráti všetky prijaté platby vrátane pôvodných nákladov na doručenie (podľa najlacnejšieho ponúkaného spôsobu doručenia) najneskôr štrnásť dní po oznámení odstúpenia, prevodom na účet zákazníka. Vrátenie platby môže byť odložené do prevzatia tovaru alebo preukázania jeho odoslania. Zákazník zodpovedá za zníženie hodnoty tovaru v dôsledku zaobchádzania nad rámec potrebný na zistenie jeho povahy a vlastností (napríklad namontované alebo použité lyže).',
-        ],
-      },
-      {
-        title: '8. Zákonné záruky',
-        paragraphs: [
-          'Na všetok tovar sa vzťahuje zákonná záruka zhody (články L217-3 a nasl. francúzskeho Spotrebiteľského zákonníka) a záruka za skryté vady (články 1641 a nasl. francúzskeho Občianskeho zákonníka). Ak sa do dvoch rokov od doručenia prejaví rozpor so zmluvou, zákazník môže žiadať opravu alebo výmenu tovaru, prípadne zľavu z ceny alebo odstúpenie od zmluvy; predpokladá sa, že vada existovala už pri doručení. Pri použitom tovare je záruka zhody [[12 alebo 24 mesiacov, upresniť]]. Pri skrytej vade zákazník koná do dvoch rokov od jej zistenia.',
-          'Všetky požiadavky v rámci záruk: {email}, s uvedením čísla objednávky a zistenej vady.',
-        ],
-      },
-      {
-        title: '9. Osobné údaje',
-        paragraphs: [
-          'Údaje zadané pri objednávke (totožnosť, kontaktné údaje, adresa, potvrdenie o prevode) slúžia na spracovanie objednávky, overenie platby, doručenie a starostlivosť o zákazníka. Nepredávajú sa ani neposkytujú tretím stranám. Potvrdenia o prevode sú uložené dôverne, prístupné iba administrátorom a automaticky sa vymažú po 400 dňoch. Zákazník môže uplatniť svoje práva na prístup, opravu, vymazanie a namietanie na {email} a obrátiť sa na CNIL (cnil.fr), ak sa domnieva, že jeho práva neboli rešpektované.',
-        ],
-      },
-      {
-        title: '10. Mimosúdne riešenie sporov a rozhodné právo',
-        paragraphs: [
-          'V prípade sporu sa zákazník najprv obráti na {email}. Ak sa nenájde zmierlivé riešenie, môže bezplatne využiť spotrebiteľského mediátora: [[názov, webová stránka a adresa mediátora, ku ktorému GLACIORA pristúpila]] (články L612-1 a nasl. francúzskeho Spotrebiteľského zákonníka). Tieto podmienky sa riadia francúzskym právom bez toho, aby bol zákazník s bydliskom v inej krajine EÚ zbavený ochrany kogentných ustanovení svojej krajiny.',
-        ],
-      },
-    ],
-    annexTitle: 'Príloha — Formulár na odstúpenie od zmluvy',
-    annex: [
-      'Komu: {brand}, {address}, {email}:',
-      'Týmto oznamujem, že odstupujem od zmluvy o kúpe nasledujúceho tovaru:',
-      'Dátum objednania / prevzatia: … · Číslo objednávky: … · Tovar: …',
-      'Meno a adresa zákazníka: … · Dátum: … · Podpis (iba pri listinnej forme): …',
-    ],
+    docsFallback: 'Tento text je k dispozícii vo francúzštine, angličtine a poľštine; nižšie je zobrazená anglická verzia.',
+    privacyNoticeBefore: 'Vaše údaje slúžia na spracovanie objednávky a účtu, ako vysvetľujú naše',
+    privacyNoticeLink: 'zásady ochrany osobných údajov',
+    privacyNoticeAfter: '.',
   },
 };
 

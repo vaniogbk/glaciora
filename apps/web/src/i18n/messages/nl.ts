@@ -26,7 +26,9 @@ const nl: Messages = {
     checkoutTitle: 'Bestelling',
     accountTitle: 'Mijn account',
     termsTitle: 'Algemene verkoopvoorwaarden',
-    termsDescription: 'Algemene verkoopvoorwaarden van GLACIORA: bestelling, betaling per bankoverschrijving, levering in Europa, herroeping en garanties.',
+    termsDescription: 'Algemene verkoopvoorwaarden van GLACIORA: bestellen, betalen per bankoverschrijving of kaart, levering in Europa, herroepingsrecht van 14 dagen en garanties.',
+    privacyTitle: 'Privacybeleid',
+    privacyDescription: 'Privacybeleid van GLACIORA: verzamelde gegevens, doeleinden, dienstverleners, cookies, bewaartermijnen en uw rechten (AVG).',
   },
   common: {
     skipToContent: 'Naar de inhoud',
@@ -57,7 +59,7 @@ const nl: Messages = {
     packDiscount: 'Pakketkorting',
     packNames: { 'pack-ski-complet-homme': 'Compleet skipakket heren', 'pack-equipement-ski': 'Ski-uitrustingspakket', 'pack-hockey-complet-senior': 'Compleet ijshockeypakket senior' },
   },
-  nav: { skis: 'Ski’s', boots: 'Skischoenen', hockey: 'Hockey', accessories: 'Accessoires', all: 'Volledige catalogus', packs: 'Pakketten' },
+  nav: { men: 'Heren', women: 'Dames', kids: 'Kinderen', audienceNav: 'Heren, dames en kinderen', skis: 'Ski’s', boots: 'Skischoenen', hockey: 'Hockey', accessories: 'Accessoires', all: 'Volledige catalogus', packs: 'Pakketten' },
   header: {
     openMenu: 'Menu openen',
     closeMenu: 'Menu sluiten',
@@ -136,6 +138,11 @@ const nl: Messages = {
     searchButton: 'Zoeken',
     subcategories: 'Subcategorieën',
     comingSoon: 'Deze collectie komt binnenkort.',
+    audienceIntros: {
+      hommes: 'Ski-jassen en skibroeken, thermisch ondergoed, skischoenen en ski\'s voor heren, plus unisex-artikelen (helmen, skibrillen, handschoenen, hockey).',
+      femmes: 'Ski-jassen en skibroeken, ski\'s en skistokken voor dames, plus unisex-artikelen (helmen, skibrillen, handschoenen, hockey).',
+      enfants: 'Juniorski\'s, skikleding en een hockeyset voor kinderen.',
+    },
     intros: {
       skis: 'All-mountain-, freeride-, toer- en juniorski’s van Völkl en Zag.',
       bottes: 'Comfort- en performanceskischoenen van Salomon, Nordica en Lange, in Mondopoint-maten.',
@@ -502,85 +509,10 @@ const nl: Messages = {
     hostName: 'Hostingprovider',
     hostAddress: 'Adres van de hostingprovider',
     toFill: 'Nog in te vullen',
-  },
-  terms: {
-    draft: 'Ontwerp van algemene voorwaarden: de gemarkeerde vermeldingen moeten door GLACIORA worden aangevuld en de volledige tekst moet vóór gebruik worden gecontroleerd.',
-    toFill: 'Aan te vullen',
-    translationNotice: 'Deze vertaling wordt ter informatie verstrekt; bij tegenstrijdigheid geldt de Franse versie.',
-    sections: [
-      {
-        title: '1. Verkoper en toepassingsgebied',
-        paragraphs: [
-          'Deze voorwaarden zijn van toepassing op de verkopen op deze website tussen {brand} en elke consument. Verkoper: [[handelsnaam of naam van de ondernemer]], [[rechtsvorm]], SIRET [[nummer]], [[intracommunautair btw-nummer of de vermelding „TVA non applicable, art. 293 B du CGI”]], {address}. Contact: {email} · {phone} (telefoon en WhatsApp).',
-          'Elke bestelling houdt aanvaarding in van de voorwaarden die gelden op de dag van de bestelling, die de klant aanvaardt door vóór de bevestiging het daarvoor bestemde vakje aan te vinken.',
-        ],
-      },
-      {
-        title: '2. Producten',
-        paragraphs: [
-          'De essentiële kenmerken (model, maat, nieuwe of tweedehands staat, specificaties) staan op elke productpagina. De foto’s tonen de artikelen en hun kleuren ter indicatie en zijn niet contractueel bindend; alleen de geschreven kenmerken op de productpagina zijn bepalend. Aanbiedingen gelden zolang de getoonde voorraad strekt.',
-        ],
-      },
-      {
-        title: '3. Prijzen',
-        paragraphs: [
-          'De prijzen zijn vermeld in euro, inclusief alle toepasselijke belastingen, exclusief verzendkosten. De verzendkosten voor het gekozen land worden getoond vóór de bevestiging van de bestelling. De gefactureerde prijs is de prijs die op het moment van bestellen wordt getoond.',
-        ],
-      },
-      {
-        title: '4. Bestelling en opvolging',
-        paragraphs: [
-          'De klant kiest de artikelen, geeft zijn adres en verzendmethode op, toont de bankgegevens en de mededeling, voert de overschrijving uit en laadt vóór de bevestiging het bewijs van overschrijving op (pdf-bewijs of foto). De bestelling wordt dan geregistreerd en per e-mail bevestigd, met een link om haar te volgen.',
-          'Opvolging in drie stappen, telkens per e-mail gemeld: ‘In voorbereiding’ vanaf de bevestiging, ‘Onderweg’ zodra de overschrijving is ontvangen en het pakket is verzonden, ‘Geleverd’ bij ontvangst.',
-        ],
-      },
-      {
-        title: '5. Betaling',
-        paragraphs: [
-          'De betaling gebeurt per SEPA-bankoverschrijving, voor het exacte bedrag en met de vermelde referentie van de bestelling. Betalen met kaart is momenteel niet beschikbaar. De bestelling wordt pas verzonden na de daadwerkelijke ontvangst van de overschrijving. Als de overschrijving niet binnen [[termijn, bijvoorbeeld 7 dagen]] is ontvangen, kan de bestelling worden geannuleerd en kunnen de artikelen opnieuw te koop worden aangeboden. Een onjuist bewijs van overschrijving leidt tot annulering van de bestelling.',
-        ],
-      },
-      {
-        title: '6. Levering',
-        paragraphs: [
-          'De bediende landen, vervoerders, tarieven en indicatieve termijnen worden bij de bestelling vermeld. De levering vindt uiterlijk plaats binnen [[maximale termijn, bijvoorbeeld 30 dagen]] na ontvangst van de betaling. Het risico van verlies of beschadiging gaat over op de klant wanneer hij de artikelen fysiek in bezit neemt (artikel L216-4 van het Franse consumentenwetboek). Bij vertraging kan de klant, na een vergeefse ingebrekestelling, de overeenkomst ontbinden onder de voorwaarden van de artikelen L216-6 en volgende.',
-          'De klant controleert het pakket bij ontvangst en meldt elke afwijking (beschadigd pakket, ontbrekende artikelen) aan de vervoerder en aan {email}.',
-        ],
-      },
-      {
-        title: '7. Herroepingsrecht',
-        paragraphs: [
-          'De klant beschikt over veertien dagen vanaf de ontvangst van de artikelen om de overeenkomst te herroepen, zonder opgave van redenen (artikelen L221-18 en volgende van het Franse consumentenwetboek), door een ondubbelzinnige verklaring of het onderstaande formulier naar {email} te sturen. Hij stuurt de artikelen uiterlijk veertien dagen na het meedelen van zijn beslissing terug naar [[retouradres]], volledig, in hun oorspronkelijke staat en in een verpakking die transport zonder schade mogelijk maakt. De retourkosten zijn voor rekening van de klant [[te bevestigen, of gedragen door GLACIORA]].',
-          'GLACIORA betaalt alle ontvangen bedragen terug, inclusief de oorspronkelijke verzendkosten (op basis van de goedkoopste aangeboden verzendmethode), uiterlijk veertien dagen nadat het van de herroeping op de hoogte is gebracht, per overschrijving op de rekening van de klant. De terugbetaling kan worden uitgesteld tot de artikelen zijn ontvangen of het bewijs van verzending is geleverd. De klant kan aansprakelijk worden gesteld voor waardevermindering van de artikelen die het gevolg is van een behandeling die verder gaat dan nodig is om hun aard en kenmerken vast te stellen (bijvoorbeeld gemonteerde of gebruikte ski’s).',
-        ],
-      },
-      {
-        title: '8. Wettelijke garanties',
-        paragraphs: [
-          'Alle artikelen genieten de wettelijke conformiteitsgarantie (artikelen L217-3 en volgende van het Franse consumentenwetboek) en de garantie tegen verborgen gebreken (artikelen 1641 en volgende van het Franse burgerlijk wetboek). Bij een conformiteitsgebrek dat binnen twee jaar na de levering aan het licht komt, kan de klant herstelling of vervanging van het artikel verkrijgen, of anders een prijsvermindering of de ontbinding van de overeenkomst; het gebrek wordt geacht te hebben bestaan op het moment van de levering. Voor tweedehandsartikelen bedraagt de conformiteitsgarantie [[12 of 24 maanden, te preciseren]]. Bij een verborgen gebrek handelt de klant binnen twee jaar na de ontdekking ervan.',
-          'Voor elke aanvraag onder garantie: {email}, met vermelding van de referentie van de bestelling en het vastgestelde gebrek.',
-        ],
-      },
-      {
-        title: '9. Persoonsgegevens',
-        paragraphs: [
-          'De bij de bestelling ingevoerde gegevens (identiteit, contactgegevens, adres, bewijs van overschrijving) dienen om de bestelling te verwerken, de betaling te controleren, te leveren en de klantrelatie op te volgen. Ze worden niet verkocht of overgedragen. De bewijzen van overschrijving worden vertrouwelijk bewaard, zijn alleen toegankelijk voor beheerders en worden na 400 dagen automatisch verwijderd. De klant kan zijn rechten op inzage, rectificatie, wissing en bezwaar uitoefenen door te schrijven naar {email}, en zich tot de CNIL (cnil.fr) wenden als hij meent dat zijn rechten niet worden gerespecteerd.',
-        ],
-      },
-      {
-        title: '10. Bemiddeling en toepasselijk recht',
-        paragraphs: [
-          'Bij een geschil wendt de klant zich eerst tot {email}. Komt er geen minnelijke oplossing, dan kan hij kosteloos een beroep doen op de consumentenbemiddelaar: [[naam, website en adres van de bemiddelaar waarbij GLACIORA is aangesloten]] (artikelen L612-1 en volgende van het Franse consumentenwetboek). Deze voorwaarden zijn onderworpen aan het Franse recht, zonder dat de klant die in een ander land van de Europese Unie woont, de dwingende beschermende bepalingen van zijn woonland verliest.',
-        ],
-      },
-    ],
-    annexTitle: 'Bijlage — Herroepingsformulier',
-    annex: [
-      'Ter attentie van {brand}, {address}, {email}:',
-      'Hierbij deel ik u mede dat ik de overeenkomst betreffende de verkoop van de volgende artikelen herroep:',
-      'Besteld op / ontvangen op: … · Referentie van de bestelling: … · Artikelen: …',
-      'Naam en adres van de klant: … · Datum: … · Handtekening (bij verzending op papier): …',
-    ],
+    docsFallback: 'Deze tekst is opgesteld in het Frans, Engels en Pools; hieronder staat de Engelse versie.',
+    privacyNoticeBefore: 'Uw gegevens worden gebruikt om uw bestelling en uw account te verwerken, zoals uitgelegd in ons',
+    privacyNoticeLink: 'privacybeleid',
+    privacyNoticeAfter: '.',
   },
 };
 

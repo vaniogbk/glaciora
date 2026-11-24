@@ -25,6 +25,9 @@ export function Footer({ locale, m, showPacks = false }: { locale: Locale; m: Me
         <nav aria-label={f.departments}>
           <h3 className="text-sm font-bold uppercase tracking-brand text-glacier">{f.departments}</h3>
           <ul className="mt-4 space-y-2 text-sm">
+            <li><Link className="hover:text-glacier" href="/rayon/hommes">{m.nav.men}</Link></li>
+            <li><Link className="hover:text-glacier" href="/rayon/femmes">{m.nav.women}</Link></li>
+            <li><Link className="hover:text-glacier" href="/rayon/enfants">{m.nav.kids}</Link></li>
             <li><Link className="hover:text-glacier" href="/categorie/skis">{m.nav.skis}</Link></li>
             <li><Link className="hover:text-glacier" href="/categorie/bottes">{f.skiBoots}</Link></li>
             <li><Link className="hover:text-glacier" href="/categorie/hockey">{f.iceHockey}</Link></li>
@@ -38,6 +41,8 @@ export function Footer({ locale, m, showPacks = false }: { locale: Locale; m: Me
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link className="hover:text-glacier" href="/compte">{f.myAccount}</Link></li>
             <li><Link className="hover:text-glacier" href="/compte/commandes">{f.trackOrder}</Link></li>
+            <li><Link className="hover:text-glacier" href="/conditions-de-vente">{m.meta.termsTitle}</Link></li>
+            <li><Link className="hover:text-glacier" href="/confidentialite">{m.meta.privacyTitle}</Link></li>
             <li><Link className="hover:text-glacier" href="/mentions-legales">{f.legalNotice}</Link></li>
             <li className="text-white/80">{CARD_PAYMENT_ENABLED ? f.payCard : f.payCardSoon}</li>
             <li className="text-white/80">{f.payTransfer}</li>

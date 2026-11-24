@@ -26,7 +26,9 @@ const nb: Messages = {
     checkoutTitle: 'Bestilling',
     accountTitle: 'Min konto',
     termsTitle: 'Generelle salgsvilkår',
-    termsDescription: 'GLACIORAs generelle salgsvilkår: bestilling, betaling med bankoverføring, levering i Europa, angrerett og garantier.',
+    termsDescription: 'GLACIORAs generelle salgsbetingelser: bestilling, betaling med bankoverføring eller kort, levering i Europa, 14 dagers angrerett og garantier.',
+    privacyTitle: 'Personvernerklæring',
+    privacyDescription: 'GLACIORAs personvernerklæring: innsamlede opplysninger, formål, leverandører, informasjonskapsler, lagringstid og dine rettigheter (GDPR).',
   },
   common: {
     skipToContent: 'Gå til innholdet',
@@ -57,7 +59,7 @@ const nb: Messages = {
     packDiscount: 'Pakkerabatt',
     packNames: { 'pack-ski-complet-homme': 'Komplett skipakke herre', 'pack-equipement-ski': 'Skiutstyrspakke', 'pack-hockey-complet-senior': 'Komplett hockeypakke senior' },
   },
-  nav: { skis: 'Ski', boots: 'Støvler', hockey: 'Hockey', accessories: 'Tilbehør', all: 'Hele katalogen', packs: 'Pakker' },
+  nav: { men: 'Herre', women: 'Dame', kids: 'Barn', audienceNav: 'Herre, dame og barn', skis: 'Ski', boots: 'Støvler', hockey: 'Hockey', accessories: 'Tilbehør', all: 'Hele katalogen', packs: 'Pakker' },
   header: {
     openMenu: 'Åpne menyen',
     closeMenu: 'Lukk menyen',
@@ -136,6 +138,11 @@ const nb: Messages = {
     searchButton: 'Søk',
     subcategories: 'Underkategorier',
     comingSoon: 'Denne kolleksjonen kommer snart.',
+    audienceIntros: {
+      hommes: 'Skijakker og skibukser, termoundertøy, slalåmstøvler og ski for herre, samt unisex-varer (hjelmer, skibriller, hansker, hockey).',
+      femmes: 'Skijakker og skibukser, ski og staver for dame, samt unisex-varer (hjelmer, skibriller, hansker, hockey).',
+      enfants: 'Juniorski, skiklær og et hockeysett for barn.',
+    },
     intros: {
       skis: 'All-mountain-, frikjørings-, topptur- og juniorski fra Völkl og Zag.',
       bottes: 'Komfortable og sportslige slalåmstøvler fra Salomon, Nordica og Lange i Mondopoint-størrelser.',
@@ -502,85 +509,10 @@ const nb: Messages = {
     hostName: 'Vertsleverandør',
     hostAddress: 'Vertsleverandørens adresse',
     toFill: 'Skal fylles ut',
-  },
-  terms: {
-    draft: 'Utkast til generelle vilkår: de markerte opplysningene skal fylles ut av GLACIORA, og hele teksten må gjennomgås før bruk.',
-    toFill: 'Fylles ut',
-    translationNotice: 'Denne oversettelsen er til informasjon; ved avvik gjelder den franske versjonen.',
-    sections: [
-      {
-        title: '1. Selger og virkeområde',
-        paragraphs: [
-          'Disse vilkårene gjelder for kjøp på dette nettstedet mellom {brand} og forbrukere. Selger: [[firmanavn eller den næringsdrivendes navn]], [[selskapsform]], SIRET [[nummer]], [[EU-mva-nummer eller merknaden «TVA non applicable, art. 293 B du CGI»]], {address}. Kontakt: {email} · {phone} (telefon og WhatsApp).',
-          'Hver bestilling innebærer aksept av vilkårene som gjelder på bestillingsdagen; kunden godtar dem ved å krysse av i boksen før bekreftelsen.',
-        ],
-      },
-      {
-        title: '2. Produkter',
-        paragraphs: [
-          'De viktigste egenskapene (modell, størrelse, ny eller brukt tilstand, spesifikasjoner) står på hver produktside. Bildene viser varene og fargene deres veiledende og er ikke en del av avtalen; bare de skriftlige opplysningene på produktsiden gjelder. Tilbudene gjelder så langt det viste lageret rekker.',
-        ],
-      },
-      {
-        title: '3. Priser',
-        paragraphs: [
-          'Prisene er oppgitt i euro inkludert alle gjeldende avgifter, eksklusive frakt. Fraktkostnadene for valgt land vises før bestillingen bekreftes. Prisen som faktureres, er den som vises ved bestillingen.',
-        ],
-      },
-      {
-        title: '4. Bestilling og sporing',
-        paragraphs: [
-          'Kunden velger varer, oppgir adresse og leveringsmåte, viser bankopplysningene og referansen, gjennomfører overføringen og laster opp betalingsbeviset (PDF-kvittering eller bilde) før bekreftelsen. Bestillingen registreres deretter og bekreftes på e-post med en sporingslenke.',
-          'Sporing i tre steg, som hver varsles på e-post: «Klargjøres» fra bekreftelsen, «På vei» når overføringen er mottatt og pakken sendt, «Levert» ved mottak.',
-        ],
-      },
-      {
-        title: '5. Betaling',
-        paragraphs: [
-          'Betaling skjer med SEPA-bankoverføring av det nøyaktige beløpet og med oppgitt ordrereferanse. Kortbetaling er ikke tilgjengelig for øyeblikket. Bestillingen sendes først når overføringen faktisk er mottatt. Mottas ingen overføring innen [[frist, for eksempel 7 dager]], kan bestillingen kanselleres og varene legges ut for salg igjen. Et uriktig betalingsbevis fører til at bestillingen kanselleres.',
-        ],
-      },
-      {
-        title: '6. Levering',
-        paragraphs: [
-          'Leveringsland, transportører, priser og omtrentlige leveringstider oppgis ved bestilling. Levering skjer senest innen [[maksimal frist, for eksempel 30 dager]] etter at betalingen er mottatt. Risikoen for tap eller skade går over på kunden når kunden fysisk tar varene i besittelse (artikkel L216-4 i den franske forbrukerloven). Ved forsinkelse kan kunden, etter en purring uten resultat, heve avtalen på vilkårene i artikkel L216-6 flg.',
-          'Kunden kontrollerer pakken ved mottak og melder fra om avvik (skadet pakke, manglende varer) til transportøren og til {email}.',
-        ],
-      },
-      {
-        title: '7. Angrerett',
-        paragraphs: [
-          'Kunden har fjorten dager fra mottak av varene til å gå fra avtalen uten å oppgi grunn (artikkel L221-18 flg. i den franske forbrukerloven), ved å sende en utvetydig erklæring eller skjemaet nedenfor til {email}. Kunden returnerer varene senest fjorten dager etter å ha meldt fra om beslutningen, til adressen [[returadresse]], komplette, i opprinnelig stand og i emballasje som tåler transport uten skader. Returkostnaden dekkes av kunden [[bekreftes, eller dekkes av GLACIORA]].',
-          'GLACIORA tilbakebetaler alle innbetalte beløp, inkludert de opprinnelige fraktkostnadene (basert på den billigste tilbudte leveringsmåten), senest fjorten dager etter å ha blitt informert om angringen, ved overføring til kundens konto. Tilbakebetalingen kan holdes tilbake til varene er mottatt eller bevis for at de er sendt, er fremlagt. Kunden kan bli ansvarlig for verdiforringelse som skyldes annen håndtering enn det som er nødvendig for å fastslå varenes art og egenskaper (for eksempel monterte eller brukte ski).',
-        ],
-      },
-      {
-        title: '8. Lovpålagte garantier',
-        paragraphs: [
-          'Alle varer omfattes av den lovpålagte garantien for avtalemessighet (artikkel L217-3 flg. i den franske forbrukerloven) og garantien mot skjulte feil (artikkel 1641 flg. i den franske sivilloven). Viser det seg en mangel innen to år etter levering, kan kunden kreve reparasjon eller omlevering av varen, eller ellers prisavslag eller heving av avtalen; mangelen antas å ha eksistert ved leveringen. For brukte varer gjelder garantien for avtalemessighet i [[12 eller 24 måneder, presiseres]]. Ved skjult feil må kunden handle innen to år etter at feilen ble oppdaget.',
-          'Alle garantihenvendelser: {email}, med ordrenummer og mangelen som er funnet.',
-        ],
-      },
-      {
-        title: '9. Personopplysninger',
-        paragraphs: [
-          'Opplysningene som oppgis ved bestilling (identitet, kontaktopplysninger, adresse, betalingsbevis) brukes til å behandle bestillingen, kontrollere betalingen, levere og følge opp kundeforholdet. De selges ikke og utleveres ikke. Betalingsbevis lagres fortrolig, er bare tilgjengelige for administratorer og slettes automatisk etter 400 dager. Kunden kan utøve sine rettigheter til innsyn, retting, sletting og innsigelse ved å skrive til {email}, og kan klage til CNIL (cnil.fr) hvis kunden mener at rettighetene ikke er ivaretatt.',
-        ],
-      },
-      {
-        title: '10. Mekling og gjeldende rett',
-        paragraphs: [
-          'Ved tvist henvender kunden seg først til {email}. Kommer man ikke til enighet, kan kunden kostnadsfritt bruke forbrukermekleren: [[navn, nettsted og adresse til mekleren GLACIORA er tilknyttet]] (artikkel L612-1 flg. i den franske forbrukerloven). Disse vilkårene er underlagt fransk rett, uten at en kunde bosatt i et annet EU-/EØS-land mister vernet i de ufravikelige forbrukerreglene i sitt bostedsland.',
-        ],
-      },
-    ],
-    annexTitle: 'Vedlegg — Angreskjema',
-    annex: [
-      'Til: {brand}, {address}, {email}:',
-      'Jeg meddeler herved at jeg ønsker å gå fra avtalen om kjøp av følgende varer:',
-      'Bestilt den / mottatt den: … · Ordrenummer: … · Varer: …',
-      'Kundens navn og adresse: … · Dato: … · Signatur (kun ved papirskjema): …',
-    ],
+    docsFallback: 'Denne teksten finnes på fransk, engelsk og polsk; nedenfor vises den engelske versjonen.',
+    privacyNoticeBefore: 'Opplysningene dine brukes til å behandle bestillingen og kontoen din, som forklart i vår',
+    privacyNoticeLink: 'personvernerklæring',
+    privacyNoticeAfter: '.',
   },
 };
 

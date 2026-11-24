@@ -26,7 +26,9 @@ const fi: Messages = {
     checkoutTitle: 'Tilaus',
     accountTitle: 'Oma tili',
     termsTitle: 'Yleiset myyntiehdot',
-    termsDescription: 'GLACIORAn yleiset myyntiehdot: tilaus, maksu tilisiirrolla, toimitus Euroopassa, peruutusoikeus ja takuut.',
+    termsDescription: 'GLACIORAn yleiset myyntiehdot: tilaus, maksu tilisiirrolla tai kortilla, toimitus Euroopassa, 14 päivän peruuttamisoikeus ja takuut.',
+    privacyTitle: 'Tietosuojaseloste',
+    privacyDescription: 'GLACIORAn tietosuojaseloste: kerättävät tiedot, käyttötarkoitukset, palveluntarjoajat, evästeet, säilytysajat ja oikeutesi (GDPR).',
   },
   common: {
     skipToContent: 'Siirry sisältöön',
@@ -57,7 +59,7 @@ const fi: Messages = {
     packDiscount: 'Pakettialennus',
     packNames: { 'pack-ski-complet-homme': 'Täydellinen miesten laskettelupaketti', 'pack-equipement-ski': 'Laskettelun varustepaketti', 'pack-hockey-complet-senior': 'Täydellinen aikuisten jääkiekkopaketti' },
   },
-  nav: { skis: 'Sukset', boots: 'Monot', hockey: 'Jääkiekko', accessories: 'Tarvikkeet', all: 'Koko valikoima', packs: 'Paketit' },
+  nav: { men: 'Miehet', women: 'Naiset', kids: 'Lapset', audienceNav: 'Miehet, naiset ja lapset', skis: 'Sukset', boots: 'Monot', hockey: 'Jääkiekko', accessories: 'Tarvikkeet', all: 'Koko valikoima', packs: 'Paketit' },
   header: {
     openMenu: 'Avaa valikko',
     closeMenu: 'Sulje valikko',
@@ -136,6 +138,11 @@ const fi: Messages = {
     searchButton: 'Hae',
     subcategories: 'Alaluokat',
     comingSoon: 'Tämä mallisto tulee pian.',
+    audienceIntros: {
+      hommes: 'Miesten laskettelutakit ja -housut, lämpöalusasut, monot ja sukset sekä unisex-tuotteet (kypärät, laskettelulasit, käsineet, jääkiekko).',
+      femmes: 'Naisten laskettelutakit ja -housut, sukset ja sauvat sekä unisex-tuotteet (kypärät, laskettelulasit, käsineet, jääkiekko).',
+      enfants: 'Junioreiden sukset, lasten lasketteluvaatteet ja jääkiekkosetti lapsille.',
+    },
     intros: {
       skis: 'Völklin ja Zagin all-mountain-, freeride-, retki- ja lasten sukset.',
       bottes: 'Salomonin, Nordican ja Langen mukavat ja suorituskykyiset laskettelumonot Mondopoint-kokoina.',
@@ -502,85 +509,10 @@ const fi: Messages = {
     hostName: 'Palvelintarjoaja',
     hostAddress: 'Palvelintarjoajan osoite',
     toFill: 'Täydennetään',
-  },
-  terms: {
-    draft: 'Yleisten ehtojen luonnos: GLACIORA täydentää korostetut kohdat, ja koko teksti on tarkistettava ennen käyttöä.',
-    toFill: 'Täydennettävä',
-    translationNotice: 'Tämä käännös on tiedoksi; ristiriitatilanteessa ranskankielinen versio on ratkaiseva.',
-    sections: [
-      {
-        title: '1. Myyjä ja soveltamisala',
-        paragraphs: [
-          'Näitä ehtoja sovelletaan tällä sivustolla {brand}n ja kuluttaja-asiakkaan välillä tehtyihin kauppoihin. Myyjä: [[toiminimi tai elinkeinonharjoittajan nimi]], [[yhtiömuoto]], SIRET [[numero]], [[EU-ALV-tunniste tai merkintä ”TVA non applicable, art. 293 B du CGI”]], {address}. Yhteystiedot: {email} · {phone} (puhelin ja WhatsApp).',
-          'Jokainen tilaus merkitsee tilauspäivänä voimassa olevien ehtojen hyväksymistä; asiakas hyväksyy ne rastittamalla niille varatun ruudun ennen vahvistamista.',
-        ],
-      },
-      {
-        title: '2. Tuotteet',
-        paragraphs: [
-          'Keskeiset ominaisuudet (malli, koko, uusi tai käytetty kunto, tekniset tiedot) on esitetty kunkin tuotteen sivulla. Kuvat esittävät tuotteet ja niiden värit suuntaa antavasti eivätkä ole sopimuksen osa; ainoastaan tuotesivun kirjalliset tiedot ovat sitovia. Tarjoukset ovat voimassa ilmoitetun varaston riittäessä.',
-        ],
-      },
-      {
-        title: '3. Hinnat',
-        paragraphs: [
-          'Hinnat ilmoitetaan euroina sisältäen kaikki sovellettavat verot, ilman toimituskuluja. Valitun maan toimituskulut näytetään ennen tilauksen vahvistamista. Laskutettava hinta on tilaushetkellä näytetty hinta.',
-        ],
-      },
-      {
-        title: '4. Tilaus ja seuranta',
-        paragraphs: [
-          'Asiakas valitsee tuotteet, antaa osoitteen ja toimitustavan, näyttää pankkitiedot ja tilisiirron viitteen, tekee tilisiirron ja lataa tositteen (PDF tai kuva) ennen vahvistamista. Tilaus kirjataan ja vahvistetaan sähköpostilla, jossa on seurantalinkki.',
-          'Seuranta kolmessa vaiheessa, joista jokaisesta ilmoitetaan sähköpostitse: ”Valmistelussa” vahvistuksesta alkaen, ”Matkalla” kun tilisiirto on saapunut ja paketti lähetetty, ”Toimitettu” vastaanotettaessa.',
-        ],
-      },
-      {
-        title: '5. Maksu',
-        paragraphs: [
-          'Maksu suoritetaan SEPA-tilisiirtona tarkalla summalla ja ilmoitetulla tilausviitteellä. Korttimaksu ei ole tällä hetkellä käytettävissä. Tilaus lähetetään vasta, kun tilisiirto on todella vastaanotettu. Jos tilisiirtoa ei vastaanoteta [[määräaika, esimerkiksi 7 päivää]] kuluessa, tilaus voidaan perua ja tuotteet palauttaa myyntiin. Virheellinen tilisiirtotosite johtaa tilauksen peruuttamiseen.',
-        ],
-      },
-      {
-        title: '6. Toimitus',
-        paragraphs: [
-          'Toimitusmaat, kuljetusyhtiöt, hinnat ja arvioidut toimitusajat ilmoitetaan tilattaessa. Toimitus tapahtuu viimeistään [[enimmäisaika, esimerkiksi 30 päivää]] maksun vastaanottamisesta. Riski tuotteiden katoamisesta tai vahingoittumisesta siirtyy asiakkaalle, kun hän ottaa tuotteet fyysisesti haltuunsa (Ranskan kuluttajansuojalain L216-4 artikla). Viivästyksen sattuessa asiakas voi tuloksettoman muistutuksen jälkeen purkaa sopimuksen artiklojen L216-6 ja sitä seuraavien mukaisesti.',
-          'Asiakas tarkistaa paketin vastaanottaessaan ja ilmoittaa poikkeamista (vaurioitunut paketti, puuttuvat tuotteet) kuljetusyhtiölle ja osoitteeseen {email}.',
-        ],
-      },
-      {
-        title: '7. Peruutusoikeus',
-        paragraphs: [
-          'Asiakkaalla on neljätoista päivää tuotteiden vastaanottamisesta aikaa peruuttaa kauppa ilmoittamatta syytä (Ranskan kuluttajansuojalain L221-18 ja sitä seuraavat artiklat) lähettämällä yksiselitteinen ilmoitus tai alla oleva lomake osoitteeseen {email}. Hän palauttaa tuotteet viimeistään neljäntoista päivän kuluessa päätöksensä ilmoittamisesta osoitteeseen [[palautusosoite]] täydellisinä, alkuperäisessä kunnossa ja pakkauksessa, joka mahdollistaa vahingottoman kuljetuksen. Palautuskulut maksaa asiakas [[vahvistettava, tai GLACIORA maksaa]].',
-          'GLACIORA palauttaa kaikki maksetut summat, alkuperäiset toimituskulut mukaan lukien (halvimman tarjotun toimitustavan mukaan), viimeistään neljäntoista päivän kuluttua peruutuksesta tiedon saatuaan tilisiirtona asiakkaan tilille. Palautusta voidaan lykätä, kunnes tuotteet on vastaanotettu tai niiden lähettämisestä on esitetty todiste. Asiakas voi olla vastuussa tuotteiden arvon alenemisesta, joka johtuu muusta kuin niiden luonteen ja ominaisuuksien toteamiseksi tarpeellisesta käsittelystä (esimerkiksi asennetut tai käytetyt sukset).',
-        ],
-      },
-      {
-        title: '8. Lakisääteiset takuut',
-        paragraphs: [
-          'Kaikkia tuotteita koskee lakisääteinen virhevastuu (Ranskan kuluttajansuojalain L217-3 ja sitä seuraavat artiklat) sekä vastuu piilevistä virheistä (Ranskan siviililain 1641 ja sitä seuraavat artiklat). Jos virhe ilmenee kahden vuoden kuluessa toimituksesta, asiakas voi vaatia tuotteen korjaamista tai vaihtamista tai muussa tapauksessa hinnanalennusta tai sopimuksen purkamista; virheen oletetaan olleen olemassa toimitushetkellä. Käytettyjen tuotteiden virhevastuu on [[12 tai 24 kuukautta, täsmennettävä]]. Piilevän virheen osalta asiakkaan on toimittava kahden vuoden kuluessa virheen havaitsemisesta.',
-          'Kaikki takuupyynnöt: {email}, ilmoittaen tilausnumeron ja havaitun virheen.',
-        ],
-      },
-      {
-        title: '9. Henkilötiedot',
-        paragraphs: [
-          'Tilattaessa annettuja tietoja (henkilöllisyys, yhteystiedot, osoite, tilisiirtotosite) käytetään tilauksen käsittelyyn, maksun tarkistamiseen, toimitukseen ja asiakassuhteen hoitoon. Niitä ei myydä eikä luovuteta. Tilisiirtotositteet säilytetään luottamuksellisesti, ne ovat vain ylläpitäjien saatavilla ja poistetaan automaattisesti 400 päivän kuluttua. Asiakas voi käyttää oikeuttaan tietojen tarkastamiseen, oikaisemiseen, poistamiseen ja vastustamiseen kirjoittamalla osoitteeseen {email} sekä kääntyä CNIL:n (cnil.fr) puoleen, jos hän katsoo, ettei hänen oikeuksiaan ole kunnioitettu.',
-        ],
-      },
-      {
-        title: '10. Sovittelu ja sovellettava laki',
-        paragraphs: [
-          'Riitatilanteessa asiakas ottaa ensin yhteyttä osoitteeseen {email}. Jos sovintoratkaisua ei löydy, hän voi maksutta kääntyä kuluttajariitojen sovittelijan puoleen: [[sovittelijan nimi, verkkosivusto ja osoite, johon GLACIORA on liittynyt]] (Ranskan kuluttajansuojalain L612-1 ja sitä seuraavat artiklat). Näihin ehtoihin sovelletaan Ranskan lakia, viemättä toisessa EU-maassa asuvalta asiakkaalta hänen asuinmaansa pakottavien kuluttajansuojasäännösten suojaa.',
-        ],
-      },
-    ],
-    annexTitle: 'Liite — Peruutuslomake',
-    annex: [
-      'Vastaanottaja: {brand}, {address}, {email}:',
-      'Ilmoitan peruvani seuraavia tuotteita koskevan kauppasopimuksen:',
-      'Tilattu / vastaanotettu: … · Tilausnumero: … · Tuotteet: …',
-      'Asiakkaan nimi ja osoite: … · Päivämäärä: … · Allekirjoitus (vain paperilla lähetettäessä): …',
-    ],
+    docsFallback: 'Tämä teksti on saatavilla ranskaksi, englanniksi ja puolaksi; alla näytetään englanninkielinen versio.',
+    privacyNoticeBefore: 'Tietojasi käytetään tilauksesi ja tilisi käsittelyyn, kuten kerrotaan',
+    privacyNoticeLink: 'tietosuojaselosteessamme',
+    privacyNoticeAfter: '.',
   },
 };
 

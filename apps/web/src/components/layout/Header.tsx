@@ -31,6 +31,12 @@ export function Header({ showPacks = false }: { showPacks?: boolean }) {
     { href: '/catalogue', label: m.nav.all },
   ];
 
+  const audiences = [
+    { href: '/rayon/hommes', label: m.nav.men },
+    { href: '/rayon/femmes', label: m.nav.women },
+    { href: '/rayon/enfants', label: m.nav.kids },
+  ];
+
   function onSearch(e: FormEvent) {
     e.preventDefault();
     const q = query.trim();
@@ -108,6 +114,22 @@ export function Header({ showPacks = false }: { showPacks?: boolean }) {
           </Link>
         </div>
       </div>
+      {/* Rayons par public, visibles sur tous les écrans : un clic sur « Femmes » montre tout ce qui la concerne. */}
+      <nav aria-label={m.nav.audienceNav} className="border-t border-white/10">
+        <ul className="container flex flex-wrap items-center gap-x-6 text-sm font-semibold">
+          {audiences.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={clsx('inline-flex min-h-[44px] items-center transition hover:text-glacier', pathname.startsWith(item.href) && 'text-glacier')}
+                aria-current={pathname.startsWith(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <div id="menu-mobile" hidden={!open} className="border-t border-white/10 xl:hidden">
         <form onSubmit={onSearch} role="search" className="container pt-4 md:hidden">
           <label htmlFor="recherche-mobile" className="sr-only">

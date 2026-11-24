@@ -26,7 +26,9 @@ const pt: Messages = {
     checkoutTitle: 'Encomenda',
     accountTitle: 'A minha conta',
     termsTitle: 'Condições gerais de venda',
-    termsDescription: 'Condições gerais de venda da GLACIORA: encomenda, pagamento por transferência bancária, entrega na Europa, livre resolução e garantias.',
+    termsDescription: 'Condições gerais de venda da GLACIORA: encomenda, pagamento por transferência bancária ou cartão, entrega na Europa, direito de livre resolução de 14 dias e garantias.',
+    privacyTitle: 'Política de privacidade',
+    privacyDescription: 'Política de privacidade da GLACIORA: dados recolhidos, finalidades, prestadores de serviços, cookies, prazos de conservação e os seus direitos (RGPD).',
   },
   common: {
     skipToContent: 'Ir para o conteúdo',
@@ -57,7 +59,7 @@ const pt: Messages = {
     packDiscount: 'Desconto pack',
     packNames: { 'pack-ski-complet-homme': 'Pack de esqui completo homem', 'pack-equipement-ski': 'Pack de equipamento de esqui', 'pack-hockey-complet-senior': 'Pack de hóquei completo sénior' },
   },
-  nav: { skis: 'Esquis', boots: 'Botas', hockey: 'Hóquei', accessories: 'Acessórios', all: 'Todo o catálogo', packs: 'Packs' },
+  nav: { men: 'Homem', women: 'Mulher', kids: 'Criança', audienceNav: 'Homem, mulher e criança', skis: 'Esquis', boots: 'Botas', hockey: 'Hóquei', accessories: 'Acessórios', all: 'Todo o catálogo', packs: 'Packs' },
   header: {
     openMenu: 'Abrir o menu',
     closeMenu: 'Fechar o menu',
@@ -136,6 +138,11 @@ const pt: Messages = {
     searchButton: 'Pesquisar',
     subcategories: 'Subcategorias',
     comingSoon: 'Esta coleção chega em breve.',
+    audienceIntros: {
+      hommes: 'Casacos e calças de esqui, roupa interior térmica, botas e esquis para homem, além de artigos unissexo (capacetes, máscaras, luvas, hóquei).',
+      femmes: 'Casacos e calças de esqui, esquis e bastões para mulher, além de artigos unissexo (capacetes, máscaras, luvas, hóquei).',
+      enfants: 'Esquis júnior, roupa de esqui e um conjunto de hóquei para crianças.',
+    },
     intros: {
       skis: 'Esquis all-mountain, freeride, de travessia e júnior das marcas Völkl e Zag.',
       bottes: 'Botas de esqui de conforto e desempenho Salomon, Nordica e Lange, em tamanhos Mondopoint.',
@@ -502,85 +509,10 @@ const pt: Messages = {
     hostName: 'Fornecedor de alojamento',
     hostAddress: 'Morada do fornecedor de alojamento',
     toFill: 'A completar',
-  },
-  terms: {
-    draft: 'Projeto de condições gerais: as menções destacadas devem ser completadas pela GLACIORA e o texto completo deve ser revisto antes da utilização.',
-    toFill: 'A completar',
-    translationNotice: 'Esta tradução é fornecida a título informativo; em caso de divergência, prevalece a versão francesa.',
-    sections: [
-      {
-        title: '1. Vendedor e âmbito de aplicação',
-        paragraphs: [
-          'As presentes condições regem as vendas celebradas neste sítio entre {brand} e qualquer cliente consumidor. Vendedor: [[denominação social ou nome do empresário]], [[forma jurídica]], SIRET [[número]], [[número de IVA intracomunitário ou menção «TVA non applicable, art. 293 B du CGI»]], {address}. Contacto: {email} · {phone} (telefone e WhatsApp).',
-          'Qualquer encomenda implica a aceitação das condições em vigor no dia da encomenda, que o cliente aceita assinalando a caixa prevista antes de confirmar.',
-        ],
-      },
-      {
-        title: '2. Produtos',
-        paragraphs: [
-          'As características essenciais (modelo, tamanho, estado novo ou usado, especificações) constam de cada ficha de produto. As fotografias apresentam os artigos e as suas cores a título indicativo e não têm valor contratual; apenas as características escritas na ficha fazem fé. As ofertas são válidas até ao limite do stock indicado.',
-        ],
-      },
-      {
-        title: '3. Preços',
-        paragraphs: [
-          'Os preços são indicados em euros, com todos os impostos aplicáveis incluídos, sem custos de envio. Os custos de envio do país escolhido são apresentados antes da confirmação da encomenda. O preço faturado é o apresentado no momento da encomenda.',
-        ],
-      },
-      {
-        title: '4. Encomenda e acompanhamento',
-        paragraphs: [
-          'O cliente escolhe os artigos, indica a morada e o modo de envio, mostra os dados bancários e a referência da transferência, efetua a transferência e carrega o comprovativo (recibo PDF ou fotografia) antes de confirmar. A encomenda é então registada e confirmada por e-mail, com uma ligação de acompanhamento.',
-          'Acompanhamento em três etapas, cada uma comunicada por e-mail: «Em preparação» desde a confirmação, «A caminho» assim que a transferência for creditada e a encomenda expedida, «Entregue» na receção.',
-        ],
-      },
-      {
-        title: '5. Pagamento',
-        paragraphs: [
-          'O pagamento é efetuado por transferência bancária SEPA, pelo montante exato e com a referência da encomenda indicada. O pagamento com cartão não está disponível de momento. A encomenda só é expedida após a receção efetiva da transferência. Na falta de transferência recebida no prazo de [[prazo, por exemplo 7 dias]], a encomenda pode ser cancelada e os artigos novamente colocados à venda. Um comprovativo de transferência inexato implica o cancelamento da encomenda.',
-        ],
-      },
-      {
-        title: '6. Entrega',
-        paragraphs: [
-          'Os países servidos, as transportadoras, as tarifas e os prazos indicativos são apresentados na encomenda. A entrega é efetuada o mais tardar no prazo de [[prazo máximo, por exemplo 30 dias]] após a receção do pagamento. O risco de perda ou dano é transferido para o cliente quando este toma posse física dos artigos (artigo L216-4 do Código do Consumo francês). Em caso de atraso, o cliente pode, após interpelação sem efeito, resolver o contrato nas condições dos artigos L216-6 e seguintes.',
-          'O cliente verifica a encomenda na receção e comunica à transportadora e a {email} qualquer anomalia (embalagem danificada, artigos em falta).',
-        ],
-      },
-      {
-        title: '7. Direito de livre resolução',
-        paragraphs: [
-          'O cliente dispõe de catorze dias a contar da receção dos artigos para exercer o direito de livre resolução, sem ter de indicar o motivo (artigos L221-18 e seguintes do Código do Consumo francês), enviando para {email} uma declaração inequívoca ou o formulário abaixo. Devolve os artigos o mais tardar catorze dias após ter comunicado a sua decisão, para a morada [[morada de devolução]], completos, no estado original e numa embalagem que permita o transporte sem danos. Os custos de devolução ficam a cargo do cliente [[a confirmar, ou suportados pela GLACIORA]].',
-          'A GLACIORA reembolsa a totalidade dos montantes pagos, incluindo os custos de envio iniciais (com base no modo de envio menos dispendioso proposto), o mais tardar catorze dias após ter sido informada da resolução, por transferência para a conta do cliente. O reembolso pode ser adiado até à receção dos artigos ou à prova da sua expedição. O cliente pode ser responsabilizado pela depreciação dos artigos resultante de uma manipulação que exceda o necessário para verificar a sua natureza e características (por exemplo, esquis montados ou utilizados).',
-        ],
-      },
-      {
-        title: '8. Garantias legais',
-        paragraphs: [
-          'Todos os artigos beneficiam da garantia legal de conformidade (artigos L217-3 e seguintes do Código do Consumo francês) e da garantia contra vícios ocultos (artigos 1641 e seguintes do Código Civil francês). Em caso de falta de conformidade manifestada nos dois anos seguintes à entrega, o cliente pode obter a reparação ou a substituição do artigo ou, na sua falta, uma redução do preço ou a resolução do contrato; presume-se que o defeito existia no momento da entrega. Para os artigos usados, a garantia de conformidade é de [[12 ou 24 meses, a precisar]]. Em caso de vício oculto, o cliente age nos dois anos seguintes à descoberta do vício.',
-          'Para qualquer pedido ao abrigo das garantias: {email}, indicando a referência da encomenda e o defeito verificado.',
-        ],
-      },
-      {
-        title: '9. Dados pessoais',
-        paragraphs: [
-          'Os dados introduzidos na encomenda (identidade, contactos, morada, comprovativo de transferência) servem para tratar a encomenda, verificar o pagamento, entregar e acompanhar a relação com o cliente. Não são vendidos nem cedidos. Os comprovativos de transferência são guardados de forma privada, acessíveis apenas aos administradores, e eliminados automaticamente após 400 dias. O cliente pode exercer os seus direitos de acesso, retificação, apagamento e oposição escrevendo para {email}, e recorrer à CNIL (cnil.fr) se considerar que os seus direitos não foram respeitados.',
-        ],
-      },
-      {
-        title: '10. Mediação e lei aplicável',
-        paragraphs: [
-          'Em caso de litígio, o cliente dirige-se primeiro a {email}. Na falta de solução amigável, pode recorrer gratuitamente ao mediador do consumo: [[nome, sítio web e morada do mediador ao qual a GLACIORA aderiu]] (artigos L612-1 e seguintes do Código do Consumo francês). As presentes condições estão sujeitas à lei francesa, sem privar o cliente residente noutro país da União Europeia das disposições imperativas de proteção do seu país de residência.',
-        ],
-      },
-    ],
-    annexTitle: 'Anexo — Formulário de livre resolução',
-    annex: [
-      'À atenção de {brand}, {address}, {email}:',
-      'Pela presente, comunico que exerço o meu direito de livre resolução do contrato de venda dos seguintes artigos:',
-      'Encomendado em / recebido em: … · Referência da encomenda: … · Artigos: …',
-      'Nome e morada do cliente: … · Data: … · Assinatura (apenas em caso de envio em papel): …',
-    ],
+    docsFallback: 'Este texto está redigido em francês, inglês e polaco; abaixo é apresentada a versão inglesa.',
+    privacyNoticeBefore: 'Os seus dados são utilizados para tratar a sua encomenda e a sua conta, conforme explicado na nossa',
+    privacyNoticeLink: 'política de privacidade',
+    privacyNoticeAfter: '.',
   },
 };
 

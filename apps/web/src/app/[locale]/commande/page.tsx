@@ -665,6 +665,13 @@ export default function CheckoutPage() {
                   </span>
                 </label>
                 {err('acceptTerms') && <p className="field-error">{err('acceptTerms')}</p>}
+                <p className="text-xs text-muted">
+                  {m.legal.privacyNoticeBefore}{' '}
+                  <Link href="/confidentialite" target="_blank" className="font-semibold text-deep underline">
+                    {m.legal.privacyNoticeLink}
+                  </Link>
+                  {m.legal.privacyNoticeAfter}
+                </p>
 
                 {proofRejection && (
                   <div id="refus-justificatif" role="alert" className="rounded-md bg-danger/10 p-4 text-sm text-danger" data-testid="proof-rejected">
@@ -687,7 +694,7 @@ export default function CheckoutPage() {
           )}
         </div>
 
-        <aside className="h-fit space-y-4 rounded-lg bg-snow p-6 lg:sticky lg:top-28" aria-labelledby="recap-commande">
+        <aside className="h-fit space-y-4 rounded-lg bg-snow p-6 lg:sticky lg:top-36" aria-labelledby="recap-commande">
           <h2 id="recap-commande" className="text-lg">
             {m.common.summary}
           </h2>

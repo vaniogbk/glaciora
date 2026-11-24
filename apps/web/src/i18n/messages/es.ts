@@ -26,7 +26,9 @@ const es: Messages = {
     checkoutTitle: 'Pedido',
     accountTitle: 'Mi cuenta',
     termsTitle: 'Condiciones generales de venta',
-    termsDescription: 'Condiciones generales de venta de GLACIORA: pedido, pago por transferencia bancaria, envío en Europa, desistimiento y garantías.',
+    termsDescription: 'Condiciones generales de venta de GLACIORA: pedido, pago por transferencia bancaria o tarjeta, entrega en Europa, derecho de desistimiento de 14 días y garantías.',
+    privacyTitle: 'Política de privacidad',
+    privacyDescription: 'Política de privacidad de GLACIORA: datos recogidos, finalidades, proveedores, cookies, plazos de conservación y sus derechos (RGPD).',
   },
   common: {
     skipToContent: 'Ir al contenido',
@@ -57,7 +59,7 @@ const es: Messages = {
     packDiscount: 'Descuento pack',
     packNames: { 'pack-ski-complet-homme': 'Pack de esquí completo hombre', 'pack-equipement-ski': 'Pack de equipo de esquí', 'pack-hockey-complet-senior': 'Pack de hockey completo sénior' },
   },
-  nav: { skis: 'Esquís', boots: 'Botas', hockey: 'Hockey', accessories: 'Accesorios', all: 'Todo el catálogo', packs: 'Packs' },
+  nav: { men: 'Hombre', women: 'Mujer', kids: 'Niños', audienceNav: 'Hombre, mujer y niños', skis: 'Esquís', boots: 'Botas', hockey: 'Hockey', accessories: 'Accesorios', all: 'Todo el catálogo', packs: 'Packs' },
   header: {
     openMenu: 'Abrir el menú',
     closeMenu: 'Cerrar el menú',
@@ -136,6 +138,11 @@ const es: Messages = {
     searchButton: 'Buscar',
     subcategories: 'Subcategorías',
     comingSoon: 'Esta colección llegará pronto.',
+    audienceIntros: {
+      hommes: 'Chaquetas y pantalones de esquí, ropa interior térmica, botas y esquís para hombre, además de artículos unisex (cascos, máscaras, guantes, hockey).',
+      femmes: 'Chaquetas y pantalones de esquí, esquís y bastones para mujer, además de artículos unisex (cascos, máscaras, guantes, hockey).',
+      enfants: 'Esquís júnior, ropa de esquí y un set de hockey para niños.',
+    },
     intros: {
       skis: 'Esquís all-mountain, freeride, de travesía y junior de las marcas Völkl y Zag.',
       bottes: 'Botas de esquí de confort y de rendimiento Salomon, Nordica y Lange, en tallas Mondopoint.',
@@ -502,85 +509,10 @@ const es: Messages = {
     hostName: 'Proveedor de alojamiento',
     hostAddress: 'Dirección del proveedor de alojamiento',
     toFill: 'Pendiente de completar',
-  },
-  terms: {
-    draft: 'Borrador de condiciones generales: GLACIORA debe completar las menciones resaltadas y el texto completo debe revisarse antes de su uso.',
-    toFill: 'Por completar',
-    translationNotice: 'Esta traducción se facilita a título informativo; en caso de discrepancia, prevalece la versión francesa.',
-    sections: [
-      {
-        title: '1. Vendedor y ámbito de aplicación',
-        paragraphs: [
-          'Las presentes condiciones rigen las ventas realizadas en este sitio entre {brand} y cualquier cliente consumidor. Vendedor: [[razón social o nombre del empresario]], [[forma jurídica]], SIRET [[número]], [[NIF-IVA intracomunitario o mención «TVA non applicable, art. 293 B du CGI»]], {address}. Contacto: {email} · {phone} (teléfono y WhatsApp).',
-          'Todo pedido implica la aceptación de las condiciones vigentes el día del pedido, que el cliente acepta marcando la casilla prevista antes de confirmar.',
-        ],
-      },
-      {
-        title: '2. Productos',
-        paragraphs: [
-          'Las características esenciales (modelo, talla, estado nuevo o usado, especificaciones) figuran en cada ficha de producto. Las fotos muestran los artículos y sus colores a título orientativo y no tienen valor contractual; solo las características escritas de la ficha son vinculantes. Las ofertas son válidas hasta agotar el stock indicado.',
-        ],
-      },
-      {
-        title: '3. Precios',
-        paragraphs: [
-          'Los precios se indican en euros, con todos los impuestos aplicables incluidos y sin gastos de envío. Los gastos de envío del país elegido se muestran antes de confirmar el pedido. El precio facturado es el indicado en el momento del pedido.',
-        ],
-      },
-      {
-        title: '4. Pedido y seguimiento',
-        paragraphs: [
-          'El cliente elige sus artículos, indica su dirección y método de envío, muestra los datos bancarios y el concepto de la transferencia, realiza la transferencia y sube el justificante (recibo PDF o foto) antes de confirmar. El pedido queda entonces registrado y se confirma por correo electrónico, con un enlace de seguimiento.',
-          'Seguimiento en tres pasos, cada uno comunicado por correo: «En preparación» desde la confirmación, «En camino» una vez abonada la transferencia y enviado el paquete, «Entregado» a la recepción.',
-        ],
-      },
-      {
-        title: '5. Pago',
-        paragraphs: [
-          'El pago se realiza por transferencia bancaria SEPA, por el importe exacto y con el concepto del pedido indicado. El pago con tarjeta no está disponible por el momento. El pedido solo se envía tras la recepción efectiva de la transferencia. Si no se recibe la transferencia en un plazo de [[plazo, por ejemplo 7 días]], el pedido podrá cancelarse y los artículos volver a ponerse a la venta. Un justificante de transferencia inexacto conlleva la cancelación del pedido.',
-        ],
-      },
-      {
-        title: '6. Envío',
-        paragraphs: [
-          'Los países atendidos, los transportistas, las tarifas y los plazos orientativos se indican al hacer el pedido. La entrega se realiza a más tardar en un plazo de [[plazo máximo, por ejemplo 30 días]] tras la recepción del pago. El riesgo de pérdida o daño se transmite al cliente cuando toma posesión física de los artículos (artículo L216-4 del Código de consumo francés). En caso de retraso, el cliente puede, tras un requerimiento sin respuesta, resolver el contrato en las condiciones de los artículos L216-6 y siguientes.',
-          'El cliente revisa el paquete a la recepción y comunica al transportista y a {email} cualquier anomalía (paquete dañado, artículos que faltan).',
-        ],
-      },
-      {
-        title: '7. Derecho de desistimiento',
-        paragraphs: [
-          'El cliente dispone de catorce días desde la recepción de los artículos para desistir, sin tener que justificarse (artículos L221-18 y siguientes del Código de consumo francés), enviando a {email} una declaración inequívoca o el formulario que figura a continuación. Devuelve los artículos a más tardar catorce días después de haber comunicado su decisión, a la dirección [[dirección de devolución]], completos, en su estado original y en un embalaje que permita un transporte sin daños. Los gastos de devolución corren a cargo del cliente [[por confirmar, o asumidos por GLACIORA]].',
-          'GLACIORA reembolsa la totalidad de las cantidades abonadas, incluidos los gastos de envío iniciales (sobre la base del método de envío menos costoso ofrecido), a más tardar catorce días después de haber sido informada del desistimiento, mediante transferencia a la cuenta del cliente. El reembolso puede aplazarse hasta la recepción de los artículos o la prueba de su envío. El cliente puede ser responsable de la depreciación de los artículos resultante de una manipulación distinta de la necesaria para establecer su naturaleza y características (por ejemplo, esquís montados o usados).',
-        ],
-      },
-      {
-        title: '8. Garantías legales',
-        paragraphs: [
-          'Todos los artículos se benefician de la garantía legal de conformidad (artículos L217-3 y siguientes del Código de consumo francés) y de la garantía contra vicios ocultos (artículos 1641 y siguientes del Código civil francés). En caso de falta de conformidad manifestada en los dos años siguientes a la entrega, el cliente puede obtener la reparación o la sustitución del artículo o, en su defecto, una reducción del precio o la resolución del contrato; se presume que el defecto existía en el momento de la entrega. Para los artículos usados, la garantía de conformidad es de [[12 o 24 meses, por precisar]]. En caso de vicio oculto, el cliente actúa en los dos años siguientes a su descubrimiento.',
-          'Para cualquier solicitud en garantía: {email}, indicando la referencia del pedido y el defecto observado.',
-        ],
-      },
-      {
-        title: '9. Datos personales',
-        paragraphs: [
-          'Los datos introducidos al hacer el pedido (identidad, datos de contacto, dirección, justificante de transferencia) sirven para tramitar el pedido, verificar el pago, entregar y gestionar la relación con el cliente. No se venden ni se ceden. Los justificantes de transferencia se almacenan de forma privada, accesibles solo para los administradores, y se eliminan automáticamente tras 400 días. El cliente puede ejercer sus derechos de acceso, rectificación, supresión y oposición escribiendo a {email}, y dirigirse a la CNIL (cnil.fr) si considera que no se han respetado sus derechos.',
-        ],
-      },
-      {
-        title: '10. Mediación y ley aplicable',
-        paragraphs: [
-          'En caso de litigio, el cliente se dirige primero a {email}. A falta de solución amistosa, puede recurrir gratuitamente al mediador de consumo: [[nombre, sitio web y dirección del mediador al que está adherida GLACIORA]] (artículos L612-1 y siguientes del Código de consumo francés). Las presentes condiciones se rigen por el derecho francés, sin privar al cliente residente en otro país de la Unión Europea de las disposiciones imperativas de protección de su país de residencia.',
-        ],
-      },
-    ],
-    annexTitle: 'Anexo — Formulario de desistimiento',
-    annex: [
-      'A la atención de {brand}, {address}, {email}:',
-      'Por la presente le comunico que desisto del contrato de venta de los siguientes artículos:',
-      'Pedido el / recibido el: … · Referencia del pedido: … · Artículos: …',
-      'Nombre y dirección del cliente: … · Fecha: … · Firma (solo si se envía en papel): …',
-    ],
+    docsFallback: 'Este texto está redactado en francés, inglés y polaco; a continuación se muestra la versión inglesa.',
+    privacyNoticeBefore: 'Sus datos se utilizan para gestionar su pedido y su cuenta, tal como se explica en nuestra',
+    privacyNoticeLink: 'política de privacidad',
+    privacyNoticeAfter: '.',
   },
 };
 

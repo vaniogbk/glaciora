@@ -26,7 +26,9 @@ const en: Messages = {
     checkoutTitle: 'Checkout',
     accountTitle: 'My account',
     termsTitle: 'Terms and conditions of sale',
-    termsDescription: 'GLACIORA terms and conditions of sale: ordering, payment by bank transfer, delivery in Europe, withdrawal and warranties.',
+    termsDescription: 'GLACIORA terms and conditions of sale: ordering, payment by bank transfer or card, delivery in Europe, 14-day right of withdrawal and guarantees.',
+    privacyTitle: 'Privacy policy',
+    privacyDescription: 'GLACIORA privacy policy: data collected, purposes, service providers, cookies, retention periods and your rights (GDPR).',
   },
   common: {
     skipToContent: 'Skip to content',
@@ -57,7 +59,7 @@ const en: Messages = {
     packDiscount: 'Pack discount',
     packNames: { 'pack-ski-complet-homme': 'Complete men’s ski pack', 'pack-equipement-ski': 'Ski gear pack', 'pack-hockey-complet-senior': 'Complete senior hockey pack' },
   },
-  nav: { skis: 'Skis', boots: 'Boots', hockey: 'Hockey', accessories: 'Accessories', all: 'Full catalogue', packs: 'Packs' },
+  nav: { men: 'Men', women: 'Women', kids: 'Kids', audienceNav: 'Men, women and kids', skis: 'Skis', boots: 'Boots', hockey: 'Hockey', accessories: 'Accessories', all: 'Full catalogue', packs: 'Packs' },
   header: {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
@@ -136,6 +138,11 @@ const en: Messages = {
     searchButton: 'Search',
     subcategories: 'Subcategories',
     comingSoon: 'This collection is coming soon.',
+    audienceIntros: {
+      hommes: 'Men\'s ski jackets and pants, thermal base layers, ski boots and skis, plus unisex items (helmets, goggles, gloves, hockey).',
+      femmes: 'Women\'s ski jackets and pants, skis and poles, plus unisex items (helmets, goggles, gloves, hockey).',
+      enfants: 'Junior skis, kids\' ski clothing and a hockey set for children.',
+    },
     intros: {
       skis: 'All-mountain, freeride, touring and junior skis from Völkl and Zag.',
       bottes: 'Comfort and performance ski boots from Salomon, Nordica and Lange, in Mondopoint sizes.',
@@ -502,85 +509,10 @@ const en: Messages = {
     hostName: 'Host',
     hostAddress: 'Host address',
     toFill: 'To be completed',
-  },
-  terms: {
-    draft: 'Draft terms and conditions: the highlighted items are to be completed by GLACIORA, and the whole text must be reviewed before use.',
-    toFill: 'To be completed',
-    translationNotice: 'This translation is provided for information; in case of discrepancy, the French version prevails.',
-    sections: [
-      {
-        title: '1. Seller and scope',
-        paragraphs: [
-          'These terms govern sales made on this website between {brand} and any consumer customer. Seller: [[company name or name of the trader]], [[legal form]], SIRET [[number]], [[EU VAT number or the mention “TVA non applicable, art. 293 B du CGI”]], {address}. Contact: {email} · {phone} (phone and WhatsApp).',
-          'Every order implies acceptance of the terms in force on the day of the order, which the customer accepts by ticking the box provided before confirming.',
-        ],
-      },
-      {
-        title: '2. Products',
-        paragraphs: [
-          'The main characteristics (model, size, new or used condition, specifications) are shown on each product page. Photos show the items and their colours for guidance only and are not contractual; only the written characteristics on the product page are binding. Offers are valid while the displayed stock lasts.',
-        ],
-      },
-      {
-        title: '3. Prices',
-        paragraphs: [
-          'Prices are shown in euros, including all applicable taxes, excluding delivery costs. Delivery costs for the chosen country are shown before the order is confirmed. The price charged is the one displayed at the time of the order.',
-        ],
-      },
-      {
-        title: '4. Ordering and tracking',
-        paragraphs: [
-          'The customer chooses the items, enters an address and shipping method, displays the bank details and transfer reference, makes the transfer and uploads proof of the transfer (PDF receipt or photo) before confirming. The order is then recorded and confirmed by email, with a tracking link.',
-          'Tracking in three steps, each announced by email: “Being prepared” once confirmed, “On its way” once the transfer is credited and the parcel shipped, “Delivered” on receipt.',
-        ],
-      },
-      {
-        title: '5. Payment',
-        paragraphs: [
-          'Payment is made by SEPA bank transfer, for the exact amount and with the order reference shown. Card payment is not available at the moment. The order is shipped only once the transfer has actually been received. If no transfer is received within [[time limit, for example 7 days]], the order may be cancelled and the items put back on sale. Inaccurate proof of transfer leads to cancellation of the order.',
-        ],
-      },
-      {
-        title: '6. Delivery',
-        paragraphs: [
-          'The countries served, carriers, rates and estimated delivery times are shown when ordering. Delivery takes place no later than [[maximum time, for example 30 days]] after receipt of payment. The risk of loss or damage passes to the customer when they take physical possession of the items (Article L216-4 of the French Consumer Code). In the event of delay, the customer may, after formal notice has gone unanswered, terminate the contract under the conditions of Articles L216-6 et seq.',
-          'The customer checks the parcel on receipt and reports any problem (damaged parcel, missing items) to the carrier and to {email}.',
-        ],
-      },
-      {
-        title: '7. Right of withdrawal',
-        paragraphs: [
-          'The customer has fourteen days from receipt of the items to withdraw, without giving any reason (Articles L221-18 et seq. of the French Consumer Code), by sending an unambiguous statement or the form below to {email}. The items must be returned no later than fourteen days after the decision was communicated, to [[return address]], complete, in their original condition and in packaging that allows safe transport. Return costs are borne by the customer [[to be confirmed, or covered by GLACIORA]].',
-          'GLACIORA refunds all sums paid, including the initial delivery costs (based on the cheapest delivery method offered), no later than fourteen days after being informed of the withdrawal, by transfer to the customer’s account. The refund may be withheld until the items are received or proof of their dispatch is provided. The customer may be liable for any loss in value of the items resulting from handling beyond what is necessary to establish their nature and characteristics (for example skis that have been mounted or used).',
-        ],
-      },
-      {
-        title: '8. Legal warranties',
-        paragraphs: [
-          'All items benefit from the legal guarantee of conformity (Articles L217-3 et seq. of the French Consumer Code) and the guarantee against hidden defects (Articles 1641 et seq. of the French Civil Code). If a lack of conformity appears within two years of delivery, the customer may obtain repair or replacement of the item, or failing that a price reduction or termination of the contract; the defect is presumed to have existed at the time of delivery. For used items, the guarantee of conformity lasts [[12 or 24 months, to be specified]]. In the case of a hidden defect, the customer must act within two years of discovering it.',
-          'For any warranty request: {email}, stating the order reference and the defect found.',
-        ],
-      },
-      {
-        title: '9. Personal data',
-        paragraphs: [
-          'The data entered when ordering (identity, contact details, address, proof of transfer) are used to process the order, verify payment, deliver and manage the customer relationship. They are neither sold nor transferred. Proofs of transfer are stored privately, accessible only to administrators, and deleted automatically after 400 days. The customer may exercise their rights of access, rectification, erasure and objection by writing to {email}, and may contact the CNIL (cnil.fr) if they believe their rights have not been respected.',
-        ],
-      },
-      {
-        title: '10. Mediation and applicable law',
-        paragraphs: [
-          'In the event of a dispute, the customer first contacts {email}. If no amicable solution is found, they may use the consumer mediator free of charge: [[name, website and address of the mediator GLACIORA belongs to]] (Articles L612-1 et seq. of the French Consumer Code). These terms are governed by French law, without depriving a customer residing in another EU country of the mandatory protective provisions of their country of residence.',
-        ],
-      },
-    ],
-    annexTitle: 'Annex — Withdrawal form',
-    annex: [
-      'For the attention of {brand}, {address}, {email}:',
-      'I hereby give notice that I withdraw from the contract for the sale of the following items:',
-      'Ordered on / received on: … · Order reference: … · Items: …',
-      'Customer name and address: … · Date: … · Signature (if sent on paper): …',
-    ],
+    docsFallback: 'This text is written in French, English and Polish; the English version is shown below.',
+    privacyNoticeBefore: 'Your data are used to process your order and your account, as explained in our',
+    privacyNoticeLink: 'privacy policy',
+    privacyNoticeAfter: '.',
   },
 };
 

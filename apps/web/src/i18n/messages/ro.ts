@@ -27,7 +27,9 @@ const ro: Messages = {
     checkoutTitle: 'Comandă',
     accountTitle: 'Contul meu',
     termsTitle: 'Condiții generale de vânzare',
-    termsDescription: 'Condițiile generale de vânzare GLACIORA: comandă, plată prin transfer bancar, livrare în Europa, retragere și garanții.',
+    termsDescription: 'Condițiile generale de vânzare GLACIORA: comandă, plată prin transfer bancar sau card, livrare în Europa, drept de retragere de 14 zile și garanții.',
+    privacyTitle: 'Politica de confidențialitate',
+    privacyDescription: 'Politica de confidențialitate GLACIORA: date colectate, scopuri, furnizori de servicii, cookie-uri, perioade de păstrare și drepturile tale (GDPR).',
   },
   common: {
     skipToContent: 'Salt la conținut',
@@ -58,7 +60,7 @@ const ro: Messages = {
     packDiscount: 'Reducere pachet',
     packNames: { 'pack-ski-complet-homme': 'Pachet complet de schi bărbați', 'pack-equipement-ski': 'Pachet echipament de schi', 'pack-hockey-complet-senior': 'Pachet complet de hochei senior' },
   },
-  nav: { skis: 'Schiuri', boots: 'Clăpari', hockey: 'Hochei', accessories: 'Accesorii', all: 'Tot catalogul', packs: 'Pachete' },
+  nav: { men: 'Bărbați', women: 'Femei', kids: 'Copii', audienceNav: 'Bărbați, femei și copii', skis: 'Schiuri', boots: 'Clăpari', hockey: 'Hochei', accessories: 'Accesorii', all: 'Tot catalogul', packs: 'Pachete' },
   header: {
     openMenu: 'Deschide meniul',
     closeMenu: 'Închide meniul',
@@ -137,6 +139,11 @@ const ro: Messages = {
     searchButton: 'Caută',
     subcategories: 'Subcategorii',
     comingSoon: 'Această colecție va fi disponibilă în curând.',
+    audienceIntros: {
+      hommes: 'Geci și pantaloni de schi, lenjerie termică, clăpari și schiuri pentru bărbați, plus articole unisex (căști, ochelari, mănuși, hochei).',
+      femmes: 'Geci și pantaloni de schi, schiuri și bețe pentru femei, plus articole unisex (căști, ochelari, mănuși, hochei).',
+      enfants: 'Schiuri pentru juniori, îmbrăcăminte de schi și un set de hochei pentru copii.',
+    },
     intros: {
       skis: 'Schiuri all-mountain, freeride, de tură și pentru copii, de la Völkl și Zag.',
       bottes: 'Clăpari de confort și de performanță de la Salomon, Nordica și Lange, în mărimi Mondopoint.',
@@ -503,85 +510,10 @@ const ro: Messages = {
     hostName: 'Furnizor de găzduire',
     hostAddress: 'Adresa furnizorului de găzduire',
     toFill: 'De completat',
-  },
-  terms: {
-    draft: 'Proiect de condiții generale: elementele evidențiate trebuie completate de GLACIORA, iar întregul text trebuie revizuit înainte de utilizare.',
-    toFill: 'De completat',
-    translationNotice: 'Această traducere este oferită cu titlu informativ; în caz de neconcordanță, prevalează versiunea în limba franceză.',
-    sections: [
-      {
-        title: '1. Vânzătorul și domeniul de aplicare',
-        paragraphs: [
-          'Prezentele condiții reglementează vânzările încheiate pe acest site între {brand} și orice client consumator. Vânzător: [[denumirea societății sau numele comerciantului]], [[forma juridică]], SIRET [[număr]], [[cod TVA intracomunitar sau mențiunea „TVA non applicable, art. 293 B du CGI”]], {address}. Contact: {email} · {phone} (telefon și WhatsApp).',
-          'Orice comandă implică acceptarea condițiilor în vigoare la data comenzii, pe care clientul le acceptă bifând căsuța prevăzută înainte de confirmare.',
-        ],
-      },
-      {
-        title: '2. Produse',
-        paragraphs: [
-          'Caracteristicile esențiale (model, mărime, stare nouă sau second-hand, specificații) sunt indicate pe fiecare pagină de produs. Fotografiile prezintă articolele și culorile lor cu titlu orientativ și nu au caracter contractual; doar caracteristicile scrise pe pagina produsului sunt obligatorii. Ofertele sunt valabile în limita stocului afișat.',
-        ],
-      },
-      {
-        title: '3. Prețuri',
-        paragraphs: [
-          'Prețurile sunt afișate în euro, cu toate taxele aplicabile incluse, fără costurile de livrare. Costurile de livrare pentru țara aleasă sunt afișate înainte de confirmarea comenzii. Prețul facturat este cel afișat în momentul comenzii.',
-        ],
-      },
-      {
-        title: '4. Comanda și urmărirea',
-        paragraphs: [
-          'Clientul alege articolele, introduce o adresă și o metodă de livrare, afișează datele bancare și referința transferului, efectuează transferul și încarcă dovada acestuia (chitanță PDF sau fotografie) înainte de confirmare. Comanda este apoi înregistrată și confirmată prin e-mail, cu un link de urmărire.',
-          'Urmărire în trei etape, fiecare anunțată prin e-mail: „În pregătire” după confirmare, „Pe drum” după ce transferul a fost încasat și coletul expediat, „Livrată” la primire.',
-        ],
-      },
-      {
-        title: '5. Plata',
-        paragraphs: [
-          'Plata se face prin transfer bancar SEPA, pentru suma exactă și cu referința comenzii indicată. Plata cu cardul nu este disponibilă momentan. Comanda este expediată doar după primirea efectivă a transferului. Dacă niciun transfer nu este primit în [[termen, de exemplu 7 zile]], comanda poate fi anulată, iar articolele scoase din nou la vânzare. O dovadă de transfer inexactă duce la anularea comenzii.',
-        ],
-      },
-      {
-        title: '6. Livrarea',
-        paragraphs: [
-          'Țările deservite, transportatorii, tarifele și termenele estimate de livrare sunt afișate la comandă. Livrarea are loc cel târziu la [[termen maxim, de exemplu 30 de zile]] de la primirea plății. Riscul de pierdere sau deteriorare se transferă clientului în momentul în care acesta intră în posesia fizică a articolelor (articolul L216-4 din Codul consumului francez). În caz de întârziere, clientul poate, după o somație rămasă fără răspuns, să rezilieze contractul în condițiile articolelor L216-6 și următoarele.',
-          'Clientul verifică coletul la primire și semnalează orice problemă (colet deteriorat, articole lipsă) transportatorului și la {email}.',
-        ],
-      },
-      {
-        title: '7. Dreptul de retragere',
-        paragraphs: [
-          'Clientul dispune de paisprezece zile de la primirea articolelor pentru a se retrage, fără a fi nevoit să își motiveze decizia (articolele L221-18 și următoarele din Codul consumului francez), trimițând o declarație neechivocă sau formularul de mai jos la {email}. Articolele trebuie returnate cel târziu în paisprezece zile de la comunicarea deciziei, la [[adresa de retur]], complete, în starea lor inițială și într-un ambalaj care permite transportul în siguranță. Costurile de retur sunt suportate de client [[de confirmat sau suportate de GLACIORA]].',
-          'GLACIORA rambursează toate sumele plătite, inclusiv costurile inițiale de livrare (pe baza celei mai ieftine metode de livrare oferite), cel târziu în paisprezece zile de la data la care a fost informată despre retragere, prin transfer în contul clientului. Rambursarea poate fi amânată până la primirea articolelor sau până la furnizarea dovezii expedierii lor. Clientul poate răspunde pentru diminuarea valorii articolelor rezultată din manipulări care depășesc ceea ce este necesar pentru a stabili natura și caracteristicile acestora (de exemplu schiuri montate sau folosite).',
-        ],
-      },
-      {
-        title: '8. Garanții legale',
-        paragraphs: [
-          'Toate articolele beneficiază de garanția legală de conformitate (articolele L217-3 și următoarele din Codul consumului francez) și de garanția pentru vicii ascunse (articolele 1641 și următoarele din Codul civil francez). Dacă o neconformitate apare în termen de doi ani de la livrare, clientul poate obține repararea sau înlocuirea articolului ori, în lipsa acestora, o reducere de preț sau rezilierea contractului; se prezumă că defectul exista la momentul livrării. Pentru articolele second-hand, garanția de conformitate durează [[12 sau 24 de luni, de precizat]]. În cazul unui viciu ascuns, clientul trebuie să acționeze în termen de doi ani de la descoperirea acestuia.',
-          'Pentru orice cerere de garanție: {email}, menționând referința comenzii și defectul constatat.',
-        ],
-      },
-      {
-        title: '9. Date cu caracter personal',
-        paragraphs: [
-          'Datele introduse la comandă (identitate, date de contact, adresă, dovada transferului) sunt folosite pentru procesarea comenzii, verificarea plății, livrare și gestionarea relației cu clienții. Ele nu sunt nici vândute, nici transmise. Dovezile de transfer sunt păstrate în mod privat, accesibile doar administratorilor, și șterse automat după 400 de zile. Clientul își poate exercita drepturile de acces, rectificare, ștergere și opoziție scriind la {email} și se poate adresa CNIL (cnil.fr) dacă consideră că drepturile sale nu au fost respectate.',
-        ],
-      },
-      {
-        title: '10. Mediere și legea aplicabilă',
-        paragraphs: [
-          'În caz de litigiu, clientul contactează mai întâi {email}. Dacă nu se găsește o soluție amiabilă, poate apela gratuit la mediatorul de consum: [[numele, site-ul și adresa mediatorului la care aderă GLACIORA]] (articolele L612-1 și următoarele din Codul consumului francez). Prezentele condiții sunt guvernate de legea franceză, fără a lipsi un client cu reședința într-o altă țară a UE de dispozițiile imperative de protecție din țara sa de reședință.',
-        ],
-      },
-    ],
-    annexTitle: 'Anexă — Formular de retragere',
-    annex: [
-      'În atenția {brand}, {address}, {email}:',
-      'Vă notific prin prezenta retragerea mea din contractul de vânzare a următoarelor articole:',
-      'Comandate la / primite la: … · Referința comenzii: … · Articole: …',
-      'Numele și adresa clientului: … · Data: … · Semnătura (dacă este trimis pe hârtie): …',
-    ],
+    docsFallback: 'Acest text este redactat în franceză, engleză și poloneză; mai jos este afișată versiunea în engleză.',
+    privacyNoticeBefore: 'Datele tale sunt folosite pentru procesarea comenzii și a contului, așa cum se explică în',
+    privacyNoticeLink: 'politica noastră de confidențialitate',
+    privacyNoticeAfter: '.',
   },
 };
 

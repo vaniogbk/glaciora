@@ -71,7 +71,17 @@ export const profileSchema = z.object({ firstName: required(60), lastName: requi
 export const SORT_OPTIONS = ['featured', 'price_asc', 'price_desc', 'newest', 'name'] as const;
 export type SortOption = (typeof SORT_OPTIONS)[number];
 
+/** Rayons Hommes, Femmes, Enfants : un article mixte (adulte) apparaît chez les hommes et chez les femmes. */
+export const AUDIENCES = ['hommes', 'femmes', 'enfants'] as const;
+export type AudienceSlug = (typeof AUDIENCES)[number];
+export const AUDIENCE_GROUPS: Record<AudienceSlug, ('MEN' | 'WOMEN' | 'KIDS' | 'UNISEX')[]> = {
+  hommes: ['MEN', 'UNISEX'],
+  femmes: ['WOMEN', 'UNISEX'],
+  enfants: ['KIDS'],
+};
+
 export const productQuerySchema = z.object({
+  audience: z.enum(AUDIENCES).optional(),
   q: z.string().trim().max(100).optional(),
   category: z.string().trim().max(80).optional(),
   sport: z.enum(['SKI', 'HOCKEY']).optional(),

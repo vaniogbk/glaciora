@@ -26,7 +26,9 @@ const sl: Messages = {
     checkoutTitle: 'Naročilo',
     accountTitle: 'Moj račun',
     termsTitle: 'Splošni prodajni pogoji',
-    termsDescription: 'Splošni prodajni pogoji GLACIORA: naročilo, plačilo z bančnim nakazilom, dostava v Evropi, odstop od pogodbe in jamstva.',
+    termsDescription: 'Splošni prodajni pogoji GLACIORA: naročilo, plačilo z bančnim nakazilom ali kartico, dostava po Evropi, 14-dnevna pravica do odstopa od pogodbe in jamstva.',
+    privacyTitle: 'Politika zasebnosti',
+    privacyDescription: 'Politika zasebnosti GLACIORA: zbrani podatki, nameni, ponudniki storitev, piškotki, roki hrambe in vaše pravice (GDPR).',
   },
   common: {
     skipToContent: 'Na vsebino',
@@ -57,7 +59,7 @@ const sl: Messages = {
     packDiscount: 'Popust za komplet',
     packNames: { 'pack-ski-complet-homme': 'Popoln smučarski komplet za moške', 'pack-equipement-ski': 'Komplet smučarske opreme', 'pack-hockey-complet-senior': 'Popoln hokejski komplet za odrasle' },
   },
-  nav: { skis: 'Smuči', boots: 'Čevlji', hockey: 'Hokej', accessories: 'Dodatki', all: 'Celoten katalog', packs: 'Kompleti' },
+  nav: { men: 'Moški', women: 'Ženske', kids: 'Otroci', audienceNav: 'Moški, ženske in otroci', skis: 'Smuči', boots: 'Čevlji', hockey: 'Hokej', accessories: 'Dodatki', all: 'Celoten katalog', packs: 'Kompleti' },
   header: {
     openMenu: 'Odpri meni',
     closeMenu: 'Zapri meni',
@@ -136,6 +138,11 @@ const sl: Messages = {
     searchButton: 'Išči',
     subcategories: 'Podkategorije',
     comingSoon: 'Ta kolekcija bo kmalu na voljo.',
+    audienceIntros: {
+      hommes: 'Smučarske jakne in hlače, termo perilo, smučarski čevlji in smuči za moške ter artikli za oba spola (čelade, očala, rokavice, hokej).',
+      femmes: 'Smučarske jakne in hlače, smuči in palice za ženske ter artikli za oba spola (čelade, očala, rokavice, hokej).',
+      enfants: 'Mladinske smuči, smučarska oblačila in hokejski komplet za otroke.',
+    },
     intros: {
       skis: 'Smuči all-mountain, freeride, turne in otroške znamk Völkl in Zag.',
       bottes: 'Udobni in tekmovalni smučarski čevlji Salomon, Nordica in Lange v velikostih Mondopoint.',
@@ -502,85 +509,10 @@ const sl: Messages = {
     hostName: 'Ponudnik gostovanja',
     hostAddress: 'Naslov ponudnika gostovanja',
     toFill: 'Še ni izpolnjeno',
-  },
-  terms: {
-    draft: 'Osnutek splošnih pogojev: označene navedbe dopolni GLACIORA, celotno besedilo pa je treba pred uporabo dati v pregled.',
-    toFill: 'Za dopolnitev',
-    translationNotice: 'Ta prevod je informativen; v primeru razhajanj velja francoska različica.',
-    sections: [
-      {
-        title: '1. Prodajalec in področje uporabe',
-        paragraphs: [
-          'Ti pogoji urejajo prodajo, sklenjeno na tej spletni strani med {brand} in potrošnikom. Prodajalec: [[firma ali ime podjetnika]], [[pravna oblika]], SIRET [[številka]], [[ID za DDV v EU ali navedba »TVA non applicable, art. 293 B du CGI«]], {address}. Kontakt: {email} · {phone} (telefon in WhatsApp).',
-          'Vsako naročilo pomeni sprejetje pogojev, veljavnih na dan naročila, ki jih stranka sprejme z označitvijo predvidenega polja pred potrditvijo.',
-        ],
-      },
-      {
-        title: '2. Izdelki',
-        paragraphs: [
-          'Bistvene lastnosti (model, velikost, novo ali rabljeno stanje, tehnični podatki) so navedene na strani vsakega izdelka. Fotografije prikazujejo izdelke in njihove barve informativno in niso pogodbeno zavezujoče; veljajo samo pisni podatki na strani izdelka. Ponudbe veljajo do razprodaje prikazane zaloge.',
-        ],
-      },
-      {
-        title: '3. Cene',
-        paragraphs: [
-          'Cene so navedene v evrih z vsemi veljavnimi davki, brez stroškov dostave. Stroški dostave za izbrano državo so prikazani pred potrditvijo naročila. Zaračuna se cena, prikazana ob naročilu.',
-        ],
-      },
-      {
-        title: '4. Naročilo in sledenje',
-        paragraphs: [
-          'Stranka izbere izdelke, vnese naslov in način dostave, prikaže bančne podatke in sklic, izvede nakazilo in pred potrditvijo naloži potrdilo o nakazilu (PDF ali fotografijo). Naročilo je nato evidentirano in potrjeno po e-pošti s povezavo za sledenje.',
-          'Sledenje v treh korakih, o vsakem obvestimo po e-pošti: »V pripravi« od potrditve, »Na poti« ko je nakazilo prejeto in paket odpremljen, »Dostavljeno« ob prevzemu.',
-        ],
-      },
-      {
-        title: '5. Plačilo',
-        paragraphs: [
-          'Plačilo se izvede z bančnim nakazilom SEPA v točnem znesku in z navedenim sklicem naročila. Plačilo s kartico trenutno ni na voljo. Naročilo je odpremljeno šele po dejanskem prejemu nakazila. Če nakazilo ne prispe v [[rok, na primer 7 dni]], se naročilo lahko prekliče, izdelki pa ponovno ponudijo v prodajo. Neresnično potrdilo o nakazilu povzroči preklic naročila.',
-        ],
-      },
-      {
-        title: '6. Dostava',
-        paragraphs: [
-          'Države dostave, prevozniki, cene in okvirni roki so navedeni pri naročilu. Dostava se izvede najpozneje v [[najdaljši rok, na primer 30 dni]] po prejemu plačila. Tveganje izgube ali poškodbe preide na stranko, ko izdelke fizično prevzame (člen L216-4 francoskega zakonika o varstvu potrošnikov). V primeru zamude lahko stranka po neuspešnem pozivu odstopi od pogodbe pod pogoji členov L216-6 in naslednjih.',
-          'Stranka ob prevzemu preveri paket in vsako nepravilnost (poškodovan paket, manjkajoči izdelki) sporoči prevozniku in na {email}.',
-        ],
-      },
-      {
-        title: '7. Pravica do odstopa od pogodbe',
-        paragraphs: [
-          'Stranka lahko v štirinajstih dneh od prejema izdelkov odstopi od pogodbe brez navedbe razloga (členi L221-18 in naslednji francoskega zakonika o varstvu potrošnikov), tako da na {email} pošlje nedvoumno izjavo ali spodnji obrazec. Izdelke vrne najpozneje štirinajst dni po sporočeni odločitvi na naslov [[naslov za vračilo]], popolne, v prvotnem stanju in v embalaži, ki omogoča prevoz brez poškodb. Stroške vračila krije stranka [[potrditi ali jih krije GLACIORA]].',
-          'GLACIORA vrne vsa prejeta plačila, vključno s prvotnimi stroški dostave (glede na najcenejši ponujeni način dostave), najpozneje štirinajst dni po obvestilu o odstopu, z nakazilom na račun stranke. Vračilo se lahko zadrži do prejema izdelkov ali dokazila o njihovi odpremi. Stranka odgovarja za zmanjšanje vrednosti izdelkov zaradi ravnanja, ki presega potrebno za ugotovitev njihove narave in lastnosti (na primer montirane ali rabljene smuči).',
-        ],
-      },
-      {
-        title: '8. Zakonska jamstva',
-        paragraphs: [
-          'Za vse izdelke velja zakonsko jamstvo za skladnost (členi L217-3 in naslednji francoskega zakonika o varstvu potrošnikov) in jamstvo za skrite napake (členi 1641 in naslednji francoskega civilnega zakonika). Če se v dveh letih po dostavi pokaže neskladnost, lahko stranka zahteva popravilo ali zamenjavo izdelka, sicer znižanje cene ali razvezo pogodbe; domneva se, da je napaka obstajala že ob dostavi. Za rabljene izdelke jamstvo za skladnost traja [[12 ali 24 mesecev, določiti]]. Pri skriti napaki stranka ukrepa v dveh letih od njenega odkritja.',
-          'Vse zahteve iz jamstva: {email}, z navedbo številke naročila in ugotovljene napake.',
-        ],
-      },
-      {
-        title: '9. Osebni podatki',
-        paragraphs: [
-          'Podatki, vneseni ob naročilu (identiteta, kontaktni podatki, naslov, potrdilo o nakazilu), se uporabljajo za obdelavo naročila, preverjanje plačila, dostavo in skrb za stranke. Ne prodajamo jih in ne posredujemo. Potrdila o nakazilu so shranjena zaupno, dostopna samo skrbnikom in se po 400 dneh samodejno izbrišejo. Stranka lahko uveljavlja pravice do dostopa, popravka, izbrisa in ugovora s sporočilom na {email} ter se obrne na CNIL (cnil.fr), če meni, da njene pravice niso spoštovane.',
-        ],
-      },
-      {
-        title: '10. Mediacija in veljavno pravo',
-        paragraphs: [
-          'V primeru spora se stranka najprej obrne na {email}. Če sporazumna rešitev ni mogoča, lahko brezplačno uporabi potrošniškega mediatorja: [[ime, spletna stran in naslov mediatorja, pri katerem je GLACIORA včlanjena]] (členi L612-1 in naslednji francoskega zakonika o varstvu potrošnikov). Za te pogoje velja francosko pravo, pri čemer stranka s prebivališčem v drugi državi EU ne izgubi varstva kogentnih določb svoje države prebivališča.',
-        ],
-      },
-    ],
-    annexTitle: 'Priloga — Obrazec za odstop od pogodbe',
-    annex: [
-      'Za: {brand}, {address}, {email}:',
-      'S tem obveščam, da odstopam od pogodbe o prodaji naslednjih izdelkov:',
-      'Naročeno dne / prejeto dne: … · Številka naročila: … · Izdelki: …',
-      'Ime in naslov stranke: … · Datum: … · Podpis (samo pri pošiljanju v papirni obliki): …',
-    ],
+    docsFallback: 'To besedilo je na voljo v francoščini, angleščini in poljščini; spodaj je prikazana angleška različica.',
+    privacyNoticeBefore: 'Vaše podatke uporabljamo za obdelavo naročila in računa, kot je pojasnjeno v naši',
+    privacyNoticeLink: 'politiki zasebnosti',
+    privacyNoticeAfter: '.',
   },
 };
 

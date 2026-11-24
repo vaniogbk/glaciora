@@ -27,7 +27,9 @@ const hr: Messages = {
     checkoutTitle: 'Narudžba',
     accountTitle: 'Moj račun',
     termsTitle: 'Opći uvjeti prodaje',
-    termsDescription: 'Opći uvjeti prodaje GLACIORA: narudžba, plaćanje bankovnim prijenosom, dostava u Europi, jednostrani raskid i jamstva.',
+    termsDescription: 'Opći uvjeti prodaje GLACIORA: narudžba, plaćanje bankovnim prijenosom ili karticom, dostava diljem Europe, pravo na jednostrani raskid u roku od 14 dana i jamstva.',
+    privacyTitle: 'Pravila privatnosti',
+    privacyDescription: 'Pravila privatnosti GLACIORA: prikupljeni podaci, svrhe, pružatelji usluga, kolačići, rokovi čuvanja i vaša prava (GDPR).',
   },
   common: {
     skipToContent: 'Preskoči na sadržaj',
@@ -58,7 +60,7 @@ const hr: Messages = {
     packDiscount: 'Popust za paket',
     packNames: { 'pack-ski-complet-homme': 'Kompletan skijaški paket za muškarce', 'pack-equipement-ski': 'Paket skijaške opreme', 'pack-hockey-complet-senior': 'Kompletan hokejaški paket za seniore' },
   },
-  nav: { skis: 'Skije', boots: 'Cipele', hockey: 'Hokej', accessories: 'Dodaci', all: 'Cijeli katalog', packs: 'Paketi' },
+  nav: { men: 'Muškarci', women: 'Žene', kids: 'Djeca', audienceNav: 'Muškarci, žene i djeca', skis: 'Skije', boots: 'Cipele', hockey: 'Hokej', accessories: 'Dodaci', all: 'Cijeli katalog', packs: 'Paketi' },
   header: {
     openMenu: 'Otvori izbornik',
     closeMenu: 'Zatvori izbornik',
@@ -137,6 +139,11 @@ const hr: Messages = {
     searchButton: 'Traži',
     subcategories: 'Potkategorije',
     comingSoon: 'Ova kolekcija uskoro stiže.',
+    audienceIntros: {
+      hommes: 'Skijaške jakne i hlače, termo rublje, skijaške cipele i skije za muškarce te unisex artikli (kacige, naočale, rukavice, hokej).',
+      femmes: 'Skijaške jakne i hlače, skije i štapovi za žene te unisex artikli (kacige, naočale, rukavice, hokej).',
+      enfants: 'Juniorske skije, skijaška odjeća i hokejaški set za djecu.',
+    },
     intros: {
       skis: 'All-mountain, freeride, turne i dječje skije marki Völkl i Zag.',
       bottes: 'Udobne i sportske skijaške cipele marki Salomon, Nordica i Lange, u Mondopoint veličinama.',
@@ -503,85 +510,10 @@ const hr: Messages = {
     hostName: 'Pružatelj usluge smještaja',
     hostAddress: 'Adresa pružatelja usluge smještaja',
     toFill: 'Za dopunu',
-  },
-  terms: {
-    draft: 'Nacrt općih uvjeta: istaknute stavke mora dopuniti GLACIORA, a cijeli tekst treba provjeriti prije upotrebe.',
-    toFill: 'Za dopunu',
-    translationNotice: 'Ovaj prijevod služi samo za informaciju; u slučaju neslaganja mjerodavna je francuska verzija.',
-    sections: [
-      {
-        title: '1. Prodavatelj i područje primjene',
-        paragraphs: [
-          'Ovi uvjeti uređuju prodaju putem ove internetske stranice između {brand} i svakog kupca potrošača. Prodavatelj: [[naziv tvrtke ili ime trgovca]], [[pravni oblik]], SIRET [[broj]], [[PDV identifikacijski broj EU-a ili napomena „TVA non applicable, art. 293 B du CGI”]], {address}. Kontakt: {email} · {phone} (telefon i WhatsApp).',
-          'Svaka narudžba podrazumijeva prihvaćanje uvjeta koji vrijede na dan narudžbe, a kupac ih prihvaća označavanjem za to predviđenog polja prije potvrde.',
-        ],
-      },
-      {
-        title: '2. Proizvodi',
-        paragraphs: [
-          'Bitne značajke (model, veličina, novo ili rabljeno stanje, specifikacije) navedene su na stranici svakog proizvoda. Fotografije prikazuju artikle i njihove boje okvirno i nisu dio ugovora; obvezujuće su samo pisane značajke na stranici proizvoda. Ponude vrijede do isteka prikazanih zaliha.',
-        ],
-      },
-      {
-        title: '3. Cijene',
-        paragraphs: [
-          'Cijene su iskazane u eurima, uključujući sve primjenjive poreze, bez troškova dostave. Troškovi dostave za odabranu zemlju prikazuju se prije potvrde narudžbe. Naplaćuje se cijena prikazana u trenutku narudžbe.',
-        ],
-      },
-      {
-        title: '4. Narudžba i praćenje',
-        paragraphs: [
-          'Kupac odabire artikle, unosi adresu i način dostave, prikazuje podatke za plaćanje i poziv na broj, izvršava prijenos i prije potvrde učitava potvrdu o prijenosu (PDF potvrda ili fotografija). Narudžba se zatim evidentira i potvrđuje e-poštom, s poveznicom za praćenje.',
-          'Praćenje u tri koraka, o svakom se obavještava e-poštom: „U pripremi” nakon potvrde, „Na putu” nakon što je prijenos primljen i paket poslan, „Isporučeno” pri primitku.',
-        ],
-      },
-      {
-        title: '5. Plaćanje',
-        paragraphs: [
-          'Plaćanje se obavlja SEPA bankovnim prijenosom, u točnom iznosu i s navedenim pozivom na broj narudžbe. Plaćanje karticom trenutačno nije dostupno. Narudžba se šalje tek nakon stvarnog primitka prijenosa. Ako prijenos ne bude primljen u roku od [[rok, na primjer 7 dana]], narudžba se može otkazati, a artikli ponovno staviti u prodaju. Netočna potvrda o prijenosu dovodi do otkazivanja narudžbe.',
-        ],
-      },
-      {
-        title: '6. Dostava',
-        paragraphs: [
-          'Zemlje u koje dostavljamo, prijevoznici, cijene i procijenjeni rokovi dostave prikazuju se pri narudžbi. Dostava se obavlja najkasnije [[najdulji rok, na primjer 30 dana]] nakon primitka plaćanja. Rizik od gubitka ili oštećenja prelazi na kupca kada on fizički preuzme artikle (članak L216-4 francuskog Zakona o zaštiti potrošača). U slučaju kašnjenja kupac može, nakon opomene na koju nije odgovoreno, raskinuti ugovor pod uvjetima iz članaka L216-6 i sljedećih.',
-          'Kupac provjerava paket pri primitku i svaki problem (oštećen paket, artikli koji nedostaju) prijavljuje prijevozniku i na {email}.',
-        ],
-      },
-      {
-        title: '7. Pravo na jednostrani raskid',
-        paragraphs: [
-          'Kupac ima četrnaest dana od primitka artikala za jednostrani raskid ugovora bez navođenja razloga (članci L221-18 i sljedeći francuskog Zakona o zaštiti potrošača), slanjem nedvosmislene izjave ili obrasca u nastavku na {email}. Artikli se moraju vratiti najkasnije četrnaest dana nakon priopćenja odluke na [[adresa za povrat]], potpuni, u izvornom stanju i u pakiranju koje omogućuje siguran prijevoz. Troškove povrata snosi kupac [[za potvrdu, ili ih snosi GLACIORA]].',
-          'GLACIORA vraća sve plaćene iznose, uključujući početne troškove dostave (na temelju najjeftinijeg ponuđenog načina dostave), najkasnije četrnaest dana nakon što je obaviještena o raskidu, prijenosom na kupčev račun. Povrat novca može se odgoditi do primitka artikala ili dostave dokaza o njihovu slanju. Kupac može odgovarati za umanjenu vrijednost artikala koja je posljedica rukovanja izvan onoga što je potrebno za utvrđivanje njihove prirode i značajki (na primjer montirane ili korištene skije).',
-        ],
-      },
-      {
-        title: '8. Zakonska jamstva',
-        paragraphs: [
-          'Svi artikli obuhvaćeni su zakonskim jamstvom sukladnosti (članci L217-3 i sljedeći francuskog Zakona o zaštiti potrošača) i jamstvom za skrivene nedostatke (članci 1641 i sljedeći francuskog Građanskog zakonika). Ako se nesukladnost pojavi u roku od dvije godine od dostave, kupac može zahtijevati popravak ili zamjenu artikla, a ako to nije moguće, sniženje cijene ili raskid ugovora; pretpostavlja se da je nedostatak postojao u trenutku dostave. Za rabljene artikle jamstvo sukladnosti traje [[12 ili 24 mjeseca, za preciziranje]]. U slučaju skrivenog nedostatka kupac mora postupiti u roku od dvije godine od njegova otkrivanja.',
-          'Za svaki zahtjev po jamstvu: {email}, uz navođenje broja narudžbe i utvrđenog nedostatka.',
-        ],
-      },
-      {
-        title: '9. Osobni podaci',
-        paragraphs: [
-          'Podaci uneseni pri narudžbi (identitet, kontakt podaci, adresa, potvrda o prijenosu) koriste se za obradu narudžbe, provjeru plaćanja, dostavu i upravljanje odnosom s kupcima. Ne prodaju se i ne ustupaju. Potvrde o prijenosu čuvaju se privatno, dostupne su samo administratorima i automatski se brišu nakon 400 dana. Kupac može ostvariti pravo na pristup, ispravak, brisanje i prigovor pisanjem na {email} te se može obratiti CNIL-u (cnil.fr) ako smatra da njegova prava nisu poštovana.',
-        ],
-      },
-      {
-        title: '10. Mirenje i mjerodavno pravo',
-        paragraphs: [
-          'U slučaju spora kupac se najprije obraća na {email}. Ako se ne pronađe sporazumno rješenje, može se besplatno obratiti potrošačkom miritelju: [[naziv, internetska stranica i adresa miritelja kojemu je GLACIORA pristupila]] (članci L612-1 i sljedeći francuskog Zakona o zaštiti potrošača). Na ove se uvjete primjenjuje francusko pravo, pri čemu kupac s boravištem u drugoj zemlji EU-a ne gubi zaštitu prisilnih propisa zemlje svojeg boravišta.',
-        ],
-      },
-    ],
-    annexTitle: 'Prilog — Obrazac za jednostrani raskid',
-    annex: [
-      'Za {brand}, {address}, {email}:',
-      'Ovime izjavljujem da jednostrano raskidam ugovor o kupnji sljedećih artikala:',
-      'Naručeno dana / primljeno dana: … · Broj narudžbe: … · Artikli: …',
-      'Ime i adresa kupca: … · Datum: … · Potpis (ako se šalje na papiru): …',
-    ],
+    docsFallback: 'Ovaj je tekst dostupan na francuskom, engleskom i poljskom; u nastavku je prikazana engleska verzija.',
+    privacyNoticeBefore: 'Vaši se podaci koriste za obradu narudžbe i računa, kako je objašnjeno u našim',
+    privacyNoticeLink: 'pravilima privatnosti',
+    privacyNoticeAfter: '.',
   },
 };
 
