@@ -12,7 +12,7 @@ const READY_TTL_MS = 10 * 60_000;
 /** Langues de la page de paiement Mollie ; les autres langues du site laissent Mollie choisir d'après le navigateur. */
 const LOCALES: Record<string, string> = {
   fr: 'fr_FR', en: 'en_US', de: 'de_DE', es: 'es_ES', it: 'it_IT', nl: 'nl_NL', pt: 'pt_PT', pl: 'pl_PL',
-  fi: 'fi_FI', sv: 'sv_SE', nb: 'nb_NO', da: 'da_DK', is: 'is_IS', lt: 'lt_LT',
+  fi: 'fi_FI', sv: 'sv_SE', nb: 'nb_NO', da: 'da_DK', is: 'is_IS', lt: 'lt_LT', cs: 'cs_CZ', sk: 'sk_SK', sl: 'sl_SI',
 };
 
 const unavailable = () => new AppError(503, 'CARD_UNAVAILABLE', 'Le paiement par carte est momentanément indisponible');
