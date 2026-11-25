@@ -8,6 +8,7 @@ import { accountRouter } from '../modules/account/account.routes';
 import { adminRouter } from '../modules/admin/admin.routes';
 import { mediaRouter } from '../modules/media/media.routes';
 import { legalRouter } from '../modules/legal/legal.routes';
+import { paymentsRouter } from '../modules/payments/payments.routes';
 
 export const apiRouter = Router();
 
@@ -17,6 +18,7 @@ apiRouter.use('/catalogue', catalogueRouter);
 apiRouter.use('/legal', legalRouter);
 apiRouter.use('/cart', cartRouter);
 apiRouter.use('/checkout', checkoutRouter);
+apiRouter.use('/payments', paymentsRouter);
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/account', accountRouter);
 apiRouter.use('/admin', adminRouter);

@@ -55,6 +55,13 @@ const schema = z
     /** Contrôle automatique du justificatif (référence + montant lus dans le fichier) avant d'accepter la commande. */
     PROOF_AUTO_CHECK: bool.default(true),
 
+    /** Paiement par carte (Mollie) : absente = carte indisponible. Une clé test_ est ignorée quand APP_ENV=production. */
+    MOLLIE_API_KEY: optional,
+    /** Moyens proposés sur la page de paiement Mollie, séparés par des virgules. */
+    MOLLIE_METHODS: z.string().default('creditcard'),
+    /** Adresse publique du webhook ; par défaut PUBLIC_SITE_URL + /api/payments/mollie/webhook (omise en local). */
+    MOLLIE_WEBHOOK_URL: optional,
+
     CATALOGUE_DIR: z.string().default('../../GLACIORA_CATALOGUE'),
     PRODUCT_MEDIA_DIR: z.string().default('../web/public/media'),
     PRODUCT_MEDIA_BASE_URL: z.string().default('/media'),

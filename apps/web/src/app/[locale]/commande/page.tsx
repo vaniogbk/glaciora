@@ -137,6 +137,7 @@ export default function CheckoutPage() {
   const [proofRejection, setProofRejection] = useState<ProofRejection | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [loadingPayment, setLoadingPayment] = useState(false);
+  const [method, setMethod] = useState<'BANK_TRANSFER' | 'CARD'>('BANK_TRANSFER');
   const [draftLoaded, setDraftLoaded] = useState(false);
   /** Mode de livraison à resélectionner après rechargement des tarifs (brouillon restauré). */
   const preferredRate = useRef('');
@@ -201,6 +202,9 @@ export default function CheckoutPage() {
   const maxFiles = config?.upload.maxFiles ?? 1;
   // Virement possible pour le pays choisi (un compte bancaire couvre ce pays, ou le compte principal couvre tous les pays).
   const bankForCountry = !config?.bankTransferCountries || !address.countryCode || config.bankTransferCountries.includes(address.countryCode);
+  // Carte (Mollie) : disponible dans tous les pays livrés ; seule possibilité là où aucun compte ne reçoit de virement.
+  const cardAvailable = card?.available ?? false;
+  const bankUsable = bankAvailable && bankForCountry;
 
   const showStep = useCallback((next: Step, push: boolean) => {
     setStep(next);
@@ -216,11 +220,11 @@ export default function CheckoutPage() {
   useEffect(() => {
     function onPopState(e: PopStateEvent) {
       if ((e.state as Record<string, unknown> | null)?.[STEP_STATE] !== 2) showStep(1, false);
-      else if (payment) showStep(2, false);
+      else if (payment || method === 'CARD') showStep(2, false);
     }
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
-  }, [payment, showStep]);
+  }, [payment, method, showStep]);
 
   function applySaved(a: SavedAddress) {
     setAddress({
@@ -273,11 +277,26 @@ export default function CheckoutPage() {
       requestAnimationFrame(() => document.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus());
       return;
     }
+    if (!bankUsable) {
+      // Aucun virement possible pour ce pays : paiement par carte seulement.
+      setPayment(null);
+      setMethod('CARD');
+      showStep(2, true);
+      return;
+    }
     setLoadingPayment(true);
     try {
       await loadPaymentDetails();
+      if (!cardAvailable) setMethod('BANK_TRANSFER');
       showStep(2, true);
     } catch (err) {
+      if (cardAvailable) {
+        // Coordonnées bancaires indisponibles : la carte reste possible.
+        setPayment(null);
+        setMethod('CARD');
+        showStep(2, true);
+        return;
+      }
       setStepError(apiErrorMessage(err, locale, m, t.bankDetailsFailed));
     } finally {
       setLoadingPayment(false);
@@ -286,12 +305,12 @@ export default function CheckoutPage() {
 
   // Onglet rechargé pendant le virement : l'étape 2 revient dès que les tarifs du pays sont chargés (même référence, cookie signé).
   useEffect(() => {
-    if (!resumePayment.current || !config || !cart || cart.items.length === 0 || !rateId || !bankForCountry) return;
+    if (!resumePayment.current || !config || !cart || cart.items.length === 0 || !rateId || !bankUsable) return;
     resumePayment.current = false;
     loadPaymentDetails()
       .then(() => showStep(2, false))
       .catch(() => setStep(1));
-  }, [config, cart, rateId, bankForCountry, loadPaymentDetails, showStep]);
+  }, [config, cart, rateId, bankUsable, loadPaymentDetails, showStep]);
 
   function onFile(e: ChangeEvent<HTMLInputElement>) {
     const selected = Array.from(e.target.files ?? []);
@@ -315,6 +334,10 @@ export default function CheckoutPage() {
     e.preventDefault();
     setGlobalError('');
     setProofRejection(null);
+    if (method === 'CARD') {
+      await payByCard();
+      return;
+    }
     const data = { email, shippingAddress: address, shippingRateId: rateId, paymentMethod: 'BANK_TRANSFER' as const, acceptTerms, locale };
     const { checkoutSchema } = await loadSchemas();
     const parsed = checkoutSchema.safeParse(data);
@@ -367,6 +390,44 @@ export default function CheckoutPage() {
     }
   }
 
+  /**
+   * Carte : l'API enregistre la commande (stock réservé) puis renvoie la page de paiement Mollie. Le panier et le brouillon
+   * restent en place jusqu'à la confirmation du paiement (page /commande/carte), pour pouvoir réessayer après un refus.
+   */
+  async function payByCard() {
+    const data = { email, shippingAddress: address, shippingRateId: rateId, paymentMethod: 'CARD' as const, acceptTerms, locale };
+    const { checkoutSchema } = await loadSchemas();
+    const parsed = checkoutSchema.safeParse(data);
+    const next: Record<string, string> = {};
+    if (!parsed.success) for (const issue of parsed.error.issues) next[issue.path.join('.')] ??= issue.message;
+    setErrors(translateFieldErrors(next, m));
+    if (Object.keys(next).some((key) => key !== 'acceptTerms')) {
+      showStep(1, false);
+      setStepError(t.completeDelivery);
+      return;
+    }
+    if (Object.keys(next).length > 0) {
+      setGlobalError(t.checkFields);
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await api<{ order: { reference: string; checkoutUrl: string } }>('/api/checkout/card-orders', { method: 'POST', json: { data } });
+      window.location.assign(res.order.checkoutUrl);
+    } catch (err) {
+      setSubmitting(false);
+      const serverFields = translateFieldErrors(fieldErrors(err), m);
+      setErrors(serverFields);
+      if (Object.keys(serverFields).some((key) => key.startsWith('shippingAddress') || key === 'email' || key === 'shippingRateId')) {
+        showStep(1, false);
+        setStepError(t.completeDelivery);
+        return;
+      }
+      setGlobalError(apiErrorMessage(err, locale, m, t.orderFailed));
+      requestAnimationFrame(() => window.scrollTo({ top: 0 }));
+    }
+  }
+
   if (!cartLoading && (!cart || cart.items.length === 0)) {
     return (
       <div className="container py-16 text-center">
@@ -382,7 +443,8 @@ export default function CheckoutPage() {
   const err = (key: string) => errors[key]?.trim() || undefined;
   const discountCents = cart?.discountCents ?? 0;
   const totalCents = (cart?.subtotalCents ?? 0) - discountCents + (quote?.priceCents ?? 0);
-  const onPayment = step === 2 && payment !== null;
+  const onPayment = step === 2 && (payment !== null || (method === 'CARD' && cardAvailable));
+  const byCard = method === 'CARD' && cardAvailable;
 
   const rejectionMessage = (() => {
     if (!proofRejection || !payment) return '';
@@ -513,14 +575,14 @@ export default function CheckoutPage() {
                   {err('shippingRateId') && <p className="field-error">{err('shippingRateId')}</p>}
                 </fieldset>
               )}
-              {bankAvailable && !bankForCountry && (
+              {bankAvailable && !bankForCountry && !cardAvailable && (
                 <p role="alert" className="rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning" data-testid="bank-unavailable-country">
                   {fmt(t.bankNotForCountry, { country: country(address.countryCode), email: BRAND.email, phone: BRAND.phoneDisplay })}
                 </p>
               )}
-              {config && !bankAvailable && <p className="rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning">{t.bankTransfer} {t.unavailable}</p>}
+              {config && !bankAvailable && !cardAvailable && <p className="rounded-md bg-warning/10 p-3 text-sm font-semibold text-warning">{t.bankTransfer} {t.unavailable}</p>}
               <div className="pt-2">
-                <button type="submit" className="btn-primary w-full sm:w-auto" disabled={!bankAvailable || !bankForCountry || loadingPayment} aria-describedby={stepError ? 'erreur-etape-1' : undefined} data-testid="continue-to-payment">
+                <button type="submit" className="btn-primary w-full sm:w-auto" disabled={!(bankUsable || cardAvailable) || loadingPayment} aria-describedby={stepError ? 'erreur-etape-1' : undefined} data-testid="continue-to-payment">
                   {loadingPayment ? m.common.loading : t.continueToPayment}
                 </button>
                 {stepError && (
@@ -571,19 +633,35 @@ export default function CheckoutPage() {
                 </h3>
                 <fieldset className="space-y-2">
                   <legend className="sr-only">{t.paymentMethod}</legend>
-                  <label className="flex min-h-[44px] items-center gap-3 rounded-md border border-deep p-3 text-sm">
-                    <input type="radio" name="paymentMethod" value="BANK_TRANSFER" defaultChecked className="h-4 w-4 accent-deep" data-testid="pay-bank-transfer" />
-                    <span className="font-semibold">{t.bankTransfer}</span>
-                  </label>
-                  <label className="flex min-h-[44px] cursor-not-allowed items-center gap-3 rounded-md border border-line bg-snow p-3 text-sm text-muted">
-                    <input type="radio" name="paymentMethod" value="CARD" disabled aria-describedby="carte-indispo" className="h-4 w-4" />
-                    <span className="font-semibold">{t.card}</span>
-                    <span id="carte-indispo" className="ml-auto rounded-sm bg-white px-2 py-0.5 text-xs font-bold uppercase text-muted">
-                      {locale === 'fr' && card?.unavailableReason ? card.unavailableReason : t.cardUnavailable}
-                    </span>
-                  </label>
+                  {payment && (
+                    <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded-md border border-line p-3 text-sm has-[:checked]:border-deep">
+                      <input type="radio" name="paymentMethod" value="BANK_TRANSFER" checked={!byCard} onChange={() => setMethod('BANK_TRANSFER')} className="h-4 w-4 accent-deep" data-testid="pay-bank-transfer" />
+                      <span className="font-semibold">{t.bankTransfer}</span>
+                    </label>
+                  )}
+                  {cardAvailable ? (
+                    <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded-md border border-line p-3 text-sm has-[:checked]:border-deep">
+                      <input type="radio" name="paymentMethod" value="CARD" checked={byCard} onChange={() => setMethod('CARD')} className="h-4 w-4 accent-deep" data-testid="pay-card" />
+                      <span className="font-semibold">{t.card}</span>
+                    </label>
+                  ) : (
+                    <label className="flex min-h-[44px] cursor-not-allowed items-center gap-3 rounded-md border border-line bg-snow p-3 text-sm text-muted">
+                      <input type="radio" name="paymentMethod" value="CARD" disabled aria-describedby="carte-indispo" className="h-4 w-4" />
+                      <span className="font-semibold">{t.card}</span>
+                      <span id="carte-indispo" className="ml-auto rounded-sm bg-white px-2 py-0.5 text-xs font-bold uppercase text-muted">
+                        {locale === 'fr' && card?.unavailableReason ? card.unavailableReason : t.cardUnavailable}
+                      </span>
+                    </label>
+                  )}
                 </fieldset>
 
+                {byCard && (
+                  <p className="rounded-lg border border-line p-5 text-sm" data-testid="card-hint">
+                    {t.cardHint}
+                  </p>
+                )}
+
+                {!byCard && payment && (
                 <div className="grid grid-cols-1 gap-6 rounded-lg border border-line p-5 sm:grid-cols-[minmax(0,1fr)_auto]" data-testid="bank-details">
                   <h4 className="text-sm font-bold sm:col-span-2">{t.bankDetailsTitle}</h4>
                   <dl className="space-y-2 text-sm">
@@ -622,9 +700,11 @@ export default function CheckoutPage() {
                   </figure>
                   <p className="text-xs text-muted sm:col-span-2">{t.referenceHint}</p>
                 </div>
+                )}
               </section>
 
               <section className="space-y-4">
+                {!byCard && (
                 <div>
                   <label htmlFor="proof" className="field-label">
                     {t.proofLabel} <span aria-hidden="true">*</span>
@@ -650,6 +730,7 @@ export default function CheckoutPage() {
                     </p>
                   )}
                 </div>
+                )}
 
                 <label className="flex items-start gap-2 text-sm">
                   <input type="checkbox" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} className="mt-1 h-4 w-4 accent-deep" aria-invalid={Boolean(err('acceptTerms'))} />
@@ -676,13 +757,13 @@ export default function CheckoutPage() {
                   </div>
                 )}
 
-                <p className="text-xs text-muted">{fmt(t.proofCheckHint, { reference: payment.reference, amount: price(payment.amountCents) })}</p>
+                {!byCard && payment && <p className="text-xs text-muted">{fmt(t.proofCheckHint, { reference: payment.reference, amount: price(payment.amountCents) })}</p>}
                 <button type="submit" className="btn-primary w-full sm:w-auto" disabled={submitting} aria-describedby={proofRejection ? 'refus-justificatif' : undefined} data-testid="place-order">
-                  {submitting ? t.verifyingProof : t.placeOrder}
+                  {byCard ? (submitting ? t.redirectingToCard : fmt(t.payByCard, { amount: price(totalCents) })) : submitting ? t.verifyingProof : t.placeOrder}
                 </button>
                 {submitting && (
                   <p role="status" className="text-xs text-muted">
-                    {t.verifyingProof}
+                    {byCard ? t.redirectingToCard : t.verifyingProof}
                   </p>
                 )}
               </section>
@@ -728,7 +809,7 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between gap-4 border-t border-line pt-2 text-lg font-extrabold">
               <dt>{t.totalInclTax}</dt>
-              <dd data-testid="order-total">{price(onPayment ? payment.amountCents : totalCents)}</dd>
+              <dd data-testid="order-total">{price(onPayment && !byCard && payment ? payment.amountCents : totalCents)}</dd>
             </div>
           </dl>
         </aside>

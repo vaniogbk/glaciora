@@ -15,3 +15,5 @@ process.env.STORAGE_LOCAL_DIR = './storage/test-private';
 process.env.LOG_LEVEL = 'silent';
 // Montants vérifiés hors promotion saisonnière (tests/promotions.test.ts les teste à part).
 process.env.GLACIORA_PROMOTIONS = 'off';
+// Jamais de vraie clé Mollie dans les tests (la clé de développement de .env n'est pas chargée) : prestataire factice via setCardProvider.
+process.env.MOLLIE_API_KEY = '';

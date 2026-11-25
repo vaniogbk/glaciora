@@ -87,6 +87,48 @@ Consulter (connexion admin requise) : ${p.adminOrderUrl}`;
   return { subject, html, text, attachments: attached ? files.map((f) => ({ name: f.name, storageKey: f.storageKey })) : undefined };
 }
 
+export interface AdminCardPaidPayload {
+  orderReference: string;
+  customerName: string;
+  amountCents: number;
+  countryCode: string;
+  adminOrderUrl: string;
+  providerPaymentId: string;
+  /** Commande annulée dans l'admin pendant le paiement : à rembourser depuis le tableau de bord Mollie. */
+  orderCancelled?: boolean;
+}
+
+/** Notification boutique : paiement carte confirmé par Mollie (aucune preuve à vérifier). */
+export function adminCardPaid(p: AdminCardPaidPayload): RenderedEmail {
+  const amount = formatPrice(p.amountCents);
+  const country = countryName(p.countryCode);
+  const intro = p.orderCancelled
+    ? 'Mollie a confirmé le paiement par carte, mais cette commande était annulée dans l’admin : remboursez le client depuis le tableau de bord Mollie.'
+    : 'Mollie a confirmé le paiement par carte : la commande est passée « En préparation ».';
+  const subject = `${p.orderCancelled ? 'À rembourser — ' : ''}Paiement carte reçu — commande ${p.orderReference}`;
+  const html = layout(
+    'Paiement par carte confirmé',
+    `<p>${escapeHtml(intro)}</p>
+<table role="presentation" cellpadding="6" style="font-size:14px">
+<tr><td><strong>Commande</strong></td><td>${escapeHtml(p.orderReference)}</td></tr>
+<tr><td><strong>Client</strong></td><td>${escapeHtml(p.customerName)}</td></tr>
+<tr><td><strong>Montant</strong></td><td>${escapeHtml(amount)}</td></tr>
+<tr><td><strong>Pays de livraison</strong></td><td>${escapeHtml(country)}</td></tr>
+<tr><td><strong>Paiement Mollie</strong></td><td>${escapeHtml(p.providerPaymentId)}</td></tr>
+</table>
+${button(p.adminOrderUrl, 'Ouvrir la commande dans l’admin')}`,
+  );
+  const text = `Paiement par carte confirmé
+${intro}
+Commande : ${p.orderReference}
+Client : ${p.customerName}
+Montant : ${amount}
+Pays de livraison : ${country}
+Paiement Mollie : ${p.providerPaymentId}
+Admin : ${p.adminOrderUrl}`;
+  return { subject, html, text };
+}
+
 /** Langue du client (site au moment de la commande ou de la demande) ; absente des anciens e-mails en file : français. */
 interface Localized {
   locale?: string;
@@ -99,6 +141,8 @@ export interface OrderReceivedPayload extends Localized {
   firstName: string;
   totalCents: number;
   orderUrl: string;
+  /** CARD : paiement déjà confirmé par Mollie (pas de preuve de virement). Absent des anciens e-mails en file : virement. */
+  paymentMethod?: 'BANK_TRANSFER' | 'CARD';
 }
 
 /** Étape 1 du suivi, envoyée dès le dépôt de la preuve de virement. */
@@ -106,9 +150,10 @@ export function orderReceived(p: OrderReceivedPayload): RenderedEmail {
   const t = emailTexts(p.locale);
   const amount = price(p.totalCents, p.locale);
   const step = t.steps[0];
+  const receivedBody = p.paymentMethod === 'CARD' ? t.receivedBodyCard : t.receivedBody;
   const subject = fill(t.receivedSubject, { ref: p.orderReference });
   const title = fill(t.receivedTitle, { name: p.firstName });
-  const body = escapeHtml(fill(t.receivedBody, { ref: '\u0001', amount: '\u0002' }))
+  const body = escapeHtml(fill(receivedBody, { ref: '\u0001', amount: '\u0002' }))
     .replace('\u0001', `<strong>${escapeHtml(p.orderReference)}</strong>`)
     .replace('\u0002', `<strong>${escapeHtml(amount)}</strong>`);
   const html = layout(
@@ -119,7 +164,7 @@ ${button(p.orderUrl, t.trackButton)}`,
     p.locale,
   );
   const text = `${title}
-${fill(t.receivedBody, { ref: p.orderReference, amount })}
+${fill(receivedBody, { ref: p.orderReference, amount })}
 ${step}
 ${t.trackButton} : ${p.orderUrl}`;
   return { subject, html, text };
@@ -216,6 +261,7 @@ Si vous n'êtes pas à l'origine de ce changement, désactivez le compte dans l'
 
 export const TEMPLATES = {
   'admin-transfer-proof': adminTransferProof,
+  'admin-card-paid': adminCardPaid,
   'order-received': orderReceived,
   'order-status': orderStatusChanged,
   'password-reset': passwordReset,

@@ -123,11 +123,16 @@ adminOrdersRouter.patch(
   asyncHandler(async (req, res) => {
     const id = idParam.parse(req.params.id);
     const input = statusBody.parse(req.body);
-    const order = await prisma.order.findUnique({ where: { id }, include: { items: true, user: { select: { id: true } } } });
+    const order = await prisma.order.findUnique({ where: { id }, include: { items: true, user: { select: { id: true } }, payments: { select: { method: true, status: true } } } });
     if (!order) throw notFound('Commande introuvable');
     const from = order.status as OrderStatus;
     if (!canTransition(from, input.status)) {
       throw unprocessable('INVALID_TRANSITION', `Passage de « ${ORDER_STATUS_LABELS[from]} » à « ${ORDER_STATUS_LABELS[input.status]} » impossible`);
+    }
+    // Carte : jamais « payée » ni « En route » tant que Mollie n'a pas confirmé le paiement.
+    const unpaidCard = order.payments.some((p) => p.method === 'CARD' && p.status !== 'VERIFIED');
+    if (unpaidCard && input.status !== 'CANCELLED') {
+      throw unprocessable('CARD_NOT_PAID', 'Paiement par carte non confirmé par Mollie');
     }
     const now = new Date();
     const updated = await prisma.$transaction(async (tx) => {
@@ -210,6 +215,8 @@ adminOrdersRouter.post(
     const { reason } = z.object({ reason: z.string().trim().min(3).max(300) }).parse(req.body);
     const payment = await prisma.payment.findFirst({ where: { id: paymentId, orderId: id } });
     if (!payment) throw notFound('Paiement introuvable');
+    // Carte : l'état vient de Mollie seul (remboursement depuis le tableau de bord Mollie, puis annulation de la commande).
+    if (payment.method === 'CARD') throw unprocessable('CARD_PAYMENT', 'Un paiement par carte se gère dans le tableau de bord Mollie');
     await prisma.payment.update({ where: { id: paymentId }, data: { status: 'REJECTED', rejectionReason: reason, verifiedAt: new Date(), verifiedById: req.user!.id } });
     await logActivity({ actorId: req.user!.id, actorRole: 'ADMIN', action: 'payment.rejected', entityType: 'Order', entityId: id });
     res.json({ ok: true });

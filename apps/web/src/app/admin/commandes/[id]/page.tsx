@@ -54,7 +54,7 @@ interface AdminOrder {
     trackingNumber: string | null;
     trackingUrl: string | null;
     items: { id: string; productName: string; productReference: string; variantSku: string; sizeLabel: string | null; quantity: number; unitPriceCents: number; lineTotalCents: number }[];
-    payments: { id: string; method: string; status: string; amountCents: number; transferReference: string | null; receivingAccount: string | null; verifiedAt: string | null; rejectionReason: string | null; proofCheck: ProofCheck | null; verifiedBy: { firstName: string | null; lastName: string | null } | null }[];
+    payments: { id: string; method: string; status: string; amountCents: number; transferReference: string | null; receivingAccount: string | null; providerPaymentId: string | null; verifiedAt: string | null; rejectionReason: string | null; proofCheck: ProofCheck | null; verifiedBy: { firstName: string | null; lastName: string | null } | null }[];
     proofs: { id: string; originalName: string; mimeType: string; sizeBytes: number; createdAt: string; deletedAt: string | null }[];
     emails: { id: string; template: string; status: string; attempts: number; sentAt: string | null; lastError: string | null }[];
   };
@@ -101,6 +101,8 @@ export default function AdminOrderPage() {
   if (!data) return <PanelSkeleton rows={8} label="Chargement de la commande…" />;
   const { order } = data;
   const payment = order.payments[0];
+  // Carte (Mollie) : pas de justificatif ; le paiement est confirmé par Mollie seul.
+  const isCard = payment?.method === 'CARD';
 
   return (
     <div className="space-y-6">
@@ -124,19 +126,35 @@ export default function AdminOrderPage() {
             <dl className="mt-3 grid grid-cols-2 gap-2">
               <dt className="text-muted">Montant attendu</dt>
               <dd className="font-bold">{formatPrice(payment.amountCents)}</dd>
-              <dt className="text-muted">Référence de virement</dt>
-              <dd className="font-mono font-bold">{payment.transferReference}</dd>
-              <dt className="text-muted">Compte de réception</dt>
-              <dd>{payment.receivingAccount ?? '—'}</dd>
+              {isCard ? (
+                <>
+                  <dt className="text-muted">Mode de paiement</dt>
+                  <dd className="font-bold">Carte bancaire (Mollie)</dd>
+                  <dt className="text-muted">Paiement Mollie</dt>
+                  <dd className="font-mono" data-testid="mollie-id">{payment.providerPaymentId ?? '—'}</dd>
+                </>
+              ) : (
+                <>
+                  <dt className="text-muted">Référence de virement</dt>
+                  <dd className="font-mono font-bold">{payment.transferReference}</dd>
+                  <dt className="text-muted">Compte de réception</dt>
+                  <dd>{payment.receivingAccount ?? '—'}</dd>
+                </>
+              )}
               <dt className="text-muted">Statut</dt>
               <dd>{PAYMENT_STATUS_LABELS[payment.status]}</dd>
-              <dt className="text-muted">Contrôle automatique</dt>
-              <dd data-testid="proof-check">{proofCheckLabel(payment.proofCheck)}</dd>
+              {!isCard && (
+                <>
+                  <dt className="text-muted">Contrôle automatique</dt>
+                  <dd data-testid="proof-check">{proofCheckLabel(payment.proofCheck)}</dd>
+                </>
+              )}
               {payment.verifiedAt && (
                 <>
-                  <dt className="text-muted">Vérifié le</dt>
+                  <dt className="text-muted">{isCard ? 'Confirmé par Mollie le' : 'Vérifié le'}</dt>
                   <dd>
-                    {new Date(payment.verifiedAt).toLocaleString('fr-FR')} par {payment.verifiedBy?.firstName} {payment.verifiedBy?.lastName}
+                    {new Date(payment.verifiedAt).toLocaleString('fr-FR')}
+                    {!isCard && <> par {payment.verifiedBy?.firstName} {payment.verifiedBy?.lastName}</>}
                   </dd>
                 </>
               )}
@@ -148,7 +166,7 @@ export default function AdminOrderPage() {
               )}
             </dl>
           )}
-          <h3 className="mt-5 text-base">Confirmation(s) de virement</h3>
+          {!isCard && <h3 className="mt-5 text-base">Confirmation(s) de virement</h3>}
           <ul className="mt-2 space-y-2">
             {order.proofs.map((p) => (
               <li key={p.id} className="flex flex-wrap items-center gap-3 rounded-md bg-snow p-3">
@@ -171,7 +189,10 @@ export default function AdminOrderPage() {
               </li>
             ))}
           </ul>
-          {(['PENDING_PAYMENT_VERIFICATION', 'PAID', 'PREPARING', 'SHIPPED'] as OrderStatus[]).includes(order.status) && (
+          {isCard && payment?.status === 'PENDING_VERIFICATION' && (
+            <p className="mt-5 rounded-md bg-warning/10 p-3 font-semibold text-warning">Paiement par carte en attente de confirmation par Mollie : ne pas expédier.</p>
+          )}
+          {(['PENDING_PAYMENT_VERIFICATION', 'PAID', 'PREPARING', 'SHIPPED'] as OrderStatus[]).includes(order.status) && !(isCard && payment?.status !== 'VERIFIED') && (
             <div className="mt-5 flex flex-wrap gap-3">
               {order.status !== 'SHIPPED' ? (
                 <button
@@ -180,12 +201,12 @@ export default function AdminOrderPage() {
                   disabled={busy}
                   data-testid="mark-shipped"
                   onClick={() => {
-                    if (window.confirm('Le virement est-il bien crédité ? La commande passe « En route » et le client est prévenu par e-mail.')) {
+                    if (window.confirm(isCard ? 'La commande passe « En route » et le client est prévenu par e-mail.' : 'Le virement est-il bien crédité ? La commande passe « En route » et le client est prévenu par e-mail.')) {
                       void act(() => api(`/api/admin/orders/${order.id}/status`, { method: 'PATCH', json: { status: 'SHIPPED', notifyCustomer: true } }), 'Commande marquée « En route » : le client a été prévenu.');
                     }
                   }}
                 >
-                  Virement crédité : marquer « En route »
+                  {isCard ? 'Marquer « En route »' : 'Virement crédité : marquer « En route »'}
                 </button>
               ) : (
                 <button
@@ -198,7 +219,7 @@ export default function AdminOrderPage() {
                   Marquer « Livrée »
                 </button>
               )}
-              {payment?.status === 'PENDING_VERIFICATION' && (
+              {payment?.status === 'PENDING_VERIFICATION' && !isCard && (
                 <button
                   type="button"
                   className="btn-outline"

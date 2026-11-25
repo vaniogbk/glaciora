@@ -2,6 +2,7 @@ import type { RequestHandler } from 'express';
 import { randomUUID } from 'node:crypto';
 import rateLimit from 'express-rate-limit';
 import { allowedOrigins, env } from '../config/env';
+import { MOLLIE_WEBHOOK_PATH } from '../modules/payments/card-provider';
 import { forbidden } from '../lib/errors';
 import { safeEqual } from '../lib/tokens';
 
@@ -38,6 +39,8 @@ export const requestId: RequestHandler = (req, res, next) => {
  */
 export const csrfGuard: RequestHandler = (req, _res, next) => {
   if (['GET', 'HEAD', 'OPTIONS'].includes(req.method)) return next();
+  // Webhook Mollie : Mollie ne peut pas ajouter l'en-tête. Sans risque : le corps ne porte qu'un identifiant, relu chez Mollie.
+  if (req.method === 'POST' && req.path === MOLLIE_WEBHOOK_PATH) return next();
   if (req.get(CSRF_HEADER) !== '1') return next(forbidden('Requête refusée (protection CSRF)'));
   const origin = req.get('origin') ?? refererOrigin(req.get('referer'));
   if (origin && !allowedOrigins.includes(origin)) return next(forbidden('Origine non autorisée'));

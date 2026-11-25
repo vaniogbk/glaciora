@@ -411,6 +411,9 @@ model Payment {
   proofCheck        Json?
   bankAccountId     String?
   bankAccount       BankAccount?    @relation(fields: [bankAccountId], references: [id], onDelete: SetNull)
+  /// Paiement carte : prestataire (mollie) et identifiant du paiement chez lui (tr_…), relu à chaque webhook.
+  provider          String?
+  providerPaymentId String?         @unique
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
   proofs            TransferProof[]

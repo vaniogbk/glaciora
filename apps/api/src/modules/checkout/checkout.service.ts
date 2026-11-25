@@ -27,7 +27,7 @@ import { assertProofMatchesOrder } from './proof-check';
 
 export const ORDER_ACCESS_COOKIE = 'glaciora_order';
 
-async function requireCart(req: Request) {
+export async function requireCart(req: Request) {
   const cart = await findCurrentCart(req);
   if (!cart) throw unprocessable('EMPTY_CART', 'Votre panier est vide');
   return cart;
@@ -87,6 +87,88 @@ export async function preparePaymentDetails(req: Request, res: Response, country
   };
 }
 
+type CartItems = Awaited<ReturnType<typeof loadCartItems>>;
+export type OrderCart = Awaited<ReturnType<typeof loadOrderCart>>;
+
+/** Panier relu dans la transaction de commande : articles, remises, livraison et total définitifs. */
+export async function loadOrderCart(tx: Prisma.TransactionClient, cartId: string, data: CheckoutInput) {
+  const items = await loadCartItems(cartId, tx);
+  const view = toCartView(items);
+  if (view.items.length === 0) throw unprocessable('EMPTY_CART', 'Votre panier est vide');
+  if (view.hasIssues) throw unprocessable('CART_ISSUES', 'Certains articles ne sont plus disponibles', view.items.filter((i) => i.issue));
+  const zones = await loadShippingZones(tx);
+  const quote = selectShippingQuote(zones, data.shippingAddress.countryCode, view.totalCents, data.shippingRateId);
+  if (!quote) throw unprocessable('SHIPPING_UNAVAILABLE', 'Livraison indisponible pour ce pays');
+  return { items, view, quote, totalCents: view.totalCents + quote.priceCents };
+}
+
+/** Réservation du stock : décrément conditionnel, aucune survente possible même en concurrence. */
+export async function reserveStock(tx: Prisma.TransactionClient, items: CartItems) {
+  for (const item of items) {
+    const updated = await tx.stock.updateMany({
+      where: { variantId: item.variantId, quantity: { gte: item.quantity } },
+      data: { quantity: { decrement: item.quantity } },
+    });
+    if (updated.count === 0) {
+      throw unprocessable('INSUFFICIENT_STOCK', `Stock insuffisant pour « ${item.variant.product.name} »`);
+    }
+  }
+}
+
+/** Champs de commande communs au virement et à la carte : client, adresse, montants et lignes figées. */
+export function orderFields(req: Request, data: CheckoutInput, { items, view, quote, totalCents }: OrderCart) {
+  const a = data.shippingAddress;
+  return {
+    userId: req.user?.id ?? null,
+    email: data.email,
+    locale: data.locale ?? 'fr',
+    shipFirstName: a.firstName,
+    shipLastName: a.lastName,
+    shipCompany: a.company || null,
+    shipLine1: a.line1,
+    shipLine2: a.line2 || null,
+    shipPostalCode: a.postalCode,
+    shipCity: a.city,
+    shipRegion: a.region || null,
+    shipCountryCode: a.countryCode,
+    shipPhone: a.phone,
+    subtotalCents: view.subtotalCents,
+    discountCents: view.discountCents,
+    discountLabel:
+      [...view.packs.map((p) => (p.count > 1 ? `${p.name} ×${p.count}` : p.name)), ...(view.promotion ? [`${view.promotion.name} -${view.promotion.percent} %`] : [])].join(', ') || null,
+    shippingCents: quote.priceCents,
+    totalCents,
+    shippingRateName: quote.name,
+    customerNote: data.customerNote || null,
+    items: {
+      create: items.map((item) => ({
+        variantId: item.variantId,
+        productName: item.variant.product.name,
+        productReference: item.variant.product.reference,
+        productSlug: item.variant.product.slug,
+        variantSku: item.variant.sku,
+        sizeLabel: item.variant.size?.label ?? null,
+        color: item.variant.color,
+        imageUrl: item.variant.product.images[0]?.url ?? null,
+        unitPriceCents: item.variant.priceCents,
+        quantity: item.quantity,
+        lineTotalCents: item.variant.priceCents * item.quantity,
+      })),
+    },
+  };
+}
+
+/** Cookie de fin de commande : récapitulatif complet sur la page de confirmation, dans ce navigateur seulement. */
+export function setOrderAccessCookie(res: Response, reference: string, accessToken: string) {
+  res.cookie(ORDER_ACCESS_COOKIE, `${reference}.${accessToken}`, {
+    httpOnly: true,
+    secure: env.COOKIE_SECURE,
+    sameSite: 'lax',
+    path: '/api/checkout',
+    maxAge: 30 * 24 * 3600 * 1000,
+  });
+}
+
 export interface UploadedProof {
   buffer: Buffer;
   size: number;
@@ -105,6 +187,7 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
     if (err instanceof SyntaxError) throw badRequest('Données de commande illisibles');
     throw err;
   }
+  if (data.paymentMethod !== 'BANK_TRANSFER') throw badRequest('Mode de paiement invalide pour cette étape');
   if (files.length === 0) throw unprocessable('PROOF_REQUIRED', 'La confirmation de virement est obligatoire');
   if (files.length > MAX_PROOF_FILES) throw unprocessable('PROOF_TOO_MANY', `${MAX_PROOF_FILES} fichiers maximum`);
   const checked = files.map((file) => {
@@ -150,14 +233,8 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
   const accessToken = generateOpaqueToken();
   try {
     const order = await prisma.$transaction(async (tx) => {
-      const items = await loadCartItems(cart.id, tx);
-      const view = toCartView(items);
-      if (view.items.length === 0) throw unprocessable('EMPTY_CART', 'Votre panier est vide');
-      if (view.hasIssues) throw unprocessable('CART_ISSUES', 'Certains articles ne sont plus disponibles', view.items.filter((i) => i.issue));
-      const zones = await loadShippingZones(tx);
-      const quote = selectShippingQuote(zones, data.shippingAddress.countryCode, view.totalCents, data.shippingRateId);
-      if (!quote) throw unprocessable('SHIPPING_UNAVAILABLE', 'Livraison indisponible pour ce pays');
-      const totalCents = view.totalCents + quote.priceCents;
+      const orderCart = await loadOrderCart(tx, cart.id, data);
+      const { items, totalCents } = orderCart;
       // Le compte enregistré est celui affiché au client avec cette référence (répartition entre plusieurs comptes d'un pays).
       const account = signed.accountKey ? await findShownAccount(signed.accountKey) : await resolveReceivingAccount(data.shippingAddress.countryCode);
       if (!account) throw conflict('Les coordonnées bancaires ont changé : affichez-les à nouveau avant de valider', { code: 'BANK_ACCOUNT_CHANGED' });
@@ -165,16 +242,7 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
         throw conflict('Le montant de la commande a changé : vérifiez le nouveau montant avant de valider', { code: 'AMOUNT_CHANGED', totalCents });
       }
 
-      // Réservation du stock : décrément conditionnel, aucune survente possible même en concurrence.
-      for (const item of items) {
-        const updated = await tx.stock.updateMany({
-          where: { variantId: item.variantId, quantity: { gte: item.quantity } },
-          data: { quantity: { decrement: item.quantity } },
-        });
-        if (updated.count === 0) {
-          throw unprocessable('INSUFFICIENT_STOCK', `Stock insuffisant pour « ${item.variant.product.name} »`);
-        }
-      }
+      await reserveStock(tx, items);
 
       const a = data.shippingAddress;
       const created = await tx.order.create({
@@ -182,43 +250,8 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
           reference: signed.reference,
           // Étape 1 du suivi dès le dépôt de la preuve ; le paiement reste « à vérifier » jusqu'au passage « En route ».
           status: 'PREPARING',
-          userId: req.user?.id ?? null,
-          email: data.email,
-          locale: data.locale ?? 'fr',
-          shipFirstName: a.firstName,
-          shipLastName: a.lastName,
-          shipCompany: a.company || null,
-          shipLine1: a.line1,
-          shipLine2: a.line2 || null,
-          shipPostalCode: a.postalCode,
-          shipCity: a.city,
-          shipRegion: a.region || null,
-          shipCountryCode: a.countryCode,
-          shipPhone: a.phone,
-          subtotalCents: view.subtotalCents,
-          discountCents: view.discountCents,
-          discountLabel:
-            [...view.packs.map((p) => (p.count > 1 ? `${p.name} ×${p.count}` : p.name)), ...(view.promotion ? [`${view.promotion.name} -${view.promotion.percent} %`] : [])].join(', ') || null,
-          shippingCents: quote.priceCents,
-          totalCents,
-          shippingRateName: quote.name,
-          customerNote: data.customerNote || null,
+          ...orderFields(req, data, orderCart),
           accessTokenHash: hashToken(accessToken),
-          items: {
-            create: items.map((item) => ({
-              variantId: item.variantId,
-              productName: item.variant.product.name,
-              productReference: item.variant.product.reference,
-              productSlug: item.variant.product.slug,
-              variantSku: item.variant.sku,
-              sizeLabel: item.variant.size?.label ?? null,
-              color: item.variant.color,
-              imageUrl: item.variant.product.images[0]?.url ?? null,
-              unitPriceCents: item.variant.priceCents,
-              quantity: item.quantity,
-              lineTotalCents: item.variant.priceCents * item.quantity,
-            })),
-          },
           payments: {
             create: {
               method: 'BANK_TRANSFER',
@@ -293,13 +326,7 @@ export async function placeBankTransferOrder(req: Request, res: Response, rawDat
     });
 
     res.clearCookie(REFERENCE_COOKIE, { path: '/api/checkout' });
-    res.cookie(ORDER_ACCESS_COOKIE, `${order.reference}.${accessToken}`, {
-      httpOnly: true,
-      secure: env.COOKIE_SECURE,
-      sameSite: 'lax',
-      path: '/api/checkout',
-      maxAge: 30 * 24 * 3600 * 1000,
-    });
+    setOrderAccessCookie(res, order.reference, accessToken);
     kickEmailQueue();
     return { reference: order.reference, totalCents: order.totalCents, status: order.status };
   } catch (err) {

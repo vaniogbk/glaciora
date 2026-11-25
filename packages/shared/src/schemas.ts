@@ -44,7 +44,7 @@ export const checkoutSchema = z.object({
   email: emailSchema,
   shippingAddress: addressSchema,
   shippingRateId: z.string().min(1, 'Choisissez un mode de livraison').max(64),
-  paymentMethod: z.literal('BANK_TRANSFER'),
+  paymentMethod: z.enum(['BANK_TRANSFER', 'CARD']),
   customerNote: optionalText(500),
   acceptTerms: z.literal(true, { error: 'Vous devez accepter les conditions de vente' }),
   locale: localeSchema,

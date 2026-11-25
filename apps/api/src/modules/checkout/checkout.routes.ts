@@ -8,6 +8,7 @@ import { checkoutLimiter, trackingLimiter, uploadLimiter } from '../../middlewar
 import { listShippableCountries } from '../shipping/shipping.repository';
 import { bankTransferCountries, listPaymentMethods } from '../payments/payment-methods';
 import * as checkout from './checkout.service';
+import { cardOrderState, placeCardOrder } from './card-checkout';
 
 export const checkoutRouter = Router();
 
@@ -61,6 +62,25 @@ checkoutRouter.post(
   asyncHandler(async (req, res) => {
     const result = await checkout.placeBankTransferOrder(req, res, req.body?.data, (req.files as Express.Multer.File[] | undefined) ?? []);
     res.status(201).json({ order: result });
+  }),
+);
+
+// Paiement par carte : commande enregistrée puis lien vers la page de paiement Mollie (checkoutUrl).
+checkoutRouter.post(
+  '/card-orders',
+  checkoutLimiter,
+  asyncHandler(async (req, res) => {
+    res.status(201).json({ order: await placeCardOrder(req, res, req.body?.data ?? req.body) });
+  }),
+);
+
+// Retour de la page de paiement : état du paiement seulement (payé, en cours, refusé), relu chez Mollie si besoin.
+checkoutRouter.get(
+  '/card-orders/:reference',
+  trackingLimiter,
+  asyncHandler(async (req, res) => {
+    const reference = z.string().regex(/^GLA-\d{6}-[A-Z0-9]{5}$/).parse(req.params.reference);
+    res.json(await cardOrderState(reference));
   }),
 );
 

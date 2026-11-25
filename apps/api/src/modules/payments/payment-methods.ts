@@ -1,6 +1,7 @@
 import { formatIban } from '@glaciora/shared';
 import { bankDetailsConfigured, env } from '../../config/env';
 import { prisma } from '../../lib/prisma';
+import { getReadyCardProvider } from './card-provider';
 
 export type PaymentMethodId = 'BANK_TRANSFER' | 'CARD';
 
@@ -11,21 +12,10 @@ export interface PaymentMethodDescriptor {
   unavailableReason?: string;
 }
 
-/**
- * Point d'extension pour un futur prestataire carte (Stripe, Mollie, Adyen…).
- * Aucune implémentation n'est branchée : le paiement carte est indisponible et ne doit jamais être simulé.
- * Une intégration devra implémenter cette interface puis la déclarer dans `cardProvider`.
- */
-export interface CardPaymentProvider {
-  readonly name: string;
-  createPayment(input: { orderId: string; amountCents: number; currency: string; returnUrl: string }): Promise<{ redirectUrl: string; providerPaymentId: string }>;
-  verifyWebhook(rawBody: Buffer, signature: string): Promise<{ providerPaymentId: string; status: 'succeeded' | 'failed' }>;
-}
-
-export const cardProvider: CardPaymentProvider | null = null;
-
 export async function listPaymentMethods(): Promise<PaymentMethodDescriptor[]> {
   const bankAvailable = bankDetailsConfigured || (await prisma.bankAccount.count({ where: { isActive: true } })) > 0;
+  // Carte : prestataire configuré (Mollie, voir card-provider.ts), disponible pour tous les pays livrés.
+  const cardProvider = await getReadyCardProvider();
   return [
     {
       id: 'BANK_TRANSFER',
