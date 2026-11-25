@@ -14,7 +14,8 @@ import { prisma } from '../../lib/prisma';
 export const AUDIENCE_FILE = path.resolve(__dirname, '../../../data/catalogue-audience.csv');
 
 const rowSchema = z.object({
-  reference: z.string().regex(/^GLA-\d{3}$/),
+  // GLA-001… et HL-001… (hockey du catalogue client).
+  reference: z.string().regex(/^[A-Z]{2,4}-\d{3}$/),
   slug: z.string().min(1),
   audience: z.enum(['MEN', 'WOMEN', 'KIDS', 'UNISEX']),
   evidence: z.string().min(3),
